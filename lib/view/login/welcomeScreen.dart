@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:groupidy/colors.dart';
 
 import '../../typography.dart';
@@ -35,10 +36,10 @@ class WelcomeScreen extends StatelessWidget {
                   child: TextButton(
                     child: Text(
                       "Join",
-                      style: kBodyLarge.copyWith(color: Colors.white70),
+                      style: kBodyLarge.copyWith(color: Colors.white),
                     ),
                     style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(kAccentColor)),
-                    onPressed: () => {},
+                    onPressed: () => {Get..toNamed('/join')},
                   ),
                 ),
               ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:groupidy/view/login/JoinScreen.dart';
 import 'package:groupidy/view/login/welcomeScreen.dart';
 import 'package:groupidy/view/splashScreen.dart';
 
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => WelcomeScreen(),
+        '/join': (context) => JoinScreen(),
       },
     );
   }
