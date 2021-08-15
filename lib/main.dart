@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:groupidy/view/splashView.dart';
+import 'package:groupidy/view/login/welcomeScreen.dart';
+import 'package:groupidy/view/splashScreen.dart';
 
 void main() {
   runApp(MyApp());
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => SplashView(),
+        '/': (context) => WelcomeScreen(),
       },
     );
   }

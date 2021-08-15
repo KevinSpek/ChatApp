@@ -3,13 +3,14 @@ import 'package:groupidy/colors.dart';
 
 import '../typography.dart';
 
-class SplashView extends StatelessWidget {
-  const SplashView({Key? key}) : super(key: key);
+class SplashScreen extends StatelessWidget {
+  const SplashScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Stack(
+      alignment: Alignment.center,
       children: [
         Container(color: kPrimaryColor),
         Center(
