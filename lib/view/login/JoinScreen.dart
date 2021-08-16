@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:groupidy/constants.dart';
 import 'package:groupidy/typography.dart';
-
+import 'package:country_code_picker/country_code_picker.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 import '../../colors.dart';
 
-enum joinPosition { nickname, phoneNumber, VerificationCode }
+enum JoinPosition { nickname, phoneNumber, VerificationCode }
 
 class JoinScreen extends StatefulWidget {
   const JoinScreen({Key? key}) : super(key: key);
@@ -14,18 +15,18 @@ class JoinScreen extends StatefulWidget {
 }
 
 class _JoinScreenState extends State<JoinScreen> {
-  var pos = joinPosition.nickname;
+  var pos = JoinPosition.nickname;
 
   void _conitnue() {
-    if (pos == joinPosition.nickname) {
+    if (pos == JoinPosition.nickname) {
       setState(() {
-        pos = joinPosition.phoneNumber;
+        pos = JoinPosition.phoneNumber;
       });
-    } else if (pos == joinPosition.phoneNumber) {
+    } else if (pos == JoinPosition.phoneNumber) {
       setState(() {
-        pos = joinPosition.VerificationCode;
+        pos = JoinPosition.VerificationCode;
       });
-    } else if (pos == joinPosition.VerificationCode) {
+    } else if (pos == JoinPosition.VerificationCode) {
       // register user....
     }
   }
@@ -62,21 +63,24 @@ class _JoinScreenState extends State<JoinScreen> {
                         subtitle: "You won't be able to change it later",
                         error: "* Nickname must contain atleast 3 characters",
                         hintText: "Example: nickname123",
-                        show: pos == joinPosition.nickname,
+                        show: pos == JoinPosition.nickname,
+                        joinPosition: pos,
                       ),
                       JoinComponent(
                         title: "Hello nickname,",
                         subtitle: "Please enter your phone number",
                         error: "* Please enter a valid phone number",
-                        hintText: "Example: +1 123 123 123",
-                        show: pos == joinPosition.phoneNumber,
+                        hintText: "123 123 123",
+                        show: pos == JoinPosition.phoneNumber,
+                        joinPosition: pos,
                       ),
                       JoinComponent(
                         title: "Enter verification code",
-                        subtitle: "We have send you a code",
+                        subtitle: "We have sent you a code",
                         error: "* Wrong verification code",
                         hintText: "Example: 123456",
-                        show: pos == joinPosition.VerificationCode,
+                        show: pos == JoinPosition.VerificationCode,
+                        joinPosition: pos,
                       ),
                     ],
                   ),
@@ -107,8 +111,9 @@ class JoinComponent extends StatelessWidget {
   final hintText;
   final error;
   final show;
+  final joinPosition;
 
-  const JoinComponent({Key? key, @required this.title, @required this.subtitle, @required this.error, @required this.hintText, @required this.show}) : super(key: key);
+  const JoinComponent({Key? key, @required this.title, @required this.subtitle, @required this.error, @required this.hintText, @required this.show, this.joinPosition}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -131,16 +136,57 @@ class JoinComponent extends StatelessWidget {
               style: kBodySmall.copyWith(color: Colors.white70),
             ),
             SizedBox(
-              width: 300,
+              width: 350,
               child: Padding(
                 padding: const EdgeInsets.all(32.0),
-                child: TextField(
-                    textAlign: TextAlign.center,
-                    decoration: new InputDecoration(
-                      hintText: hintText,
-                      hintStyle: kBodySmall.copyWith(color: Colors.white30),
-                    ),
-                    style: kBodySmall.copyWith(color: Colors.white)),
+                child: joinPosition == JoinPosition.nickname
+                    ? TextField(
+                        textAlign: TextAlign.center,
+                        decoration: new InputDecoration(
+                          hintText: hintText,
+                          hintStyle: kBodySmall.copyWith(color: Colors.white30),
+                        ),
+                        style: kBodySmall.copyWith(color: Colors.white),
+                      )
+                    : joinPosition == JoinPosition.phoneNumber
+                        ? Row(
+                            children: [
+                              CountryCodePicker(
+                                onChanged: print,
+                                // Initial selection and favorite can be one of code ('IT') OR dial_code('+39')
+                                initialSelection: 'IT',
+                                favorite: ['+39', 'FR'],
+                                // optional. Shows only country name and flag
+                                showCountryOnly: false,
+                                // optional. Shows only country name and flag when popup is closed.
+                                showOnlyCountryWhenClosed: false,
+                                // optional. aligns the flag and the Text left
+                                alignLeft: false,
+                                textStyle: kBodySmall.copyWith(color: Colors.white),
+                              ),
+                              SizedBox(
+                                width: 150,
+                                child: TextField(
+                                  textAlign: TextAlign.center,
+                                  keyboardType: TextInputType.number,
+                                  decoration: new InputDecoration(
+                                    hintText: hintText,
+                                    hintStyle: kBodySmall.copyWith(color: Colors.white30),
+                                  ),
+                                  style: kBodySmall.copyWith(color: Colors.white),
+                                ),
+                              )
+                            ],
+                          )
+                        : joinPosition == JoinPosition.VerificationCode
+                            ? PinCodeTextField(
+                                appContext: context,
+                                length: 6,
+                                animationType: AnimationType.fade,
+                                onChanged: (digits) => {},
+                                textStyle: kBodySmall.copyWith(color: Colors.white),
+                              )
+                            : SizedBox.shrink(),
               ),
             ),
             Padding(
