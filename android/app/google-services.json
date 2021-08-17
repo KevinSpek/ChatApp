@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "484527828219",
+    "firebase_url": "https://groupidy.firebaseio.com",
+    "project_id": "groupidy",
+    "storage_bucket": "groupidy.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:484527828219:android:76bd81b43ab55ef161145e",
+        "android_client_info": {
+          "package_name": "com.groupidy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "484527828219-7meqin90qaquj4vrem5td54crcgc5ogt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHHzGvt4bCiFQ05dxg2cUUs20tzr9lgcE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "484527828219-7meqin90qaquj4vrem5td54crcgc5ogt.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "484527828219-0037cp5mm9mgaqnckp11u82o5tjmr8kt.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.Groupidy.app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
