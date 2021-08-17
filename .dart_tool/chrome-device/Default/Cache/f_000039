@@ -1,22 +1,27 @@
-define(['dart_sdk', 'packages/flutter/src/foundation/object.dart', 'packages/flutter/src/animation/listener_helpers.dart'], (function load__packages__flutter__src__material__arc_dart(dart_sdk, packages__flutter__src__foundation__object$46dart, packages__flutter__src__animation__listener_helpers$46dart) {
+define(['dart_sdk', 'packages/flutter/src/gestures/events.dart', 'packages/flutter/src/foundation/debug.dart', 'packages/flutter/src/services/system_channels.dart', 'packages/flutter/src/foundation/object.dart'], (function load__packages__flutter__src__services__mouse_cursor_dart(dart_sdk, packages__flutter__src__gestures__events$46dart, packages__flutter__src__foundation__debug$46dart, packages__flutter__src__services__system_channels$46dart, packages__flutter__src__foundation__object$46dart) {
   'use strict';
   const core = dart_sdk.core;
-  const ui = dart_sdk.ui;
-  const math = dart_sdk.math;
-  const _internal = dart_sdk._internal;
+  const _js_helper = dart_sdk._js_helper;
+  const async = dart_sdk.async;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
+  const events = packages__flutter__src__gestures__events$46dart.src__gestures__events;
+  const diagnostics = packages__flutter__src__foundation__debug$46dart.src__foundation__diagnostics;
+  const system_channels = packages__flutter__src__services__system_channels$46dart.src__services__system_channels;
   const object = packages__flutter__src__foundation__object$46dart.src__foundation__object;
-  const tween = packages__flutter__src__animation__listener_helpers$46dart.src__animation__tween;
-  var arc = Object.create(dart.library);
-  var $abs = dartx.abs;
-  var $sign = dartx.sign;
+  var mouse_cursor = Object.create(dart.library);
+  var $_equals = dartx._equals;
+  var $_get = dartx._get;
+  var $remove = dartx.remove;
+  var $_set = dartx._set;
+  var $runtimeType = dartx.runtimeType;
+  var $hashCode = dartx.hashCode;
   dart._checkModuleNullSafetyMode(true);
   var T = {
-    VoidTodouble: () => (T.VoidTodouble = dart.constFn(dart.fnType(core.double, [])))(),
-    OffsetN: () => (T.OffsetN = dart.constFn(dart.nullable(ui.Offset)))(),
-    _DiagonalTodouble: () => (T._DiagonalTodouble = dart.constFn(dart.fnType(core.double, [arc._Diagonal])))(),
-    RectN: () => (T.RectN = dart.constFn(dart.nullable(ui.Rect)))()
+    IdentityMapOfint$MouseCursorSession: () => (T.IdentityMapOfint$MouseCursorSession = dart.constFn(_js_helper.IdentityMap$(core.int, mouse_cursor.MouseCursorSession)))(),
+    VoidTobool: () => (T.VoidTobool = dart.constFn(dart.fnType(core.bool, [])))(),
+    IdentityMapOfString$dynamic: () => (T.IdentityMapOfString$dynamic = dart.constFn(_js_helper.IdentityMap$(core.String, dart.dynamic)))(),
+    DiagnosticsPropertyOfString: () => (T.DiagnosticsPropertyOfString = dart.constFn(diagnostics.DiagnosticsProperty$(core.String)))()
   };
   const CT = Object.create({
     _: () => (C, CT)
@@ -24,533 +29,635 @@ define(['dart_sdk', 'packages/flutter/src/foundation/object.dart', 'packages/flu
   dart.defineLazy(CT, {
     get C0() {
       return C[0] = dart.const({
-        __proto__: arc._CornerId.prototype,
-        [_name$]: "_CornerId.topLeft",
-        index: 0
+        __proto__: diagnostics.DiagnosticLevel.prototype,
+        [_name]: "DiagnosticLevel.info",
+        index: 3
       });
     },
     get C1() {
       return C[1] = dart.const({
-        __proto__: arc._CornerId.prototype,
-        [_name$]: "_CornerId.topRight",
-        index: 1
+        __proto__: mouse_cursor._DeferringMouseCursor.prototype
       });
     },
     get C2() {
       return C[2] = dart.const({
-        __proto__: arc._CornerId.prototype,
-        [_name$]: "_CornerId.bottomLeft",
-        index: 2
+        __proto__: mouse_cursor._NoopMouseCursor.prototype
       });
     },
     get C3() {
       return C[3] = dart.const({
-        __proto__: arc._CornerId.prototype,
-        [_name$]: "_CornerId.bottomRight",
-        index: 3
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "none"
       });
     },
     get C4() {
-      return C[4] = dart.constList([C[0] || CT.C0, C[1] || CT.C1, C[2] || CT.C2, C[3] || CT.C3], arc._CornerId);
+      return C[4] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "basic"
+      });
+    },
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "click"
+      });
     },
     get C6() {
       return C[6] = dart.const({
-        __proto__: arc._Diagonal.prototype,
-        [endId$]: C[3] || CT.C3,
-        [beginId$]: C[0] || CT.C0
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "forbidden"
       });
     },
     get C7() {
       return C[7] = dart.const({
-        __proto__: arc._Diagonal.prototype,
-        [endId$]: C[0] || CT.C0,
-        [beginId$]: C[3] || CT.C3
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "wait"
       });
     },
     get C8() {
       return C[8] = dart.const({
-        __proto__: arc._Diagonal.prototype,
-        [endId$]: C[2] || CT.C2,
-        [beginId$]: C[1] || CT.C1
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "progress"
       });
     },
     get C9() {
       return C[9] = dart.const({
-        __proto__: arc._Diagonal.prototype,
-        [endId$]: C[1] || CT.C1,
-        [beginId$]: C[2] || CT.C2
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "contextMenu"
       });
     },
-    get C5() {
-      return C[5] = dart.constList([C[6] || CT.C6, C[7] || CT.C7, C[8] || CT.C8, C[9] || CT.C9], arc._Diagonal);
-    }
-  }, false);
-  var C = Array(10).fill(void 0);
-  var I = [
-    "file:///C:/src/flutter/flutter/packages/flutter/lib/src/material/arc.dart",
-    "package:flutter/src/material/arc.dart"
-  ];
-  var _dirty = dart.privateName(arc, "_dirty");
-  var _center = dart.privateName(arc, "_center");
-  var _radius = dart.privateName(arc, "_radius");
-  var _beginAngle = dart.privateName(arc, "_beginAngle");
-  var _endAngle = dart.privateName(arc, "_endAngle");
-  var _initialize = dart.privateName(arc, "_initialize");
-  arc.MaterialPointArcTween = class MaterialPointArcTween extends tween.Tween$(ui.Offset) {
-    [_initialize]() {
-      if (!(this.begin != null)) dart.assertFailed(null, I[0], 46, 12, "this.begin != null");
-      if (!(this.end != null)) dart.assertFailed(null, I[0], 47, 12, "this.end != null");
-      let begin = dart.nullCheck(this.begin);
-      let end = dart.nullCheck(this.end);
-      let delta = end['-'](begin);
-      let deltaX = delta.dx[$abs]();
-      let deltaY = delta.dy[$abs]();
-      let distanceFromAtoB = delta.distance;
-      let c = new ui.Offset.new(end.dx, begin.dy);
-      const sweepAngle = () => {
-        return 2.0 * math.asin(distanceFromAtoB / (2.0 * dart.nullCheck(this[_radius])));
-      };
-      dart.fn(sweepAngle, T.VoidTodouble());
-      if (deltaX > 2 && deltaY > 2) {
-        if (deltaX < deltaY) {
-          this[_radius] = distanceFromAtoB * distanceFromAtoB / c['-'](begin).distance / 2.0;
-          this[_center] = new ui.Offset.new(end.dx + dart.nullCheck(this[_radius]) * (begin.dx - end.dx)[$sign], end.dy);
-          if (begin.dx < end.dx) {
-            this[_beginAngle] = sweepAngle() * (begin.dy - end.dy)[$sign];
-            this[_endAngle] = 0.0;
-          } else {
-            this[_beginAngle] = 3.141592653589793 + sweepAngle() * (end.dy - begin.dy)[$sign];
-            this[_endAngle] = 3.141592653589793;
-          }
-        } else {
-          this[_radius] = distanceFromAtoB * distanceFromAtoB / c['-'](end).distance / 2.0;
-          this[_center] = new ui.Offset.new(begin.dx, begin.dy + (end.dy - begin.dy)[$sign] * dart.nullCheck(this[_radius]));
-          if (begin.dy < end.dy) {
-            this[_beginAngle] = -3.141592653589793 / 2.0;
-            this[_endAngle] = dart.nullCheck(this[_beginAngle]) + sweepAngle() * (end.dx - begin.dx)[$sign];
-          } else {
-            this[_beginAngle] = 3.141592653589793 / 2.0;
-            this[_endAngle] = dart.nullCheck(this[_beginAngle]) + sweepAngle() * (begin.dx - end.dx)[$sign];
-          }
-        }
-        if (!(this[_beginAngle] != null)) dart.assertFailed(null, I[0], 83, 14, "_beginAngle != null");
-        if (!(this[_endAngle] != null)) dart.assertFailed(null, I[0], 84, 14, "_endAngle != null");
-      } else {
-        this[_beginAngle] = null;
-        this[_endAngle] = null;
-      }
-      this[_dirty] = false;
-    }
-    get center() {
-      if (this.begin == null || this.end == null) return null;
-      if (this[_dirty]) this[_initialize]();
-      return this[_center];
-    }
-    get radius() {
-      if (this.begin == null || this.end == null) return null;
-      if (this[_dirty]) this[_initialize]();
-      return this[_radius];
-    }
-    get beginAngle() {
-      if (this.begin == null || this.end == null) return null;
-      if (this[_dirty]) this[_initialize]();
-      return this[_beginAngle];
-    }
-    get endAngle() {
-      if (this.begin == null || this.end == null) return null;
-      if (this[_dirty]) this[_initialize]();
-      return this[_beginAngle];
-    }
-    set begin(value) {
-      T.OffsetN().as(value);
-      if (!dart.equals(value, this.begin)) {
-        super.begin = value;
-        this[_dirty] = true;
-      }
-    }
-    get begin() {
-      return super.begin;
-    }
-    set end(value) {
-      T.OffsetN().as(value);
-      if (!dart.equals(value, this.end)) {
-        super.end = value;
-        this[_dirty] = true;
-      }
-    }
-    get end() {
-      return super.end;
-    }
-    lerp(t) {
-      if (this[_dirty]) this[_initialize]();
-      if (t === 0.0) return dart.nullCheck(this.begin);
-      if (t === 1.0) return dart.nullCheck(this.end);
-      if (this[_beginAngle] == null || this[_endAngle] == null) return dart.nullCheck(ui.Offset.lerp(this.begin, this.end, t));
-      let angle = dart.nullCheck(ui.lerpDouble(this[_beginAngle], this[_endAngle], t));
-      let x = math.cos(angle) * dart.nullCheck(this[_radius]);
-      let y = math.sin(angle) * dart.nullCheck(this[_radius]);
-      return dart.nullCheck(this[_center])['+'](new ui.Offset.new(x, y));
-    }
-    toString() {
-      return object.objectRuntimeType(this, "MaterialPointArcTween") + "(" + dart.str(this.begin) + " → " + dart.str(this.end) + "; center=" + dart.str(this.center) + ", radius=" + dart.str(this.radius) + ", beginAngle=" + dart.str(this.beginAngle) + ", endAngle=" + dart.str(this.endAngle) + ")";
-    }
-  };
-  (arc.MaterialPointArcTween.new = function(opts) {
-    let begin = opts && 'begin' in opts ? opts.begin : null;
-    let end = opts && 'end' in opts ? opts.end : null;
-    this[_dirty] = true;
-    this[_center] = null;
-    this[_radius] = null;
-    this[_beginAngle] = null;
-    this[_endAngle] = null;
-    arc.MaterialPointArcTween.__proto__.new.call(this, {begin: begin, end: end});
-    ;
-  }).prototype = arc.MaterialPointArcTween.prototype;
-  dart.addTypeTests(arc.MaterialPointArcTween);
-  dart.addTypeCaches(arc.MaterialPointArcTween);
-  dart.setMethodSignature(arc.MaterialPointArcTween, () => ({
-    __proto__: dart.getMethods(arc.MaterialPointArcTween.__proto__),
-    [_initialize]: dart.fnType(dart.void, [])
-  }));
-  dart.setGetterSignature(arc.MaterialPointArcTween, () => ({
-    __proto__: dart.getGetters(arc.MaterialPointArcTween.__proto__),
-    center: dart.nullable(ui.Offset),
-    radius: dart.nullable(core.double),
-    beginAngle: dart.nullable(core.double),
-    endAngle: dart.nullable(core.double)
-  }));
-  dart.setSetterSignature(arc.MaterialPointArcTween, () => ({
-    __proto__: dart.getSetters(arc.MaterialPointArcTween.__proto__),
-    begin: dart.nullable(core.Object),
-    end: dart.nullable(core.Object)
-  }));
-  dart.setLibraryUri(arc.MaterialPointArcTween, I[1]);
-  dart.setFieldSignature(arc.MaterialPointArcTween, () => ({
-    __proto__: dart.getFields(arc.MaterialPointArcTween.__proto__),
-    [_dirty]: dart.fieldType(core.bool),
-    [_center]: dart.fieldType(dart.nullable(ui.Offset)),
-    [_radius]: dart.fieldType(dart.nullable(core.double)),
-    [_beginAngle]: dart.fieldType(dart.nullable(core.double)),
-    [_endAngle]: dart.fieldType(dart.nullable(core.double))
-  }));
-  dart.defineExtensionMethods(arc.MaterialPointArcTween, ['toString']);
-  var _name$ = dart.privateName(arc, "_name");
-  arc._CornerId = class _CornerId extends core.Object {
-    toString() {
-      return this[_name$];
-    }
-  };
-  (arc._CornerId.new = function(index, _name) {
-    this.index = index;
-    this[_name$] = _name;
-    ;
-  }).prototype = arc._CornerId.prototype;
-  dart.addTypeTests(arc._CornerId);
-  dart.addTypeCaches(arc._CornerId);
-  dart.setLibraryUri(arc._CornerId, I[1]);
-  dart.setFieldSignature(arc._CornerId, () => ({
-    __proto__: dart.getFields(arc._CornerId.__proto__),
-    index: dart.finalFieldType(core.int),
-    [_name$]: dart.finalFieldType(core.String)
-  }));
-  dart.defineExtensionMethods(arc._CornerId, ['toString']);
-  arc._CornerId.topLeft = C[0] || CT.C0;
-  arc._CornerId.topRight = C[1] || CT.C1;
-  arc._CornerId.bottomLeft = C[2] || CT.C2;
-  arc._CornerId.bottomRight = C[3] || CT.C3;
-  arc._CornerId.values = C[4] || CT.C4;
-  var beginId$ = dart.privateName(arc, "_Diagonal.beginId");
-  var endId$ = dart.privateName(arc, "_Diagonal.endId");
-  arc._Diagonal = class _Diagonal extends core.Object {
-    get beginId() {
-      return this[beginId$];
-    }
-    set beginId(value) {
-      super.beginId = value;
-    }
-    get endId() {
-      return this[endId$];
-    }
-    set endId(value) {
-      super.endId = value;
-    }
-  };
-  (arc._Diagonal.new = function(beginId, endId) {
-    this[beginId$] = beginId;
-    this[endId$] = endId;
-    ;
-  }).prototype = arc._Diagonal.prototype;
-  dart.addTypeTests(arc._Diagonal);
-  dart.addTypeCaches(arc._Diagonal);
-  dart.setLibraryUri(arc._Diagonal, I[1]);
-  dart.setFieldSignature(arc._Diagonal, () => ({
-    __proto__: dart.getFields(arc._Diagonal.__proto__),
-    beginId: dart.finalFieldType(arc._CornerId),
-    endId: dart.finalFieldType(arc._CornerId)
-  }));
-  var __MaterialRectArcTween__beginArc = dart.privateName(arc, "_#MaterialRectArcTween#_beginArc");
-  var __MaterialRectArcTween__endArc = dart.privateName(arc, "_#MaterialRectArcTween#_endArc");
-  var _diagonalSupport = dart.privateName(arc, "_diagonalSupport");
-  var _beginArc = dart.privateName(arc, "_beginArc");
-  var _cornerFor = dart.privateName(arc, "_cornerFor");
-  var _endArc = dart.privateName(arc, "_endArc");
-  arc.MaterialRectArcTween = class MaterialRectArcTween extends tween.RectTween {
-    [_initialize]() {
-      if (!(this.begin != null)) dart.assertFailed(null, I[0], 249, 12, "begin != null");
-      if (!(this.end != null)) dart.assertFailed(null, I[0], 250, 12, "end != null");
-      let centersVector = dart.nullCheck(this.end).center['-'](dart.nullCheck(this.begin).center);
-      let diagonal = arc._maxBy(arc._Diagonal, arc._allDiagonals, dart.fn(d => this[_diagonalSupport](centersVector, d), T._DiagonalTodouble()));
-      this[_beginArc] = new arc.MaterialPointArcTween.new({begin: this[_cornerFor](dart.nullCheck(this.begin), diagonal.beginId), end: this[_cornerFor](dart.nullCheck(this.end), diagonal.beginId)});
-      this[_endArc] = new arc.MaterialPointArcTween.new({begin: this[_cornerFor](dart.nullCheck(this.begin), diagonal.endId), end: this[_cornerFor](dart.nullCheck(this.end), diagonal.endId)});
-      this[_dirty] = false;
-    }
-    [_diagonalSupport](centersVector, diagonal) {
-      let delta = this[_cornerFor](dart.nullCheck(this.begin), diagonal.endId)['-'](this[_cornerFor](dart.nullCheck(this.begin), diagonal.beginId));
-      let length = delta.distance;
-      return centersVector.dx * delta.dx / length + centersVector.dy * delta.dy / length;
-    }
-    [_cornerFor](rect, id) {
-      switch (id) {
-        case C[0] || CT.C0:
-        {
-          return rect.topLeft;
-        }
-        case C[1] || CT.C1:
-        {
-          return rect.topRight;
-        }
-        case C[2] || CT.C2:
-        {
-          return rect.bottomLeft;
-        }
-        case C[3] || CT.C3:
-        {
-          return rect.bottomRight;
-        }
-      }
-    }
-    get beginArc() {
-      if (this.begin == null) return null;
-      if (this[_dirty]) this[_initialize]();
-      return this[_beginArc];
-    }
-    get [_beginArc]() {
-      let t0;
-      t0 = this[__MaterialRectArcTween__beginArc];
-      return t0 == null ? dart.throw(new _internal.LateError.fieldNI("_beginArc")) : t0;
-    }
-    set [_beginArc](t0) {
-      this[__MaterialRectArcTween__beginArc] = t0;
-    }
-    get endArc() {
-      if (this.end == null) return null;
-      if (this[_dirty]) this[_initialize]();
-      return this[_endArc];
-    }
-    get [_endArc]() {
-      let t1;
-      t1 = this[__MaterialRectArcTween__endArc];
-      return t1 == null ? dart.throw(new _internal.LateError.fieldNI("_endArc")) : t1;
-    }
-    set [_endArc](t1) {
-      this[__MaterialRectArcTween__endArc] = t1;
-    }
-    set begin(value) {
-      T.RectN().as(value);
-      if (!dart.equals(value, this.begin)) {
-        super.begin = value;
-        this[_dirty] = true;
-      }
-    }
-    get begin() {
-      return super.begin;
-    }
-    set end(value) {
-      T.RectN().as(value);
-      if (!dart.equals(value, this.end)) {
-        super.end = value;
-        this[_dirty] = true;
-      }
-    }
-    get end() {
-      return super.end;
-    }
-    lerp(t) {
-      if (this[_dirty]) this[_initialize]();
-      if (t === 0.0) return dart.nullCheck(this.begin);
-      if (t === 1.0) return dart.nullCheck(this.end);
-      return new ui.Rect.fromPoints(this[_beginArc].lerp(t), this[_endArc].lerp(t));
-    }
-    toString() {
-      return object.objectRuntimeType(this, "MaterialRectArcTween") + "(" + dart.str(this.begin) + " → " + dart.str(this.end) + "; beginArc=" + dart.str(this.beginArc) + ", endArc=" + dart.str(this.endArc) + ")";
-    }
-  };
-  (arc.MaterialRectArcTween.new = function(opts) {
-    let begin = opts && 'begin' in opts ? opts.begin : null;
-    let end = opts && 'end' in opts ? opts.end : null;
-    this[_dirty] = true;
-    this[__MaterialRectArcTween__beginArc] = null;
-    this[__MaterialRectArcTween__endArc] = null;
-    arc.MaterialRectArcTween.__proto__.new.call(this, {begin: begin, end: end});
-    ;
-  }).prototype = arc.MaterialRectArcTween.prototype;
-  dart.addTypeTests(arc.MaterialRectArcTween);
-  dart.addTypeCaches(arc.MaterialRectArcTween);
-  dart.setMethodSignature(arc.MaterialRectArcTween, () => ({
-    __proto__: dart.getMethods(arc.MaterialRectArcTween.__proto__),
-    [_initialize]: dart.fnType(dart.void, []),
-    [_diagonalSupport]: dart.fnType(core.double, [ui.Offset, arc._Diagonal]),
-    [_cornerFor]: dart.fnType(ui.Offset, [ui.Rect, arc._CornerId]),
-    lerp: dart.fnType(ui.Rect, [core.double])
-  }));
-  dart.setGetterSignature(arc.MaterialRectArcTween, () => ({
-    __proto__: dart.getGetters(arc.MaterialRectArcTween.__proto__),
-    beginArc: dart.nullable(arc.MaterialPointArcTween),
-    [_beginArc]: arc.MaterialPointArcTween,
-    endArc: dart.nullable(arc.MaterialPointArcTween),
-    [_endArc]: arc.MaterialPointArcTween
-  }));
-  dart.setSetterSignature(arc.MaterialRectArcTween, () => ({
-    __proto__: dart.getSetters(arc.MaterialRectArcTween.__proto__),
-    [_beginArc]: arc.MaterialPointArcTween,
-    [_endArc]: arc.MaterialPointArcTween,
-    begin: dart.nullable(core.Object),
-    end: dart.nullable(core.Object)
-  }));
-  dart.setLibraryUri(arc.MaterialRectArcTween, I[1]);
-  dart.setFieldSignature(arc.MaterialRectArcTween, () => ({
-    __proto__: dart.getFields(arc.MaterialRectArcTween.__proto__),
-    [_dirty]: dart.fieldType(core.bool),
-    [__MaterialRectArcTween__beginArc]: dart.fieldType(dart.nullable(arc.MaterialPointArcTween)),
-    [__MaterialRectArcTween__endArc]: dart.fieldType(dart.nullable(arc.MaterialPointArcTween))
-  }));
-  dart.defineExtensionMethods(arc.MaterialRectArcTween, ['toString']);
-  var __MaterialRectCenterArcTween__centerArc = dart.privateName(arc, "_#MaterialRectCenterArcTween#_centerArc");
-  var _centerArc = dart.privateName(arc, "_centerArc");
-  arc.MaterialRectCenterArcTween = class MaterialRectCenterArcTween extends tween.RectTween {
-    [_initialize]() {
-      if (!(this.begin != null)) dart.assertFailed(null, I[0], 364, 12, "begin != null");
-      if (!(this.end != null)) dart.assertFailed(null, I[0], 365, 12, "end != null");
-      this[_centerArc] = new arc.MaterialPointArcTween.new({begin: dart.nullCheck(this.begin).center, end: dart.nullCheck(this.end).center});
-      this[_dirty] = false;
-    }
-    get centerArc() {
-      if (this.begin == null || this.end == null) return null;
-      if (this[_dirty]) this[_initialize]();
-      return this[_centerArc];
-    }
-    get [_centerArc]() {
-      let t2;
-      t2 = this[__MaterialRectCenterArcTween__centerArc];
-      return t2 == null ? dart.throw(new _internal.LateError.fieldNI("_centerArc")) : t2;
-    }
-    set [_centerArc](t2) {
-      this[__MaterialRectCenterArcTween__centerArc] = t2;
-    }
-    set begin(value) {
-      T.RectN().as(value);
-      if (!dart.equals(value, this.begin)) {
-        super.begin = value;
-        this[_dirty] = true;
-      }
-    }
-    get begin() {
-      return super.begin;
-    }
-    set end(value) {
-      T.RectN().as(value);
-      if (!dart.equals(value, this.end)) {
-        super.end = value;
-        this[_dirty] = true;
-      }
-    }
-    get end() {
-      return super.end;
-    }
-    lerp(t) {
-      if (this[_dirty]) this[_initialize]();
-      if (t === 0.0) return dart.nullCheck(this.begin);
-      if (t === 1.0) return dart.nullCheck(this.end);
-      let center = this[_centerArc].lerp(t);
-      let width = dart.nullCheck(ui.lerpDouble(dart.nullCheck(this.begin).width, dart.nullCheck(this.end).width, t));
-      let height = dart.nullCheck(ui.lerpDouble(dart.nullCheck(this.begin).height, dart.nullCheck(this.end).height, t));
-      return new ui.Rect.fromLTWH(center.dx - width / 2.0, center.dy - height / 2.0, width, height);
-    }
-    toString() {
-      return object.objectRuntimeType(this, "MaterialRectCenterArcTween") + "(" + dart.str(this.begin) + " → " + dart.str(this.end) + "; centerArc=" + dart.str(this.centerArc) + ")";
-    }
-  };
-  (arc.MaterialRectCenterArcTween.new = function(opts) {
-    let begin = opts && 'begin' in opts ? opts.begin : null;
-    let end = opts && 'end' in opts ? opts.end : null;
-    this[_dirty] = true;
-    this[__MaterialRectCenterArcTween__centerArc] = null;
-    arc.MaterialRectCenterArcTween.__proto__.new.call(this, {begin: begin, end: end});
-    ;
-  }).prototype = arc.MaterialRectCenterArcTween.prototype;
-  dart.addTypeTests(arc.MaterialRectCenterArcTween);
-  dart.addTypeCaches(arc.MaterialRectCenterArcTween);
-  dart.setMethodSignature(arc.MaterialRectCenterArcTween, () => ({
-    __proto__: dart.getMethods(arc.MaterialRectCenterArcTween.__proto__),
-    [_initialize]: dart.fnType(dart.void, []),
-    lerp: dart.fnType(ui.Rect, [core.double])
-  }));
-  dart.setGetterSignature(arc.MaterialRectCenterArcTween, () => ({
-    __proto__: dart.getGetters(arc.MaterialRectCenterArcTween.__proto__),
-    centerArc: dart.nullable(arc.MaterialPointArcTween),
-    [_centerArc]: arc.MaterialPointArcTween
-  }));
-  dart.setSetterSignature(arc.MaterialRectCenterArcTween, () => ({
-    __proto__: dart.getSetters(arc.MaterialRectCenterArcTween.__proto__),
-    [_centerArc]: arc.MaterialPointArcTween,
-    begin: dart.nullable(core.Object),
-    end: dart.nullable(core.Object)
-  }));
-  dart.setLibraryUri(arc.MaterialRectCenterArcTween, I[1]);
-  dart.setFieldSignature(arc.MaterialRectCenterArcTween, () => ({
-    __proto__: dart.getFields(arc.MaterialRectCenterArcTween.__proto__),
-    [_dirty]: dart.fieldType(core.bool),
-    [__MaterialRectCenterArcTween__centerArc]: dart.fieldType(dart.nullable(arc.MaterialPointArcTween))
-  }));
-  dart.defineExtensionMethods(arc.MaterialRectCenterArcTween, ['toString']);
-  arc._maxBy = function _maxBy(T, input, keyFunc) {
-    let maxValue = null;
-    let maxValue$35isSet = false;
-    function maxValue$35get() {
-      return maxValue$35isSet ? maxValue : dart.throw(new _internal.LateError.localNI("maxValue"));
-    }
-    dart.fn(maxValue$35get, dart.fnType(T, []));
-    function maxValue$35set(t6) {
-      maxValue$35isSet = true;
-      return maxValue = t6;
-    }
-    dart.fn(maxValue$35set, dart.fnType(dart.dynamic, [T]));
-    let maxKey = null;
-    for (let value of input) {
-      let key = keyFunc(value);
-      if (maxKey == null || key > dart.notNull(maxKey)) {
-        maxValue$35set(value);
-        maxKey = key;
-      }
-    }
-    return maxValue$35get();
-  };
-  dart.defineLazy(arc, {
-    /*arc._kOnAxisDelta*/get _kOnAxisDelta() {
-      return 2;
+    get C10() {
+      return C[10] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "help"
+      });
     },
-    /*arc._allDiagonals*/get _allDiagonals() {
-      return C[5] || CT.C5;
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "text"
+      });
+    },
+    get C12() {
+      return C[12] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "verticalText"
+      });
+    },
+    get C13() {
+      return C[13] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "cell"
+      });
+    },
+    get C14() {
+      return C[14] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "precise"
+      });
+    },
+    get C15() {
+      return C[15] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "move"
+      });
+    },
+    get C16() {
+      return C[16] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "grab"
+      });
+    },
+    get C17() {
+      return C[17] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "grabbing"
+      });
+    },
+    get C18() {
+      return C[18] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "noDrop"
+      });
+    },
+    get C19() {
+      return C[19] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "alias"
+      });
+    },
+    get C20() {
+      return C[20] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "copy"
+      });
+    },
+    get C21() {
+      return C[21] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "disappearing"
+      });
+    },
+    get C22() {
+      return C[22] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "allScroll"
+      });
+    },
+    get C23() {
+      return C[23] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "resizeLeftRight"
+      });
+    },
+    get C24() {
+      return C[24] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "resizeUpDown"
+      });
+    },
+    get C25() {
+      return C[25] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "resizeUpLeftDownRight"
+      });
+    },
+    get C26() {
+      return C[26] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "resizeUpRightDownLeft"
+      });
+    },
+    get C27() {
+      return C[27] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "resizeUp"
+      });
+    },
+    get C28() {
+      return C[28] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "resizeDown"
+      });
+    },
+    get C29() {
+      return C[29] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "resizeLeft"
+      });
+    },
+    get C30() {
+      return C[30] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "resizeRight"
+      });
+    },
+    get C31() {
+      return C[31] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "resizeUpLeft"
+      });
+    },
+    get C32() {
+      return C[32] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "resizeUpRight"
+      });
+    },
+    get C33() {
+      return C[33] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "resizeDownLeft"
+      });
+    },
+    get C34() {
+      return C[34] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "resizeDownRight"
+      });
+    },
+    get C35() {
+      return C[35] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "resizeColumn"
+      });
+    },
+    get C36() {
+      return C[36] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "resizeRow"
+      });
+    },
+    get C37() {
+      return C[37] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "zoomIn"
+      });
+    },
+    get C38() {
+      return C[38] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "zoomOut"
+      });
     }
   }, false);
-  dart.trackLibraries("packages/flutter/src/material/arc.dart", {
-    "package:flutter/src/material/arc.dart": arc
+  var C = Array(39).fill(void 0);
+  var I = [
+    "file:///C:/src/flutter/flutter/packages/flutter/lib/src/services/mouse_cursor.dart",
+    "package:flutter/src/services/mouse_cursor.dart"
+  ];
+  var fallbackMouseCursor$ = dart.privateName(mouse_cursor, "MouseCursorManager.fallbackMouseCursor");
+  var _lastSession = dart.privateName(mouse_cursor, "_lastSession");
+  mouse_cursor.MouseCursorManager = class MouseCursorManager extends core.Object {
+    get fallbackMouseCursor() {
+      return this[fallbackMouseCursor$];
+    }
+    set fallbackMouseCursor(value) {
+      super.fallbackMouseCursor = value;
+    }
+    debugDeviceActiveCursor(device) {
+      let result = null;
+      if (!dart.fn(() => {
+        let t0;
+        result = (t0 = this[_lastSession][$_get](device), t0 == null ? null : t0.cursor);
+        return true;
+      }, T.VoidTobool())()) dart.assertFailed(null, I[0], 38, 12, "() {\r\n      result = _lastSession[device]?.cursor;\r\n      return true;\r\n    }()");
+      return result;
+    }
+    handleDeviceCursorUpdate(device, triggeringEvent, cursorCandidates) {
+      let t0, t0$, t0$0;
+      if (events.PointerRemovedEvent.is(triggeringEvent)) {
+        this[_lastSession][$remove](device);
+        return;
+      }
+      let lastSession = this[_lastSession][$_get](device);
+      let nextCursor = (t0 = mouse_cursor._DeferringMouseCursor.firstNonDeferred(cursorCandidates), t0 == null ? this.fallbackMouseCursor : t0);
+      if (!!mouse_cursor._DeferringMouseCursor.is(nextCursor)) dart.assertFailed(null, I[0], 68, 12, "nextCursor is! _DeferringMouseCursor");
+      if (dart.equals((t0$ = lastSession, t0$ == null ? null : t0$.cursor), nextCursor)) return;
+      let nextSession = nextCursor.createSession(device);
+      this[_lastSession][$_set](device, nextSession);
+      t0$0 = lastSession;
+      t0$0 == null ? null : t0$0.dispose();
+      nextSession.activate();
+    }
+  };
+  (mouse_cursor.MouseCursorManager.new = function(fallbackMouseCursor) {
+    this[_lastSession] = new (T.IdentityMapOfint$MouseCursorSession()).new();
+    this[fallbackMouseCursor$] = fallbackMouseCursor;
+    if (!!fallbackMouseCursor[$_equals](mouse_cursor.MouseCursor.defer)) dart.assertFailed(null, I[0], 20, 14, "fallbackMouseCursor != MouseCursor.defer");
+    ;
+  }).prototype = mouse_cursor.MouseCursorManager.prototype;
+  dart.addTypeTests(mouse_cursor.MouseCursorManager);
+  dart.addTypeCaches(mouse_cursor.MouseCursorManager);
+  dart.setMethodSignature(mouse_cursor.MouseCursorManager, () => ({
+    __proto__: dart.getMethods(mouse_cursor.MouseCursorManager.__proto__),
+    debugDeviceActiveCursor: dart.fnType(dart.nullable(mouse_cursor.MouseCursor), [core.int]),
+    handleDeviceCursorUpdate: dart.fnType(dart.void, [core.int, dart.nullable(events.PointerEvent), core.Iterable$(mouse_cursor.MouseCursor)])
+  }));
+  dart.setLibraryUri(mouse_cursor.MouseCursorManager, I[1]);
+  dart.setFieldSignature(mouse_cursor.MouseCursorManager, () => ({
+    __proto__: dart.getFields(mouse_cursor.MouseCursorManager.__proto__),
+    fallbackMouseCursor: dart.finalFieldType(mouse_cursor.MouseCursor),
+    [_lastSession]: dart.finalFieldType(core.Map$(core.int, mouse_cursor.MouseCursorSession))
+  }));
+  var cursor$ = dart.privateName(mouse_cursor, "MouseCursorSession.cursor");
+  var device$ = dart.privateName(mouse_cursor, "MouseCursorSession.device");
+  mouse_cursor.MouseCursorSession = class MouseCursorSession extends core.Object {
+    get cursor() {
+      return this[cursor$];
+    }
+    set cursor(value) {
+      super.cursor = value;
+    }
+    get device() {
+      return this[device$];
+    }
+    set device(value) {
+      super.device = value;
+    }
+  };
+  (mouse_cursor.MouseCursorSession.new = function(cursor, device) {
+    this[cursor$] = cursor;
+    this[device$] = device;
+    if (!(cursor !== null)) dart.assertFailed(null, I[0], 104, 14, "cursor != null");
+    if (!(device !== null)) dart.assertFailed(null, I[0], 105, 14, "device != null");
+    ;
+  }).prototype = mouse_cursor.MouseCursorSession.prototype;
+  dart.addTypeTests(mouse_cursor.MouseCursorSession);
+  dart.addTypeCaches(mouse_cursor.MouseCursorSession);
+  dart.setLibraryUri(mouse_cursor.MouseCursorSession, I[1]);
+  dart.setFieldSignature(mouse_cursor.MouseCursorSession, () => ({
+    __proto__: dart.getFields(mouse_cursor.MouseCursorSession.__proto__),
+    cursor: dart.finalFieldType(mouse_cursor.MouseCursor),
+    device: dart.finalFieldType(core.int)
+  }));
+  var _name = dart.privateName(diagnostics, "_name");
+  const Object_Diagnosticable$36 = class Object_Diagnosticable extends core.Object {};
+  (Object_Diagnosticable$36.new = function() {
+  }).prototype = Object_Diagnosticable$36.prototype;
+  dart.applyMixin(Object_Diagnosticable$36, diagnostics.Diagnosticable);
+  mouse_cursor.MouseCursor = class MouseCursor extends Object_Diagnosticable$36 {
+    toString(opts) {
+      let minLevel = opts && 'minLevel' in opts ? opts.minLevel : C[0] || CT.C0;
+      let debugDescription = this.debugDescription;
+      if (minLevel.index >= diagnostics.DiagnosticLevel.info.index && debugDescription !== null) return debugDescription;
+      return super.toString({minLevel: minLevel});
+    }
+  };
+  (mouse_cursor.MouseCursor.new = function() {
+    ;
+  }).prototype = mouse_cursor.MouseCursor.prototype;
+  dart.addTypeTests(mouse_cursor.MouseCursor);
+  dart.addTypeCaches(mouse_cursor.MouseCursor);
+  dart.setLibraryUri(mouse_cursor.MouseCursor, I[1]);
+  dart.defineExtensionMethods(mouse_cursor.MouseCursor, ['toString']);
+  dart.defineLazy(mouse_cursor.MouseCursor, {
+    /*mouse_cursor.MouseCursor.defer*/get defer() {
+      return C[1] || CT.C1;
+    },
+    /*mouse_cursor.MouseCursor.uncontrolled*/get uncontrolled() {
+      return C[2] || CT.C2;
+    }
+  }, false);
+  mouse_cursor._DeferringMouseCursor = class _DeferringMouseCursor extends mouse_cursor.MouseCursor {
+    createSession(device) {
+      if (!false) dart.assertFailed("_DeferringMouseCursor can not create a session", I[0], 266, 12, "false");
+      dart.throw(new core.UnimplementedError.new());
+    }
+    get debugDescription() {
+      return "defer";
+    }
+    static firstNonDeferred(cursors) {
+      for (let cursor of cursors) {
+        if (!(cursor !== null)) dart.assertFailed(null, I[0], 276, 14, "cursor != null");
+        if (!cursor[$_equals](mouse_cursor.MouseCursor.defer)) return cursor;
+      }
+      return null;
+    }
+  };
+  (mouse_cursor._DeferringMouseCursor.__ = function() {
+    mouse_cursor._DeferringMouseCursor.__proto__.new.call(this);
+    ;
+  }).prototype = mouse_cursor._DeferringMouseCursor.prototype;
+  dart.addTypeTests(mouse_cursor._DeferringMouseCursor);
+  dart.addTypeCaches(mouse_cursor._DeferringMouseCursor);
+  dart.setMethodSignature(mouse_cursor._DeferringMouseCursor, () => ({
+    __proto__: dart.getMethods(mouse_cursor._DeferringMouseCursor.__proto__),
+    createSession: dart.fnType(mouse_cursor.MouseCursorSession, [core.int])
+  }));
+  dart.setGetterSignature(mouse_cursor._DeferringMouseCursor, () => ({
+    __proto__: dart.getGetters(mouse_cursor._DeferringMouseCursor.__proto__),
+    debugDescription: core.String
+  }));
+  dart.setLibraryUri(mouse_cursor._DeferringMouseCursor, I[1]);
+  mouse_cursor._NoopMouseCursorSession = class _NoopMouseCursorSession extends mouse_cursor.MouseCursorSession {
+    activate() {
+      return async.async(dart.void, function* activate() {
+      });
+    }
+    dispose() {
+    }
+  };
+  (mouse_cursor._NoopMouseCursorSession.new = function(cursor, device) {
+    mouse_cursor._NoopMouseCursorSession.__proto__.new.call(this, cursor, device);
+    ;
+  }).prototype = mouse_cursor._NoopMouseCursorSession.prototype;
+  dart.addTypeTests(mouse_cursor._NoopMouseCursorSession);
+  dart.addTypeCaches(mouse_cursor._NoopMouseCursorSession);
+  dart.setMethodSignature(mouse_cursor._NoopMouseCursorSession, () => ({
+    __proto__: dart.getMethods(mouse_cursor._NoopMouseCursorSession.__proto__),
+    activate: dart.fnType(async.Future$(dart.void), []),
+    dispose: dart.fnType(dart.void, [])
+  }));
+  dart.setLibraryUri(mouse_cursor._NoopMouseCursorSession, I[1]);
+  mouse_cursor._NoopMouseCursor = class _NoopMouseCursor extends mouse_cursor.MouseCursor {
+    createSession(device) {
+      return new mouse_cursor._NoopMouseCursorSession.new(this, device);
+    }
+    get debugDescription() {
+      return "uncontrolled";
+    }
+  };
+  (mouse_cursor._NoopMouseCursor.__ = function() {
+    mouse_cursor._NoopMouseCursor.__proto__.new.call(this);
+    ;
+  }).prototype = mouse_cursor._NoopMouseCursor.prototype;
+  dart.addTypeTests(mouse_cursor._NoopMouseCursor);
+  dart.addTypeCaches(mouse_cursor._NoopMouseCursor);
+  dart.setMethodSignature(mouse_cursor._NoopMouseCursor, () => ({
+    __proto__: dart.getMethods(mouse_cursor._NoopMouseCursor.__proto__),
+    createSession: dart.fnType(mouse_cursor._NoopMouseCursorSession, [core.int])
+  }));
+  dart.setGetterSignature(mouse_cursor._NoopMouseCursor, () => ({
+    __proto__: dart.getGetters(mouse_cursor._NoopMouseCursor.__proto__),
+    debugDescription: core.String
+  }));
+  dart.setLibraryUri(mouse_cursor._NoopMouseCursor, I[1]);
+  mouse_cursor._SystemMouseCursorSession = class _SystemMouseCursorSession extends mouse_cursor.MouseCursorSession {
+    get cursor() {
+      return mouse_cursor.SystemMouseCursor.as(super.cursor);
+    }
+    activate() {
+      return system_channels.SystemChannels.mouseCursor.invokeMethod(dart.void, "activateSystemCursor", new (T.IdentityMapOfString$dynamic()).from(["device", this.device, "kind", this.cursor.kind]));
+    }
+    dispose() {
+    }
+  };
+  (mouse_cursor._SystemMouseCursorSession.new = function(cursor, device) {
+    mouse_cursor._SystemMouseCursorSession.__proto__.new.call(this, cursor, device);
+    ;
+  }).prototype = mouse_cursor._SystemMouseCursorSession.prototype;
+  dart.addTypeTests(mouse_cursor._SystemMouseCursorSession);
+  dart.addTypeCaches(mouse_cursor._SystemMouseCursorSession);
+  dart.setMethodSignature(mouse_cursor._SystemMouseCursorSession, () => ({
+    __proto__: dart.getMethods(mouse_cursor._SystemMouseCursorSession.__proto__),
+    activate: dart.fnType(async.Future$(dart.void), []),
+    dispose: dart.fnType(dart.void, [])
+  }));
+  dart.setGetterSignature(mouse_cursor._SystemMouseCursorSession, () => ({
+    __proto__: dart.getGetters(mouse_cursor._SystemMouseCursorSession.__proto__),
+    cursor: mouse_cursor.SystemMouseCursor
+  }));
+  dart.setLibraryUri(mouse_cursor._SystemMouseCursorSession, I[1]);
+  var kind$ = dart.privateName(mouse_cursor, "SystemMouseCursor.kind");
+  mouse_cursor.SystemMouseCursor = class SystemMouseCursor extends mouse_cursor.MouseCursor {
+    get kind() {
+      return this[kind$];
+    }
+    set kind(value) {
+      super.kind = value;
+    }
+    get debugDescription() {
+      return object.objectRuntimeType(this, "SystemMouseCursor") + "(" + this.kind + ")";
+    }
+    createSession(device) {
+      return new mouse_cursor._SystemMouseCursorSession.new(this, device);
+    }
+    _equals(other) {
+      if (other == null) return false;
+      if (!other[$runtimeType]._equals(this[$runtimeType])) return false;
+      return mouse_cursor.SystemMouseCursor.is(other) && other.kind === this.kind;
+    }
+    get hashCode() {
+      return this.kind[$hashCode];
+    }
+    debugFillProperties(properties) {
+      super.debugFillProperties(properties);
+      properties.add(new (T.DiagnosticsPropertyOfString()).new("kind", this.kind, {level: diagnostics.DiagnosticLevel.debug}));
+    }
+  };
+  (mouse_cursor.SystemMouseCursor.__ = function(opts) {
+    let kind = opts && 'kind' in opts ? opts.kind : null;
+    this[kind$] = kind;
+    if (!(kind !== null)) dart.assertFailed(null, I[0], 372, 15, "kind != null");
+    mouse_cursor.SystemMouseCursor.__proto__.new.call(this);
+    ;
+  }).prototype = mouse_cursor.SystemMouseCursor.prototype;
+  dart.addTypeTests(mouse_cursor.SystemMouseCursor);
+  dart.addTypeCaches(mouse_cursor.SystemMouseCursor);
+  dart.setMethodSignature(mouse_cursor.SystemMouseCursor, () => ({
+    __proto__: dart.getMethods(mouse_cursor.SystemMouseCursor.__proto__),
+    createSession: dart.fnType(mouse_cursor._SystemMouseCursorSession, [core.int])
+  }));
+  dart.setGetterSignature(mouse_cursor.SystemMouseCursor, () => ({
+    __proto__: dart.getGetters(mouse_cursor.SystemMouseCursor.__proto__),
+    debugDescription: core.String
+  }));
+  dart.setLibraryUri(mouse_cursor.SystemMouseCursor, I[1]);
+  dart.setFieldSignature(mouse_cursor.SystemMouseCursor, () => ({
+    __proto__: dart.getFields(mouse_cursor.SystemMouseCursor.__proto__),
+    kind: dart.finalFieldType(core.String)
+  }));
+  dart.defineExtensionMethods(mouse_cursor.SystemMouseCursor, ['_equals']);
+  dart.defineExtensionAccessors(mouse_cursor.SystemMouseCursor, ['hashCode']);
+  mouse_cursor.SystemMouseCursors = class SystemMouseCursors extends core.Object {
+    static __() {
+      return dart.throw(new core.Error.new());
+    }
+  };
+  (mouse_cursor.SystemMouseCursors[dart.mixinNew] = function() {
+  }).prototype = mouse_cursor.SystemMouseCursors.prototype;
+  dart.addTypeTests(mouse_cursor.SystemMouseCursors);
+  dart.addTypeCaches(mouse_cursor.SystemMouseCursors);
+  dart.setLibraryUri(mouse_cursor.SystemMouseCursors, I[1]);
+  dart.defineLazy(mouse_cursor.SystemMouseCursors, {
+    /*mouse_cursor.SystemMouseCursors.none*/get none() {
+      return C[3] || CT.C3;
+    },
+    /*mouse_cursor.SystemMouseCursors.basic*/get basic() {
+      return C[4] || CT.C4;
+    },
+    /*mouse_cursor.SystemMouseCursors.click*/get click() {
+      return C[5] || CT.C5;
+    },
+    /*mouse_cursor.SystemMouseCursors.forbidden*/get forbidden() {
+      return C[6] || CT.C6;
+    },
+    /*mouse_cursor.SystemMouseCursors.wait*/get wait() {
+      return C[7] || CT.C7;
+    },
+    /*mouse_cursor.SystemMouseCursors.progress*/get progress() {
+      return C[8] || CT.C8;
+    },
+    /*mouse_cursor.SystemMouseCursors.contextMenu*/get contextMenu() {
+      return C[9] || CT.C9;
+    },
+    /*mouse_cursor.SystemMouseCursors.help*/get help() {
+      return C[10] || CT.C10;
+    },
+    /*mouse_cursor.SystemMouseCursors.text*/get text() {
+      return C[11] || CT.C11;
+    },
+    /*mouse_cursor.SystemMouseCursors.verticalText*/get verticalText() {
+      return C[12] || CT.C12;
+    },
+    /*mouse_cursor.SystemMouseCursors.cell*/get cell() {
+      return C[13] || CT.C13;
+    },
+    /*mouse_cursor.SystemMouseCursors.precise*/get precise() {
+      return C[14] || CT.C14;
+    },
+    /*mouse_cursor.SystemMouseCursors.move*/get move() {
+      return C[15] || CT.C15;
+    },
+    /*mouse_cursor.SystemMouseCursors.grab*/get grab() {
+      return C[16] || CT.C16;
+    },
+    /*mouse_cursor.SystemMouseCursors.grabbing*/get grabbing() {
+      return C[17] || CT.C17;
+    },
+    /*mouse_cursor.SystemMouseCursors.noDrop*/get noDrop() {
+      return C[18] || CT.C18;
+    },
+    /*mouse_cursor.SystemMouseCursors.alias*/get alias() {
+      return C[19] || CT.C19;
+    },
+    /*mouse_cursor.SystemMouseCursors.copy*/get copy() {
+      return C[20] || CT.C20;
+    },
+    /*mouse_cursor.SystemMouseCursors.disappearing*/get disappearing() {
+      return C[21] || CT.C21;
+    },
+    /*mouse_cursor.SystemMouseCursors.allScroll*/get allScroll() {
+      return C[22] || CT.C22;
+    },
+    /*mouse_cursor.SystemMouseCursors.resizeLeftRight*/get resizeLeftRight() {
+      return C[23] || CT.C23;
+    },
+    /*mouse_cursor.SystemMouseCursors.resizeUpDown*/get resizeUpDown() {
+      return C[24] || CT.C24;
+    },
+    /*mouse_cursor.SystemMouseCursors.resizeUpLeftDownRight*/get resizeUpLeftDownRight() {
+      return C[25] || CT.C25;
+    },
+    /*mouse_cursor.SystemMouseCursors.resizeUpRightDownLeft*/get resizeUpRightDownLeft() {
+      return C[26] || CT.C26;
+    },
+    /*mouse_cursor.SystemMouseCursors.resizeUp*/get resizeUp() {
+      return C[27] || CT.C27;
+    },
+    /*mouse_cursor.SystemMouseCursors.resizeDown*/get resizeDown() {
+      return C[28] || CT.C28;
+    },
+    /*mouse_cursor.SystemMouseCursors.resizeLeft*/get resizeLeft() {
+      return C[29] || CT.C29;
+    },
+    /*mouse_cursor.SystemMouseCursors.resizeRight*/get resizeRight() {
+      return C[30] || CT.C30;
+    },
+    /*mouse_cursor.SystemMouseCursors.resizeUpLeft*/get resizeUpLeft() {
+      return C[31] || CT.C31;
+    },
+    /*mouse_cursor.SystemMouseCursors.resizeUpRight*/get resizeUpRight() {
+      return C[32] || CT.C32;
+    },
+    /*mouse_cursor.SystemMouseCursors.resizeDownLeft*/get resizeDownLeft() {
+      return C[33] || CT.C33;
+    },
+    /*mouse_cursor.SystemMouseCursors.resizeDownRight*/get resizeDownRight() {
+      return C[34] || CT.C34;
+    },
+    /*mouse_cursor.SystemMouseCursors.resizeColumn*/get resizeColumn() {
+      return C[35] || CT.C35;
+    },
+    /*mouse_cursor.SystemMouseCursors.resizeRow*/get resizeRow() {
+      return C[36] || CT.C36;
+    },
+    /*mouse_cursor.SystemMouseCursors.zoomIn*/get zoomIn() {
+      return C[37] || CT.C37;
+    },
+    /*mouse_cursor.SystemMouseCursors.zoomOut*/get zoomOut() {
+      return C[38] || CT.C38;
+    }
+  }, false);
+  dart.trackLibraries("packages/flutter/src/services/mouse_cursor.dart", {
+    "package:flutter/src/services/mouse_cursor.dart": mouse_cursor
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["arc.dart"],"names":[],"mappings":"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","file":"../../../../../../../../packages/flutter/src/material/arc.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["mouse_cursor.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;IA0BoB;;;;;;4BASuB;AAC1B;AACb,WAAO,AAGN;;AAFsC,QAArC,eAAS,AAAY,0BAAC,MAAM,gBAAP,OAAU;AAC/B,cAAO;;AAET,YAAO,OAAM;IACf;6BAaM,QACU,iBACQ;;AAEtB,UAAoB,8BAAhB,eAAe;AACU,QAA3B,AAAa,4BAAO,MAAM;AAC1B;;AAGwB,wBAAc,AAAY,0BAAC,MAAM;AACzC,wBAChB,KADmD,oDAAiB,gBAAgB,GAAjC,aAChD;AACL,WAAoB,CAAF,sCAAX,UAAU;AACjB,UAAwB,mBAApB,WAAW,gBAAX,OAAa,aAAU,UAAU,GACnC;AAEuB,wBAAc,AAAW,UAAD,eAAe,MAAM;AACpC,MAAlC,AAAY,0BAAC,MAAM,EAAI,WAAW;AAEZ,aAAtB,WAAW;qBAAX,OAAa;AACS,MAAtB,AAAY,WAAD;IACb;;kDA1DwB;IA0BW,qBAAwC;IA1BnD;SACO,CAApB,mBAAmB,WAAgB;;EAAM;;;;;;;;;;;;;;;;;IAwFlC;;;;;;IAGR;;;;;;;kDARc,QAAa;IAAb;IAAa;UAC1B,AAAO,MAAD;UACN,AAAO,MAAD;;EAAS;;;;;;;;;;;;;;;;UA2HO;AAClB,6BAAwB;AACrC,UAAI,AAAS,AAAM,QAAP,UAA0B,AAAK,0CAAS,gBAAgB,WAClE,MAAO,iBAAgB;AACzB,YAAa,2BAAmB,QAAQ;IAC1C;;;;EA7BmB;;;;;;MAsCM,8BAAK;;;MAgBL,qCAAY;;;;;kBAOA;AACnC,WAAO,yBAAO;AACY,MAA1B,WAAM;IACR;;AAG+B;IAAO;4BAGqB;AACzD,eAAuB,SAAU,QAAO;AACtC,cAAO,AAAO,MAAD;AACb,aAAI,MAAM,WAAgB,iCACxB,MAAO,OAAM;;AAEjB,YAAO;IACT;;;AAnBM;;EAAyB;;;;;;;;;;;;;;AA2BV;MAAyB;;;IAGf;;uDAPU,QAAY;AACjD,kEAAM,MAAM,EAAE,MAAM;;EAAC;;;;;;;;;;kBAyBiB;AAAW,0DAAwB,MAAM,MAAM;IAAC;;AAG3D;IAAc;;;AAPvC;;EAAoB;;;;;;;;;;;;;;AAeM,YAAa,mCAAP;IAA2B;;AAI/D,YAAsB,AAAY,oEAChC,wBACiB,4CACf,UAAU,aACV,QAAQ,AAAO;IAGrB;;IAG+B;;yDAlBa,QAAY;AACpD,oEAAM,MAAM,EAAE,MAAM;;EAAC;;;;;;;;;;;;;;;IA0DZ;;;;;;;AAGkB,YAAG,AAAqD,0BAAnC,MAAM,uBAAqB,MAAE,YAAI;IAAE;kBAI3C;AAAW,4DAA0B,MAAM,MAAM;IAAC;;UAGtE;AACtB,WAAI,AAAM,KAAD,uBAAgB,qBACvB,MAAO;AACT,YAAa,AACT,mCADG,KAAK,KACL,AAAM,AAAK,KAAN,UAAS;IACvB;;AAGoB,YAAA,AAAK;IAAQ;wBAGoB;AACd,MAA/B,0BAAoB,UAAU;AACmD,MAAvF,AAAW,UAAD,KAAK,0CAA4B,QAAQ,mBAA6B;IAClF;;;QA9BgB;;UACJ,AAAK,IAAD;AAFV;;EAEmB;;;;;;;;;;;;;;;;;;;;AAgDS,wBAAM;IAAO;;;;;;;;MAgBhB,oCAAI;;;MAgBJ,qCAAK;;;MAaL,qCAAK;;;MAmBL,yCAAS;;;MAsBT,oCAAI;;;MAkBJ,wCAAQ;;;MAYR,2CAAW;;;MAYX,oCAAI;;;MAgBJ,oCAAI;;;MAaJ,4CAAY;;;MAWZ,oCAAI;;;MAcJ,uCAAO;;;MAeP,oCAAI;;;MAYJ,oCAAI;;;MAYJ,wCAAQ;;;MAkBR,sCAAM;;;MAaN,qCAAK;;;MAYL,oCAAI;;;MAUJ,4CAAY;;;MAmBZ,yCAAS;;;MAcT,+CAAe;;;MAcf,4CAAY;;;MAaZ,qDAAqB;;;MAarB,qDAAqB;;;MAarB,wCAAQ;;;MAaR,0CAAU;;;MAaV,0CAAU;;;MAaV,2CAAW;;;MAYX,4CAAY;;;MAYZ,6CAAa;;;MAYb,8CAAc;;;MAYd,+CAAe;;;MAcf,4CAAY;;;MAcZ,yCAAS;;;MAcT,sCAAM;;;MAWN,uCAAO","file":"../../../../../../../../packages/flutter/src/services/mouse_cursor.dart.lib.js"}');
   // Exports:
   return {
-    src__material__arc: arc
+    src__services__mouse_cursor: mouse_cursor
   };
 }));
 
-//# sourceMappingURL=arc.dart.lib.js.map
+//# sourceMappingURL=mouse_cursor.dart.lib.js.map

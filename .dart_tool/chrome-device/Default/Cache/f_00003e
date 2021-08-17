@@ -1,24 +1,24 @@
-define(['dart_sdk', 'packages/vector_math/vector_math_64.dart', 'packages/flutter/src/painting/basic_types.dart', 'packages/flutter/src/foundation/debug.dart'], (function load__packages__flutter__src__painting__matrix_utils_dart(dart_sdk, packages__vector_math__vector_math_64$46dart, packages__flutter__src__painting__basic_types$46dart, packages__flutter__src__foundation__debug$46dart) {
+define(['dart_sdk', 'packages/flutter/src/services/text_input.dart', 'packages/flutter/src/foundation/_platform_web.dart', 'packages/characters/src/characters_impl.dart', 'packages/characters/src/extensions.dart', 'packages/flutter/src/services/text_editing.dart'], (function load__packages__flutter__src__services__text_formatter_dart(dart_sdk, packages__flutter__src__services__text_input$46dart, packages__flutter__src__foundation___platform_web$46dart, packages__characters__src__characters_impl$46dart, packages__characters__src__extensions$46dart, packages__flutter__src__services__text_editing$46dart) {
   'use strict';
   const core = dart_sdk.core;
+  const math = dart_sdk.math;
   const ui = dart_sdk.ui;
-  const _native_typed_data = dart_sdk._native_typed_data;
-  const _internal = dart_sdk._internal;
-  const _interceptors = dart_sdk._interceptors;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const vector_math_64 = packages__vector_math__vector_math_64$46dart.vector_math_64;
-  const basic_types = packages__flutter__src__painting__basic_types$46dart.src__painting__basic_types;
-  const diagnostics = packages__flutter__src__foundation__debug$46dart.src__foundation__diagnostics;
-  const debug = packages__flutter__src__foundation__debug$46dart.src__foundation__debug;
-  var matrix_utils = Object.create(dart.library);
-  var $_get = dartx._get;
-  var $_set = dartx._set;
-  var $isFinite = dartx.isFinite;
-  var $join = dartx.join;
+  const text_input = packages__flutter__src__services__text_input$46dart.src__services__text_input;
+  const platform$ = packages__flutter__src__foundation___platform_web$46dart.src__foundation__platform;
+  const characters_impl = packages__characters__src__characters_impl$46dart.src__characters_impl;
+  const extensions = packages__characters__src__extensions$46dart.src__extensions;
+  const text_editing = packages__flutter__src__services__text_editing$46dart.src__services__text_editing;
+  var text_formatter = Object.create(dart.library);
+  var $isNotEmpty = dartx.isNotEmpty;
+  var $splitMapJoin = dartx.splitMapJoin;
+  var $length = dartx.length;
+  var $substring = dartx.substring;
   dart._checkModuleNullSafetyMode(true);
   var T = {
-    JSArrayOfString: () => (T.JSArrayOfString = dart.constFn(_interceptors.JSArray$(core.String)))()
+    MatchToString: () => (T.MatchToString = dart.constFn(dart.fnType(core.String, [core.Match])))(),
+    StringToString: () => (T.StringToString = dart.constFn(dart.fnType(core.String, [core.String])))()
   };
   const CT = Object.create({
     _: () => (C, CT)
@@ -26,264 +26,405 @@ define(['dart_sdk', 'packages/vector_math/vector_math_64.dart', 'packages/flutte
   dart.defineLazy(CT, {
     get C0() {
       return C[0] = dart.const({
-        __proto__: basic_types.Axis.prototype,
-        [_name]: "Axis.vertical",
-        index: 1
+        __proto__: text_formatter.MaxLengthEnforcement.prototype,
+        [_name$]: "MaxLengthEnforcement.none",
+        index: 0
       });
     },
     get C1() {
       return C[1] = dart.const({
-        __proto__: diagnostics._NoDefaultValue.prototype
+        __proto__: text_formatter.MaxLengthEnforcement.prototype,
+        [_name$]: "MaxLengthEnforcement.enforced",
+        index: 1
       });
     },
     get C2() {
       return C[2] = dart.const({
-        __proto__: diagnostics.DiagnosticLevel.prototype,
-        [_name$]: "DiagnosticLevel.info",
-        index: 3
+        __proto__: text_formatter.MaxLengthEnforcement.prototype,
+        [_name$]: "MaxLengthEnforcement.truncateAfterCompositionEnds",
+        index: 2
       });
     },
     get C3() {
-      return C[3] = dart.constList(["null"], core.String);
-    }
-  }, false);
-  var C = Array(4).fill(void 0);
-  var I = [
-    "file:///C:/src/flutter/flutter/packages/flutter/lib/src/painting/matrix_utils.dart",
-    "package:flutter/src/painting/matrix_utils.dart"
-  ];
-  var _name = dart.privateName(basic_types, "_name");
-  matrix_utils.MatrixUtils = class MatrixUtils extends core.Object {
-    static getAsTranslation(transform) {
-      if (!(transform !== null)) dart.assertFailed(null, I[0], 24, 12, "transform != null");
-      let values = transform.storage;
-      if (values[$_get](0) === 1.0 && values[$_get](1) === 0.0 && values[$_get](2) === 0.0 && values[$_get](3) === 0.0 && values[$_get](4) === 0.0 && values[$_get](5) === 1.0 && values[$_get](6) === 0.0 && values[$_get](7) === 0.0 && values[$_get](8) === 0.0 && values[$_get](9) === 0.0 && values[$_get](10) === 1.0 && values[$_get](11) === 0.0 && values[$_get](14) === 0.0 && values[$_get](15) === 1.0) {
-        return new ui.Offset.new(values[$_get](12), values[$_get](13));
-      }
-      return null;
-    }
-    static getAsScale(transform) {
-      if (!(transform !== null)) dart.assertFailed(null, I[0], 51, 12, "transform != null");
-      let values = transform.storage;
-      if (values[$_get](1) === 0.0 && values[$_get](2) === 0.0 && values[$_get](3) === 0.0 && values[$_get](4) === 0.0 && values[$_get](6) === 0.0 && values[$_get](7) === 0.0 && values[$_get](8) === 0.0 && values[$_get](9) === 0.0 && values[$_get](10) === 1.0 && values[$_get](11) === 0.0 && values[$_get](12) === 0.0 && values[$_get](13) === 0.0 && values[$_get](14) === 0.0 && values[$_get](15) === 1.0 && values[$_get](0) === values[$_get](5)) {
-        return values[$_get](0);
-      }
-      return null;
-    }
-    static matrixEquals(a, b) {
-      if (a == b) return true;
-      if (!(a != null || b != null)) dart.assertFailed(null, I[0], 79, 12, "a != null || b != null");
-      if (a == null) return matrix_utils.MatrixUtils.isIdentity(dart.nullCheck(b));
-      if (b == null) return matrix_utils.MatrixUtils.isIdentity(a);
-      if (!(a != null && b != null)) dart.assertFailed(null, I[0], 84, 12, "a != null && b != null");
-      return a.storage[$_get](0) === b.storage[$_get](0) && a.storage[$_get](1) === b.storage[$_get](1) && a.storage[$_get](2) === b.storage[$_get](2) && a.storage[$_get](3) === b.storage[$_get](3) && a.storage[$_get](4) === b.storage[$_get](4) && a.storage[$_get](5) === b.storage[$_get](5) && a.storage[$_get](6) === b.storage[$_get](6) && a.storage[$_get](7) === b.storage[$_get](7) && a.storage[$_get](8) === b.storage[$_get](8) && a.storage[$_get](9) === b.storage[$_get](9) && a.storage[$_get](10) === b.storage[$_get](10) && a.storage[$_get](11) === b.storage[$_get](11) && a.storage[$_get](12) === b.storage[$_get](12) && a.storage[$_get](13) === b.storage[$_get](13) && a.storage[$_get](14) === b.storage[$_get](14) && a.storage[$_get](15) === b.storage[$_get](15);
-    }
-    static isIdentity(a) {
-      if (!(a !== null)) dart.assertFailed(null, I[0], 105, 12, "a != null");
-      return a.storage[$_get](0) === 1.0 && a.storage[$_get](1) === 0.0 && a.storage[$_get](2) === 0.0 && a.storage[$_get](3) === 0.0 && a.storage[$_get](4) === 0.0 && a.storage[$_get](5) === 1.0 && a.storage[$_get](6) === 0.0 && a.storage[$_get](7) === 0.0 && a.storage[$_get](8) === 0.0 && a.storage[$_get](9) === 0.0 && a.storage[$_get](10) === 1.0 && a.storage[$_get](11) === 0.0 && a.storage[$_get](12) === 0.0 && a.storage[$_get](13) === 0.0 && a.storage[$_get](14) === 0.0 && a.storage[$_get](15) === 1.0;
-    }
-    static transformPoint(transform, point) {
-      let storage = transform.storage;
-      let x = point.dx;
-      let y = point.dy;
-      let rx = storage[$_get](0) * x + storage[$_get](4) * y + storage[$_get](12);
-      let ry = storage[$_get](1) * x + storage[$_get](5) * y + storage[$_get](13);
-      let rw = storage[$_get](3) * x + storage[$_get](7) * y + storage[$_get](15);
-      if (rw === 1.0) {
-        return new ui.Offset.new(rx, ry);
-      } else {
-        return new ui.Offset.new(rx / rw, ry / rw);
-      }
-    }
-    static _safeTransformRect(transform, rect) {
-      let storage = transform.storage;
-      let isAffine = storage[$_get](3) === 0.0 && storage[$_get](7) === 0.0 && storage[$_get](15) === 1.0;
-      matrix_utils.MatrixUtils._accumulate(storage, rect.left, rect.top, true, isAffine);
-      matrix_utils.MatrixUtils._accumulate(storage, rect.right, rect.top, false, isAffine);
-      matrix_utils.MatrixUtils._accumulate(storage, rect.left, rect.bottom, false, isAffine);
-      matrix_utils.MatrixUtils._accumulate(storage, rect.right, rect.bottom, false, isAffine);
-      return new ui.Rect.fromLTRB(matrix_utils.MatrixUtils._minMax[$_get](0), matrix_utils.MatrixUtils._minMax[$_get](1), matrix_utils.MatrixUtils._minMax[$_get](2), matrix_utils.MatrixUtils._minMax[$_get](3));
-    }
-    static get _minMax() {
-      let t1, t0;
-      t0 = matrix_utils.MatrixUtils['_#_minMax'];
-      return t0 == null ? (t1 = _native_typed_data.NativeFloat64List.new(4), matrix_utils.MatrixUtils['_#_minMax'] == null ? matrix_utils.MatrixUtils['_#_minMax'] = t1 : dart.throw(new _internal.LateError.fieldADI("_minMax"))) : t0;
-    }
-    static _accumulate(m, x, y, first, isAffine) {
-      let t1, t0, t1$, t0$;
-      let w = isAffine ? 1.0 : 1.0 / (m[$_get](3) * x + m[$_get](7) * y + m[$_get](15));
-      let tx = (m[$_get](0) * x + m[$_get](4) * y + m[$_get](12)) * w;
-      let ty = (m[$_get](1) * x + m[$_get](5) * y + m[$_get](13)) * w;
-      if (first) {
-        matrix_utils.MatrixUtils._minMax[$_set](0, (t0 = matrix_utils.MatrixUtils._minMax, t1 = 2, t0[$_set](t1, tx), tx));
-        matrix_utils.MatrixUtils._minMax[$_set](1, (t0$ = matrix_utils.MatrixUtils._minMax, t1$ = 3, t0$[$_set](t1$, ty), ty));
-      } else {
-        if (tx < matrix_utils.MatrixUtils._minMax[$_get](0)) {
-          matrix_utils.MatrixUtils._minMax[$_set](0, tx);
-        }
-        if (ty < matrix_utils.MatrixUtils._minMax[$_get](1)) {
-          matrix_utils.MatrixUtils._minMax[$_set](1, ty);
-        }
-        if (tx > matrix_utils.MatrixUtils._minMax[$_get](2)) {
-          matrix_utils.MatrixUtils._minMax[$_set](2, tx);
-        }
-        if (ty > matrix_utils.MatrixUtils._minMax[$_get](3)) {
-          matrix_utils.MatrixUtils._minMax[$_set](3, ty);
-        }
-      }
-    }
-    static transformRect(transform, rect) {
-      let storage = transform.storage;
-      let x = rect.left;
-      let y = rect.top;
-      let w = rect.right - x;
-      let h = rect.bottom - y;
-      if (!w[$isFinite] || !h[$isFinite]) {
-        return matrix_utils.MatrixUtils._safeTransformRect(transform, rect);
-      }
-      let wx = storage[$_get](0) * w;
-      let hx = storage[$_get](4) * h;
-      let rx = storage[$_get](0) * x + storage[$_get](4) * y + storage[$_get](12);
-      let wy = storage[$_get](1) * w;
-      let hy = storage[$_get](5) * h;
-      let ry = storage[$_get](1) * x + storage[$_get](5) * y + storage[$_get](13);
-      if (storage[$_get](3) === 0.0 && storage[$_get](7) === 0.0 && storage[$_get](15) === 1.0) {
-        let left = rx;
-        let right = rx;
-        if (wx < 0) {
-          left = left + wx;
-        } else {
-          right = right + wx;
-        }
-        if (hx < 0) {
-          left = left + hx;
-        } else {
-          right = right + hx;
-        }
-        let top = ry;
-        let bottom = ry;
-        if (wy < 0) {
-          top = top + wy;
-        } else {
-          bottom = bottom + wy;
-        }
-        if (hy < 0) {
-          top = top + hy;
-        } else {
-          bottom = bottom + hy;
-        }
-        return new ui.Rect.fromLTRB(left, top, right, bottom);
-      } else {
-        let ww = storage[$_get](3) * w;
-        let hw = storage[$_get](7) * h;
-        let rw = storage[$_get](3) * x + storage[$_get](7) * y + storage[$_get](15);
-        let ulx = rx / rw;
-        let uly = ry / rw;
-        let urx = (rx + wx) / (rw + ww);
-        let ury = (ry + wy) / (rw + ww);
-        let llx = (rx + hx) / (rw + hw);
-        let lly = (ry + hy) / (rw + hw);
-        let lrx = (rx + wx + hx) / (rw + ww + hw);
-        let lry = (ry + wy + hy) / (rw + ww + hw);
-        return new ui.Rect.fromLTRB(matrix_utils.MatrixUtils._min4(ulx, urx, llx, lrx), matrix_utils.MatrixUtils._min4(uly, ury, lly, lry), matrix_utils.MatrixUtils._max4(ulx, urx, llx, lrx), matrix_utils.MatrixUtils._max4(uly, ury, lly, lry));
-      }
-    }
-    static _min4(a, b, c, d) {
-      let e = a < b ? a : b;
-      let f = c < d ? c : d;
-      return e < f ? e : f;
-    }
-    static _max4(a, b, c, d) {
-      let e = a > b ? a : b;
-      let f = c > d ? c : d;
-      return e > f ? e : f;
-    }
-    static inverseTransformRect(transform, rect) {
-      let t0;
-      if (!(rect !== null)) dart.assertFailed(null, I[0], 440, 12, "rect != null");
-      if (matrix_utils.MatrixUtils.isIdentity(transform)) return rect;
-      transform = (t0 = vector_math_64.Matrix4.copy(transform), (() => {
-        t0.invert();
-        return t0;
-      })());
-      return matrix_utils.MatrixUtils.transformRect(transform, rect);
-    }
-    static createCylindricalProjectionTransform(opts) {
-      let t0;
-      let radius = opts && 'radius' in opts ? opts.radius : null;
-      let angle = opts && 'angle' in opts ? opts.angle : null;
-      let perspective = opts && 'perspective' in opts ? opts.perspective : 0.001;
-      let orientation = opts && 'orientation' in opts ? opts.orientation : C[0] || CT.C0;
-      if (!(radius !== null)) dart.assertFailed(null, I[0], 489, 12, "radius != null");
-      if (!(angle !== null)) dart.assertFailed(null, I[0], 490, 12, "angle != null");
-      if (!(perspective >= 0 && perspective <= 1.0)) dart.assertFailed(null, I[0], 491, 12, "perspective >= 0 && perspective <= 1.0");
-      if (!(orientation !== null)) dart.assertFailed(null, I[0], 492, 12, "orientation != null");
-      let result = (t0 = vector_math_64.Matrix4.identity(), (() => {
-        t0.setEntry(3, 2, -perspective);
-        t0.setEntry(2, 3, -radius);
-        t0.setEntry(3, 3, perspective * radius + 1.0);
-        return t0;
-      })());
-      result = vector_math_64.Matrix4.as(result['*']((orientation === basic_types.Axis.horizontal ? vector_math_64.Matrix4.rotationY(angle) : vector_math_64.Matrix4.rotationX(angle))['*'](vector_math_64.Matrix4.translationValues(0.0, 0.0, radius))));
-      return result;
-    }
-    static forceToPoint(offset) {
-      let t0;
-      t0 = vector_math_64.Matrix4.identity();
-      return (() => {
-        t0.setRow(0, vector_math_64.Vector4.new(0.0, 0.0, 0.0, offset.dx));
-        t0.setRow(1, vector_math_64.Vector4.new(0.0, 0.0, 0.0, offset.dy));
-        return t0;
-      })();
-    }
-  };
-  (matrix_utils.MatrixUtils.__ = function() {
-    ;
-  }).prototype = matrix_utils.MatrixUtils.prototype;
-  dart.addTypeTests(matrix_utils.MatrixUtils);
-  dart.addTypeCaches(matrix_utils.MatrixUtils);
-  dart.setLibraryUri(matrix_utils.MatrixUtils, I[1]);
-  dart.defineLazy(matrix_utils.MatrixUtils, {
-    /*matrix_utils.MatrixUtils['_#_minMax']*/get ['_#_minMax']() {
-      return null;
+      return C[3] = dart.constList([C[0] || CT.C0, C[1] || CT.C1, C[2] || CT.C2], text_formatter.MaxLengthEnforcement);
     },
-    set ['_#_minMax'](_) {}
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: platform$.TargetPlatform.prototype,
+        [_name]: "TargetPlatform.android",
+        index: 0
+      });
+    },
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: platform$.TargetPlatform.prototype,
+        [_name]: "TargetPlatform.windows",
+        index: 5
+      });
+    },
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: platform$.TargetPlatform.prototype,
+        [_name]: "TargetPlatform.iOS",
+        index: 2
+      });
+    },
+    get C7() {
+      return C[7] = dart.const({
+        __proto__: platform$.TargetPlatform.prototype,
+        [_name]: "TargetPlatform.macOS",
+        index: 4
+      });
+    },
+    get C8() {
+      return C[8] = dart.const({
+        __proto__: platform$.TargetPlatform.prototype,
+        [_name]: "TargetPlatform.linux",
+        index: 3
+      });
+    },
+    get C9() {
+      return C[9] = dart.const({
+        __proto__: platform$.TargetPlatform.prototype,
+        [_name]: "TargetPlatform.fuchsia",
+        index: 1
+      });
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: ui.TextAffinity.prototype,
+        [_name$0]: "TextAffinity.downstream",
+        index: 1
+      });
+    },
+    get C10() {
+      return C[10] = dart.const({
+        __proto__: text_editing.TextSelection.prototype,
+        [TextRange_end]: -1,
+        [TextRange_start]: -1,
+        [TextSelection_isDirectional]: false,
+        [TextSelection_affinity]: C[11] || CT.C11,
+        [TextSelection_extentOffset]: -1,
+        [TextSelection_baseOffset]: -1
+      });
+    }
   }, false);
-  var _name$ = dart.privateName(diagnostics, "_name");
-  matrix_utils.TransformProperty = class TransformProperty extends diagnostics.DiagnosticsProperty$(vector_math_64.Matrix4) {
-    valueToString(opts) {
-      let parentConfiguration = opts && 'parentConfiguration' in opts ? opts.parentConfiguration : null;
-      if (parentConfiguration != null && !parentConfiguration.lineBreakProperties) {
-        let values = T.JSArrayOfString().of([debug.debugFormatDouble(dart.nullCheck(this.value).entry(0, 0)) + "," + debug.debugFormatDouble(dart.nullCheck(this.value).entry(0, 1)) + "," + debug.debugFormatDouble(dart.nullCheck(this.value).entry(0, 2)) + "," + debug.debugFormatDouble(dart.nullCheck(this.value).entry(0, 3)), debug.debugFormatDouble(dart.nullCheck(this.value).entry(1, 0)) + "," + debug.debugFormatDouble(dart.nullCheck(this.value).entry(1, 1)) + "," + debug.debugFormatDouble(dart.nullCheck(this.value).entry(1, 2)) + "," + debug.debugFormatDouble(dart.nullCheck(this.value).entry(1, 3)), debug.debugFormatDouble(dart.nullCheck(this.value).entry(2, 0)) + "," + debug.debugFormatDouble(dart.nullCheck(this.value).entry(2, 1)) + "," + debug.debugFormatDouble(dart.nullCheck(this.value).entry(2, 2)) + "," + debug.debugFormatDouble(dart.nullCheck(this.value).entry(2, 3)), debug.debugFormatDouble(dart.nullCheck(this.value).entry(3, 0)) + "," + debug.debugFormatDouble(dart.nullCheck(this.value).entry(3, 1)) + "," + debug.debugFormatDouble(dart.nullCheck(this.value).entry(3, 2)) + "," + debug.debugFormatDouble(dart.nullCheck(this.value).entry(3, 3))]);
-        return "[" + values[$join]("; ") + "]";
-      }
-      return matrix_utils.debugDescribeTransform(this.value)[$join]("\n");
+  var C = Array(12).fill(void 0);
+  var I = [
+    "package:flutter/src/services/text_formatter.dart",
+    "file:///C:/src/flutter/flutter/packages/flutter/lib/src/services/text_formatter.dart"
+  ];
+  var _name$ = dart.privateName(text_formatter, "_name");
+  text_formatter.MaxLengthEnforcement = class MaxLengthEnforcement extends core.Object {
+    toString() {
+      return this[_name$];
     }
   };
-  (matrix_utils.TransformProperty.new = function(name, value, opts) {
-    let showName = opts && 'showName' in opts ? opts.showName : true;
-    let defaultValue = opts && 'defaultValue' in opts ? opts.defaultValue : C[1] || CT.C1;
-    let level = opts && 'level' in opts ? opts.level : C[2] || CT.C2;
-    if (!(showName !== null)) dart.assertFailed(null, I[0], 562, 15, "showName != null");
-    if (!(level !== null)) dart.assertFailed(null, I[0], 563, 15, "level != null");
-    matrix_utils.TransformProperty.__proto__.new.call(this, name, value, {showName: showName, defaultValue: defaultValue, level: level});
+  (text_formatter.MaxLengthEnforcement.new = function(index, _name) {
+    this.index = index;
+    this[_name$] = _name;
     ;
-  }).prototype = matrix_utils.TransformProperty.prototype;
-  dart.addTypeTests(matrix_utils.TransformProperty);
-  dart.addTypeCaches(matrix_utils.TransformProperty);
-  dart.setLibraryUri(matrix_utils.TransformProperty, I[1]);
-  matrix_utils.debugDescribeTransform = function debugDescribeTransform(transform) {
-    if (transform == null) return C[3] || CT.C3;
-    return T.JSArrayOfString().of(["[0] " + debug.debugFormatDouble(transform.entry(0, 0)) + "," + debug.debugFormatDouble(transform.entry(0, 1)) + "," + debug.debugFormatDouble(transform.entry(0, 2)) + "," + debug.debugFormatDouble(transform.entry(0, 3)), "[1] " + debug.debugFormatDouble(transform.entry(1, 0)) + "," + debug.debugFormatDouble(transform.entry(1, 1)) + "," + debug.debugFormatDouble(transform.entry(1, 2)) + "," + debug.debugFormatDouble(transform.entry(1, 3)), "[2] " + debug.debugFormatDouble(transform.entry(2, 0)) + "," + debug.debugFormatDouble(transform.entry(2, 1)) + "," + debug.debugFormatDouble(transform.entry(2, 2)) + "," + debug.debugFormatDouble(transform.entry(2, 3)), "[3] " + debug.debugFormatDouble(transform.entry(3, 0)) + "," + debug.debugFormatDouble(transform.entry(3, 1)) + "," + debug.debugFormatDouble(transform.entry(3, 2)) + "," + debug.debugFormatDouble(transform.entry(3, 3))]);
+  }).prototype = text_formatter.MaxLengthEnforcement.prototype;
+  dart.addTypeTests(text_formatter.MaxLengthEnforcement);
+  dart.addTypeCaches(text_formatter.MaxLengthEnforcement);
+  dart.setLibraryUri(text_formatter.MaxLengthEnforcement, I[0]);
+  dart.setFieldSignature(text_formatter.MaxLengthEnforcement, () => ({
+    __proto__: dart.getFields(text_formatter.MaxLengthEnforcement.__proto__),
+    index: dart.finalFieldType(core.int),
+    [_name$]: dart.finalFieldType(core.String)
+  }));
+  dart.defineExtensionMethods(text_formatter.MaxLengthEnforcement, ['toString']);
+  text_formatter.MaxLengthEnforcement.none = C[0] || CT.C0;
+  text_formatter.MaxLengthEnforcement.enforced = C[1] || CT.C1;
+  text_formatter.MaxLengthEnforcement.truncateAfterCompositionEnds = C[2] || CT.C2;
+  text_formatter.MaxLengthEnforcement.values = C[3] || CT.C3;
+  text_formatter.TextInputFormatter = class TextInputFormatter extends core.Object {
+    static withFunction(formatFunction) {
+      return new text_formatter._SimpleTextInputFormatter.new(formatFunction);
+    }
   };
-  dart.trackLibraries("packages/flutter/src/painting/matrix_utils.dart", {
-    "package:flutter/src/painting/matrix_utils.dart": matrix_utils
+  (text_formatter.TextInputFormatter.new = function() {
+    ;
+  }).prototype = text_formatter.TextInputFormatter.prototype;
+  dart.addTypeTests(text_formatter.TextInputFormatter);
+  dart.addTypeCaches(text_formatter.TextInputFormatter);
+  dart.setLibraryUri(text_formatter.TextInputFormatter, I[0]);
+  text_formatter._SimpleTextInputFormatter = class _SimpleTextInputFormatter extends text_formatter.TextInputFormatter {
+    formatEditUpdate(oldValue, newValue) {
+      let t1, t0;
+      t0 = oldValue;
+      t1 = newValue;
+      return this.formatFunction(t0, t1);
+    }
+  };
+  (text_formatter._SimpleTextInputFormatter.new = function(formatFunction) {
+    this.formatFunction = formatFunction;
+    if (!(formatFunction !== null)) dart.assertFailed(null, I[1], 111, 14, "formatFunction != null");
+    ;
+  }).prototype = text_formatter._SimpleTextInputFormatter.prototype;
+  dart.addTypeTests(text_formatter._SimpleTextInputFormatter);
+  dart.addTypeCaches(text_formatter._SimpleTextInputFormatter);
+  dart.setMethodSignature(text_formatter._SimpleTextInputFormatter, () => ({
+    __proto__: dart.getMethods(text_formatter._SimpleTextInputFormatter.__proto__),
+    formatEditUpdate: dart.fnType(text_input.TextEditingValue, [text_input.TextEditingValue, text_input.TextEditingValue])
+  }));
+  dart.setLibraryUri(text_formatter._SimpleTextInputFormatter, I[0]);
+  dart.setFieldSignature(text_formatter._SimpleTextInputFormatter, () => ({
+    __proto__: dart.getFields(text_formatter._SimpleTextInputFormatter.__proto__),
+    formatFunction: dart.finalFieldType(dart.fnType(text_input.TextEditingValue, [text_input.TextEditingValue, text_input.TextEditingValue]))
+  }));
+  var filterPattern$ = dart.privateName(text_formatter, "FilteringTextInputFormatter.filterPattern");
+  var allow$ = dart.privateName(text_formatter, "FilteringTextInputFormatter.allow");
+  var replacementString$ = dart.privateName(text_formatter, "FilteringTextInputFormatter.replacementString");
+  text_formatter.FilteringTextInputFormatter = class FilteringTextInputFormatter extends text_formatter.TextInputFormatter {
+    get filterPattern() {
+      return this[filterPattern$];
+    }
+    set filterPattern(value) {
+      super.filterPattern = value;
+    }
+    get allow() {
+      return this[allow$];
+    }
+    set allow(value) {
+      super.allow = value;
+    }
+    get replacementString() {
+      return this[replacementString$];
+    }
+    set replacementString(value) {
+      super.replacementString = value;
+    }
+    formatEditUpdate(oldValue, newValue) {
+      return text_formatter._selectionAwareTextManipulation(newValue, dart.fn(substring => substring[$splitMapJoin](this.filterPattern, {onMatch: !this.allow ? dart.fn(match => this.replacementString, T.MatchToString()) : null, onNonMatch: this.allow ? dart.fn(nonMatch => nonMatch[$isNotEmpty] ? this.replacementString : "", T.StringToString()) : null}), T.StringToString()));
+    }
+  };
+  (text_formatter.FilteringTextInputFormatter.new = function(filterPattern, opts) {
+    let allow = opts && 'allow' in opts ? opts.allow : null;
+    let replacementString = opts && 'replacementString' in opts ? opts.replacementString : "";
+    this[filterPattern$] = filterPattern;
+    this[allow$] = allow;
+    this[replacementString$] = replacementString;
+    if (!(filterPattern !== null)) dart.assertFailed(null, I[1], 153, 15, "filterPattern != null");
+    if (!(allow !== null)) dart.assertFailed(null, I[1], 154, 15, "allow != null");
+    if (!(replacementString !== null)) dart.assertFailed(null, I[1], 155, 15, "replacementString != null");
+    ;
+  }).prototype = text_formatter.FilteringTextInputFormatter.prototype;
+  (text_formatter.FilteringTextInputFormatter.allow = function(filterPattern, opts) {
+    let replacementString = opts && 'replacementString' in opts ? opts.replacementString : "";
+    this[filterPattern$] = filterPattern;
+    this[replacementString$] = replacementString;
+    if (!(filterPattern !== null)) dart.assertFailed(null, I[1], 164, 15, "filterPattern != null");
+    if (!(replacementString !== null)) dart.assertFailed(null, I[1], 165, 15, "replacementString != null");
+    this[allow$] = true;
+    ;
+  }).prototype = text_formatter.FilteringTextInputFormatter.prototype;
+  (text_formatter.FilteringTextInputFormatter.deny = function(filterPattern, opts) {
+    let replacementString = opts && 'replacementString' in opts ? opts.replacementString : "";
+    this[filterPattern$] = filterPattern;
+    this[replacementString$] = replacementString;
+    if (!(filterPattern !== null)) dart.assertFailed(null, I[1], 175, 15, "filterPattern != null");
+    if (!(replacementString !== null)) dart.assertFailed(null, I[1], 176, 15, "replacementString != null");
+    this[allow$] = false;
+    ;
+  }).prototype = text_formatter.FilteringTextInputFormatter.prototype;
+  dart.addTypeTests(text_formatter.FilteringTextInputFormatter);
+  dart.addTypeCaches(text_formatter.FilteringTextInputFormatter);
+  dart.setMethodSignature(text_formatter.FilteringTextInputFormatter, () => ({
+    __proto__: dart.getMethods(text_formatter.FilteringTextInputFormatter.__proto__),
+    formatEditUpdate: dart.fnType(text_input.TextEditingValue, [text_input.TextEditingValue, text_input.TextEditingValue])
+  }));
+  dart.setLibraryUri(text_formatter.FilteringTextInputFormatter, I[0]);
+  dart.setFieldSignature(text_formatter.FilteringTextInputFormatter, () => ({
+    __proto__: dart.getFields(text_formatter.FilteringTextInputFormatter.__proto__),
+    filterPattern: dart.finalFieldType(core.Pattern),
+    allow: dart.finalFieldType(core.bool),
+    replacementString: dart.finalFieldType(core.String)
+  }));
+  dart.defineLazy(text_formatter.FilteringTextInputFormatter, {
+    /*text_formatter.FilteringTextInputFormatter.singleLineFormatter*/get singleLineFormatter() {
+      return new text_formatter.FilteringTextInputFormatter.deny("\n");
+    },
+    /*text_formatter.FilteringTextInputFormatter.digitsOnly*/get digitsOnly() {
+      return new text_formatter.FilteringTextInputFormatter.allow(core.RegExp.new("[0-9]"));
+    }
+  }, false);
+  text_formatter.BlacklistingTextInputFormatter = class BlacklistingTextInputFormatter extends text_formatter.FilteringTextInputFormatter {
+    get blacklistedPattern() {
+      return this.filterPattern;
+    }
+  };
+  (text_formatter.BlacklistingTextInputFormatter.new = function(blacklistedPattern, opts) {
+    let replacementString = opts && 'replacementString' in opts ? opts.replacementString : "";
+    text_formatter.BlacklistingTextInputFormatter.__proto__.deny.call(this, blacklistedPattern, {replacementString: replacementString});
+    ;
+  }).prototype = text_formatter.BlacklistingTextInputFormatter.prototype;
+  dart.addTypeTests(text_formatter.BlacklistingTextInputFormatter);
+  dart.addTypeCaches(text_formatter.BlacklistingTextInputFormatter);
+  dart.setGetterSignature(text_formatter.BlacklistingTextInputFormatter, () => ({
+    __proto__: dart.getGetters(text_formatter.BlacklistingTextInputFormatter.__proto__),
+    blacklistedPattern: core.Pattern
+  }));
+  dart.setLibraryUri(text_formatter.BlacklistingTextInputFormatter, I[0]);
+  dart.defineLazy(text_formatter.BlacklistingTextInputFormatter, {
+    /*text_formatter.BlacklistingTextInputFormatter.singleLineFormatter*/get singleLineFormatter() {
+      return new text_formatter.BlacklistingTextInputFormatter.new(core.RegExp.new("\\n"));
+    }
+  }, false);
+  text_formatter.WhitelistingTextInputFormatter = class WhitelistingTextInputFormatter extends text_formatter.FilteringTextInputFormatter {
+    get whitelistedPattern() {
+      return this.filterPattern;
+    }
+  };
+  (text_formatter.WhitelistingTextInputFormatter.new = function(whitelistedPattern) {
+    if (!(whitelistedPattern !== null)) dart.assertFailed(null, I[1], 329, 14, "whitelistedPattern != null");
+    text_formatter.WhitelistingTextInputFormatter.__proto__.allow.call(this, whitelistedPattern);
+    ;
+  }).prototype = text_formatter.WhitelistingTextInputFormatter.prototype;
+  dart.addTypeTests(text_formatter.WhitelistingTextInputFormatter);
+  dart.addTypeCaches(text_formatter.WhitelistingTextInputFormatter);
+  dart.setGetterSignature(text_formatter.WhitelistingTextInputFormatter, () => ({
+    __proto__: dart.getGetters(text_formatter.WhitelistingTextInputFormatter.__proto__),
+    whitelistedPattern: core.Pattern
+  }));
+  dart.setLibraryUri(text_formatter.WhitelistingTextInputFormatter, I[0]);
+  dart.defineLazy(text_formatter.WhitelistingTextInputFormatter, {
+    /*text_formatter.WhitelistingTextInputFormatter.digitsOnly*/get digitsOnly() {
+      return new text_formatter.WhitelistingTextInputFormatter.new(core.RegExp.new("\\d+"));
+    }
+  }, false);
+  var maxLength$ = dart.privateName(text_formatter, "LengthLimitingTextInputFormatter.maxLength");
+  var maxLengthEnforcement$ = dart.privateName(text_formatter, "LengthLimitingTextInputFormatter.maxLengthEnforcement");
+  var _name = dart.privateName(platform$, "_name");
+  text_formatter.LengthLimitingTextInputFormatter = class LengthLimitingTextInputFormatter extends text_formatter.TextInputFormatter {
+    get maxLength() {
+      return this[maxLength$];
+    }
+    set maxLength(value) {
+      super.maxLength = value;
+    }
+    get maxLengthEnforcement() {
+      return this[maxLengthEnforcement$];
+    }
+    set maxLengthEnforcement(value) {
+      super.maxLengthEnforcement = value;
+    }
+    static getDefaultMaxLengthEnforcement(platform = null) {
+      let t0;
+      if (true) {
+        return text_formatter.MaxLengthEnforcement.truncateAfterCompositionEnds;
+      } else {
+        switch (t0 = platform, t0 == null ? platform$.defaultTargetPlatform : t0) {
+          case C[4] || CT.C4:
+          case C[5] || CT.C5:
+          {
+            return text_formatter.MaxLengthEnforcement.enforced;
+          }
+          case C[6] || CT.C6:
+          case C[7] || CT.C7:
+          case C[8] || CT.C8:
+          case C[9] || CT.C9:
+          {
+            return text_formatter.MaxLengthEnforcement.truncateAfterCompositionEnds;
+          }
+        }
+      }
+    }
+    static truncate(value, maxLength) {
+      let iterator = new characters_impl.StringCharacterRange.new(value.text);
+      if (extensions['StringCharacters|get#characters'](value.text)[$length] > maxLength) {
+        iterator.expandNext(maxLength);
+      }
+      let truncated = iterator.current;
+      return new text_input.TextEditingValue.new({text: truncated, selection: value.selection.copyWith({baseOffset: math.min(core.int, value.selection.start, truncated.length), extentOffset: math.min(core.int, value.selection.end, truncated.length)}), composing: !value.composing.isCollapsed && truncated.length > value.composing.start ? new ui.TextRange.new({start: value.composing.start, end: math.min(core.int, value.composing.end, truncated.length)}) : ui.TextRange.empty});
+    }
+    formatEditUpdate(oldValue, newValue) {
+      let t0;
+      let maxLength = this.maxLength;
+      if (maxLength == null || maxLength === -1 || extensions['StringCharacters|get#characters'](newValue.text)[$length] <= dart.notNull(maxLength)) {
+        return newValue;
+      }
+      if (!(dart.notNull(maxLength) > 0)) dart.assertFailed(null, I[1], 497, 12, "maxLength > 0");
+      switch (t0 = this.maxLengthEnforcement, t0 == null ? text_formatter.LengthLimitingTextInputFormatter.getDefaultMaxLengthEnforcement() : t0) {
+        case C[0] || CT.C0:
+        {
+          return newValue;
+        }
+        case C[1] || CT.C1:
+        {
+          if (extensions['StringCharacters|get#characters'](oldValue.text)[$length] === maxLength && oldValue.selection.isCollapsed) {
+            return oldValue;
+          }
+          return text_formatter.LengthLimitingTextInputFormatter.truncate(newValue, maxLength);
+        }
+        case C[2] || CT.C2:
+        {
+          if (extensions['StringCharacters|get#characters'](oldValue.text)[$length] === maxLength && !oldValue.composing.isValid) {
+            return oldValue;
+          }
+          if (newValue.composing.isValid) {
+            return newValue;
+          }
+          return text_formatter.LengthLimitingTextInputFormatter.truncate(newValue, maxLength);
+        }
+      }
+    }
+  };
+  (text_formatter.LengthLimitingTextInputFormatter.new = function(maxLength, opts) {
+    let maxLengthEnforcement = opts && 'maxLengthEnforcement' in opts ? opts.maxLengthEnforcement : null;
+    this[maxLength$] = maxLength;
+    this[maxLengthEnforcement$] = maxLengthEnforcement;
+    if (!(maxLength == null || maxLength === -1 || dart.notNull(maxLength) > 0)) dart.assertFailed(null, I[1], 371, 15, "maxLength == null || maxLength == -1 || maxLength > 0");
+    ;
+  }).prototype = text_formatter.LengthLimitingTextInputFormatter.prototype;
+  dart.addTypeTests(text_formatter.LengthLimitingTextInputFormatter);
+  dart.addTypeCaches(text_formatter.LengthLimitingTextInputFormatter);
+  dart.setMethodSignature(text_formatter.LengthLimitingTextInputFormatter, () => ({
+    __proto__: dart.getMethods(text_formatter.LengthLimitingTextInputFormatter.__proto__),
+    formatEditUpdate: dart.fnType(text_input.TextEditingValue, [text_input.TextEditingValue, text_input.TextEditingValue])
+  }));
+  dart.setLibraryUri(text_formatter.LengthLimitingTextInputFormatter, I[0]);
+  dart.setFieldSignature(text_formatter.LengthLimitingTextInputFormatter, () => ({
+    __proto__: dart.getFields(text_formatter.LengthLimitingTextInputFormatter.__proto__),
+    maxLength: dart.finalFieldType(dart.nullable(core.int)),
+    maxLengthEnforcement: dart.finalFieldType(dart.nullable(text_formatter.MaxLengthEnforcement))
+  }));
+  var TextRange_end = dart.privateName(ui, "TextRange.end");
+  var TextRange_start = dart.privateName(ui, "TextRange.start");
+  var TextSelection_isDirectional = dart.privateName(text_editing, "TextSelection.isDirectional");
+  var _name$0 = dart.privateName(ui, "_name");
+  var TextSelection_affinity = dart.privateName(text_editing, "TextSelection.affinity");
+  var TextSelection_extentOffset = dart.privateName(text_editing, "TextSelection.extentOffset");
+  var TextSelection_baseOffset = dart.privateName(text_editing, "TextSelection.baseOffset");
+  text_formatter._selectionAwareTextManipulation = function _selectionAwareTextManipulation(value, substringManipulation) {
+    let t0;
+    let selectionStartIndex = value.selection.start;
+    let selectionEndIndex = value.selection.end;
+    let manipulatedText = null;
+    let manipulatedSelection = null;
+    if (selectionStartIndex < 0 || selectionEndIndex < 0) {
+      manipulatedText = substringManipulation(value.text);
+    } else {
+      let beforeSelection = substringManipulation(value.text[$substring](0, selectionStartIndex));
+      let inSelection = substringManipulation(value.text[$substring](selectionStartIndex, selectionEndIndex));
+      let afterSelection = substringManipulation(value.text[$substring](selectionEndIndex));
+      manipulatedText = beforeSelection + inSelection + afterSelection;
+      if (value.selection.baseOffset > value.selection.extentOffset) {
+        manipulatedSelection = value.selection.copyWith({baseOffset: beforeSelection.length + inSelection.length, extentOffset: beforeSelection.length});
+      } else {
+        manipulatedSelection = value.selection.copyWith({baseOffset: beforeSelection.length, extentOffset: beforeSelection.length + inSelection.length});
+      }
+    }
+    return new text_input.TextEditingValue.new({text: manipulatedText, selection: (t0 = manipulatedSelection, t0 == null ? C[10] || CT.C10 : t0), composing: manipulatedText === value.text ? value.composing : ui.TextRange.empty});
+  };
+  dart.trackLibraries("packages/flutter/src/services/text_formatter.dart", {
+    "package:flutter/src/services/text_formatter.dart": text_formatter
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["matrix_utils.dart"],"names":[],"mappings":"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","file":"../../../../../../../../packages/flutter/src/painting/matrix_utils.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["text_formatter.dart"],"names":[],"mappings":"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","file":"../../../../../../../../packages/flutter/src/services/text_formatter.dart.lib.js"}');
   // Exports:
   return {
-    src__painting__matrix_utils: matrix_utils
+    src__services__text_formatter: text_formatter
   };
 }));
 
-//# sourceMappingURL=matrix_utils.dart.lib.js.map
+//# sourceMappingURL=text_formatter.dart.lib.js.map
