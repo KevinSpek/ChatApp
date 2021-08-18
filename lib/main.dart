@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:groupidy/view/login/JoinScreen.dart';
+import 'package:groupidy/view/login/LoginScreen.dart';
 import 'package:groupidy/view/login/welcomeScreen.dart';
 import 'package:groupidy/view/splashScreen.dart';
 
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Flutter Demo',
+      title: 'Groupidy',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => WelcomeScreen(),
         '/join': (context) => JoinScreen(),
+        '/login': (context) => LoginScreen(),
       },
     );
   }

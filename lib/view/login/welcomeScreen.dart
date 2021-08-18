@@ -53,7 +53,7 @@ class WelcomeScreen extends StatelessWidget {
                       "Login",
                       style: kBodyLarge.copyWith(color: Colors.white60),
                     ),
-                    onPressed: () => {},
+                    onPressed: () => {Get..toNamed('/login')},
                   ),
                 ),
               ),
