@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:groupidy/constants.dart';
 import 'package:groupidy/typography.dart';
+import 'package:groupidy/view/auth_views/components/button.dart';
+import 'package:groupidy/view/auth_views/components/join_component.dart';
 
-import 'package:groupidy/view/components/button.dart';
-import 'package:groupidy/view/components/joinComponent.dart';
 
-import '../../colors.dart';
 
-class JoinScreen extends StatefulWidget {
-  const JoinScreen({Key? key}) : super(key: key);
+import '../../../colors.dart';
+
+class JoinScreenMobile extends StatefulWidget {
+  const JoinScreenMobile({Key? key}) : super(key: key);
 
   @override
-  _JoinScreenState createState() => _JoinScreenState();
+  _JoinScreenMobileState createState() => _JoinScreenMobileState();
 }
 
-class _JoinScreenState extends State<JoinScreen> {
+class _JoinScreenMobileState extends State<JoinScreenMobile> {
   var pos = JoinPosition.nickname;
 
   void _conitnue() {

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:groupidy/colors.dart';
 
-import '../typography.dart';
+import '../../typography.dart';
 
-class SplashScreen extends StatelessWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+class SplashScreenMobile extends StatelessWidget {
+  const SplashScreenMobile({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

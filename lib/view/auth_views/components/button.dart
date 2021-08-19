@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:groupidy/constants.dart';
 
-import '../../colors.dart';
-import '../../typography.dart';
+import '../../../colors.dart';
+import '../../../typography.dart';
+
+
 
 class Button extends StatelessWidget {
   final onPressed;

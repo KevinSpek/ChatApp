@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:groupidy/view/components/button.dart';
-import 'package:groupidy/view/components/joinComponent.dart';
+import 'package:groupidy/view/auth_views/components/button.dart';
+import 'package:groupidy/view/auth_views/components/join_component.dart';
 
-import '../../colors.dart';
-import '../../constants.dart';
-import '../../typography.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+import '../../../colors.dart';
+import '../../../constants.dart';
+import '../../../typography.dart';
+
+class LoginScreenMobile extends StatefulWidget {
+  const LoginScreenMobile({Key? key}) : super(key: key);
 
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _LoginScreenMobileState createState() => _LoginScreenMobileState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginScreenMobileState extends State<LoginScreenMobile> {
   var pos = JoinPosition.phoneNumber;
 
   void _conitnue() {

@@ -5,8 +5,8 @@ import 'package:groupidy/colors.dart';
 
 import '../../typography.dart';
 
-class WelcomeScreen extends StatelessWidget {
-  const WelcomeScreen({Key? key}) : super(key: key);
+class WelcomeScreenMobile extends StatelessWidget {
+  const WelcomeScreenMobile({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

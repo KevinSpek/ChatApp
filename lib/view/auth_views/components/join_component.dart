@@ -2,8 +2,10 @@ import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
-import '../../colors.dart';
-import '../../typography.dart';
+import '../../../colors.dart';
+import '../../../typography.dart';
+
+
 
 enum JoinPosition { nickname, phoneNumber, VerificationCode }
 

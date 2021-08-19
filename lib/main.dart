@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:groupidy/view/login/JoinScreen.dart';
-import 'package:groupidy/view/login/LoginScreen.dart';
-import 'package:groupidy/view/login/welcomeScreen.dart';
-import 'package:groupidy/view/splashScreen.dart';
+import 'package:groupidy/view/auth_views/join/join_layout.dart';
+import 'package:groupidy/view/auth_views/login/login_layout.dart';
+import 'package:groupidy/view/splash_view.dart/splash_layout.dart';
+import 'package:groupidy/view/welcome_view/welcome_layout.dart';
 
 void main() {
   runApp(MyApp());
@@ -28,11 +28,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       initialRoute: '/',
-      routes: {
-        '/': (context) => WelcomeScreen(),
-        '/join': (context) => JoinScreen(),
-        '/login': (context) => LoginScreen(),
-      },
+      routes: {'/': (context) => WelcomeLayout(), '/join': (context) => JoinLayout(), '/login': (context) => LoginLayout(), '/splash': (context) => SplashLayout()},
     );
   }
 }
