@@ -1,7 +1,7 @@
 # This is a generated file; do not edit or check into version control.
-firebase_core=C:\\src\\flutter\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_core-1.4.0\\
-firebase_core_web=C:\\src\\flutter\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_core_web-1.1.0\\
-path_provider=C:\\src\\flutter\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\path_provider-2.0.2\\
-path_provider_linux=C:\\src\\flutter\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\path_provider_linux-2.0.2\\
-path_provider_macos=C:\\src\\flutter\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\path_provider_macos-2.0.2\\
-path_provider_windows=C:\\src\\flutter\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\path_provider_windows-2.0.3\\
+firebase_core=/Users/kevinspektor/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-1.4.0/
+firebase_core_web=/Users/kevinspektor/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_web-1.1.0/
+path_provider=/Users/kevinspektor/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-2.0.2/
+path_provider_linux=/Users/kevinspektor/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_linux-2.0.2/
+path_provider_macos=/Users/kevinspektor/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_macos-2.0.2/
+path_provider_windows=/Users/kevinspektor/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_windows-2.0.3/

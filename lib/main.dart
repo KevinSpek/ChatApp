@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:groupidy/view/auth_views/join/join_layout.dart';
 import 'package:groupidy/view/auth_views/login/login_layout.dart';
-import 'package:groupidy/view/splash_view.dart/splash_layout.dart';
+import 'package:groupidy/view/home_views/home_layout.dart';
+import 'package:groupidy/view/splash_view/splash_layout.dart';
 import 'package:groupidy/view/welcome_view/welcome_layout.dart';
 
 void main() {
@@ -27,8 +28,14 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/',
-      routes: {'/': (context) => WelcomeLayout(), '/join': (context) => JoinLayout(), '/login': (context) => LoginLayout(), '/splash': (context) => SplashLayout()},
+      initialRoute: '/home',
+      routes: {
+        '/': (context) => WelcomeLayout(),
+        '/join': (context) => JoinLayout(),
+        '/login': (context) => LoginLayout(),
+        '/splash': (context) => SplashLayout(),
+        '/home': (context) => HomeLayout(),
+      },
     );
   }
 }
