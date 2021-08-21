@@ -20,7 +20,12 @@ class WelcomeScreenMobile extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.asset('images/LOGO.png'),
+              Spacer(),
+              Image.asset(
+                'images/LOGO.png',
+                width: 250,
+                height: 250,
+              ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: Text(
@@ -28,6 +33,7 @@ class WelcomeScreenMobile extends StatelessWidget {
                   style: kTitle1.copyWith(color: kWhite),
                 ),
               ),
+              Spacer(),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: Container(
@@ -57,26 +63,30 @@ class WelcomeScreenMobile extends StatelessWidget {
                   ),
                 ),
               ),
-              RichText(
-                  textAlign: TextAlign.center,
-                  text: TextSpan(style: kBodyRegular.copyWith(color: Colors.white54), children: [
-                    TextSpan(text: "By joining you agree to our\n"),
-                    TextSpan(
-                      text: "Terms of Service",
-                      style: TextStyle(
-                        color: Color(0xff0085FF),
+              Spacer(),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: RichText(
+                    textAlign: TextAlign.center,
+                    text: TextSpan(style: kBodyRegular.copyWith(color: Colors.white54), children: [
+                      TextSpan(text: "By joining you agree to our\n"),
+                      TextSpan(
+                        text: "Terms of Service",
+                        style: TextStyle(
+                          color: Color(0xff0085FF),
+                        ),
+                        recognizer: TapGestureRecognizer()..onTap = () => {},
                       ),
-                      recognizer: TapGestureRecognizer()..onTap = () => {},
-                    ),
-                    TextSpan(text: " and\n"),
-                    TextSpan(
-                      text: "Privacy Policy",
-                      style: TextStyle(
-                        color: Color(0xff0085FF),
+                      TextSpan(text: " and\n"),
+                      TextSpan(
+                        text: "Privacy Policy",
+                        style: TextStyle(
+                          color: Color(0xff0085FF),
+                        ),
+                        recognizer: TapGestureRecognizer()..onTap = () => {},
                       ),
-                      recognizer: TapGestureRecognizer()..onTap = () => {},
-                    ),
-                  ]))
+                    ])),
+              )
             ],
           )
         ],

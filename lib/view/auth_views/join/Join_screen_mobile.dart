@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
 import 'package:groupidy/constants.dart';
 import 'package:groupidy/typography.dart';
-import 'package:groupidy/view/auth_views/components/button.dart';
-import 'package:groupidy/view/auth_views/components/join_component.dart';
-
-
+import 'package:groupidy/view/components/button.dart';
+import 'package:groupidy/view/auth_views/join/join_component.dart';
 
 import '../../../colors.dart';
 
@@ -29,6 +29,7 @@ class _JoinScreenMobileState extends State<JoinScreenMobile> {
       });
     } else if (pos == JoinPosition.VerificationCode) {
       // register user....
+      Get..toNamed('/home');
     }
   }
 
@@ -55,7 +56,6 @@ class _JoinScreenMobileState extends State<JoinScreenMobile> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  
                   Spacer(),
                   Stack(
                     alignment: Alignment.center,

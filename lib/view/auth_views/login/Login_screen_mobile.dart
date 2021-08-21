@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:groupidy/view/auth_views/components/button.dart';
-import 'package:groupidy/view/auth_views/components/join_component.dart';
-
+import 'package:get/get.dart';
+import 'package:groupidy/view/components/button.dart';
+import 'package:groupidy/view/auth_views/join/join_component.dart';
 
 import '../../../colors.dart';
 import '../../../constants.dart';
@@ -24,6 +24,7 @@ class _LoginScreenMobileState extends State<LoginScreenMobile> {
       });
     } else if (pos == JoinPosition.VerificationCode) {
       // login user....
+      Get..toNamed('/home');
     }
   }
 
