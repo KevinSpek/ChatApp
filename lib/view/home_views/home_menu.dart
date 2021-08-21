@@ -38,14 +38,14 @@ class _HomeMenuState extends State<HomeMenu> {
           ),
           Obx(
             () => MenuItem(
-              selected: homeController.homeItems == Rx<HomeItems>(HomeItems.chatidy),
+              selected: homeController.homeItems.value == HomeItems.chatidy,
               text: "Chatidy",
               onTap: () => {homeController.updateItem(HomeItems.chatidy)},
             ),
           ),
           Obx(
             () => MenuItem(
-              selected: homeController.homeItems == Rx<HomeItems>(HomeItems.groups),
+              selected: homeController.homeItems.value == HomeItems.groups,
               text: "Groups",
               onTap: () => {
                 homeController.updateItem(HomeItems.groups) //homeItems = Rx<HomeItems>(;
@@ -54,7 +54,7 @@ class _HomeMenuState extends State<HomeMenu> {
           ),
           Obx(
             () => MenuItem(
-              selected: homeController.homeItems == Rx<HomeItems>(HomeItems.profile),
+              selected: homeController.homeItems.value == HomeItems.profile,
               text: "Profile",
               onTap: () => {
                 homeController.updateItem(HomeItems.profile),
@@ -63,7 +63,7 @@ class _HomeMenuState extends State<HomeMenu> {
           ),
           Obx(
             () => MenuItem(
-              selected: homeController.homeItems == Rx<HomeItems>(HomeItems.settings),
+              selected: homeController.homeItems.value == HomeItems.settings,
               text: "Settings",
               onTap: () => {homeController.updateItem(HomeItems.settings)},
             ),

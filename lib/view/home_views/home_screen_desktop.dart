@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:groupidy/colors.dart';
 import 'package:groupidy/controller/home_controller.dart';
 
+import '../../typography.dart';
+import '../../utils.dart';
 import 'home_menu.dart';
 
 class HomeScreenDesktop extends StatefulWidget {
@@ -23,7 +26,30 @@ class _HomeScreenDesktopState extends State<HomeScreenDesktop> {
             flex: 1,
           ),
           Expanded(
-            child: Obx(() => Text(homeController.homeItems.string)),
+            child: Scaffold(
+              appBar: AppBar(
+                actions: [
+                  IconButton(
+                    icon: Icon(Icons.search),
+                    onPressed: () {},
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.add),
+                    onPressed: () {},
+                  ),
+                ],
+                leading: Container(),
+                backgroundColor: kAccentColor,
+                centerTitle: true,
+                title: Obx(
+                  () => Text(
+                    capitalize(homeController.homeItems.value.toString().split('.').last),
+                    style: kTitle3,
+                  ),
+                ),
+              ),
+              body: Text(""),
+            ),
             flex: 6,
           )
         ],
