@@ -3,17 +3,19 @@ import 'package:groupidy/colors.dart';
 import 'package:groupidy/typography.dart';
 
 class Message extends StatelessWidget {
-  const Message(
-      {Key? key,
-      required this.msg,
-      required this.senderName,
-      required this.sentTime,
-      this.isMyMessage = false})
-      : super(key: key);
+  const Message({
+    Key? key,
+    required this.msg,
+    required this.senderName,
+    required this.sentTime,
+    this.maxWidth = 400,
+    this.isMyMessage = false,
+  }) : super(key: key);
 
   final String msg;
   final String senderName;
   final DateTime sentTime;
+  final double maxWidth;
   final bool isMyMessage;
 
   String getFormattedSentTime(DateTime sentTime) {
@@ -24,8 +26,7 @@ class Message extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Column(
-        crossAxisAlignment:
-            isMyMessage ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+        crossAxisAlignment: isMyMessage ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: [
           Row(
             mainAxisSize: MainAxisSize.min,
@@ -39,12 +40,12 @@ class Message extends StatelessWidget {
               ),
               Text(
                 getFormattedSentTime(sentTime),
-                style:
-                    kBodySmall.copyWith(color: kWhiteSecondary, fontSize: 10),
+                style: kBodySmall.copyWith(color: kWhiteSecondary, fontSize: 10),
               ),
             ],
           ),
           Container(
+            constraints: BoxConstraints(maxWidth: maxWidth),
             child: Text(
               msg,
               style: kBodyRegular.copyWith(color: kWhite),
@@ -56,10 +57,11 @@ class Message extends StatelessWidget {
             decoration: BoxDecoration(
               color: isMyMessage ? kPrimaryBubble : kSecondaryBubble,
               borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(8),
-                  topRight: Radius.circular(8),
-                  bottomLeft: Radius.circular(isMyMessage ? 8 : 0),
-                  bottomRight: Radius.circular(isMyMessage ? 0 : 8)),
+                topLeft: Radius.circular(8),
+                topRight: Radius.circular(8),
+                bottomLeft: Radius.circular(isMyMessage ? 8 : 0),
+                bottomRight: Radius.circular(isMyMessage ? 0 : 8),
+              ),
             ),
           )
         ],
