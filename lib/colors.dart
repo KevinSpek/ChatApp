@@ -13,3 +13,4 @@ const kGroupchatNotification = Color(0xff4A4AC0);
 const kNewsNotification = Color(0xffD75151);
 const kForumNotification = Color(0xff5DA2D4);
 final kWhite = Color(0xffFBFBFB);
+final kWhiteSecondary = Color(0xffB1B3B5);
