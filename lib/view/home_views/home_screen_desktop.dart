@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:groupidy/colors.dart';
 import 'package:groupidy/controller/home_controller.dart';
-import 'package:groupidy/view/components/message.dart';
 
 import '../../typography.dart';
 import '../../utils.dart';
