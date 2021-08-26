@@ -21,3 +21,17 @@ String capitalize(String string) {
 
   return string[0].toUpperCase() + string.substring(1);
 }
+
+String presentTime(DateTime date) {
+  String completeZero(String str) {
+    if (str.length == 1) {
+      return '0${str}';
+    }
+    return str;
+  }
+
+  String hour = '${date.hour}';
+  String minute = '${date.minute}';
+
+  return '${completeZero(hour)}:${completeZero(minute)}';
+}

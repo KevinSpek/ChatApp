@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:groupidy/colors.dart';
 import 'package:groupidy/controller/home_controller.dart';
+import 'package:groupidy/model/group.dart';
+import 'package:groupidy/view/home_views/home_groups.dart';
 
 import '../../typography.dart';
 import '../../utils.dart';
@@ -50,8 +52,36 @@ class _HomeScreenDesktopState extends State<HomeScreenDesktop> {
               ),
               body: Container(
                 width: double.infinity,
-                child: Text(
-                  'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum ',
+                child: HomeGroups(
+                  groups: [
+                    Group(
+                      gid: '',
+                      imgPath: '',
+                      lastUpdated: DateTime.now(),
+                      name: 'My group',
+                      ownerUid: 'kev',
+                      tag: '123',
+                      uids: [],
+                    ),
+                    Group(
+                      gid: '',
+                      imgPath: '',
+                      lastUpdated: DateTime.now(),
+                      name: 'Another group',
+                      ownerUid: 'kev',
+                      tag: '123',
+                      uids: [],
+                    ),
+                    Group(
+                      gid: '',
+                      imgPath: '',
+                      lastUpdated: DateTime.now(),
+                      name: 'One more',
+                      ownerUid: 'kev',
+                      tag: '123',
+                      uids: [],
+                    ),
+                  ],
                 ),
               ),
             ),
