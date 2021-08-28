@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:groupidy/colors.dart';
 import 'package:groupidy/controller/home_controller.dart';
+import 'package:groupidy/dummy_data.dart';
 import 'package:groupidy/model/group.dart';
 import 'package:groupidy/view/home_views/home_groups.dart';
 
@@ -53,35 +54,7 @@ class _HomeScreenDesktopState extends State<HomeScreenDesktop> {
               body: Container(
                 width: double.infinity,
                 child: HomeGroups(
-                  groups: [
-                    Group(
-                      gid: '',
-                      imgPath: '',
-                      lastUpdated: DateTime.now(),
-                      name: 'My group',
-                      ownerUid: 'kev',
-                      tag: '123',
-                      uids: [],
-                    ),
-                    Group(
-                      gid: '',
-                      imgPath: '',
-                      lastUpdated: DateTime.now(),
-                      name: 'Another group',
-                      ownerUid: 'kev',
-                      tag: '123',
-                      uids: [],
-                    ),
-                    Group(
-                      gid: '',
-                      imgPath: '',
-                      lastUpdated: DateTime.now(),
-                      name: 'One more',
-                      ownerUid: 'kev',
-                      tag: '123',
-                      uids: [],
-                    ),
-                  ],
+                  groups: dGroups,
                 ),
               ),
             ),
