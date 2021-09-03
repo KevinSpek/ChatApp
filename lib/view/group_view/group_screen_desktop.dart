@@ -5,36 +5,34 @@ import 'package:groupidy/view/group_view/group_manu.dart';
 
 class GroupScreenDesktop extends StatelessWidget {
   const GroupScreenDesktop({Key? key}) : super(key: key);
-
+  final double menuWidth = 332;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Row(
       children: [
-        Expanded(
-          flex: 2,
+        Container(
+          width: menuWidth,
           child: GroupMenu(
             groups: dGroups,
           ),
         ),
-        Expanded(
-          flex: 9,
-          child: Scaffold(
-              backgroundColor: kSecondaryBackground,
-              body: Column(
-                children: [
-                  Container(
-                    color: kAccentColor,
-                    height: 50,
-                  ),
-                  Container(
-                    color: kAccentColor.withOpacity(0.8),
-                    height: 50,
-                  ),
-                  Text("HSDASDASFSDFSDF")
-                ],
-              )),
-        ),
+        Container(
+            color: kSecondaryBackground,
+            width: MediaQuery.of(context).size.width - menuWidth,
+            child: Column(
+              children: [
+                Container(
+                  color: kAccentColor,
+                  height: 50,
+                ),
+                Container(
+                  color: kAccentColor.withOpacity(0.8),
+                  height: 50,
+                ),
+                Text("HSDASDASFSDFSDF")
+              ],
+            )),
       ],
     ));
   }
