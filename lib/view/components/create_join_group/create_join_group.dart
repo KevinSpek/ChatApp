@@ -39,6 +39,7 @@ class _CreateJoinGroupState extends State<CreateJoinGroup> {
   void toggleJoinGroup() {
     setState(() {
       _isJoinGroup = true;
+      _invalidTag = false;
       _insertedTag = "";
     });
   }
@@ -51,7 +52,17 @@ class _CreateJoinGroupState extends State<CreateJoinGroup> {
   }
 
   bool isValidTag(String tag) {
-    bool isValid = tag.length > 2;
+    var tagData = tag.split("#");
+    bool isValid = false;
+
+    if (tagData.length <= 1 || tagData[0].length < 2) {
+      isValid = false;
+    }
+
+    if (tagData.length == 2 && tagData[1].length == 4) {
+      isValid = true;
+    }
+
     setState(() {
       _invalidTag = !isValid;
     });
