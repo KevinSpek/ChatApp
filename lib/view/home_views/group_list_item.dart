@@ -4,6 +4,7 @@ import 'package:groupidy/model/group.dart';
 import 'package:groupidy/model/notification_message.dart';
 import 'package:groupidy/typography.dart';
 import 'package:groupidy/utils.dart';
+import 'package:groupidy/view/components/item_image.dart';
 import 'package:groupidy/view/notification_views/notification_item.dart';
 import 'package:groupidy/view/notification_views/notification_side.dart';
 
@@ -32,15 +33,7 @@ class GroupListItem extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Stack(
-            alignment: Alignment.center,
-            children: [
-              Container(
-                color: kSecondaryBubble,
-              ),
-              Image.asset('images/user_placeholder.png') // TODO: change to group image!
-            ],
-          ),
+          ItemImage(),
           SizedBox(
             width: 20,
           ),
@@ -86,3 +79,5 @@ class GroupListItem extends StatelessWidget {
     );
   }
 }
+
+

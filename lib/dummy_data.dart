@@ -1,6 +1,10 @@
+import 'package:groupidy/model/channels/channel.dart';
+import 'package:groupidy/model/channels/news.dart';
 import 'package:groupidy/model/group.dart';
 import 'package:groupidy/model/message.dart';
 import 'package:groupidy/model/user.dart';
+
+String dUid = '1';
 
 List<Group> dGroups = [
   Group(
@@ -11,25 +15,10 @@ List<Group> dGroups = [
     ownerUid: 'kev',
     tag: '123',
     uids: [],
+    pids: ['pidGroupChat'],
   ),
-  Group(
-    gid: '',
-    imgPath: '',
-    lastUpdated: DateTime.now(),
-    name: 'Another group',
-    ownerUid: 'kev',
-    tag: '123',
-    uids: [],
-  ),
-  Group(
-    gid: '',
-    imgPath: '',
-    lastUpdated: DateTime.now(),
-    name: 'One more',
-    ownerUid: 'kev',
-    tag: '123',
-    uids: [],
-  ),
+  Group(gid: '', imgPath: '', lastUpdated: DateTime.now(), name: 'Another group', ownerUid: 'kev', tag: '123', uids: [], pids: ['pidForum']),
+  Group(gid: '', imgPath: '', lastUpdated: DateTime.now(), name: 'One more', ownerUid: 'kev', tag: '123', uids: [], pids: ['pidNews']),
 ];
 
 List<User> dUsers = [
@@ -53,3 +42,10 @@ List<Message> dChatidiyMessages = [
   Message(senderID: '1', msg: 'Just checkin, wandering how are you', date: DateTime(2020, 12, 24, 11, 24), userNickname: 'Eden'),
   Message(senderID: '2', msg: 'Got it. bye.', date: DateTime(2020, 12, 24, 11, 25), userNickname: 'Barak'),
 ];
+
+Channel pidNews = News(pid: 'pidNews', name: 'News', messages: dGroupMessages);
+
+// Channel pidForum = Channel(pid: 'pidForum', name: 'Forum');
+// Channel pidGroupChat = Channel(pid: 'pidGroupChat', name: 'Group chat');
+
+

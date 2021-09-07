@@ -6,4 +6,5 @@ const kSideMenuWidth = 300.0;
 const kNavigationRailWidth = 72.0;
 
 const kPadding = 32.0;
-const buttonHeight = 48.0;
+const kButtonHeight = 48.0;
+const double kRadius = 10;

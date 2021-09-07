@@ -1,3 +1,5 @@
+import 'package:groupidy/model/channels/channel.dart';
+
 class Group {
   final String gid;
   final String name;
@@ -6,6 +8,7 @@ class Group {
   final String ownerUid;
   DateTime lastUpdated;
   List<String> uids;
+  List<String> pids;
 
   Group({
     required this.gid,
@@ -15,5 +18,6 @@ class Group {
     required this.ownerUid,
     required this.lastUpdated,
     required this.uids,
+    required this.pids
   });
 }
