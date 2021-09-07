@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:groupidy/colors.dart';
 import 'package:groupidy/typography.dart';
 
-class Message extends StatelessWidget {
-  const Message({
+class MessageBubble extends StatelessWidget {
+  const MessageBubble({
     Key? key,
     required this.msg,
     required this.senderName,
@@ -25,6 +25,7 @@ class Message extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: double.infinity,
       child: Column(
         crossAxisAlignment: isMyMessage ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: [

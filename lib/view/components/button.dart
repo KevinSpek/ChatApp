@@ -19,7 +19,7 @@ class Button extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: width,
-      height: buttonHeight,
+      height: kButtonHeight,
       child: TextButton(
         onPressed: onPressed,
         child: Text(text, style: kBodyLarge.copyWith(color: Colors.white)),
