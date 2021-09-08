@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:groupidy/constants.dart';
 import 'package:groupidy/view/components/button.dart';
 
 import '../../../colors.dart';
@@ -68,7 +69,7 @@ class ChannelIcon extends StatelessWidget {
               width: 64,
               height: 64,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(32),
+                borderRadius: BorderRadius.circular(kRadius),
                 color: kAccentColor,
               ),
               child: Center(

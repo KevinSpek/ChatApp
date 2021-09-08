@@ -8,7 +8,7 @@ import 'package:groupidy/view/components/new_channel/channel_type.dart';
 
 class NewChannel extends StatefulWidget {
   const NewChannel({Key? key}) : super(key: key);
-
+  
   @override
   _NewChannelState createState() => _NewChannelState();
 }
@@ -26,7 +26,7 @@ class _NewChannelState extends State<NewChannel> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        constraints: BoxConstraints(maxHeight: 600, maxWidth: 400),
+        constraints: BoxConstraints(maxHeight: 600, maxWidth: 400, minWidth: 350),
         color: kSecondaryBackground,
         child: Padding(
           padding: const EdgeInsets.all(16),
@@ -56,27 +56,25 @@ class _NewChannelState extends State<NewChannel> {
                   Padding(
                     padding: const EdgeInsets.only(top: 24),
                     child: ChannelName(
-                      onValueChange: (newValue) =>
-                          setState(() => {_name = newValue}),
+                      onValueChange: (newValue) => setState(() => {_name = newValue}),
                       invalidName: _invalidName,
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 16),
-                    child: ChannelType(
-                        value: _type,
-                        onValueChange: (newValue) =>
-                            setState(() => {_type = newValue!})),
+                    child: ChannelType(value: _type, onValueChange: (newValue) => setState(() => {_type = newValue!})),
                   ),
                   Padding(
                       padding: const EdgeInsets.only(top: 16),
                       child: ChannelIcon(
                         iconTypeSelected: _iconTypeSelected,
                         onIconTypeSelect: (index) => {
-                          setState(() {
-                            _iconTypeSelected[index] = true;
-                            _iconTypeSelected[index == 1 ? 0 : 1] = false;
-                          },)
+                          setState(
+                            () {
+                              _iconTypeSelected[index] = true;
+                              _iconTypeSelected[index == 1 ? 0 : 1] = false;
+                            },
+                          )
                         },
                         channelName: _name,
                         iconText: _iconText,
