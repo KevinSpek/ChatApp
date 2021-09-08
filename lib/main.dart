@@ -5,6 +5,7 @@ import 'package:groupidy/view/auth_views/login/login_layout.dart';
 import 'package:groupidy/view/components/new_channel/new_channel.dart';
 import 'package:groupidy/view/group_view/group_layout.dart';
 import 'package:groupidy/view/home_views/home_layout.dart';
+import 'package:groupidy/view/home_views/home_profile.dart';
 import 'package:groupidy/view/splash_view/splash_layout.dart';
 import 'package:groupidy/view/welcome_view/welcome_layout.dart';
 
@@ -31,14 +32,15 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/',
+      initialRoute: '/test',
       routes: {
-        '/': (context) => NewChannel(),
+        '/': (context) => WelcomeLayout(),
         '/join': (context) => JoinLayout(),
         '/login': (context) => LoginLayout(),
         '/splash': (context) => SplashLayout(),
         '/home': (context) => HomeLayout(),
         '/group': (context) => GroupLayout(),
+        '/test': (context) => HomeLayout(),
       },
     );
   }

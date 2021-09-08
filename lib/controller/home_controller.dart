@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:groupidy/view/home_views/home_type.dart';
 
-enum HomeItems { groups, chatidy, settings, profile }
+
 
 class HomeController extends GetxController {
-  var homeItems = Rx<HomeItems>(HomeItems.chatidy);
+  var homeType = Rx<HomeType>(HomeType.chatidy);
 
-  void updateItem(HomeItems item) {
-    homeItems.value = item;
-    homeItems.refresh();
+  void updateItem(HomeType item) {
+    homeType.value = item;
+    homeType.refresh();
     //this.update();
   }
 }

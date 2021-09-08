@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:groupidy/colors.dart';
 import 'package:groupidy/controller/home_controller.dart';
 import 'package:groupidy/typography.dart';
+import 'package:groupidy/view/home_views/home_type.dart';
 
 class HomeMenu extends StatefulWidget {
   const HomeMenu({Key? key}) : super(key: key);
@@ -38,34 +39,34 @@ class _HomeMenuState extends State<HomeMenu> {
           ),
           Obx(
             () => MenuItem(
-              selected: homeController.homeItems.value == HomeItems.chatidy,
+              selected: homeController.homeType.value == HomeType.chatidy,
               text: "Chatidy",
-              onTap: () => {homeController.updateItem(HomeItems.chatidy)},
+              onTap: () => {homeController.updateItem(HomeType.chatidy)},
             ),
           ),
           Obx(
             () => MenuItem(
-              selected: homeController.homeItems.value == HomeItems.groups,
+              selected: homeController.homeType.value == HomeType.groups,
               text: "Groups",
               onTap: () => {
-                homeController.updateItem(HomeItems.groups) //homeItems = Rx<HomeItems>(;
+                homeController.updateItem(HomeType.groups) //homeItems = Rx<HomeItems>(;
               },
             ),
           ),
           Obx(
             () => MenuItem(
-              selected: homeController.homeItems.value == HomeItems.profile,
+              selected: homeController.homeType.value == HomeType.profile,
               text: "Profile",
               onTap: () => {
-                homeController.updateItem(HomeItems.profile),
+                homeController.updateItem(HomeType.profile),
               },
             ),
           ),
           Obx(
             () => MenuItem(
-              selected: homeController.homeItems.value == HomeItems.settings,
+              selected: homeController.homeType.value == HomeType.settings,
               text: "Settings",
-              onTap: () => {homeController.updateItem(HomeItems.settings)},
+              onTap: () => {homeController.updateItem(HomeType.settings)},
             ),
           )
         ],

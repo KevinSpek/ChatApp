@@ -5,6 +5,7 @@ import 'package:groupidy/controller/home_controller.dart';
 import 'package:groupidy/dummy_data.dart';
 import 'package:groupidy/model/group.dart';
 import 'package:groupidy/view/home_views/home_groups.dart';
+import 'package:groupidy/view/home_views/home_presentor.dart';
 
 import '../../typography.dart';
 import '../../utils.dart';
@@ -46,17 +47,18 @@ class _HomeScreenDesktopState extends State<HomeScreenDesktop> {
                 centerTitle: true,
                 title: Obx(
                   () => Text(
-                    capitalize(homeController.homeItems.value.toString().split('.').last),
+                    capitalize(homeController.homeType.value.toString().split('.').last),
                     style: kTitle3,
                   ),
                 ),
               ),
               body: Container(
-                width: double.infinity,
-                child: HomeGroups(
-                  groups: dGroups,
-                ),
-              ),
+                  width: double.infinity,
+                  child: Obx(
+                    () => HomePresentor(
+                      homeType: homeController.homeType.value,
+                    ),
+                  )),
             ),
             flex: 6,
           )
