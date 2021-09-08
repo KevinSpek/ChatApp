@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:groupidy/colors.dart';
+import 'package:groupidy/constants.dart';
 import 'package:groupidy/model/post.dart';
 import 'package:groupidy/typography.dart';
 import 'package:groupidy/view/components/circle_image.dart';
 
-class PostWidget extends StatefulWidget {
-  const PostWidget({Key? key, required this.post}) : super(key: key);
+class PostBubble extends StatefulWidget {
+  const PostBubble({Key? key, required this.post}) : super(key: key);
 
   final Post post;
 
   @override
-  _PostWidgetState createState() => _PostWidgetState();
+  _PostBubbleState createState() => _PostBubbleState();
 }
 
 String getPostTimeFormat(DateTime postTime) {
@@ -25,13 +26,15 @@ String getPostTimeFormat(DateTime postTime) {
   return "Just now";
 }
 
-class _PostWidgetState extends State<PostWidget> {
+bool seeMore = false;
+
+class _PostBubbleState extends State<PostBubble> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      constraints: BoxConstraints(maxHeight: !seeMore ? 300 : double.infinity, maxWidth: 900, minWidth: 500),
       padding: EdgeInsets.all(16),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8), color: kPrimaryBubble),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(kRadius), color: kPrimaryBubble),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -64,17 +67,22 @@ class _PostWidgetState extends State<PostWidget> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  widget.post.chatMsg.msg.length > 250
-                      ? widget.post.chatMsg.msg.substring(0, 250) + '...'
-                      : widget.post.chatMsg.msg,
+                  widget.post.chatMsg.msg.length > 250 && !seeMore ? widget.post.chatMsg.msg.substring(0, 250) + '...' : widget.post.chatMsg.msg,
                   style: kBodyRegular.copyWith(color: kWhite),
                 ),
                 Visibility(
-                  child: Text(
-                    "See more",
-                    style: kBodyRegular.copyWith(color: kPrimaryColor),
+                  child: InkWell(
+                    onTap: () {
+                      setState(() {
+                        seeMore = !seeMore;
+                      });
+                    },
+                    child: Text(
+                      "See more",
+                      style: kBodyRegular.copyWith(color: kPrimaryColor),
+                    ),
                   ),
-                  visible: widget.post.chatMsg.msg.length > 250,
+                  visible: widget.post.chatMsg.msg.length > 250 && !seeMore,
                 )
               ],
             ),
@@ -85,9 +93,7 @@ class _PostWidgetState extends State<PostWidget> {
               Container(
                 margin: EdgeInsets.only(right: 8),
                 padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                decoration: BoxDecoration(
-                    border: Border.all(color: kWhite),
-                    borderRadius: BorderRadius.circular(8)),
+                decoration: BoxDecoration(border: Border.all(color: kWhite), borderRadius: BorderRadius.circular(kRadius)),
                 child: Row(
                   children: [
                     Padding(
@@ -106,9 +112,7 @@ class _PostWidgetState extends State<PostWidget> {
               ),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                decoration: BoxDecoration(
-                    border: Border.all(color: kWhite),
-                    borderRadius: BorderRadius.circular(8)),
+                decoration: BoxDecoration(border: Border.all(color: kWhite), borderRadius: BorderRadius.circular(kRadius)),
                 child: Row(
                   children: [
                     Padding(

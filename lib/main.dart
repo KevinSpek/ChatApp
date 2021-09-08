@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:groupidy/dummy_data.dart';
 import 'package:groupidy/view/auth_views/join/join_layout.dart';
 import 'package:groupidy/view/auth_views/login/login_layout.dart';
 import 'package:groupidy/view/components/new_channel/new_channel.dart';
+import 'package:groupidy/view/components/post_bubble.dart';
 import 'package:groupidy/view/group_view/group_layout.dart';
 import 'package:groupidy/view/home_views/home_layout.dart';
 import 'package:groupidy/view/home_views/home_profile.dart';
@@ -40,7 +42,7 @@ class MyApp extends StatelessWidget {
         '/splash': (context) => SplashLayout(),
         '/home': (context) => HomeLayout(),
         '/group': (context) => GroupLayout(),
-        '/test': (context) => HomeLayout(),
+        '/test': (context) => Scaffold(body: PostBubble(post: dPost1)),
       },
     );
   }
