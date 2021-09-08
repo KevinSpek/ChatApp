@@ -18,17 +18,16 @@ class ResponsiveLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
       builder: (context, sizingInformation) {
-        if (sizingInformation.deviceScreenType == DeviceScreenType.Tablet && tablet != null) {
-         
-            return tablet ?? SizedBox();
-         
-        }
-
-        if (sizingInformation.deviceScreenType == DeviceScreenType.Desktop && desktop != null) {
+        if (sizingInformation.deviceScreenType == DeviceScreenType.Desktop &&
+            desktop != null) {
           return desktop ?? SizedBox();
+        } else if (sizingInformation.deviceScreenType ==
+                DeviceScreenType.Tablet &&
+            tablet != null) {
+          return tablet ?? SizedBox();
+        } else {
+          return mobile;
         }
-
-        return mobile;
       },
     );
   }
