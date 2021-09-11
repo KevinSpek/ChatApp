@@ -1,5 +1,6 @@
 import 'package:groupidy/model/channels/channel.dart';
 import 'package:groupidy/model/channels/news.dart';
+import 'package:groupidy/model/chat.dart';
 import 'package:groupidy/model/group.dart';
 import 'package:groupidy/model/message.dart';
 import 'package:groupidy/model/post.dart';
@@ -66,3 +67,5 @@ Pellentesque ut urna purus. Praesent ut nulla sem. Etiam sed elit odio. Suspendi
 Mauris gravida imperdiet dui, eget condimentum sapien eleifend vitae. Sed lobortis, purus sit amet convallis tincidunt, mi lorem pellentesque ipsum, quis commodo ligula justo ut mauris. Vestibulum eu justo sit amet ex fermentum dictum. Vivamus massa nulla, feugiat non tellus vel, laoreet pulvinar lectus. Pellentesque lectus ex, commodo sit amet eleifend a, imperdiet eget metus. Nunc placerat tellus lectus, rhoncus blandit justo tincidunt ac. Donec justo nisl, aliquam vitae magna a, aliquet gravida nisi. In vestibulum neque eget eleifend blandit. Vivamus porta volutpat turpis quis ullamcorper. Praesent sit amet tristique quam, vitae porttitor nibh. Nulla mattis vestibulum libero ac faucibus.''';
 
 Post dPost1 = Post(chatMsg: Message(senderID: '1', msg: loremIpsumLong, date: DateTime(2020, 12, 24, 11, 24), userNickname: 'Eden'), comments: 1, likes: 2);
+
+Chat dChat = Chat(lastUpdated: DateTime.now().subtract(Duration(minutes: 6)), messages: dChatidiyMessages, uids: ["1", "2"], userToChat: User(uid: '1', tag: '#123', nickname: 'Eden'));

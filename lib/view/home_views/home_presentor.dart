@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:groupidy/dummy_data.dart';
+import 'package:groupidy/view/home_views/home_chatidy.dart';
 import 'package:groupidy/view/home_views/home_groups.dart';
 import 'package:groupidy/view/home_views/home_profile.dart';
 import 'package:groupidy/view/home_views/home_type.dart';
@@ -16,8 +17,7 @@ class HomePresentor extends StatelessWidget {
         );
 
       case HomeType.chatidy:
-        // TODO: Handle this case.
-        break;
+        return HomeChatidy();
       case HomeType.settings:
         // TODO: Handle this case.
         break;
