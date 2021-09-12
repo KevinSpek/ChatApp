@@ -4,8 +4,12 @@ import 'package:groupidy/typography.dart';
 
 String getFormattedDate(DateTime dateTime) {
   Duration duration = DateTime.now().difference(dateTime);
-  if (duration.inDays < 1)
+  if (duration.inDays < 1) {
     return "Today";
+  } else if (duration.inDays == 1) {
+    return "Yesterday";
+  }
+  
   return "${dateTime.day.toString().padLeft(2,'0')}/${dateTime.month.toString().padLeft(2,'0')}/${dateTime.year.toString()}";
 }
 
