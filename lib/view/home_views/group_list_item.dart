@@ -42,7 +42,10 @@ class GroupListItem extends StatelessWidget {
             children: [
               Spacer(),
               Text(group.name, style: kBodyRegular.copyWith(color: kWhite)),
-              Text('Latest message', style: kBodySmall.copyWith(color: kWhiteSecondary)), // TODO: Add last message!
+              Text(
+                'Latest message',
+                style: kBodySmall.copyWith(color: kWhiteSecondary),
+              ), // TODO: Add last message!
               Spacer()
             ],
           ),
@@ -79,5 +82,3 @@ class GroupListItem extends StatelessWidget {
     );
   }
 }
-
-

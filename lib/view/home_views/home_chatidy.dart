@@ -81,10 +81,7 @@ class SideBar extends StatelessWidget {
       children: [
         Container(
           height: 80,
-          decoration: BoxDecoration(
-              border: Border(
-                  bottom: BorderSide(color: kWhiteDisabled, width: 0.5),
-                  right: BorderSide(color: kWhiteDisabled, width: 0.5))),
+          decoration: BoxDecoration(border: Border(bottom: BorderSide(color: kWhiteDisabled, width: 0.5), right: BorderSide(color: kWhiteDisabled, width: 0.5))),
           child: Row(
             children: [
               Padding(
@@ -123,9 +120,7 @@ class ChatItem extends StatelessWidget {
       onTap: null,
       child: Container(
         height: 80,
-        decoration: BoxDecoration(
-            border:
-                Border(bottom: BorderSide(color: kWhiteDisabled, width: 0.5))),
+        decoration: BoxDecoration(border: Border(bottom: BorderSide(color: kWhiteDisabled, width: 0.5))),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -159,15 +154,12 @@ class ChatItem extends StatelessWidget {
                 children: [
                   Text(
                     getLastUpdatedFormatted(chat.lastUpdated),
-                    style: kBodySmall.copyWith(color: kWhite),
+                    style: kCaption.copyWith(color: kWhiteSecondary, fontSize: 15),
                   ),
                   NotificationItem(
-                      side: NotificationSide.all,
-                      notification: NotificationMessage(
-                          chatID: "dd",
-                          numNewMessages: 5,
-                          notificationType: NotificationType.chatidy,
-                          time: DateTime.now()))
+                    side: NotificationSide.all,
+                    notification: NotificationMessage(chatID: "dd", numNewMessages: 5, notificationType: NotificationType.chatidy, time: DateTime.now()),
+                  )
                 ],
               ),
             )

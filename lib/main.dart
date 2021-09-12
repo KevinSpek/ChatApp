@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/test',
+      initialRoute: '/home',
       routes: {
         '/': (context) => WelcomeLayout(),
         '/join': (context) => JoinLayout(),
