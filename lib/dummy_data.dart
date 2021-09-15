@@ -19,11 +19,32 @@ List<Group> dGroups = [
     uids: [],
     pids: ['pidGroupChat'],
   ),
-  Group(gid: '', imgPath: '', lastUpdated: DateTime.now(), name: 'Another group', ownerUid: 'kev', tag: '123', uids: [], pids: ['pidForum']),
-  Group(gid: '', imgPath: '', lastUpdated: DateTime.now(), name: 'One more', ownerUid: 'kev', tag: '123', uids: [], pids: ['pidNews']),
+  Group(
+      gid: '',
+      imgPath: '',
+      lastUpdated: DateTime.now(),
+      name: 'Another group',
+      ownerUid: 'kev',
+      tag: '123',
+      uids: [],
+      pids: ['pidForum']),
+  Group(
+      gid: '',
+      imgPath: '',
+      lastUpdated: DateTime.now(),
+      name: 'One more',
+      ownerUid: 'kev',
+      tag: '123',
+      uids: [],
+      pids: ['pidNews']),
 ];
 
-Post dPost = Post(chatMsg: Message(senderID: dUid, msg: loremIpsumLong, date: DateTime.now().subtract(Duration(minutes: 17)), userNickname: "ntnlbar"));
+Post dPost = Post(
+    chatMsg: Message(
+        senderID: dUid,
+        msg: loremIpsumLong,
+        date: DateTime.now().subtract(Duration(minutes: 17)),
+        userNickname: "ntnlbar"));
 
 List<User> dUsers = [
   User(uid: '1', tag: '#123', nickname: 'Eden'),
@@ -33,18 +54,77 @@ List<User> dUsers = [
 ];
 
 List<Message> dGroupMessages = [
-  Message(senderID: '1', msg: 'Lets play tonight?', date: DateTime(2020, 12, 20, 17, 30), userNickname: 'Eden'),
-  Message(senderID: '3', msg: 'I am in!', date: DateTime(2020, 12, 20, 17, 33), userNickname: 'Nethanel'),
-  Message(senderID: '4', msg: 'Lets meet around 18:00', date: DateTime(2020, 12, 20, 17, 34), userNickname: 'Kevin'),
-  Message(senderID: '2', msg: 'Cool im down', date: DateTime(2020, 12, 20), userNickname: 'Barak'),
-  Message(senderID: '1', msg: 'Great then it is scheduled.', date: DateTime(2020, 12, 22), userNickname: 'Kevin'),
+  Message(
+      senderID: '1',
+      msg: 'Lets play tonight?',
+      date: DateTime(2020, 12, 20, 17, 30),
+      userNickname: 'Eden'),
+  Message(
+      senderID: '3',
+      msg: 'I am in!',
+      date: DateTime(2020, 12, 20, 17, 33),
+      userNickname: 'Nethanel'),
+  Message(
+      senderID: '4',
+      msg: 'Lets meet around 18:00',
+      date: DateTime(2020, 12, 20, 17, 34),
+      userNickname: 'Kevin'),
+  Message(
+      senderID: '2',
+      msg: 'Cool im down',
+      date: DateTime(2020, 12, 20),
+      userNickname: 'Barak'),
+  Message(
+      senderID: '1',
+      msg: 'Great then it is scheduled.',
+      date: DateTime(2020, 12, 22),
+      userNickname: 'Kevin'),
 ];
 
 List<Message> dChatidiyMessages = [
-  Message(senderID: '1', msg: 'Hey are you free?', date: DateTime(2020, 12, 24, 11, 22), userNickname: 'Eden'),
-  Message(senderID: '2', msg: 'Yes what do you need', date: DateTime(2020, 12, 24, 11, 23), userNickname: 'Barak'),
-  Message(senderID: '1', msg: 'Just checkin, wandering how are you', date: DateTime(2020, 12, 24, 11, 24), userNickname: 'Eden'),
-  Message(senderID: '2', msg: 'Got it. bye.', date: DateTime(2020, 12, 24, 11, 25), userNickname: 'Barak'),
+  Message(
+      senderID: '1',
+      msg: 'Hey are you free?',
+      date: DateTime(2020, 12, 24, 11, 22),
+      userNickname: 'Eden'),
+  Message(
+      senderID: '2',
+      msg: 'Yes what do you need',
+      date: DateTime(2020, 12, 24, 11, 23),
+      userNickname: 'Barak'),
+  Message(
+      senderID: '1',
+      msg: 'Just checkin, wandering how are you',
+      date: DateTime(2020, 12, 24, 11, 24),
+      userNickname: 'Eden'),
+  Message(
+      senderID: '2',
+      msg: 'Got it. bye.',
+      date: DateTime(2020, 12, 24, 11, 25),
+      userNickname: 'Barak'),
+];
+
+List<Message> dChatidiyMessages2 = [
+  Message(
+      senderID: '3',
+      msg: 'Hello!',
+      date: DateTime(2020, 12, 24, 11, 23),
+      userNickname: 'ntnlbar'),
+  Message(
+      senderID: '1',
+      msg: 'Hey are you?',
+      date: DateTime(2020, 12, 24, 11, 22),
+      userNickname: 'Eden'),
+  Message(
+      senderID: '1',
+      msg: 'I have exiting news',
+      date: DateTime(2020, 12, 24, 11, 24),
+      userNickname: 'Eden'),
+  Message(
+      senderID: '3',
+      msg: 'What are the new? I cannot wait!',
+      date: DateTime(2020, 12, 24, 11, 25),
+      userNickname: 'ntnlbar'),
 ];
 
 Channel pidNews = News(pid: 'pidNews', name: 'News', messages: dGroupMessages);
@@ -66,6 +146,33 @@ Pellentesque ut urna purus. Praesent ut nulla sem. Etiam sed elit odio. Suspendi
 
 Mauris gravida imperdiet dui, eget condimentum sapien eleifend vitae. Sed lobortis, purus sit amet convallis tincidunt, mi lorem pellentesque ipsum, quis commodo ligula justo ut mauris. Vestibulum eu justo sit amet ex fermentum dictum. Vivamus massa nulla, feugiat non tellus vel, laoreet pulvinar lectus. Pellentesque lectus ex, commodo sit amet eleifend a, imperdiet eget metus. Nunc placerat tellus lectus, rhoncus blandit justo tincidunt ac. Donec justo nisl, aliquam vitae magna a, aliquet gravida nisi. In vestibulum neque eget eleifend blandit. Vivamus porta volutpat turpis quis ullamcorper. Praesent sit amet tristique quam, vitae porttitor nibh. Nulla mattis vestibulum libero ac faucibus.''';
 
-Post dPost1 = Post(chatMsg: Message(senderID: '1', msg: loremIpsumLong, date: DateTime(2020, 12, 24, 11, 24), userNickname: 'Eden'), comments: 1, likes: 2);
+Post dPost1 = Post(
+    chatMsg: Message(
+        senderID: '1',
+        msg: loremIpsumLong,
+        date: DateTime(2020, 12, 24, 11, 24),
+        userNickname: 'Eden'),
+    comments: 1,
+    likes: 2);
 
-Chat dChat = Chat(lastUpdated: DateTime.now().subtract(Duration(minutes: 6)), messages: dChatidiyMessages, uids: ["1", "2"], userToChat: User(uid: '1', tag: '#123', nickname: 'Eden'));
+Chat dChat1 = Chat(
+    lastUpdated: DateTime.now().subtract(Duration(minutes: 6)),
+    messages: dChatidiyMessages,
+    uids: ["1", "2"],
+    userToChat: User(uid: '2', tag: '#123', nickname: 'Barak'));
+
+Chat dChat2 = Chat(
+    lastUpdated: DateTime.now().subtract(Duration(minutes: 13)),
+    messages: dChatidiyMessages2,
+    uids: ["1", "3"],
+    userToChat: User(
+        uid: '3',
+        tag: '#123',
+        nickname: 'ntnlbar',
+        imgPath:
+            "https://fiverr-res.cloudinary.com/t_profile_original,q_auto,f_auto/attachments/profile/photo/d6ed158fde7e38a00e345019da620e7b-1522352574301/428b40f8-bf05-4ff8-9bdc-4ef72bb9e829.jpg"));
+
+List<Chat> dChats = [
+  dChat1,
+  dChat2,
+];

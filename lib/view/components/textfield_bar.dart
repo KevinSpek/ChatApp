@@ -4,8 +4,18 @@ import 'package:groupidy/constants.dart';
 import 'package:groupidy/typography.dart';
 
 class TextFieldBar extends StatefulWidget {
-  TextFieldBar({Key? key, required this.onSend}) : super(key: key);
+  TextFieldBar(
+      {Key? key,
+      required this.onSend,
+      this.outerPadding = 8.0,
+      this.textStyle,
+      this.hintStyle})
+      : super(key: key);
+
   final void Function(String) onSend;
+  final double outerPadding;
+  final TextStyle? textStyle;
+  final TextStyle? hintStyle;
 
   @override
   _TextFieldBarState createState() => _TextFieldBarState();
@@ -13,7 +23,6 @@ class TextFieldBar extends StatefulWidget {
 
 class _TextFieldBarState extends State<TextFieldBar> {
   final sendButtonSize = 40.0;
-  final outerPadding = 8.0;
   final textController = TextEditingController();
 
   @override
@@ -27,14 +36,18 @@ class _TextFieldBarState extends State<TextFieldBar> {
     return LayoutBuilder(builder: (context, constraints) {
       return Container(
         width: constraints.maxWidth,
-        constraints: BoxConstraints(minHeight: 64, maxHeight: 144),
+        constraints: BoxConstraints(maxHeight: 144),
         child: Padding(
-          padding: EdgeInsets.all(outerPadding),
+          padding: EdgeInsets.all(widget.outerPadding),
           child: Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Container(
                 constraints: BoxConstraints(maxHeight: 108),
-                width: constraints.maxWidth - sendButtonSize - outerPadding * 2 - 10,
+                width: constraints.maxWidth -
+                    sendButtonSize -
+                    widget.outerPadding * 2 -
+                    10,
                 decoration: BoxDecoration(
                   color: kSecondaryBubble,
                   borderRadius: BorderRadius.circular(kRadius),
@@ -43,11 +56,12 @@ class _TextFieldBarState extends State<TextFieldBar> {
                   padding: const EdgeInsets.all(16.0),
                   child: TextField(
                     controller: textController,
-                    style: kBodySmall.copyWith(color: kWhite),
+                    style: widget.textStyle == null ? kBodySmall.copyWith(color: kWhite) : widget.textStyle,
                     decoration: InputDecoration.collapsed(
-                      hintText: "Type your message",
+                      hintText: "Type your message here...",
                       border: InputBorder.none,
-                      hintStyle: kBodySmall.copyWith(color: Colors.white.withOpacity(0.3)),
+                      hintStyle: widget.hintStyle == null ? kBodySmall.copyWith(
+                          color: Colors.white.withOpacity(0.3)) : widget.hintStyle,
                     ),
                     maxLines: 20,
                     minLines: 1,
@@ -65,7 +79,7 @@ class _TextFieldBarState extends State<TextFieldBar> {
                       width: sendButtonSize,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Image.asset('images/send.png'),
+                        child: Icon(Icons.send_rounded, color: kWhite,)
                       ),
                     ),
                   ),

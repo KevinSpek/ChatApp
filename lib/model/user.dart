@@ -10,5 +10,6 @@ class User {
     required this.uid,
     required this.tag,
     required this.nickname,
+    this.imgPath = "",
   });
 }
