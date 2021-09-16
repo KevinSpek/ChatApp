@@ -71,12 +71,9 @@ class _CreateJoinGroupState extends State<CreateJoinGroup> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Container(
+    return Container(
       width: 400,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(8)),
-          color: kSecondaryBackground),
+      decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(8)), color: kSecondaryBackground),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -99,6 +96,6 @@ class _CreateJoinGroupState extends State<CreateJoinGroup> {
                 ),
         ],
       ),
-    ));
+    );
   }
 }
