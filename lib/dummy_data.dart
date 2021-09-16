@@ -8,6 +8,16 @@ import 'package:groupidy/model/user.dart';
 
 String dUid = '1';
 
+Group dGroup = Group(
+    gid: '',
+    name: 'Groupidy',
+    tag: '12Df',
+    imgPath: 'https://play-lh.googleusercontent.com/T318ypZHcazneol5LFPSp7H-Pw14y2FZ5RVZO_An5tx-4m-IYIjcqqoOMxNlYupbdg',
+    ownerUid: '',
+    lastUpdated: DateTime.now(),
+    uids: ['1','2','3','4'],
+    pids: ['pids']);
+
 List<Group> dGroups = [
   Group(
     gid: '',
@@ -47,10 +57,10 @@ Post dPost = Post(
         userNickname: "ntnlbar"));
 
 List<User> dUsers = [
-  User(uid: '1', tag: '#123', nickname: 'Eden'),
-  User(uid: '2', tag: '#153', nickname: 'Barak'),
-  User(uid: '3', tag: '#432', nickname: 'Nethanel'),
-  User(uid: '4', tag: '#792', nickname: 'Kevin'),
+  User(uid: '1', tag: '#123', nickname: 'Eden', imgPath: 'https://media-exp1.licdn.com/dms/image/C4D03AQEQe6M3QwTC0w/profile-displayphoto-shrink_200_200/0/1561177184315?e=1636588800&v=beta&t=gGT8U9O7wb1TkjbUcusCYrT0aFpJ_ruE8ANmKV5AMPA'),
+  User(uid: '2', tag: '#153', nickname: 'Barak', imgPath: 'https://media-exp1.licdn.com/dms/image/C4D03AQFRv1zfNm1LxQ/profile-displayphoto-shrink_100_100/0/1589882621994?e=1636588800&v=beta&t=ZACv92u-qzGmEomhZlhQngvkErWiYUy7Q6jWo8MyMaI'),
+  User(uid: '3', tag: '#432', nickname: 'Nethanel', imgPath: "https://fiverr-res.cloudinary.com/t_profile_original,q_auto,f_auto/attachments/profile/photo/d6ed158fde7e38a00e345019da620e7b-1522352574301/428b40f8-bf05-4ff8-9bdc-4ef72bb9e829.jpg"),
+  User(uid: '4', tag: '#792', nickname: 'Kevin', imgPath: "https://media-exp1.licdn.com/dms/image/C4D03AQEaowcCOLbjHA/profile-displayphoto-shrink_200_200/0/1618726633039?e=1634169600&v=beta&t=F4b94FPBWoHjqeHeKiuOatlA1tmu_cnyq5M4diiEhk4"),
 ];
 
 List<Message> dGroupMessages = [
