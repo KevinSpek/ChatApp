@@ -4,7 +4,7 @@ abstract class Channel {
   final String pid;
   final String name;
 
-  ChannelType chanType;
+  ChannelType type;
   String iconText = '';
   String imgPath = '';
   DateTime lastUpdated = DateTime.now();
@@ -14,6 +14,6 @@ abstract class Channel {
   Channel({
     required this.pid,
     required this.name,
-    required this.chanType,
+    required this.type,
   });
 }

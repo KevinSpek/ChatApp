@@ -5,8 +5,14 @@ import 'package:groupidy/model/group.dart';
 import 'package:groupidy/model/message.dart';
 import 'package:groupidy/model/post.dart';
 import 'package:groupidy/model/user.dart';
+import 'package:groupidy/view/components/new_channel/channel_type.dart';
 
 String dUid = '1';
+
+User dUser1 = User(uid: '1', tag: '#ab12', nickname: 'Eden', imgPath: 'https://media-exp1.licdn.com/dms/image/C4D03AQEQe6M3QwTC0w/profile-displayphoto-shrink_200_200/0/1561177184315?e=1636588800&v=beta&t=gGT8U9O7wb1TkjbUcusCYrT0aFpJ_ruE8ANmKV5AMPA');
+User dUser2 = User(uid: '2', tag: '#Vf43', nickname: 'Barak', imgPath: 'https://media-exp1.licdn.com/dms/image/C4D03AQFRv1zfNm1LxQ/profile-displayphoto-shrink_100_100/0/1589882621994?e=1636588800&v=beta&t=ZACv92u-qzGmEomhZlhQngvkErWiYUy7Q6jWo8MyMaI');
+User dUser3 = User(uid: '3', tag: '#432', nickname: 'Nethanel', imgPath: "https://fiverr-res.cloudinary.com/t_profile_original,q_auto,f_auto/attachments/profile/photo/d6ed158fde7e38a00e345019da620e7b-1522352574301/428b40f8-bf05-4ff8-9bdc-4ef72bb9e829.jpg");
+User dUser4 = User(uid: '4', tag: '#792', nickname: 'Kevin', imgPath: "https://media-exp1.licdn.com/dms/image/C4D03AQEaowcCOLbjHA/profile-displayphoto-shrink_200_200/0/1618726633039?e=1634169600&v=beta&t=F4b94FPBWoHjqeHeKiuOatlA1tmu_cnyq5M4diiEhk4");
 
 Group dGroup = Group(
     gid: '',
@@ -17,6 +23,12 @@ Group dGroup = Group(
     lastUpdated: DateTime.now(),
     uids: ['1','2','3','4'],
     pids: ['pids']);
+/* 
+Channel dChannel1 = Channel(
+  pid: '',
+  name: '',
+  type: ,
+); */
 
 List<Group> dGroups = [
   Group(
@@ -56,12 +68,7 @@ Post dPost = Post(
         date: DateTime.now().subtract(Duration(minutes: 17)),
         userNickname: "ntnlbar"));
 
-List<User> dUsers = [
-  User(uid: '1', tag: '#123', nickname: 'Eden', imgPath: 'https://media-exp1.licdn.com/dms/image/C4D03AQEQe6M3QwTC0w/profile-displayphoto-shrink_200_200/0/1561177184315?e=1636588800&v=beta&t=gGT8U9O7wb1TkjbUcusCYrT0aFpJ_ruE8ANmKV5AMPA'),
-  User(uid: '2', tag: '#153', nickname: 'Barak', imgPath: 'https://media-exp1.licdn.com/dms/image/C4D03AQFRv1zfNm1LxQ/profile-displayphoto-shrink_100_100/0/1589882621994?e=1636588800&v=beta&t=ZACv92u-qzGmEomhZlhQngvkErWiYUy7Q6jWo8MyMaI'),
-  User(uid: '3', tag: '#432', nickname: 'Nethanel', imgPath: "https://fiverr-res.cloudinary.com/t_profile_original,q_auto,f_auto/attachments/profile/photo/d6ed158fde7e38a00e345019da620e7b-1522352574301/428b40f8-bf05-4ff8-9bdc-4ef72bb9e829.jpg"),
-  User(uid: '4', tag: '#792', nickname: 'Kevin', imgPath: "https://media-exp1.licdn.com/dms/image/C4D03AQEaowcCOLbjHA/profile-displayphoto-shrink_200_200/0/1618726633039?e=1634169600&v=beta&t=F4b94FPBWoHjqeHeKiuOatlA1tmu_cnyq5M4diiEhk4"),
-];
+List<User> dUsers = [dUser1, dUser2, dUser3, dUser4];
 
 List<Message> dGroupMessages = [
   Message(
@@ -137,7 +144,7 @@ List<Message> dChatidiyMessages2 = [
       userNickname: 'ntnlbar'),
 ];
 
-Channel pidNews = News(pid: 'pidNews', name: 'News', messages: dGroupMessages);
+Channel pidNews = ChannelNews(pid: 'pidNews', name: 'News', messages: dGroupMessages);
 
 // Channel pidForum = Channel(pid: 'pidForum', name: 'Forum');
 // Channel pidGroupChat = Channel(pid: 'pidGroupChat', name: 'Group chat');

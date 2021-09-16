@@ -6,7 +6,7 @@ import 'package:groupidy/view/components/message_bubble.dart';
 
 class NewsChannel extends StatelessWidget {
   const NewsChannel({Key? key, required this.news, required this.uid}) : super(key: key);
-  final News news;
+  final ChannelNews news;
   final String uid;
   @override
   Widget build(BuildContext context) {
