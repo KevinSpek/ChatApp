@@ -5,7 +5,7 @@ import 'package:groupidy/model/message.dart';
 class ChannelNews extends Channel {
   List<Message> messages;
 
-  ChannelNews({pid, name, required this.messages}) : super(pid: pid, name: name, type: ChannelType.news);
+  ChannelNews({pid, name, imgPath = '', required this.messages}) : super(pid: pid, name: name, type: ChannelType.news, imgPath : imgPath);
 
   void addMessages(List<Message> newMessages) {
     messages = messages + newMessages;

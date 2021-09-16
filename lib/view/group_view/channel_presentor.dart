@@ -10,9 +10,9 @@ class ChannelPresentor extends StatelessWidget {
   final Channel channel;
   @override
   Widget build(BuildContext context) {
-    switch (channel.chanType) {
+    switch (channel.type) {
       case ChannelType.news:
-        return NewsChannel(news: channel as News, uid: dUid,);
+        return NewsChannel(news: channel as ChannelNews, uid: dUid,);
         
       case ChannelType.forum:
         // TODO: Handle this case.

@@ -15,5 +15,6 @@ abstract class Channel {
     required this.pid,
     required this.name,
     required this.type,
+    this.imgPath = '',
   });
 }

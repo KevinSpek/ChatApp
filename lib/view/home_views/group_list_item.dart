@@ -12,9 +12,11 @@ class GroupListItem extends StatelessWidget {
   GroupListItem({
     required this.group,
     required this.notifications,
+    this.onTap,
   });
   final Group group;
   List<NotificationMessage> notifications;
+  VoidCallback? onTap;
 
   DateTime latestMessageTime() {
     DateTime latest = DateTime.parse("1969-07-20 20:18:04Z");
@@ -28,56 +30,59 @@ class GroupListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 96,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          ItemImage(),
-          SizedBox(
-            width: 20,
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Spacer(),
-              Text(group.name, style: kBodyRegular.copyWith(color: kWhite)),
-              Text(
-                'Latest message',
-                style: kBodySmall.copyWith(color: kWhiteSecondary),
-              ), // TODO: Add last message!
-              Spacer()
-            ],
-          ),
-          Spacer(),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Text(
-                '${presentTime(latestMessageTime())}',
-                style: kCaption.copyWith(color: kWhiteSecondary, fontSize: 15),
-              ),
-              Row(
-                children: notifications.map((notification) {
-                  var index = notifications.indexOf(notification);
-                  NotificationSide notificationSide = NotificationSide.none;
-                  if (notifications.length == 1) {
-                    notificationSide = NotificationSide.all;
-                  } else if (index == 0) {
-                    notificationSide = NotificationSide.left;
-                  } else if (index == notifications.length - 1) {
-                    notificationSide = NotificationSide.right;
-                  }
-
-                  return NotificationItem(
-                    notification: notification,
-                    side: notificationSide,
-                  );
-                }).toList(),
-              ),
-            ],
-          )
-        ],
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        height: 96,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            ItemImage(),
+            SizedBox(
+              width: 20,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Spacer(),
+                Text(group.name, style: kBodyRegular.copyWith(color: kWhite)),
+                Text(
+                  'Latest message',
+                  style: kBodySmall.copyWith(color: kWhiteSecondary),
+                ), // TODO: Add last message!
+                Spacer()
+              ],
+            ),
+            Spacer(),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  '${presentTime(latestMessageTime())}',
+                  style: kCaption.copyWith(color: kWhiteSecondary, fontSize: 15),
+                ),
+                Row(
+                  children: notifications.map((notification) {
+                    var index = notifications.indexOf(notification);
+                    NotificationSide notificationSide = NotificationSide.none;
+                    if (notifications.length == 1) {
+                      notificationSide = NotificationSide.all;
+                    } else if (index == 0) {
+                      notificationSide = NotificationSide.left;
+                    } else if (index == notifications.length - 1) {
+                      notificationSide = NotificationSide.right;
+                    }
+    
+                    return NotificationItem(
+                      notification: notification,
+                      side: notificationSide,
+                    );
+                  }).toList(),
+                ),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

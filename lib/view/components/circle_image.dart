@@ -25,10 +25,11 @@ class CircleImage extends StatelessWidget {
           placeholder: (context, url) => CircularProgressIndicator(),
           errorWidget: (context, url, error) => Container(
             color: placeholderBackgroundColor,
-            child: Image(
-              image: AssetImage(placeholderPath),
-              width: size,
-              height: size,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Image(
+                image: AssetImage(placeholderPath),
+              ),
             ),
           ),
           width: size,

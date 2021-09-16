@@ -9,7 +9,9 @@ import '../../colors.dart';
 import '../../typography.dart';
 
 class GroupProfile extends StatefulWidget {
-  const GroupProfile({Key? key}) : super(key: key);
+  const GroupProfile({Key? key, required this.group}) : super(key: key);
+
+  final Group group;
 
   @override
   _GroupProfileState createState() => _GroupProfileState();

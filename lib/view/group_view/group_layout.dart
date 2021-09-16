@@ -8,6 +8,6 @@ class GroupLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveLayout(mobile: GroupScreenDesktop(group: dGroups[0], currChannel: pidNews,));
+    return ResponsiveLayout(mobile: GroupScreenDesktop(group: dGroup, currChannel: pidNews,));
   }
 }
