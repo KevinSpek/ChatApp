@@ -5,11 +5,8 @@ import 'package:groupidy/dummy_data.dart';
 import 'package:groupidy/utils.dart';
 import 'package:groupidy/view/auth_views/join/join_layout.dart';
 import 'package:groupidy/view/auth_views/login/login_layout.dart';
-<<<<<<< HEAD
-=======
 import 'package:groupidy/view/components/create_join_group/create_join_group.dart';
 import 'package:groupidy/view/components/general_dialog.dart';
->>>>>>> kev
 import 'package:groupidy/view/components/new_channel/new_channel.dart';
 import 'package:groupidy/view/components/post_bubble.dart';
 import 'package:groupidy/view/components/general_dialog.dart';
