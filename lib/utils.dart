@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:groupidy/responsive/device_screen_type.dart';
+import 'package:groupidy/view/components/general_dialog.dart';
 
 DeviceScreenType getDeviceType(MediaQueryData mediaQuery) {
   double deviceWidth = mediaQuery.size.width;
@@ -34,4 +35,14 @@ String presentTime(DateTime date) {
   String minute = '${date.minute}';
 
   return '${completeZero(hour)}:${completeZero(minute)}';
+}
+
+void dialog({required BuildContext context, required Widget child}) {
+  showDialog(
+    barrierColor: Colors.black.withOpacity(0.3),
+    context: context,
+    builder: (_) => GeneralDialog(
+      child: child,
+    ),
+  );
 }
