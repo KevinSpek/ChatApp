@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:groupidy/constants.dart';
 import 'package:groupidy/view/components/button.dart';
+import 'package:groupidy/view/components/circle_image.dart';
 
 import '../../../colors.dart';
 import '../../../typography.dart';
 
-class ChannelIcon extends StatelessWidget {
-  const ChannelIcon(
+class ChannelIconInput extends StatelessWidget {
+  const ChannelIconInput(
       {Key? key,
       required this.iconTypeSelected,
       required this.onIconTypeSelect,
@@ -24,6 +25,7 @@ class ChannelIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -65,22 +67,16 @@ class ChannelIcon extends StatelessWidget {
                 ),
               )
             ]),
-            Container(
-              width: 64,
-              height: 64,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(kRadius),
-                color: kAccentColor,
-              ),
-              child: Center(
-                  child: Text(
-                iconText.length == 0
-                    ? channelName.length > 5
-                        ? channelName.substring(0, 5)
-                        : channelName
-                    : iconText,
-                style: kBodySmall.copyWith(color: kWhite),
-              )),
+            CircleImage(
+              size: 64,
+              useText: iconTypeSelected[0],
+              text: iconText.length == 0
+                  ? channelName.length > 3
+                      ? channelName.substring(0, 3).toUpperCase()
+                      : channelName.toUpperCase()
+                  : iconText,
+              imagePath: '',
+              placeholderPath: '',
             )
           ],
         ),
@@ -88,15 +84,15 @@ class ChannelIcon extends StatelessWidget {
             padding: const EdgeInsets.all(16),
             child: iconTypeSelected[0]
                 ? TextField(
-                    maxLength: 5,
+                    maxLength: 3,
                     onChanged: onIconTextChange,
                     textAlign: TextAlign.start,
                     decoration: InputDecoration(
                       hintText: channelName.length == 0
                           ? "Icon Text"
-                          : channelName.length > 5
-                              ? channelName.substring(0, 5)
-                              : channelName,
+                          : channelName.length > 3
+                              ? channelName.substring(0, 3).toUpperCase()
+                              : channelName.toUpperCase(),
                       counterText: "",
                       hintStyle: kBodyRegular.copyWith(color: kWhiteDisabled),
                     ),
@@ -105,7 +101,8 @@ class ChannelIcon extends StatelessWidget {
                 : Button(
                     onPressed: null,
                     text: "Choose icon image",
-                    width: double.infinity))
+                    textStyle: kBodyRegular.copyWith(color: kWhite),
+                    width: 240))
       ],
     );
   }

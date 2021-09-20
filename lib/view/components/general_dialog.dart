@@ -8,7 +8,7 @@ class GeneralDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(kRadius)),
-      elevation: 0,
+      elevation: 16,
       backgroundColor: Colors.transparent,
       child: child,
     );

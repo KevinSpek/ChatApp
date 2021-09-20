@@ -5,6 +5,7 @@ import 'package:groupidy/model/chat.dart';
 import 'package:groupidy/model/message.dart';
 import 'package:groupidy/model/notification_message.dart';
 import 'package:groupidy/typography.dart';
+import 'package:groupidy/view/components/bar_info.dart';
 import 'package:groupidy/view/components/circle_image.dart';
 import 'package:groupidy/view/components/message_bubble.dart';
 import 'package:groupidy/view/components/messages_container.dart';

@@ -6,14 +6,19 @@ import 'package:groupidy/constants.dart';
 import '../../../colors.dart';
 import '../../../typography.dart';
 
-
-
 class Button extends StatelessWidget {
   final onPressed;
   final text;
   final width;
+  final TextStyle? textStyle;
 
-  const Button({Key? key, @required this.onPressed, @required this.text, @required this.width}) : super(key: key);
+  const Button(
+      {Key? key,
+      @required this.onPressed,
+      @required this.text,
+      @required this.width,
+      this.textStyle})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +27,12 @@ class Button extends StatelessWidget {
       height: kButtonHeight,
       child: TextButton(
         onPressed: onPressed,
-        child: Text(text, style: kBodyLarge.copyWith(color: Colors.white)),
-        style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(kAccentColor)),
+        child: Text(text,
+            style: textStyle == null
+                ? kBodyLarge.copyWith(color: Colors.white)
+                : textStyle),
+        style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all<Color>(kAccentColor)),
       ),
     );
   }

@@ -8,21 +8,25 @@ class ItemInfo extends StatelessWidget {
   const ItemInfo({
     Key? key,
     required this.title,
-    this.subTitle = '',
-    this.imagePath = '',
+    this.subTitle,
+    this.imagePath,
     this.imageSize = 48.0,
     this.spacing = 12.0,
     this.titleStyle,
     this.subTitleStyle,
+    this.useText = false,
+    this.text,
   }) : super(key: key);
 
   final String title;
-  final String subTitle;
-  final String imagePath;
+  final String? subTitle;
+  final String? imagePath;
   final double imageSize;
   final double spacing;
   final TextStyle? titleStyle;
   final TextStyle? subTitleStyle;
+  final bool useText;
+  final String? text;
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +35,8 @@ class ItemInfo extends StatelessWidget {
         CircleImage(
           size: imageSize,
           imagePath: imagePath,
+          useText: useText,
+          text: text,
         ),
         SizedBox(width: spacing),
         Column(
@@ -43,11 +49,11 @@ class ItemInfo extends StatelessWidget {
                         color: kWhite, fontWeight: FontWeight.bold)
                     : titleStyle),
             Visibility(
-              child: Text(subTitle,
+              child: Text(subTitle == null ? '' : subTitle!,
                   style: subTitleStyle == null
                       ? kCaption.copyWith(color: kWhiteSecondary)
                       : subTitleStyle),
-              visible: subTitle != '',
+              visible: subTitle != null,
             ),
           ],
         ),

@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:groupidy/colors.dart';
 import 'package:groupidy/model/user.dart';
 import 'package:groupidy/typography.dart';
+import 'package:groupidy/view/components/circle_image.dart';
 
 class HomeProfile extends StatefulWidget {
   const HomeProfile({Key? key}) : super(key: key);
@@ -44,12 +45,7 @@ class _HomeProfileState extends State<HomeProfile> {
           children: [
             Row(
               children: [
-                Container(
-                  width: 160,
-                  height: 160,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle, color: kWhiteSecondary),
-                ),
+                CircleImage(size: 160, imagePath: _currentUser.imgPath,),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 32),
                   child: Column(

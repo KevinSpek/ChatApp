@@ -1,26 +1,24 @@
 import 'package:groupidy/model/channels/channel.dart';
 import 'package:groupidy/model/channels/channel_type.dart';
 import 'package:groupidy/model/message.dart';
+import '../chat.dart';
 
-class ChannelNews extends Channel {
-  List<Message> messages;
+class ChannelGroupChat extends Channel {
+  Chat chat;
 
-  ChannelNews({
-    pid,
-    name,
-    imgPath = '',
-    required this.messages,
+  ChannelGroupChat({
+    pid, 
+    name, 
+    imgPath = '', 
+    required this.chat,
     isImage = false,
     iconText,
-  }) : super(
+    })
+      : super(
             pid: pid,
             name: name,
-            type: ChannelType.news,
+            type: ChannelType.groupChat,
             imgPath: imgPath,
             isImage: isImage,
             iconText: iconText);
-
-  void addMessages(List<Message> newMessages) {
-    messages = messages + newMessages;
-  }
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:groupidy/colors.dart';
 import 'package:groupidy/typography.dart';
 import 'package:groupidy/view/components/button.dart';
-import 'package:groupidy/view/components/new_channel/channel_icon.dart';
+import 'package:groupidy/view/components/new_channel/channel_icon_input.dart';
 import 'package:groupidy/view/components/new_channel/channel_name.dart';
 import 'package:groupidy/view/components/new_channel/channel_type.dart';
 
@@ -66,7 +66,7 @@ class _NewChannelState extends State<NewChannel> {
                   ),
                   Padding(
                       padding: const EdgeInsets.only(top: 16),
-                      child: ChannelIcon(
+                      child: ChannelIconInput(
                         iconTypeSelected: _iconTypeSelected,
                         onIconTypeSelect: (index) => {
                           setState(

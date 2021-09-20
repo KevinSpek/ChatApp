@@ -1,4 +1,5 @@
 import 'package:groupidy/model/channels/channel.dart';
+import 'package:groupidy/model/channels/channel_group_chat.dart';
 import 'package:groupidy/model/channels/news.dart';
 import 'package:groupidy/model/chat.dart';
 import 'package:groupidy/model/group.dart';
@@ -46,14 +47,15 @@ Group dGroup = Group(
     pids: ['1', '2', '3']);
 
 Channel dChannel1 =
-    ChannelNews(pid: '1', name: 'Develop', messages: dGroupMessages);
+    ChannelGroupChat(pid: '1', name: 'Develop', chat: dChat1, iconText: 'DEV');
 Channel dChannel2 = ChannelNews(
     pid: '2',
     name: 'Administration',
     messages: dGroupMessages,
+    isImage: true,
     imgPath:
         "https://img.freepik.com/free-photo/golden-key-isolated-white-background-3d-illustration_87744-271.jpg?size=626&ext=jpg");
-Channel dChannel3 = ChannelNews(pid: '3', name: 'HR', messages: dGroupMessages);
+Channel dChannel3 = ChannelNews(pid: '3', name: 'HR', messages: dGroupMessages, iconText: 'HR');
 
 List<Channel> dChannels = [dChannel1, dChannel2, dChannel3];
 

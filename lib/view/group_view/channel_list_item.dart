@@ -50,6 +50,8 @@ class ChannelListItem extends StatelessWidget {
               spacing: 20,
               titleStyle: kBodyRegular.copyWith(color: kWhite),
               subTitleStyle: kBodySmall.copyWith(color: kWhiteSecondary),
+              useText: !channel.isImage,
+              text: channel.iconText,
             ),
             Spacer(),
             Column(
