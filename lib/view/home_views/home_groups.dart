@@ -4,6 +4,8 @@ import 'package:groupidy/colors.dart';
 import 'package:groupidy/constants.dart';
 import 'package:groupidy/model/group.dart';
 import 'package:groupidy/model/notification_message.dart';
+import 'package:groupidy/utils.dart';
+import 'package:groupidy/view/components/create_join_group/create_join_group.dart';
 import 'package:groupidy/view/home_views/group_list_item.dart';
 
 class HomeGroups extends StatelessWidget {
@@ -22,6 +24,11 @@ class HomeGroups extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kSecondaryBackground,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => dialog(context: context, child: CreateJoinGroup()),
+        backgroundColor: kAccentColor,
+        child: Image.asset("images/group_float.png", height: 36, width: 36),
+      ),
       body: Container(
         width: double.infinity,
         child: Column(
