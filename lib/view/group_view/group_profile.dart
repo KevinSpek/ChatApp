@@ -4,6 +4,8 @@ import 'package:groupidy/dummy_data.dart';
 import 'package:groupidy/model/group.dart';
 import 'package:groupidy/model/user.dart';
 import 'package:groupidy/view/components/circle_image.dart';
+import 'package:groupidy/view/components/member_info.dart';
+import 'package:groupidy/view/components/members.dart';
 
 import '../../colors.dart';
 import '../../typography.dart';
@@ -102,68 +104,9 @@ class _GroupProfileState extends State<GroupProfile> {
                 color: kWhiteDisabled,
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 16),
-              child: Text(
-                "Group members",
-                style: kBodyRegular.copyWith(color: kWhite),
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.all(8),
-              width: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                border: Border.all(color: kWhiteSecondary),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: _group.uids.map((uid) => 
-                  GroupMemberInfo(uid: uid)).toList(),
-              ),
-            )
+            Members(membersUids: _group.uids, title: 'Group members',)
           ],
         ),
-      ),
-    );
-  }
-}
-
-class GroupMemberInfo extends StatefulWidget {
-  const GroupMemberInfo({Key? key, required this.uid}) : super(key: key);
-
-  final String uid;
-  
-  @override
-  _GroupMemberInfoState createState() => _GroupMemberInfoState();
-}
-
-class _GroupMemberInfoState extends State<GroupMemberInfo> {
-  User _user = User(uid: '', tag: '', nickname: '');
-
-  @override
-  void initState() {
-    setState(() {
-      _user = dUsers.firstWhere((user) => user.uid == widget.uid);
-    });
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Row(
-        children: [
-          CircleImage(
-            size: 24,
-            imagePath: _user.imgPath,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: Text(_user.nickname, style: kBodyRegular.copyWith(color: kWhite),),
-          )
-        ],
       ),
     );
   }

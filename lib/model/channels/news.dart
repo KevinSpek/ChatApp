@@ -12,13 +12,17 @@ class ChannelNews extends Channel {
     required this.messages,
     isImage = false,
     iconText,
+    desc,
+    isLimited = false
   }) : super(
             pid: pid,
             name: name,
             type: ChannelType.news,
             imgPath: imgPath,
             isImage: isImage,
-            iconText: iconText);
+            iconText: iconText,
+            desc: desc,
+            isLimited: isLimited);
 
   void addMessages(List<Message> newMessages) {
     messages = messages + newMessages;

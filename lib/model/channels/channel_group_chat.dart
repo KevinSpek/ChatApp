@@ -1,6 +1,5 @@
 import 'package:groupidy/model/channels/channel.dart';
 import 'package:groupidy/model/channels/channel_type.dart';
-import 'package:groupidy/model/message.dart';
 import '../chat.dart';
 
 class ChannelGroupChat extends Channel {
@@ -13,6 +12,9 @@ class ChannelGroupChat extends Channel {
     required this.chat,
     isImage = false,
     iconText,
+    desc,
+    isLimited = false,
+    uidsAllowed
     })
       : super(
             pid: pid,
@@ -20,5 +22,8 @@ class ChannelGroupChat extends Channel {
             type: ChannelType.groupChat,
             imgPath: imgPath,
             isImage: isImage,
-            iconText: iconText);
+            iconText: iconText,
+            desc: desc,
+            isLimited: isLimited,
+            uidsAllowed: uidsAllowed,);
 }

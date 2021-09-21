@@ -77,31 +77,28 @@ class _GroupMenuState extends State<GroupMenu> {
             ),
             Column(
                 children: _channels
-                    .map((channel) => ChannelListItem(
-                          channel: channel,
-                          notifications: [
-                            NotificationMessage(
-                              chatID: '123',
-                              notificationType: NotificationType.chatidy,
-                              numNewMessages: 5,
-                              time: DateTime.now(),
-                            ),
-                            NotificationMessage(
-                              chatID: '123',
-                              notificationType: NotificationType.forum,
-                              numNewMessages: 5,
-                              time: DateTime.now(),
-                            ),
-                            NotificationMessage(
-                              chatID: '123',
-                              notificationType: NotificationType.news,
-                              numNewMessages: 5,
-                              time: DateTime.now(),
-                            ),
-                          ],
-                          onTap: () => widget.onChannelChange(channel),
-                        ))
-                    .toList())
+                    .map((channel) => ChannelListItem(channel: channel, notifications: [
+                          NotificationMessage(
+                            chatID: '123',
+                            notificationType: NotificationType.chatidy,
+                            numNewMessages: 5,
+                            time: DateTime.now(),
+                          ),
+                          NotificationMessage(
+                            chatID: '123',
+                            notificationType: NotificationType.forum,
+                            numNewMessages: 5,
+                            time: DateTime.now(),
+                          ),
+                          NotificationMessage(
+                            chatID: '123',
+                            notificationType: NotificationType.news,
+                            numNewMessages: 5,
+                            time: DateTime.now(),
+                          ),
+                        ],
+                        onTap: () => widget.onChannelChange(channel),))
+                    .toList()),
           ],
         ),
       ),
