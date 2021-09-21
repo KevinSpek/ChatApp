@@ -46,17 +46,24 @@ Group dGroup = Group(
     uids: ['1', '2', '3', '4'],
     pids: ['1', '2', '3']);
 
-Channel dChannel1 =
-    ChannelGroupChat(pid: '1', name: 'Develop', chat: dChat1, iconText: 'DEV', isLimited: true, uidsAllowed: ['1', '3']);
+Channel dChannel1 = ChannelGroupChat(
+    pid: '1',
+    name: 'Develop',
+    chat: dChat1,
+    iconText: 'DEV',
+    isLimited: true,
+    uidsAllowed: ['1', '3']);
 Channel dChannel2 = ChannelNews(
     pid: '2',
     name: 'Administration',
-    messages: dGroupMessages,
+    chat: dChat1,
     isImage: true,
     desc: 'Channel for admin news & very important management updates',
+    uidsAllowedToWrite: ['1', '2', '3', '4'],
     imgPath:
         "https://img.freepik.com/free-photo/golden-key-isolated-white-background-3d-illustration_87744-271.jpg?size=626&ext=jpg");
-Channel dChannel3 = ChannelNews(pid: '3', name: 'HR', messages: dGroupMessages, iconText: 'HR');
+Channel dChannel3 =
+    ChannelNews(pid: '3', name: 'HR', chat: dChat2, iconText: 'HR', uidsAllowedToWrite: ['2']);
 
 List<Channel> dChannels = [dChannel1, dChannel2, dChannel3];
 
@@ -174,8 +181,7 @@ List<Message> dChatidiyMessages2 = [
       userNickname: 'ntnlbar'),
 ];
 
-Channel pidNews =
-    ChannelNews(pid: 'pidNews', name: 'News', messages: dGroupMessages);
+Channel pidNews = ChannelNews(pid: 'pidNews', name: 'News', chat: dChat2, uidsAllowedToWrite: ['1']);
 
 // Channel pidForum = Channel(pid: 'pidForum', name: 'Forum');
 // Channel pidGroupChat = Channel(pid: 'pidGroupChat', name: 'Group chat');
