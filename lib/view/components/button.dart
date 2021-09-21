@@ -11,18 +11,21 @@ class Button extends StatelessWidget {
   final text;
   final width;
   final TextStyle? textStyle;
+  final EdgeInsetsGeometry? margin;
 
   const Button(
       {Key? key,
       @required this.onPressed,
       @required this.text,
       @required this.width,
+      this.margin,
       this.textStyle})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: margin,
       width: width,
       height: kButtonHeight,
       child: TextButton(

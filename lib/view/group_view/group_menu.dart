@@ -94,7 +94,7 @@ class _GroupMenuState extends State<GroupMenu> {
                           ),
                         ],
                         onTap: () => widget.onChannelChange(channel),))
-                    .toList())
+                    .toList()),
           ],
         ),
       ),

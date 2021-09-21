@@ -47,12 +47,13 @@ Group dGroup = Group(
     pids: ['1', '2', '3']);
 
 Channel dChannel1 =
-    ChannelGroupChat(pid: '1', name: 'Develop', chat: dChat1, iconText: 'DEV');
+    ChannelGroupChat(pid: '1', name: 'Develop', chat: dChat1, iconText: 'DEV', isLimited: true, uidsAllowed: ['1', '3']);
 Channel dChannel2 = ChannelNews(
     pid: '2',
     name: 'Administration',
     messages: dGroupMessages,
     isImage: true,
+    desc: 'Channel for admin news & very important management updates',
     imgPath:
         "https://img.freepik.com/free-photo/golden-key-isolated-white-background-3d-illustration_87744-271.jpg?size=626&ext=jpg");
 Channel dChannel3 = ChannelNews(pid: '3', name: 'HR', messages: dGroupMessages, iconText: 'HR');

@@ -10,6 +10,7 @@ import 'package:groupidy/view/components/bar_info.dart';
 import 'package:groupidy/view/components/circle_image.dart';
 import 'package:groupidy/view/components/edit_channel/edit_channel.dart';
 import 'package:groupidy/view/components/item_info.dart';
+import 'package:groupidy/view/group_view/channel_information.dart';
 import 'package:groupidy/view/group_view/group_menu.dart';
 import 'package:groupidy/view/group_view/group_profile.dart';
 
@@ -34,6 +35,7 @@ class _GroupScreenDesktopState extends State<GroupScreenDesktop> {
 
   Channel _currentChannel = dChannel3;
   bool _showGroupProfile = false;
+  bool _showChannelInformation = true;
 
   @override
   void initState() {
@@ -42,6 +44,7 @@ class _GroupScreenDesktopState extends State<GroupScreenDesktop> {
       _currentChannel = dChannels
           .firstWhere((channel) => channel.pid == widget.group.pids[0]);
       _showGroupProfile = false;
+      _showChannelInformation = true;
     });
     super.initState();
   }
@@ -50,12 +53,14 @@ class _GroupScreenDesktopState extends State<GroupScreenDesktop> {
     setState(() {
       _currentChannel = channel;
       _showGroupProfile = false;
+      _showChannelInformation = false;
     });
   }
 
   void _handleShowGroupProfile() {
     setState(() {
       _showGroupProfile = true;
+      _showChannelInformation = false;
     });
   }
 
@@ -98,10 +103,16 @@ class _GroupScreenDesktopState extends State<GroupScreenDesktop> {
                       color: kAccentColor.withOpacity(0.8),
                       useIconText: !_currentChannel.isImage,
                       iconText: _currentChannel.iconText,
+                      itemInfoClick: () => setState(() {_showChannelInformation = true;}),
                       sideWidget: Row(
                         children: [
                           IconButton(
-                              onPressed: () => dialog(context: context, child: EditChannel(channel: _currentChannel,),),
+                              onPressed: () => dialog(
+                                    context: context,
+                                    child: EditChannel(
+                                      channel: _currentChannel,
+                                    ),
+                                  ),
                               icon:
                                   Icon(Icons.settings_outlined, color: kWhite)),
                           SizedBox(width: 12),
@@ -110,7 +121,11 @@ class _GroupScreenDesktopState extends State<GroupScreenDesktop> {
                       ),
                     ),
               Visibility(
-                child: ChannelPresentor(channel: _currentChannel),
+                child: _showChannelInformation
+                    ? ChannelInformation(
+                        channel: _currentChannel,
+                      )
+                    : ChannelPresentor(channel: _currentChannel),
                 visible: !_showGroupProfile,
               ),
             ],
