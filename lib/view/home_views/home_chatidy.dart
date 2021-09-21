@@ -37,12 +37,13 @@ class _HomeChatidyState extends State<HomeChatidy> {
       color: kPrimaryBackground,
       child: Row(
         children: [
-          Expanded(
+          SizedBox(
             child: SideBar(
               handleChatClick: _handleChatClick,
               chats: _chats,
             ),
-            flex: 1,
+            width: 300,
+            height: double.infinity,
           ),
           Expanded(
             child: Column(
@@ -137,13 +138,16 @@ class SideBar extends StatelessWidget {
             ],
           ),
         ),
-        Column(
-          children: Iterable<int>.generate(chats.length)
+        
+        Expanded(
+          child: ListView(
+            children: Iterable<int>.generate(chats.length)
               .map((index) => ChatItem(
                     chat: chats[index],
                     onTap: () => handleChatClick(index),
                   ))
               .toList(),
+          ),
         )
       ],
     );

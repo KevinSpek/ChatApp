@@ -35,7 +35,7 @@ class _GroupScreenDesktopState extends State<GroupScreenDesktop> {
 
   Channel _currentChannel = dChannel3;
   bool _showGroupProfile = false;
-  bool _showChannelInformation = true;
+  bool _showChannelInformation = false;
 
   @override
   void initState() {
@@ -44,7 +44,7 @@ class _GroupScreenDesktopState extends State<GroupScreenDesktop> {
       _currentChannel = dChannels
           .firstWhere((channel) => channel.pid == widget.group.pids[0]);
       _showGroupProfile = false;
-      _showChannelInformation = true;
+      _showChannelInformation = false;
     });
     super.initState();
   }
