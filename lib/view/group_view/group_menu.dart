@@ -1,6 +1,5 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:groupidy/colors.dart';
 import 'package:groupidy/dummy_data.dart';
 import 'package:groupidy/model/channels/channel.dart';
@@ -25,19 +24,21 @@ class GroupMenu extends StatefulWidget {
 }
 
 class _GroupMenuState extends State<GroupMenu> {
-
   List<Channel> _channels = [];
 
   @override
   void initState() {
     setState(() {
-      _channels = widget.pids
-        .map((pid) => dChannels.firstWhere((channel) => channel.pid == pid))
-        .toList();
+      _channels = widget.pids.map((pid) => dChannels.firstWhere((channel) => channel.pid == pid)).toList();
     });
     super.initState();
   }
- 
+
+  void _handleReturnHome() {
+    // TODO: manage controller accordingly
+    Get.toNamed('/home');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -48,7 +49,10 @@ class _GroupMenuState extends State<GroupMenu> {
           children: [
             Row(
               children: [
-                Icon(Icons.arrow_back, color: kWhite),
+                InkWell(
+                  child: Icon(Icons.arrow_back, color: kWhite),
+                  onTap: _handleReturnHome,
+                ),
                 SizedBox(width: 12),
                 Text(
                   'Groupidy',
@@ -73,27 +77,30 @@ class _GroupMenuState extends State<GroupMenu> {
             ),
             Column(
                 children: _channels
-                    .map((channel) => ChannelListItem(channel: channel, notifications: [
-                          NotificationMessage(
-                            chatID: '123',
-                            notificationType: NotificationType.chatidy,
-                            numNewMessages: 5,
-                            time: DateTime.now(),
-                          ),
-                          NotificationMessage(
-                            chatID: '123',
-                            notificationType: NotificationType.forum,
-                            numNewMessages: 5,
-                            time: DateTime.now(),
-                          ),
-                          NotificationMessage(
-                            chatID: '123',
-                            notificationType: NotificationType.news,
-                            numNewMessages: 5,
-                            time: DateTime.now(),
-                          ),
-                        ],
-                        onTap: () => widget.onChannelChange(channel),))
+                    .map((channel) => ChannelListItem(
+                          channel: channel,
+                          notifications: [
+                            NotificationMessage(
+                              chatID: '123',
+                              notificationType: NotificationType.chatidy,
+                              numNewMessages: 5,
+                              time: DateTime.now(),
+                            ),
+                            NotificationMessage(
+                              chatID: '123',
+                              notificationType: NotificationType.forum,
+                              numNewMessages: 5,
+                              time: DateTime.now(),
+                            ),
+                            NotificationMessage(
+                              chatID: '123',
+                              notificationType: NotificationType.news,
+                              numNewMessages: 5,
+                              time: DateTime.now(),
+                            ),
+                          ],
+                          onTap: () => widget.onChannelChange(channel),
+                        ))
                     .toList())
           ],
         ),

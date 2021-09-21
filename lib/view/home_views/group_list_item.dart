@@ -12,11 +12,11 @@ class GroupListItem extends StatelessWidget {
   GroupListItem({
     required this.group,
     required this.notifications,
-    this.onTap,
+    required this.onTap,
   });
   final Group group;
   List<NotificationMessage> notifications;
-  VoidCallback? onTap;
+  Function(String) onTap;
 
   DateTime latestMessageTime() {
     DateTime latest = DateTime.parse("1969-07-20 20:18:04Z");
@@ -31,7 +31,7 @@ class GroupListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onTap,
+      onTap: () => onTap(group.gid),
       child: Container(
         height: 96,
         child: Row(
@@ -72,7 +72,7 @@ class GroupListItem extends StatelessWidget {
                     } else if (index == notifications.length - 1) {
                       notificationSide = NotificationSide.right;
                     }
-    
+
                     return NotificationItem(
                       notification: notification,
                       side: notificationSide,
