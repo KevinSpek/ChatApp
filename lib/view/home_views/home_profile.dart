@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:groupidy/colors.dart';
+import 'package:groupidy/dummy_data.dart';
 import 'package:groupidy/model/user.dart';
 import 'package:groupidy/typography.dart';
 import 'package:groupidy/view/components/circle_image.dart';
+import 'package:groupidy/view/components/custom_icon_button.dart';
 
 class HomeProfile extends StatefulWidget {
   const HomeProfile({Key? key}) : super(key: key);
@@ -13,7 +15,7 @@ class HomeProfile extends StatefulWidget {
 }
 
 class _HomeProfileState extends State<HomeProfile> {
-  User _currentUser = User(uid: "uid", tag: "As2U", nickname: "ntnlbar");
+  User _currentUser = dUser1;
 
   void _showToast(BuildContext context, String message) {
     final scaffold = ScaffoldMessenger.of(context);
@@ -45,41 +47,41 @@ class _HomeProfileState extends State<HomeProfile> {
           children: [
             Row(
               children: [
-                CircleImage(size: 160, imagePath: _currentUser.imgPath,),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 32),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(right: 16),
-                            child: Text(
-                              _currentUser.nickname + "#" + _currentUser.tag,
-                              style: kSubTitle.copyWith(color: kWhite),
+                CircleImage(
+                  size: 160,
+                  imagePath: _currentUser.imgPath,
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 32),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(right: 16),
+                              child: Text(
+                                _currentUser.nickname + "#" + _currentUser.tag,
+                                style: kSubTitle.copyWith(color: kWhite),
+                              ),
                             ),
-                          ),
-                          IconButton(
-                            onPressed: () => _handleCopyTag(context),
-                            icon: Icon(
-                              Icons.copy,
-                              color: kWhite,
+                            CustomIconButton(
+                              onPressed: () => _handleCopyTag(context),
+                              icon: Icons.copy,
                             ),
-                          ),
-                          IconButton(
+                            CustomIconButton(
                               onPressed: () => _handleTagChange(context),
-                              icon: Icon(
-                                Icons.refresh,
-                                color: kWhite,
-                              ))
-                        ],
-                      ),
-                      Text(
-                        "Share your tag with friends so they can contact you!",
-                        style: kBodySmall.copyWith(color: kWhiteSecondary),
-                      )
-                    ],
+                              icon: Icons.refresh,
+                            )
+                          ],
+                        ),
+                        Text(
+                          "Share your tag with friends so they can contact you!",
+                          style: kBodySmall.copyWith(color: kWhiteSecondary),
+                        )
+                      ],
+                    ),
                   ),
                 )
               ],
