@@ -2,16 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:groupidy/colors.dart';
 import 'package:groupidy/dummy_data.dart';
 import 'package:groupidy/model/chat.dart';
-import 'package:groupidy/model/message.dart';
-import 'package:groupidy/model/notification_message.dart';
 import 'package:groupidy/typography.dart';
-import 'package:groupidy/view/components/bar_info.dart';
 import 'package:groupidy/view/components/circle_image.dart';
-import 'package:groupidy/view/components/message_bubble.dart';
+import 'package:groupidy/view/components/custom_icon_button.dart';
 import 'package:groupidy/view/components/messages_container.dart';
 import 'package:groupidy/view/components/textfield_bar.dart';
-import 'package:groupidy/view/notification_views/notification_item.dart';
-import 'package:groupidy/view/notification_views/notification_side.dart';
+import 'package:groupidy/view/home_views/home_chatidy_menu.dart';
 
 class HomeChatidy extends StatefulWidget {
   const HomeChatidy({Key? key}) : super(key: key);
@@ -24,11 +20,26 @@ class _HomeChatidyState extends State<HomeChatidy> {
   List<Chat> _chats = dChats;
   String _myUid = dUid;
   int _currentChatIndex = 0;
+  bool _showAddChat = false;
 
   void _handleChatClick(int index) {
     setState(() {
       _currentChatIndex = index;
     });
+  }
+
+  void _handleShowAddChat() {
+    setState(() {
+      _showAddChat = !_showAddChat;
+    });
+  }
+
+  void _handleAddChat(String userTag) {
+    // todo
+  }
+
+  void handleSendMessage(String message) {
+    // todo
   }
 
   @override
@@ -38,9 +49,12 @@ class _HomeChatidyState extends State<HomeChatidy> {
       child: Row(
         children: [
           SizedBox(
-            child: SideBar(
-              handleChatClick: _handleChatClick,
+            child: ChatidyMenu(
+              onChatClick: _handleChatClick,
               chats: _chats,
+              onShowAddChat: _handleShowAddChat,
+              onAddChat: _handleAddChat,
+              showAddChat: _showAddChat,
             ),
             width: 300,
             height: double.infinity,
@@ -66,13 +80,8 @@ class _HomeChatidyState extends State<HomeChatidy> {
                           _chats[_currentChatIndex].userToChat.nickname,
                           style: kBodyRegular.copyWith(color: kWhite),
                         )),
-                        IconButton(
-                            padding: EdgeInsets.all(16),
-                            onPressed: null,
-                            icon: Icon(
-                              Icons.settings_rounded,
-                              color: kWhite,
-                            ))
+                        CustomIconButton(
+                            icon: Icons.settings_rounded,)
                       ],
                     ),
                   ),
@@ -90,7 +99,7 @@ class _HomeChatidyState extends State<HomeChatidy> {
                             myUid: _myUid,
                           )),
                           TextFieldBar(
-                            onSend: (s) => {},
+                            onSend: handleSendMessage,
                             outerPadding: 16,
                             textStyle: kBodyRegular.copyWith(color: kWhite),
                             hintStyle:
@@ -104,130 +113,6 @@ class _HomeChatidyState extends State<HomeChatidy> {
             flex: 3,
           )
         ],
-      ),
-    );
-  }
-}
-
-class SideBar extends StatelessWidget {
-  const SideBar({Key? key, required this.handleChatClick, required this.chats})
-      : super(key: key);
-
-  final Function(int) handleChatClick;
-  final List<Chat> chats;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          height: 80,
-          decoration: BoxDecoration(
-              border: Border(
-                  bottom: BorderSide(color: kWhiteDisabled, width: 0.5),
-                  right: BorderSide(color: kWhiteDisabled, width: 0.5))),
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(16),
-                child: Text(
-                  "Chats",
-                  style: kBodyRegular.copyWith(color: kWhite),
-                ),
-              )
-            ],
-          ),
-        ),
-        
-        Expanded(
-          child: ListView(
-            children: Iterable<int>.generate(chats.length)
-              .map((index) => ChatItem(
-                    chat: chats[index],
-                    onTap: () => handleChatClick(index),
-                  ))
-              .toList(),
-          ),
-        )
-      ],
-    );
-  }
-}
-
-String getLastUpdatedFormatted(DateTime lastUpdated) {
-  Duration duration = DateTime.now().difference(lastUpdated);
-  if (duration.inDays >= 1) {
-    return "${lastUpdated.day.toString().padLeft(2, '0')}/${lastUpdated.month.toString().padLeft(2, '0')}";
-  }
-  return "${lastUpdated.hour.toString().padLeft(2, '0')}:${lastUpdated.minute.toString().padLeft(2, '0')}";
-}
-
-class ChatItem extends StatelessWidget {
-  const ChatItem({Key? key, required this.chat, required this.onTap})
-      : super(key: key);
-
-  final VoidCallback onTap;
-  final Chat chat;
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Container(
-        height: 80,
-        decoration: BoxDecoration(
-            border:
-                Border(bottom: BorderSide(color: kWhiteDisabled, width: 0.5))),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8),
-              child: CircleImage(
-                size: 48,
-                imagePath: chat.userToChat.imgPath,
-              ),
-            ),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    chat.userToChat.nickname,
-                    style: kBodyRegular.copyWith(color: kWhite),
-                  ),
-                  Text(
-                    chat.messages[0].msg,
-                    style: kBodySmall.copyWith(color: kWhiteSecondary),
-                  )
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(right: 8),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    getLastUpdatedFormatted(chat.lastUpdated),
-                    style:
-                        kCaption.copyWith(color: kWhiteSecondary, fontSize: 15),
-                  ),
-                  NotificationItem(
-                    side: NotificationSide.all,
-                    notification: NotificationMessage(
-                        chatID: "dd",
-                        numNewMessages: 5,
-                        notificationType: NotificationType.chatidy,
-                        time: DateTime.now()),
-                  )
-                ],
-              ),
-            )
-          ],
-        ),
       ),
     );
   }
