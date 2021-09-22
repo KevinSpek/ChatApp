@@ -43,16 +43,12 @@ class ItemInfo extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(title,
-                style: titleStyle == null
-                    ? kBodyLarge.copyWith(
-                        color: kWhite, fontWeight: FontWeight.bold)
-                    : titleStyle),
+            Text(title, style: titleStyle == null ? kBodyLarge.copyWith(color: kWhite, fontWeight: FontWeight.bold) : titleStyle),
+            SizedBox(
+              height: 3,
+            ),
             Visibility(
-              child: Text(subTitle == null ? '' : subTitle!,
-                  style: subTitleStyle == null
-                      ? kCaption.copyWith(color: kWhiteSecondary)
-                      : subTitleStyle),
+              child: Text(subTitle == null ? '' : subTitle!, style: subTitleStyle == null ? kBodySmall.copyWith(color: kWhiteSecondary) : subTitleStyle),
               visible: subTitle != null,
             ),
           ],

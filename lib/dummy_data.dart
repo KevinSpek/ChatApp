@@ -4,178 +4,65 @@ import 'package:groupidy/model/channels/news.dart';
 import 'package:groupidy/model/chat.dart';
 import 'package:groupidy/model/group.dart';
 import 'package:groupidy/model/message.dart';
+import 'package:groupidy/model/notification_message.dart';
 import 'package:groupidy/model/post.dart';
 import 'package:groupidy/model/user.dart';
 import 'package:groupidy/view/components/new_channel/channel_type.dart';
 
 String dUid = '1';
 
-User dUser1 = User(
-    uid: '1',
-    tag: '#ab12',
-    nickname: 'Eden',
-    imgPath:
-        'https://media-exp1.licdn.com/dms/image/C4D03AQEQe6M3QwTC0w/profile-displayphoto-shrink_200_200/0/1561177184315?e=1636588800&v=beta&t=gGT8U9O7wb1TkjbUcusCYrT0aFpJ_ruE8ANmKV5AMPA');
-User dUser2 = User(
-    uid: '2',
-    tag: '#Vf43',
-    nickname: 'Barak',
-    imgPath:
-        'https://media-exp1.licdn.com/dms/image/C4D03AQFRv1zfNm1LxQ/profile-displayphoto-shrink_100_100/0/1589882621994?e=1636588800&v=beta&t=ZACv92u-qzGmEomhZlhQngvkErWiYUy7Q6jWo8MyMaI');
-User dUser3 = User(
-    uid: '3',
-    tag: '#432',
-    nickname: 'Nethanel',
-    imgPath:
-        "https://fiverr-res.cloudinary.com/t_profile_original,q_auto,f_auto/attachments/profile/photo/d6ed158fde7e38a00e345019da620e7b-1522352574301/428b40f8-bf05-4ff8-9bdc-4ef72bb9e829.jpg");
-User dUser4 = User(
-    uid: '4',
-    tag: '#792',
-    nickname: 'Kevin',
-    imgPath:
-        "https://media-exp1.licdn.com/dms/image/C4D03AQEaowcCOLbjHA/profile-displayphoto-shrink_200_200/0/1618726633039?e=1634169600&v=beta&t=F4b94FPBWoHjqeHeKiuOatlA1tmu_cnyq5M4diiEhk4");
+User dUser1 = User(uid: '1', tag: '#ab12', nickname: 'Eden', imgPath: 'https://media-exp1.licdn.com/dms/image/C4D03AQEQe6M3QwTC0w/profile-displayphoto-shrink_200_200/0/1561177184315?e=1636588800&v=beta&t=gGT8U9O7wb1TkjbUcusCYrT0aFpJ_ruE8ANmKV5AMPA');
+User dUser2 = User(uid: '2', tag: '#Vf43', nickname: 'Barak', imgPath: 'https://media-exp1.licdn.com/dms/image/C4D03AQFRv1zfNm1LxQ/profile-displayphoto-shrink_100_100/0/1589882621994?e=1636588800&v=beta&t=ZACv92u-qzGmEomhZlhQngvkErWiYUy7Q6jWo8MyMaI');
+User dUser3 = User(uid: '3', tag: '#432', nickname: 'Nethanel', imgPath: "https://fiverr-res.cloudinary.com/t_profile_original,q_auto,f_auto/attachments/profile/photo/d6ed158fde7e38a00e345019da620e7b-1522352574301/428b40f8-bf05-4ff8-9bdc-4ef72bb9e829.jpg");
+User dUser4 = User(uid: '4', tag: '#792', nickname: 'Kevin', imgPath: "https://media-exp1.licdn.com/dms/image/C4D03AQEaowcCOLbjHA/profile-displayphoto-shrink_200_200/0/1618726633039?e=1634169600&v=beta&t=F4b94FPBWoHjqeHeKiuOatlA1tmu_cnyq5M4diiEhk4");
 
-Group dGroup = Group(
-    gid: '',
-    name: 'Groupidy',
-    tag: '12Df',
-    imgPath:
-        'https://play-lh.googleusercontent.com/T318ypZHcazneol5LFPSp7H-Pw14y2FZ5RVZO_An5tx-4m-IYIjcqqoOMxNlYupbdg',
-    ownerUid: '',
-    lastUpdated: DateTime.now(),
-    uids: ['1', '2', '3', '4'],
-    pids: ['1', '2', '3']);
+Group dGroup = Group(gid: '', name: 'Groupidy', tag: '12Df', imgPath: 'https://play-lh.googleusercontent.com/T318ypZHcazneol5LFPSp7H-Pw14y2FZ5RVZO_An5tx-4m-IYIjcqqoOMxNlYupbdg', ownerUid: '', lastUpdated: DateTime.now(), uids: ['1', '2', '3', '4'], pids: ['1', '2', '3']);
 
-Channel dChannel1 =
-    ChannelGroupChat(pid: '1', name: 'Develop', chat: dChat1, iconText: 'DEV', isLimited: true, uidsAllowed: ['1', '3']);
-Channel dChannel2 = ChannelNews(
-    pid: '2',
-    name: 'Administration',
-    messages: dGroupMessages,
-    isImage: true,
-    desc: 'Channel for admin news & very important management updates',
-    imgPath:
-        "https://img.freepik.com/free-photo/golden-key-isolated-white-background-3d-illustration_87744-271.jpg?size=626&ext=jpg");
+Channel dChannel1 = ChannelGroupChat(pid: '1', name: 'Develop', chat: dChat1, iconText: 'DEV', isLimited: true, uidsAllowed: ['1', '3']);
+Channel dChannel2 =
+    ChannelNews(pid: '2', name: 'Administration', messages: dGroupMessages, isImage: true, desc: 'Channel for admin news & very important management updates', imgPath: "https://img.freepik.com/free-photo/golden-key-isolated-white-background-3d-illustration_87744-271.jpg?size=626&ext=jpg");
 Channel dChannel3 = ChannelNews(pid: '3', name: 'HR', messages: dGroupMessages, iconText: 'HR');
 
 List<Channel> dChannels = [dChannel1, dChannel2, dChannel3];
 
+NotificationMessage dNotification1 = NotificationMessage(chatID: '123', notificationType: NotificationType.chatidy, numNewMessages: 10, time: DateTime.now());
+NotificationMessage dNotification2 = NotificationMessage(chatID: '123', notificationType: NotificationType.forum, numNewMessages: 2, time: DateTime.now());
+NotificationMessage dNotification3 = NotificationMessage(chatID: '123', notificationType: NotificationType.news, numNewMessages: 3, time: DateTime.now());
+NotificationMessage dNotification4 = NotificationMessage(chatID: '123', notificationType: NotificationType.groupChat, numNewMessages: 7, time: DateTime.now());
+
 List<Group> dGroups = [
-  Group(
-    gid: '',
-    imgPath: '',
-    lastUpdated: DateTime.now(),
-    name: 'My group',
-    ownerUid: 'kev',
-    tag: '123',
-    uids: [],
-    pids: ['pidGroupChat'],
-  ),
-  Group(
-      gid: '',
-      imgPath: '',
-      lastUpdated: DateTime.now(),
-      name: 'Another group',
-      ownerUid: 'kev',
-      tag: '123',
-      uids: [],
-      pids: ['pidForum']),
-  Group(
-      gid: '',
-      imgPath: '',
-      lastUpdated: DateTime.now(),
-      name: 'One more',
-      ownerUid: 'kev',
-      tag: '123',
-      uids: [],
-      pids: ['pidNews']),
+  Group(gid: '', imgPath: 'images/dummy_game.png', lastUpdated: DateTime.now(), name: 'Gamerzzz', ownerUid: 'kev', tag: '123', uids: [], pids: ['pidGroupChat'], notifications: [dNotification1, dNotification2]),
+  Group(gid: '', imgPath: 'images/dummy_wrest.png', lastUpdated: DateTime.now(), name: 'Wrestlers', ownerUid: 'kev', tag: '123', uids: [], pids: ['pidForum'], notifications: [dNotification3, dNotification4]),
+  Group(gid: '', imgPath: 'images/dummy_piano.png', lastUpdated: DateTime.now(), name: 'Piano Players', ownerUid: 'kev', tag: '123', uids: [], pids: ['pidNews'], notifications: [dNotification4]),
 ];
 
-Post dPost = Post(
-    chatMsg: Message(
-        senderID: dUid,
-        msg: loremIpsumLong,
-        date: DateTime.now().subtract(Duration(minutes: 17)),
-        userNickname: "ntnlbar"));
+Post dPost = Post(chatMsg: Message(senderID: dUid, msg: loremIpsumLong, date: DateTime.now().subtract(Duration(minutes: 17)), userNickname: "ntnlbar"));
 
 List<User> dUsers = [dUser1, dUser2, dUser3, dUser4];
 
 List<Message> dGroupMessages = [
-  Message(
-      senderID: '1',
-      msg: 'Lets play tonight?',
-      date: DateTime(2020, 12, 20, 17, 30),
-      userNickname: 'Eden'),
-  Message(
-      senderID: '3',
-      msg: 'I am in!',
-      date: DateTime(2020, 12, 20, 17, 33),
-      userNickname: 'Nethanel'),
-  Message(
-      senderID: '4',
-      msg: 'Lets meet around 18:00',
-      date: DateTime(2020, 12, 20, 17, 34),
-      userNickname: 'Kevin'),
-  Message(
-      senderID: '2',
-      msg: 'Cool im down',
-      date: DateTime(2020, 12, 20),
-      userNickname: 'Barak'),
-  Message(
-      senderID: '1',
-      msg: 'Great then it is scheduled.',
-      date: DateTime(2020, 12, 22),
-      userNickname: 'Kevin'),
+  Message(senderID: '1', msg: 'Lets play tonight?', date: DateTime(2020, 12, 20, 17, 30), userNickname: 'Eden'),
+  Message(senderID: '3', msg: 'I am in!', date: DateTime(2020, 12, 20, 17, 33), userNickname: 'Nethanel'),
+  Message(senderID: '4', msg: 'Lets meet around 18:00', date: DateTime(2020, 12, 20, 17, 34), userNickname: 'Kevin'),
+  Message(senderID: '2', msg: 'Cool im down', date: DateTime(2020, 12, 20), userNickname: 'Barak'),
+  Message(senderID: '1', msg: 'Great then it is scheduled.', date: DateTime(2020, 12, 22), userNickname: 'Kevin'),
 ];
 
 List<Message> dChatidiyMessages = [
-  Message(
-      senderID: '1',
-      msg: 'Hey are you free?',
-      date: DateTime(2020, 12, 24, 11, 22),
-      userNickname: 'Eden'),
-  Message(
-      senderID: '2',
-      msg: 'Yes what do you need',
-      date: DateTime(2020, 12, 24, 11, 23),
-      userNickname: 'Barak'),
-  Message(
-      senderID: '1',
-      msg: 'Just checkin, wandering how are you',
-      date: DateTime(2020, 12, 24, 11, 24),
-      userNickname: 'Eden'),
-  Message(
-      senderID: '2',
-      msg: 'Got it. bye.',
-      date: DateTime(2020, 12, 24, 11, 25),
-      userNickname: 'Barak'),
+  Message(senderID: '1', msg: 'Hey are you free?', date: DateTime(2020, 12, 24, 11, 22), userNickname: 'Eden'),
+  Message(senderID: '2', msg: 'Yes what do you need', date: DateTime(2020, 12, 24, 11, 23), userNickname: 'Barak'),
+  Message(senderID: '1', msg: 'Just checkin, wandering how are you', date: DateTime(2020, 12, 24, 11, 24), userNickname: 'Eden'),
+  Message(senderID: '2', msg: 'Got it. bye.', date: DateTime(2020, 12, 24, 11, 25), userNickname: 'Barak'),
 ];
 
 List<Message> dChatidiyMessages2 = [
-  Message(
-      senderID: '3',
-      msg: 'Hello!',
-      date: DateTime(2020, 12, 24, 11, 23),
-      userNickname: 'ntnlbar'),
-  Message(
-      senderID: '1',
-      msg: 'Hey are you?',
-      date: DateTime(2020, 12, 24, 11, 22),
-      userNickname: 'Eden'),
-  Message(
-      senderID: '1',
-      msg: 'I have exiting news',
-      date: DateTime(2020, 12, 24, 11, 24),
-      userNickname: 'Eden'),
-  Message(
-      senderID: '3',
-      msg: 'What are the new? I cannot wait!',
-      date: DateTime(2020, 12, 24, 11, 25),
-      userNickname: 'ntnlbar'),
+  Message(senderID: '3', msg: 'Hello!', date: DateTime(2020, 12, 24, 11, 23), userNickname: 'ntnlbar'),
+  Message(senderID: '1', msg: 'Hey are you?', date: DateTime(2020, 12, 24, 11, 22), userNickname: 'Eden'),
+  Message(senderID: '1', msg: 'I have exiting news', date: DateTime(2020, 12, 24, 11, 24), userNickname: 'Eden'),
+  Message(senderID: '3', msg: 'What are the new? I cannot wait!', date: DateTime(2020, 12, 24, 11, 25), userNickname: 'ntnlbar'),
 ];
 
-Channel pidNews =
-    ChannelNews(pid: 'pidNews', name: 'News', messages: dGroupMessages);
+Channel pidNews = ChannelNews(pid: 'pidNews', name: 'News', messages: dGroupMessages);
 
 // Channel pidForum = Channel(pid: 'pidForum', name: 'Forum');
 // Channel pidGroupChat = Channel(pid: 'pidGroupChat', name: 'Group chat');
@@ -194,31 +81,15 @@ Pellentesque ut urna purus. Praesent ut nulla sem. Etiam sed elit odio. Suspendi
 
 Mauris gravida imperdiet dui, eget condimentum sapien eleifend vitae. Sed lobortis, purus sit amet convallis tincidunt, mi lorem pellentesque ipsum, quis commodo ligula justo ut mauris. Vestibulum eu justo sit amet ex fermentum dictum. Vivamus massa nulla, feugiat non tellus vel, laoreet pulvinar lectus. Pellentesque lectus ex, commodo sit amet eleifend a, imperdiet eget metus. Nunc placerat tellus lectus, rhoncus blandit justo tincidunt ac. Donec justo nisl, aliquam vitae magna a, aliquet gravida nisi. In vestibulum neque eget eleifend blandit. Vivamus porta volutpat turpis quis ullamcorper. Praesent sit amet tristique quam, vitae porttitor nibh. Nulla mattis vestibulum libero ac faucibus.''';
 
-Post dPost1 = Post(
-    chatMsg: Message(
-        senderID: '1',
-        msg: loremIpsumLong,
-        date: DateTime(2020, 12, 24, 11, 24),
-        userNickname: 'Eden'),
-    comments: 1,
-    likes: 2);
+Post dPost1 = Post(chatMsg: Message(senderID: '1', msg: loremIpsumLong, date: DateTime(2020, 12, 24, 11, 24), userNickname: 'Eden'), comments: 1, likes: 2);
 
-Chat dChat1 = Chat(
-    lastUpdated: DateTime.now().subtract(Duration(minutes: 6)),
-    messages: dChatidiyMessages,
-    uids: ["1", "2"],
-    userToChat: User(uid: '2', tag: '#123', nickname: 'Barak'));
+Chat dChat1 = Chat(lastUpdated: DateTime.now().subtract(Duration(minutes: 6)), messages: dChatidiyMessages, uids: ["1", "2"], userToChat: User(uid: '2', tag: '#123', nickname: 'Barak'));
 
 Chat dChat2 = Chat(
     lastUpdated: DateTime.now().subtract(Duration(minutes: 13)),
     messages: dChatidiyMessages2,
     uids: ["1", "3"],
-    userToChat: User(
-        uid: '3',
-        tag: '#123',
-        nickname: 'ntnlbar',
-        imgPath:
-            "https://fiverr-res.cloudinary.com/t_profile_original,q_auto,f_auto/attachments/profile/photo/d6ed158fde7e38a00e345019da620e7b-1522352574301/428b40f8-bf05-4ff8-9bdc-4ef72bb9e829.jpg"));
+    userToChat: User(uid: '3', tag: '#123', nickname: 'ntnlbar', imgPath: "https://fiverr-res.cloudinary.com/t_profile_original,q_auto,f_auto/attachments/profile/photo/d6ed158fde7e38a00e345019da620e7b-1522352574301/428b40f8-bf05-4ff8-9bdc-4ef72bb9e829.jpg"));
 
 List<Chat> dChats = [
   dChat1,
