@@ -52,10 +52,13 @@ class ItemInfo extends StatelessWidget {
                       ? kBodyLarge.copyWith(
                           color: kWhite, fontWeight: FontWeight.bold)
                       : titleStyle),
+              SizedBox(
+                height: 3,
+              ),
               Visibility(
                 child: Text(subTitle == null ? '' : subTitle!,
                     style: subTitleStyle == null
-                        ? kCaption.copyWith(color: kWhiteSecondary)
+                        ? kBodySmall.copyWith(color: kWhiteSecondary)
                         : subTitleStyle),
                 visible: subTitle != null,
               ),
