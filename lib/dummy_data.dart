@@ -1,5 +1,6 @@
 import 'package:groupidy/model/channels/channel.dart';
 import 'package:groupidy/model/channels/channel_group_chat.dart';
+import 'package:groupidy/model/channels/forum.dart';
 import 'package:groupidy/model/channels/news.dart';
 import 'package:groupidy/model/chat.dart';
 import 'package:groupidy/model/group.dart';
@@ -17,13 +18,6 @@ User dUser3 = User(uid: '3', tag: '#432', nickname: 'Nethanel', imgPath: "https:
 User dUser4 = User(uid: '4', tag: '#792', nickname: 'Kevin', imgPath: "https://media-exp1.licdn.com/dms/image/C4D03AQEaowcCOLbjHA/profile-displayphoto-shrink_200_200/0/1618726633039?e=1634169600&v=beta&t=F4b94FPBWoHjqeHeKiuOatlA1tmu_cnyq5M4diiEhk4");
 
 Group dGroup = Group(gid: '', name: 'Groupidy', tag: '12Df', imgPath: 'https://play-lh.googleusercontent.com/T318ypZHcazneol5LFPSp7H-Pw14y2FZ5RVZO_An5tx-4m-IYIjcqqoOMxNlYupbdg', ownerUid: '', lastUpdated: DateTime.now(), uids: ['1', '2', '3', '4'], pids: ['1', '2', '3']);
-
-Channel dChannel1 = ChannelGroupChat(pid: '1', name: 'Develop', chat: dChat1, iconText: 'DEV', isLimited: true, uidsAllowed: ['1', '3']);
-Channel dChannel2 =
-    ChannelNews(pid: '2', name: 'Administration', messages: dGroupMessages, isImage: true, desc: 'Channel for admin news & very important management updates', imgPath: "https://img.freepik.com/free-photo/golden-key-isolated-white-background-3d-illustration_87744-271.jpg?size=626&ext=jpg");
-Channel dChannel3 = ChannelNews(pid: '3', name: 'HR', messages: dGroupMessages, iconText: 'HR');
-
-List<Channel> dChannels = [dChannel1, dChannel2, dChannel3];
 
 NotificationMessage dNotification1 = NotificationMessage(chatID: '123', notificationType: NotificationType.chatidy, numNewMessages: 10, time: DateTime.now());
 NotificationMessage dNotification2 = NotificationMessage(chatID: '123', notificationType: NotificationType.forum, numNewMessages: 2, time: DateTime.now());
@@ -83,6 +77,8 @@ Mauris gravida imperdiet dui, eget condimentum sapien eleifend vitae. Sed lobort
 
 Post dPost1 = Post(chatMsg: Message(senderID: '1', msg: loremIpsumLong, date: DateTime(2020, 12, 24, 11, 24), userNickname: 'Eden'), comments: 1, likes: 2);
 
+Post dPost2 = Post(chatMsg: Message(senderID: '2', msg: loremIpsumShort, date: DateTime(2020, 12, 24, 11, 29), userNickname: 'Barak'), comments: 3, likes: 29);
+
 Chat dChat1 = Chat(lastUpdated: DateTime.now().subtract(Duration(minutes: 6)), messages: dChatidiyMessages, uids: ["1", "2"], userToChat: User(uid: '2', tag: '#123', nickname: 'Barak'));
 
 Chat dChat2 = Chat(
@@ -95,3 +91,10 @@ List<Chat> dChats = [
   dChat1,
   dChat2,
 ];
+
+Channel dChannel1 = ChannelGroupChat(pid: '1', name: 'Develop', chat: dChat1, iconText: 'DEV', isLimited: true, uidsAllowed: ['1', '3']);
+Channel dChannel2 =
+    ChannelNews(pid: '2', name: 'Administration', messages: dGroupMessages, isImage: true, desc: 'Channel for admin news & very important management updates', imgPath: "https://img.freepik.com/free-photo/golden-key-isolated-white-background-3d-illustration_87744-271.jpg?size=626&ext=jpg");
+Channel dChannel3 = ChannelForum(pid: '3', name: 'HR', posts: [dPost1, dPost2], iconText: 'FR');
+
+List<Channel> dChannels = [dChannel1, dChannel2, dChannel3];

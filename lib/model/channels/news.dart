@@ -9,20 +9,25 @@ class ChannelNews extends Channel {
     pid,
     name,
     imgPath = '',
-    required this.messages,
+    this.messages = const [],
     isImage = false,
     iconText,
     desc,
-    isLimited = false
+    isLimited = false,
+    uidsAllowed,
+    uidsAllosedToWrite,
   }) : super(
-            pid: pid,
-            name: name,
-            type: ChannelType.news,
-            imgPath: imgPath,
-            isImage: isImage,
-            iconText: iconText,
-            desc: desc,
-            isLimited: isLimited);
+          pid: pid,
+          name: name,
+          type: ChannelType.news,
+          imgPath: imgPath,
+          isImage: isImage,
+          iconText: iconText,
+          desc: desc,
+          isLimited: isLimited,
+          uidsAllowed: uidsAllowed,
+          uidsAllowedToWrite: uidsAllosedToWrite,
+        );
 
   void addMessages(List<Message> newMessages) {
     messages = messages + newMessages;

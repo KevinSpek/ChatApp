@@ -14,20 +14,21 @@ class NewsChannel extends StatelessWidget {
       child: Expanded(
         child: Column(
           children: [
-            Container(
-              child: Column(
-                children: news.messages.map((message) {
-                  return Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: MessageBubble(
-                      msg: message.msg,
-                      senderName: message.userNickname,
-                      sentTime: message.date,
-                      isMyMessage: uid == message.senderID,
-                    ),
-                  );
-                }).toList(),
-              ),
+            Expanded(
+              child: ListView.separated(
+                  itemCount: news.messages.length,
+                  separatorBuilder: (BuildContext context, int index) => Divider(height: 1),
+                  itemBuilder: (BuildContext context, int index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: MessageBubble(
+                        msg: news.messages[index].msg,
+                        senderName: news.messages[index].userNickname,
+                        sentTime: news.messages[index].date,
+                        isMyMessage: uid == news.messages[index].senderID,
+                      ),
+                    );
+                  }),
             ),
             Spacer(),
             Container(
