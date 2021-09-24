@@ -2,34 +2,31 @@ import 'package:groupidy/model/channels/channel.dart';
 import 'package:groupidy/model/channels/channel_type.dart';
 import 'package:groupidy/model/message.dart';
 
+import '../chat.dart';
+
 class ChannelNews extends Channel {
-  List<Message> messages;
+  Chat chat;
 
   ChannelNews({
     pid,
     name,
     imgPath = '',
-    this.messages = const [],
+    required this.chat,
     isImage = false,
     iconText,
     desc,
     isLimited = false,
     uidsAllowed,
-    uidsAllosedToWrite,
+    required uidsAllowedToWrite,
   }) : super(
-          pid: pid,
-          name: name,
-          type: ChannelType.news,
-          imgPath: imgPath,
-          isImage: isImage,
-          iconText: iconText,
-          desc: desc,
-          isLimited: isLimited,
-          uidsAllowed: uidsAllowed,
-          uidsAllowedToWrite: uidsAllosedToWrite,
-        );
-
-  void addMessages(List<Message> newMessages) {
-    messages = messages + newMessages;
-  }
+            pid: pid,
+            name: name,
+            type: ChannelType.news,
+            imgPath: imgPath,
+            isImage: isImage,
+            iconText: iconText,
+            desc: desc,
+            isLimited: isLimited,
+            uidsAllowed: uidsAllowed,
+            uidsAllowedToWrite: uidsAllowedToWrite,);
 }

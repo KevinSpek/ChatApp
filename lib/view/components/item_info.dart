@@ -16,6 +16,7 @@ class ItemInfo extends StatelessWidget {
     this.subTitleStyle,
     this.useText = false,
     this.text,
+    this.padding,
   }) : super(key: key);
 
   final String title;
@@ -27,33 +28,44 @@ class ItemInfo extends StatelessWidget {
   final TextStyle? subTitleStyle;
   final bool useText;
   final String? text;
+  final EdgeInsetsGeometry? padding;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        CircleImage(
-          size: imageSize,
-          imagePath: imagePath,
-          useText: useText,
-          text: text,
-        ),
-        SizedBox(width: spacing),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(title, style: titleStyle == null ? kBodyLarge.copyWith(color: kWhite, fontWeight: FontWeight.bold) : titleStyle),
-            SizedBox(
-              height: 3,
-            ),
-            Visibility(
-              child: Text(subTitle == null ? '' : subTitle!, style: subTitleStyle == null ? kBodySmall.copyWith(color: kWhiteSecondary) : subTitleStyle),
-              visible: subTitle != null,
-            ),
-          ],
-        ),
-      ],
+    return Padding(
+      padding: padding ?? EdgeInsets.zero,
+      child: Row(
+        children: [
+          CircleImage(
+            size: imageSize,
+            imagePath: imagePath,
+            useText: useText,
+            text: text,
+          ),
+          SizedBox(width: spacing),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(title,
+                  style: titleStyle == null
+                      ? kBodyLarge.copyWith(
+                          color: kWhite, fontWeight: FontWeight.bold)
+                      : titleStyle),
+              SizedBox(
+                height: 3,
+              ),
+              Visibility(
+                child: Text(subTitle == null ? '' : subTitle!,
+                    style: subTitleStyle == null
+                        ? kBodySmall.copyWith(color: kWhiteSecondary)
+                        : subTitleStyle),
+                visible: subTitle != null,
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

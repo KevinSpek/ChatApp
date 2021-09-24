@@ -25,9 +25,9 @@ class _HomeScreenDesktopState extends State<HomeScreenDesktop> {
     return Scaffold(
       body: Row(
         children: [
-          Expanded(
+          SizedBox(
             child: HomeMenu(),
-            flex: 1,
+            width: 200,
           ),
           Expanded(
             child: Scaffold(
@@ -37,7 +37,10 @@ class _HomeScreenDesktopState extends State<HomeScreenDesktop> {
                 centerTitle: true,
                 title: Obx(
                   () => Text(
-                    capitalize(homeController.homeType.value.toString().split('.').last),
+                    capitalize(homeController.homeType.value
+                        .toString()
+                        .split('.')
+                        .last),
                     style: kTitle3,
                   ),
                 ),
@@ -50,7 +53,6 @@ class _HomeScreenDesktopState extends State<HomeScreenDesktop> {
                     ),
                   )),
             ),
-            flex: 6,
           )
         ],
       ),
