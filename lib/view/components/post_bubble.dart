@@ -32,6 +32,14 @@ String getPostTimeFormat(DateTime postTime) {
 bool seeMore = false;
 bool type = false;
 
+void _handleAddComment(String commentText) {
+  // TODO: Add comment
+}
+
+void _handleLike() {
+  // TODO: post like
+}
+
 class _PostBubbleState extends State<PostBubble> {
   @override
   Widget build(BuildContext context) {
@@ -78,7 +86,9 @@ class _PostBubbleState extends State<PostBubble> {
                 PostButton(
                   text: widget.post.likes.toString(),
                   icon: Icons.thumb_up_alt_outlined,
-                  onTap: () {},
+                  onTap: () {
+                    _handleLike();
+                  },
                 ),
                 SizedBox(width: 8),
                 PostButton(
@@ -97,7 +107,7 @@ class _PostBubbleState extends State<PostBubble> {
                     height: 16,
                   )
                 : SizedBox.shrink(),
-            type ? TextFieldBar(onSend: (value) {}) : SizedBox.shrink(),
+            type ? TextFieldBar(onSend: ((value) => _handleAddComment(value))) : SizedBox.shrink(),
           ],
         ),
       ),
