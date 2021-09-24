@@ -18,6 +18,7 @@ class ForumChannel extends StatelessWidget {
                 padding: const EdgeInsets.all(16.0),
                 child: PostBubble(
                   post: forum.posts[index],
+                  uid: uid,
                 ),
               );
             }),
