@@ -91,6 +91,7 @@ class MenuItem extends StatelessWidget {
                   semanticsLabel: 'chatidy',
                   width: 32,
                   height: 32,
+                  color: selected ? kWhite : kWhiteSecondary,
                 ),
               ),
               Container(
