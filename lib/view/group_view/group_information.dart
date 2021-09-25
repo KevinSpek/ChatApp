@@ -101,6 +101,7 @@ class _GroupInformationState extends State<GroupInformation> {
             Members(
               membersUids: _group.uids,
               title: 'Group members',
+              ownerUid: _group.ownerUid,
             )
           ],
         ),
