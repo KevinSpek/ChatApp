@@ -4,10 +4,16 @@ import '../../typography.dart';
 import 'member_info.dart';
 
 class Members extends StatelessWidget {
-  const Members({Key? key, required this.membersUids, this.title = '', this.onUserAdd})
+  const Members(
+      {Key? key,
+      required this.membersUids,
+      this.title = '',
+      this.onUserAdd,
+      this.ownerUid = ''})
       : super(key: key);
 
   final List<String> membersUids;
+  final String ownerUid;
   final String title;
   final VoidCallback? onUserAdd;
 
@@ -48,7 +54,12 @@ class Members extends StatelessWidget {
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: membersUids.map((uid) => MemberInfo(uid: uid)).toList(),
+            children: membersUids
+                .map((uid) => MemberInfo(
+                      uid: uid,
+                      isOwner: uid == ownerUid,
+                    ))
+                .toList(),
           ),
         ),
       ],

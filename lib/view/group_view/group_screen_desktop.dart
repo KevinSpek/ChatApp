@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:groupidy/colors.dart';
 import 'package:groupidy/dummy_data.dart';
@@ -7,12 +6,10 @@ import 'package:groupidy/model/group.dart';
 import 'package:groupidy/typography.dart';
 import 'package:groupidy/utils.dart';
 import 'package:groupidy/view/components/bar_info.dart';
-import 'package:groupidy/view/components/circle_image.dart';
 import 'package:groupidy/view/components/edit_channel/edit_channel.dart';
-import 'package:groupidy/view/components/item_info.dart';
 import 'package:groupidy/view/group_view/channel_information.dart';
 import 'package:groupidy/view/group_view/group_menu.dart';
-import 'package:groupidy/view/group_view/group_profile.dart';
+import 'package:groupidy/view/group_view/group_information.dart';
 
 import 'channel_presentor.dart';
 
@@ -95,7 +92,7 @@ class _GroupScreenDesktopState extends State<GroupScreenDesktop> {
                     ],
                   )),
               _showGroupProfile
-                  ? GroupProfile(group: widget.group)
+                  ? GroupInformation(group: widget.group)
                   : BarInfo(
                       title: _currentChannel.name,
                       imagePath: _currentChannel.imgPath,

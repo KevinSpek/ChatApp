@@ -43,7 +43,7 @@ Group dGroup = Group(
     tag: '12Df',
     imgPath:
         'https://play-lh.googleusercontent.com/T318ypZHcazneol5LFPSp7H-Pw14y2FZ5RVZO_An5tx-4m-IYIjcqqoOMxNlYupbdg',
-    ownerUid: '',
+    ownerUid: '1',
     lastUpdated: DateTime.now(),
     uids: ['1', '2', '3', '4'],
     pids: ['1', '2', '3']);
