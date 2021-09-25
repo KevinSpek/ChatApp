@@ -5,11 +5,8 @@ import 'package:groupidy/dummy_data.dart';
 import 'package:groupidy/model/channels/channel.dart';
 import 'package:groupidy/model/notification_message.dart';
 import 'package:groupidy/typography.dart';
-<<<<<<< HEAD
-=======
 import 'package:groupidy/utils.dart';
 import 'package:groupidy/view/components/create_new_channel/create_new_channel.dart';
->>>>>>> kev
 import 'package:groupidy/view/components/custom_icon_button.dart';
 import 'package:groupidy/view/group_view/channel_list_item.dart';
 
@@ -33,9 +30,7 @@ class _GroupMenuState extends State<GroupMenu> {
   @override
   void initState() {
     setState(() {
-      _channels = widget.pids
-          .map((pid) => dChannels.firstWhere((channel) => channel.pid == pid))
-          .toList();
+      _channels = widget.pids.map((pid) => dChannels.firstWhere((channel) => channel.pid == pid)).toList();
     });
     super.initState();
   }
@@ -74,16 +69,11 @@ class _GroupMenuState extends State<GroupMenu> {
                   style: kBodySmall.copyWith(color: kWhite),
                 ),
                 Spacer(),
-<<<<<<< HEAD
-                CustomIconButton(icon: Icons.search_rounded),
-                CustomIconButton(icon: Icons.add_rounded),
-=======
                 CustomIconButton(icon: Icons.search),
                 CustomIconButton(
                   icon: Icons.add,
                   onPressed: () => dialog(context: context, child: CreateNewChannel()),
                 ),
->>>>>>> kev
               ],
             ),
           ),
@@ -125,40 +115,8 @@ class _GroupMenuState extends State<GroupMenu> {
                 );
               },
             ),
-<<<<<<< HEAD
           ),
         ],
-=======
-            Column(
-                children: _channels
-                    .map((channel) => ChannelListItem(
-                          channel: channel,
-                          notifications: [
-                            NotificationMessage(
-                              chatID: '123',
-                              notificationType: NotificationType.chatidy,
-                              numNewMessages: 5,
-                              time: DateTime.now(),
-                            ),
-                            NotificationMessage(
-                              chatID: '123',
-                              notificationType: NotificationType.forum,
-                              numNewMessages: 5,
-                              time: DateTime.now(),
-                            ),
-                            NotificationMessage(
-                              chatID: '123',
-                              notificationType: NotificationType.news,
-                              numNewMessages: 5,
-                              time: DateTime.now(),
-                            ),
-                          ],
-                          onTap: () => widget.onChannelChange(channel),
-                        ))
-                    .toList()),
-          ],
-        ),
->>>>>>> kev
       ),
     );
   }

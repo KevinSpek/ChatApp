@@ -11,60 +11,15 @@ import 'package:groupidy/model/user.dart';
 
 String dUid = '1';
 
-<<<<<<< HEAD
-User dUser1 = User(
-    uid: '1',
-    tag: 'ab12',
-    nickname: 'Eden',
-    imgPath:
-        'https://media-exp1.licdn.com/dms/image/C4D03AQEQe6M3QwTC0w/profile-displayphoto-shrink_200_200/0/1561177184315?e=1636588800&v=beta&t=gGT8U9O7wb1TkjbUcusCYrT0aFpJ_ruE8ANmKV5AMPA');
-User dUser2 = User(
-    uid: '2',
-    tag: 'Vf43',
-    nickname: 'Barak',
-    imgPath:
-        'https://media-exp1.licdn.com/dms/image/C4D03AQFRv1zfNm1LxQ/profile-displayphoto-shrink_100_100/0/1589882621994?e=1636588800&v=beta&t=ZACv92u-qzGmEomhZlhQngvkErWiYUy7Q6jWo8MyMaI');
-User dUser3 = User(
-    uid: '3',
-    tag: 'l432',
-    nickname: 'Nethanel',
-    imgPath:
-        "https://fiverr-res.cloudinary.com/t_profile_original,q_auto,f_auto/attachments/profile/photo/d6ed158fde7e38a00e345019da620e7b-1522352574301/428b40f8-bf05-4ff8-9bdc-4ef72bb9e829.jpg");
-User dUser4 = User(
-    uid: '4',
-    tag: 'j792',
-    nickname: 'Kevin',
-    imgPath:
-        "https://media-exp1.licdn.com/dms/image/C4D03AQEaowcCOLbjHA/profile-displayphoto-shrink_200_200/0/1618726633039?e=1634169600&v=beta&t=F4b94FPBWoHjqeHeKiuOatlA1tmu_cnyq5M4diiEhk4");
-
-Group dGroup = Group(
-    gid: '',
-    name: 'Groupidy',
-    tag: '12Df',
-    imgPath:
-        'https://play-lh.googleusercontent.com/T318ypZHcazneol5LFPSp7H-Pw14y2FZ5RVZO_An5tx-4m-IYIjcqqoOMxNlYupbdg',
-    ownerUid: '1',
-    lastUpdated: DateTime.now(),
-    uids: ['1', '2', '3', '4'],
-    pids: ['1', '2', '3']);
-
-Channel dChannel1 = ChannelGroupChat(
-    pid: '1',
-    name: 'Develop',
-    chat: dChat1,
-    iconText: 'DEV',
-    isLimited: true,
-    uidsAllowed: ['1', '3']);
-=======
 User dUser1 = User(uid: '1', tag: 'ab12', nickname: 'Eden', imgPath: 'https://media-exp1.licdn.com/dms/image/C4D03AQEQe6M3QwTC0w/profile-displayphoto-shrink_200_200/0/1561177184315?e=1636588800&v=beta&t=gGT8U9O7wb1TkjbUcusCYrT0aFpJ_ruE8ANmKV5AMPA');
 User dUser2 = User(uid: '2', tag: 'Vf43', nickname: 'Barak', imgPath: 'https://media-exp1.licdn.com/dms/image/C4D03AQFRv1zfNm1LxQ/profile-displayphoto-shrink_100_100/0/1589882621994?e=1636588800&v=beta&t=ZACv92u-qzGmEomhZlhQngvkErWiYUy7Q6jWo8MyMaI');
 User dUser3 = User(uid: '3', tag: 'l432', nickname: 'Nethanel', imgPath: "https://fiverr-res.cloudinary.com/t_profile_original,q_auto,f_auto/attachments/profile/photo/d6ed158fde7e38a00e345019da620e7b-1522352574301/428b40f8-bf05-4ff8-9bdc-4ef72bb9e829.jpg");
 User dUser4 = User(uid: '4', tag: 'j792', nickname: 'Kevin', imgPath: "https://media-exp1.licdn.com/dms/image/C4D03AQEaowcCOLbjHA/profile-displayphoto-shrink_200_200/0/1618726633039?e=1634169600&v=beta&t=F4b94FPBWoHjqeHeKiuOatlA1tmu_cnyq5M4diiEhk4");
 
-Group dGroup = Group(gid: '', name: 'Groupidy', tag: '12Df', imgPath: 'https://play-lh.googleusercontent.com/T318ypZHcazneol5LFPSp7H-Pw14y2FZ5RVZO_An5tx-4m-IYIjcqqoOMxNlYupbdg', ownerUid: '', lastUpdated: DateTime.now(), uids: ['1', '2', '3', '4'], pids: ['1', '2', '3']);
+Group dGroup = Group(gid: '', name: 'Groupidy', tag: '12Df', imgPath: 'https://play-lh.googleusercontent.com/T318ypZHcazneol5LFPSp7H-Pw14y2FZ5RVZO_An5tx-4m-IYIjcqqoOMxNlYupbdg', ownerUid: '1', lastUpdated: DateTime.now(), uids: ['1', '2', '3', '4'], pids: ['1', '2', '3']);
 
 Channel dChannel1 = ChannelGroupChat(pid: '1', name: 'Develop', chat: dChat1, iconText: 'DEV', isLimited: true, uidsAllowed: ['1', '3']);
->>>>>>> kev
+
 Channel dChannel2 = ChannelNews(
     pid: '2',
     name: 'Administration',
