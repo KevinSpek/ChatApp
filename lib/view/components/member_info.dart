@@ -7,9 +7,10 @@ import '../../typography.dart';
 import 'circle_image.dart';
 
 class MemberInfo extends StatefulWidget {
-  const MemberInfo({Key? key, required this.uid}) : super(key: key);
+  const MemberInfo({Key? key, required this.uid, this.isOwner}) : super(key: key);
 
   final String uid;
+  final isOwner;
   
   @override
   _MemberInfoState createState() => _MemberInfoState();
@@ -39,6 +40,13 @@ class _MemberInfoState extends State<MemberInfo> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: Text(_user.nickname, style: kBodyRegular.copyWith(color: kWhite),),
+          ),
+          Visibility(
+            child: Tooltip(
+              message: "Group owner",
+              textStyle: kCaption.copyWith(color: kWhite),
+              child: Icon(Icons.vpn_key_sharp, size: 16, color: kWhite,)),
+            visible: widget.isOwner,
           )
         ],
       ),

@@ -32,16 +32,6 @@ class _HomeScreenDesktopState extends State<HomeScreenDesktop> {
           Expanded(
             child: Scaffold(
               appBar: AppBar(
-                actions: [
-                  IconButton(
-                    icon: Icon(Icons.search),
-                    onPressed: () {},
-                  ),
-                  IconButton(
-                    icon: Icon(Icons.add),
-                    onPressed: () {},
-                  ),
-                ],
                 leading: Container(),
                 backgroundColor: kAccentColor,
                 centerTitle: true,

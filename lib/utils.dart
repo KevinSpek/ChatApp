@@ -40,6 +40,7 @@ String presentTime(DateTime date) {
 void dialog({required BuildContext context, required Widget child}) {
   showDialog(
     barrierColor: Colors.black.withOpacity(0.3),
+    
     context: context,
     builder: (_) => GeneralDialog(
       child: child,

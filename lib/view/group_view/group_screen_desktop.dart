@@ -8,9 +8,9 @@ import 'package:groupidy/view/components/bar_info.dart';
 import 'package:groupidy/view/components/custom_icon_button.dart';
 import 'package:groupidy/view/group_view/channel_information.dart';
 import 'package:groupidy/view/group_view/group_menu.dart';
-import 'package:groupidy/view/group_view/group_information.dart';
 
 import 'channel_presentor.dart';
+import 'group_information.dart';
 
 class GroupScreenDesktop extends StatefulWidget {
   const GroupScreenDesktop({
@@ -91,7 +91,7 @@ class _GroupScreenDesktopState extends State<GroupScreenDesktop> {
                     ],
                   )),
               _showGroupProfile
-                  ? GroupProfile(group: widget.group)
+                  ? GroupInformation(group: widget.group)
                   : BarInfo(
                       title: _currentChannel.name,
                       imagePath: _currentChannel.imgPath,

@@ -9,16 +9,16 @@ import 'package:groupidy/view/components/members.dart';
 import '../../colors.dart';
 import '../../typography.dart';
 
-class GroupProfile extends StatefulWidget {
-  const GroupProfile({Key? key, required this.group}) : super(key: key);
+class GroupInformation extends StatefulWidget {
+  const GroupInformation({Key? key, required this.group}) : super(key: key);
 
   final Group group;
 
   @override
-  _GroupProfileState createState() => _GroupProfileState();
+  _GroupInformationState createState() => _GroupInformationState();
 }
 
-class _GroupProfileState extends State<GroupProfile> {
+class _GroupInformationState extends State<GroupInformation> {
   Group _group = dGroup;
 
   void _showToast(BuildContext context, String message) {
