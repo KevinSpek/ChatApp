@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:groupidy/model/channels/channel.dart';
 import 'package:groupidy/view/components/button.dart';
-import 'package:groupidy/view/components/new_channel/channel_icon_input.dart';
+import 'package:groupidy/view/components/create_new_channel/channel_icon_input.dart';
 
 import '../../colors.dart';
 import '../../typography.dart';
@@ -26,8 +26,7 @@ class _ChannelImageChangeState extends State<ChannelImageChange> {
   Widget build(BuildContext context) {
     return Container(
         padding: EdgeInsets.all(16),
-        constraints:
-            BoxConstraints(maxHeight: 300, maxWidth: 400, minWidth: 350),
+        constraints: BoxConstraints(maxHeight: 300, maxWidth: 400, minWidth: 350),
         color: kSecondaryBackground,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

@@ -9,18 +9,22 @@ import '../../../typography.dart';
 class Button extends StatelessWidget {
   final onPressed;
   final text;
-  final width;
+  final double? width;
   final TextStyle? textStyle;
   final EdgeInsetsGeometry? margin;
+  final bool standout;
+  final bool showBackground;
 
-  const Button(
-      {Key? key,
-      @required this.onPressed,
-      @required this.text,
-      @required this.width,
-      this.margin,
-      this.textStyle})
-      : super(key: key);
+  const Button({
+    Key? key,
+    @required this.onPressed,
+    @required this.text,
+    this.width,
+    this.margin,
+    this.textStyle,
+    this.standout = true,
+    this.showBackground = true,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,12 +34,13 @@ class Button extends StatelessWidget {
       height: kButtonHeight,
       child: TextButton(
         onPressed: onPressed,
-        child: Text(text,
-            style: textStyle == null
-                ? kBodyLarge.copyWith(color: Colors.white)
-                : textStyle),
+        child: Text(text, style: textStyle == null ? kBodyLarge.copyWith(color: Colors.white) : textStyle),
         style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all<Color>(kAccentColor)),
+            backgroundColor: MaterialStateProperty.all<Color>(showBackground
+                ? standout
+                    ? kAccentColor
+                    : kSecondaryBubble
+                : Colors.transparent)),
       ),
     );
   }

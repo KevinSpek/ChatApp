@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:groupidy/colors.dart';
 import 'package:groupidy/typography.dart';
+import 'package:groupidy/view/components/button.dart';
 
 class BottomButtons extends StatelessWidget {
-  const BottomButtons({
-    Key? key, 
-    required this.mainButtonText,
-    required this.onMainButtonClick,
-    required this.onCancelClick})
-      : super(key: key);
+  const BottomButtons({Key? key, required this.mainButtonText, required this.onMainButtonClick, required this.onCancelClick}) : super(key: key);
 
   final String mainButtonText;
   final VoidCallback onMainButtonClick;
@@ -21,25 +17,19 @@ class BottomButtons extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-              child: ElevatedButton(
-                  onPressed: onMainButtonClick,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8),
-                    child: Text(
-                      mainButtonText,
-                      style: kBodyLarge,
-                    ),
-                  ))),
+              child: Button(
+            onPressed: onMainButtonClick,
+            text: mainButtonText,
+            standout: true,
+          )),
+          SizedBox(width: 10),
           Expanded(
-              child: TextButton(
-                  onPressed: onCancelClick,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8),
-                    child: Text(
-                      "Cancel",
-                      style: kBodyLarge.copyWith(color: kWhite),
-                    ),
-                  )))
+            child: Button(
+              onPressed: () => Navigator.pop(context),
+              text: "Cancel",
+              showBackground: false,
+            ),
+          )
         ],
       ),
     );
