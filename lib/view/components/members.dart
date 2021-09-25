@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import '../../colors.dart';
 import '../../typography.dart';
+import 'custom_icon_button.dart';
 import 'member_info.dart';
 
 class Members extends StatelessWidget {
-  const Members({Key? key, required this.membersUids, this.title = '', this.onUserAdd})
+  const Members(
+      {Key? key, required this.membersUids, this.title = '', this.onUserAdd})
       : super(key: key);
 
   final List<String> membersUids;
@@ -27,13 +29,10 @@ class Members extends StatelessWidget {
               ),
               Row(
                 children: [
-                  IconButton(
-                      onPressed: onUserAdd,
-                      icon: Icon(
-                        Icons.person_add_rounded,
-                        color: kWhite,
-                        size: 24,
-                      ))
+                  CustomIconButton(
+                    onPressed: onUserAdd,
+                    icon: Icons.person_add_rounded,
+                  )
                 ],
               )
             ],

@@ -1,18 +1,14 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:groupidy/colors.dart';
 import 'package:groupidy/dummy_data.dart';
 import 'package:groupidy/model/channels/channel.dart';
 import 'package:groupidy/model/group.dart';
 import 'package:groupidy/typography.dart';
-import 'package:groupidy/utils.dart';
 import 'package:groupidy/view/components/bar_info.dart';
-import 'package:groupidy/view/components/circle_image.dart';
-import 'package:groupidy/view/components/edit_channel/edit_channel.dart';
-import 'package:groupidy/view/components/item_info.dart';
+import 'package:groupidy/view/components/custom_icon_button.dart';
 import 'package:groupidy/view/group_view/channel_information.dart';
 import 'package:groupidy/view/group_view/group_menu.dart';
-import 'package:groupidy/view/group_view/group_profile.dart';
+import 'package:groupidy/view/group_view/group_information.dart';
 
 import 'channel_presentor.dart';
 
@@ -106,17 +102,9 @@ class _GroupScreenDesktopState extends State<GroupScreenDesktop> {
                       itemInfoClick: () => setState(() {_showChannelInformation = true;}),
                       sideWidget: Row(
                         children: [
-                          IconButton(
-                              onPressed: () => dialog(
-                                    context: context,
-                                    child: EditChannel(
-                                      channel: _currentChannel,
-                                    ),
-                                  ),
-                              icon:
-                                  Icon(Icons.settings_outlined, color: kWhite)),
+                          CustomIconButton(icon: Icons.settings_rounded),
                           SizedBox(width: 12),
-                          Icon(Icons.search_outlined, color: kWhite),
+                          CustomIconButton(icon: Icons.search_rounded),
                         ],
                       ),
                     ),

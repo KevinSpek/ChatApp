@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:groupidy/dummy_data.dart';
 import 'package:groupidy/model/group.dart';
-import 'package:groupidy/model/user.dart';
 import 'package:groupidy/view/components/circle_image.dart';
-import 'package:groupidy/view/components/member_info.dart';
+import 'package:groupidy/view/components/custom_icon_button.dart';
 import 'package:groupidy/view/components/members.dart';
 
 import '../../colors.dart';
@@ -70,19 +69,14 @@ class _GroupProfileState extends State<GroupProfile> {
                               style: kSubTitle.copyWith(color: kWhite),
                             ),
                           ),
-                          IconButton(
+                          CustomIconButton(
                             onPressed: () => _handleCopyTag(context),
-                            icon: Icon(
-                              Icons.copy,
-                              color: kWhite,
-                            ),
+                            icon: Icons.copy,
                           ),
-                          IconButton(
-                              onPressed: () => _handleTagChange(context),
-                              icon: Icon(
-                                Icons.refresh,
-                                color: kWhite,
-                              ))
+                          CustomIconButton(
+                            onPressed: () => _handleTagChange(context),
+                            icon: Icons.refresh,
+                          )
                         ],
                       ),
                       SizedBox(
@@ -104,7 +98,10 @@ class _GroupProfileState extends State<GroupProfile> {
                 color: kWhiteDisabled,
               ),
             ),
-            Members(membersUids: _group.uids, title: 'Group members',)
+            Members(
+              membersUids: _group.uids,
+              title: 'Group members',
+            )
           ],
         ),
       ),
