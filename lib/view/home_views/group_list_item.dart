@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:groupidy/colors.dart';
+import 'package:groupidy/constants.dart';
 import 'package:groupidy/model/group.dart';
 import 'package:groupidy/model/notification_message.dart';
 import 'package:groupidy/typography.dart';
@@ -33,6 +34,7 @@ class GroupListItem extends StatelessWidget {
     return InkWell(
       onTap: () => onTap(group.gid),
       child: Container(
+        padding: EdgeInsets.all(16),
         height: 96,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,

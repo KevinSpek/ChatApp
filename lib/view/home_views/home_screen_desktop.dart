@@ -47,10 +47,7 @@ class _HomeScreenDesktopState extends State<HomeScreenDesktop> {
                 centerTitle: true,
                 title: Obx(
                   () => Text(
-                    capitalize(homeController.homeType.value
-                        .toString()
-                        .split('.')
-                        .last),
+                    homeController.getTitle(homeController.homeType.value),
                     style: kTitle3,
                   ),
                 ),

@@ -38,6 +38,7 @@ class ChannelListItem extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
+        padding: EdgeInsets.all(8),
         height: 96,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,

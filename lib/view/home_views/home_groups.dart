@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:groupidy/colors.dart';
-import 'package:groupidy/constants.dart';
 import 'package:groupidy/model/group.dart';
 import 'package:groupidy/model/notification_message.dart';
 import 'package:groupidy/utils.dart';
@@ -29,52 +28,38 @@ class HomeGroups extends StatelessWidget {
         backgroundColor: kAccentColor,
         child: Image.asset("images/group_float.png", height: 36, width: 36),
       ),
-      body: Container(
-        width: double.infinity,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: groups.map((group) {
-            var index = groups.indexOf(group);
-
-            return Padding(
-              padding: const EdgeInsets.all(kPadding / 2),
-              child: Column(
-                children: [
-                  GroupListItem(
-                    group: group,
-                    notifications: [
-                      NotificationMessage(
-                        chatID: '123',
-                        notificationType: NotificationType.chatidy,
-                        numNewMessages: 5,
-                        time: DateTime.now(),
-                      ),
-                      NotificationMessage(
-                        chatID: '123',
-                        notificationType: NotificationType.forum,
-                        numNewMessages: 5,
-                        time: DateTime.now(),
-                      ),
-                      NotificationMessage(
-                        chatID: '123',
-                        notificationType: NotificationType.news,
-                        numNewMessages: 5,
-                        time: DateTime.now(),
-                      ),
-                    ],
-                    onTap: _handleGroupTap,
-                  ),
-                  index < groups.length - 1
-                      ? Divider(
-                          color: kWhiteSecondary.withOpacity(0.3),
-                        )
-                      : SizedBox.shrink(),
-                ],
-              ),
+      body: ListView.separated(
+          itemBuilder: (context, index) {
+            return GroupListItem(
+              group: groups[index],
+              notifications: [
+                NotificationMessage(
+                  chatID: '123',
+                  notificationType: NotificationType.chatidy,
+                  numNewMessages: 5,
+                  time: DateTime.now(),
+                ),
+                NotificationMessage(
+                  chatID: '123',
+                  notificationType: NotificationType.forum,
+                  numNewMessages: 5,
+                  time: DateTime.now(),
+                ),
+                NotificationMessage(
+                  chatID: '123',
+                  notificationType: NotificationType.news,
+                  numNewMessages: 5,
+                  time: DateTime.now(),
+                ),
+              ],
+              onTap: _handleGroupTap,
             );
-          }).toList(),
-        ),
-      ),
+          },
+          separatorBuilder: (context, index) => Divider(
+                color: kWhiteSecondary.withOpacity(0.3),
+                height: 2,
+              ),
+          itemCount: groups.length),
     );
   }
 }
