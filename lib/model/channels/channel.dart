@@ -4,7 +4,7 @@ abstract class Channel {
   final String pid;
   final String name;
   final ChannelType type;
-  
+
   String? desc;
   String? iconText;
   String? imgPath;
@@ -28,7 +28,7 @@ abstract class Channel {
   });
 
   String getTypeString() {
-    String? res = ChannelTypeString[type];
+    String? res = channelTypeString[type];
     return res == null ? '' : res;
   }
 }

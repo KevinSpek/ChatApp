@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:groupidy/colors.dart';
+import 'package:groupidy/model/channels/channel_type.dart';
 
 import '../../../typography.dart';
 
-class ChannelType extends StatelessWidget {
-  const ChannelType({Key? key, required this.value, required this.onValueChange }) : super(key: key);
+class ChooseChannelType extends StatelessWidget {
+  const ChooseChannelType({Key? key, required this.value, required this.onValueChange}) : super(key: key);
 
-  final String value;
-  final Function(String?) onValueChange;
+  final ChannelType value;
+  final Function(ChannelType?) onValueChange;
 
   @override
   Widget build(BuildContext context) {
@@ -32,13 +33,13 @@ class ChannelType extends StatelessWidget {
               height: 2,
               color: kAccentColor,
             ),
-            onChanged: onValueChange,
+            onChanged: (ChannelType? val) => onValueChange(val),
             dropdownColor: kPrimaryBackground,
-            items: ['Chat', 'Forum', 'Group chat'].map((String value) {
+            items: ChannelType.values.map((ChannelType channelType) {
               return DropdownMenuItem(
-                value: value,
+                value: channelType,
                 child: Text(
-                  value,
+                  channelTypeString[channelType]!,
                   style: kBodyRegular.copyWith(color: kWhite),
                 ),
               );

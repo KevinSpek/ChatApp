@@ -7,14 +7,7 @@ import '../../../colors.dart';
 import '../../../typography.dart';
 
 class ChannelIconInput extends StatelessWidget {
-  const ChannelIconInput(
-      {Key? key,
-      required this.iconTypeSelected,
-      required this.onIconTypeSelect,
-      required this.iconText,
-      required this.channelName,
-      required this.onIconTextChange})
-      : super(key: key);
+  const ChannelIconInput({Key? key, required this.iconTypeSelected, required this.onIconTypeSelect, required this.iconText, required this.channelName, required this.onIconTextChange}) : super(key: key);
 
   final List<bool> iconTypeSelected;
   final Function(int) onIconTypeSelect;
@@ -80,6 +73,9 @@ class ChannelIconInput extends StatelessWidget {
             )
           ],
         ),
+        SizedBox(
+          height: 10,
+        ),
         Padding(
             padding: const EdgeInsets.all(16),
             child: iconTypeSelected[0]
@@ -98,11 +94,7 @@ class ChannelIconInput extends StatelessWidget {
                     ),
                     style: kBodyRegular.copyWith(color: Colors.white),
                   )
-                : Button(
-                    onPressed: null,
-                    text: "Choose icon image",
-                    textStyle: kBodyRegular.copyWith(color: kWhite),
-                    width: 240))
+                : Button(onPressed: null, text: "Choose icon image", textStyle: kBodyRegular.copyWith(color: kWhite), standout: false, width: 240))
       ],
     );
   }

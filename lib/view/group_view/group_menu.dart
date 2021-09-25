@@ -6,6 +6,9 @@ import 'package:groupidy/model/channels/channel.dart';
 import 'package:groupidy/model/group.dart';
 import 'package:groupidy/model/notification_message.dart';
 import 'package:groupidy/typography.dart';
+import 'package:groupidy/utils.dart';
+import 'package:groupidy/view/components/create_new_channel/create_new_channel.dart';
+import 'package:groupidy/view/components/custom_icon_button.dart';
 import 'package:groupidy/view/group_view/channel_list_item.dart';
 import 'package:groupidy/view/home_views/group_list_item.dart';
 
@@ -68,8 +71,11 @@ class _GroupMenuState extends State<GroupMenu> {
                   style: kBodySmall.copyWith(color: kWhite),
                 ),
                 Spacer(),
-                Icon(Icons.search, color: kWhite),
-                Icon(Icons.add, color: kWhite),
+                CustomIconButton(icon: Icons.search),
+                CustomIconButton(
+                  icon: Icons.add,
+                  onPressed: () => dialog(context: context, child: CreateNewChannel()),
+                ),
               ],
             ),
             Divider(
@@ -77,27 +83,30 @@ class _GroupMenuState extends State<GroupMenu> {
             ),
             Column(
                 children: _channels
-                    .map((channel) => ChannelListItem(channel: channel, notifications: [
-                          NotificationMessage(
-                            chatID: '123',
-                            notificationType: NotificationType.chatidy,
-                            numNewMessages: 5,
-                            time: DateTime.now(),
-                          ),
-                          NotificationMessage(
-                            chatID: '123',
-                            notificationType: NotificationType.forum,
-                            numNewMessages: 5,
-                            time: DateTime.now(),
-                          ),
-                          NotificationMessage(
-                            chatID: '123',
-                            notificationType: NotificationType.news,
-                            numNewMessages: 5,
-                            time: DateTime.now(),
-                          ),
-                        ],
-                        onTap: () => widget.onChannelChange(channel),))
+                    .map((channel) => ChannelListItem(
+                          channel: channel,
+                          notifications: [
+                            NotificationMessage(
+                              chatID: '123',
+                              notificationType: NotificationType.chatidy,
+                              numNewMessages: 5,
+                              time: DateTime.now(),
+                            ),
+                            NotificationMessage(
+                              chatID: '123',
+                              notificationType: NotificationType.forum,
+                              numNewMessages: 5,
+                              time: DateTime.now(),
+                            ),
+                            NotificationMessage(
+                              chatID: '123',
+                              notificationType: NotificationType.news,
+                              numNewMessages: 5,
+                              time: DateTime.now(),
+                            ),
+                          ],
+                          onTap: () => widget.onChannelChange(channel),
+                        ))
                     .toList()),
           ],
         ),

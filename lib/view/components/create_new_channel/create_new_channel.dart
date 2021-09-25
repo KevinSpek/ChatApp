@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:groupidy/model/channels/channel.dart';
+import 'package:groupidy/colors.dart';
+import 'package:groupidy/model/channels/channel_type.dart';
+import 'package:groupidy/typography.dart';
+import 'package:groupidy/view/components/button.dart';
 import 'package:groupidy/view/components/create_new_channel/channel_icon_input.dart';
+import 'package:groupidy/view/components/create_new_channel/channel_name.dart';
+import 'package:groupidy/view/components/create_new_channel/choose_channel_type.dart';
 
-import '../../../colors.dart';
-import '../../../typography.dart';
-import '../button.dart';
-
-class EditChannel extends StatefulWidget {
-  const EditChannel({Key? key, required this.channel}) : super(key: key);
-
-  final Channel channel;
+class CreateNewChannel extends StatefulWidget {
+  const CreateNewChannel({Key? key}) : super(key: key);
 
   @override
-  _EditChannelState createState() => _EditChannelState();
+  _CreateNewChannelState createState() => _CreateNewChannelState();
 }
 
-class _EditChannelState extends State<EditChannel> {
+class _CreateNewChannelState extends State<CreateNewChannel> {
+  ChannelType _type = ChannelType.forum;
+  String _name = "";
   String _iconText = "";
   bool _invalidName = false;
   List<bool> _iconTypeSelected = [true, false];
@@ -25,9 +26,10 @@ class _EditChannelState extends State<EditChannel> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.all(16),
-        constraints: BoxConstraints(maxHeight: 600, maxWidth: 400, minWidth: 350),
-        color: kSecondaryBackground,
+      constraints: BoxConstraints(maxHeight: 600, maxWidth: 400, minWidth: 350),
+      color: kSecondaryBackground,
+      child: Padding(
+        padding: const EdgeInsets.all(16),
         child: Stack(
           children: [
             Align(
@@ -38,7 +40,7 @@ class _EditChannelState extends State<EditChannel> {
                   color: kWhite,
                   size: 24,
                 ),
-                onPressed: null,
+                onPressed: () => Navigator.pop(context),
               ),
             ),
             Column(
@@ -47,45 +49,20 @@ class _EditChannelState extends State<EditChannel> {
                 Padding(
                   padding: const EdgeInsets.only(top: 24),
                   child: Text(
-                    "Edit Channel",
+                    "New Channel",
                     style: kBodyLarge.copyWith(color: kWhite),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 16),
-                  child: Row(
-                    children: [
-                      SizedBox(
-                        child: Text(
-                          'Name',
-                          style: kBodySmall.copyWith(color: kWhite),
-                        ),
-                        width: 80,
-                      ),
-                      Text(
-                        widget.channel.name,
-                        style: kBodySmall.copyWith(color: kWhiteSecondary),
-                      )
-                    ],
+                  padding: const EdgeInsets.only(top: 24),
+                  child: ChannelName(
+                    onValueChange: (newValue) => setState(() => {_name = newValue}),
+                    invalidName: _invalidName,
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 8),
-                  child: Row(
-                    children: [
-                      SizedBox(
-                        child: Text(
-                          'Type',
-                          style: kBodySmall.copyWith(color: kWhite),
-                        ),
-                        width: 80,
-                      ),
-                      Text(
-                        widget.channel.getTypeString(),
-                        style: kBodySmall.copyWith(color: kWhiteSecondary),
-                      )
-                    ],
-                  ),
+                  padding: const EdgeInsets.only(top: 16),
+                  child: ChooseChannelType(value: _type, onValueChange: (newValue) => setState(() => {_type = newValue!})),
                 ),
                 Padding(
                     padding: const EdgeInsets.only(top: 16),
@@ -99,7 +76,7 @@ class _EditChannelState extends State<EditChannel> {
                           },
                         )
                       },
-                      channelName: widget.channel.name,
+                      channelName: _name,
                       iconText: _iconText,
                       onIconTextChange: (text) => {
                         setState(() {
@@ -110,12 +87,15 @@ class _EditChannelState extends State<EditChannel> {
                 Spacer(),
                 Button(
                   onPressed: null,
-                  text: "Update",
+                  text: "Create",
                   width: double.infinity,
+                  standout: false,
                 )
               ],
             )
           ],
-        ));
+        ),
+      ),
+    );
   }
 }
