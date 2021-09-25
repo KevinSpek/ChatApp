@@ -4,13 +4,7 @@ import 'package:groupidy/constants.dart';
 import 'package:groupidy/typography.dart';
 
 class TextFieldBar extends StatefulWidget {
-  TextFieldBar(
-      {Key? key,
-      required this.onSend,
-      this.outerPadding = 8.0,
-      this.textStyle,
-      this.hintStyle})
-      : super(key: key);
+  TextFieldBar({Key? key, required this.onSend, this.outerPadding = 8.0, this.textStyle, this.hintStyle}) : super(key: key);
 
   final void Function(String) onSend;
   final double outerPadding;
@@ -44,12 +38,9 @@ class _TextFieldBarState extends State<TextFieldBar> {
             children: [
               Container(
                 constraints: BoxConstraints(maxHeight: 108),
-                width: constraints.maxWidth -
-                    sendButtonSize -
-                    widget.outerPadding * 2 -
-                    10,
+                width: constraints.maxWidth - sendButtonSize - widget.outerPadding * 2 - 10,
                 decoration: BoxDecoration(
-                  color: kSecondaryBubble,
+                  color: kSecondaryBubbleLighter,
                   borderRadius: BorderRadius.circular(kRadius),
                 ),
                 child: Padding(
@@ -60,8 +51,7 @@ class _TextFieldBarState extends State<TextFieldBar> {
                     decoration: InputDecoration.collapsed(
                       hintText: "Type your message here...",
                       border: InputBorder.none,
-                      hintStyle: widget.hintStyle == null ? kBodySmall.copyWith(
-                          color: Colors.white.withOpacity(0.3)) : widget.hintStyle,
+                      hintStyle: widget.hintStyle == null ? kBodySmall.copyWith(color: Colors.white.withOpacity(0.3)) : widget.hintStyle,
                     ),
                     maxLines: 20,
                     minLines: 1,
@@ -78,9 +68,11 @@ class _TextFieldBarState extends State<TextFieldBar> {
                       height: sendButtonSize,
                       width: sendButtonSize,
                       child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Icon(Icons.send_rounded, color: kWhite,)
-                      ),
+                          padding: const EdgeInsets.all(8.0),
+                          child: Icon(
+                            Icons.send_rounded,
+                            color: kWhite,
+                          )),
                     ),
                   ),
                 ),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 const kPrimaryColor = Color(0xff1F4068);
 const kPrimaryBubble = Color(0xff596983);
 const kSecondaryBubble = Color(0xff393E46);
+const kSecondaryBubbleLighter = Color(0xff575b63);
 const kDisabledBubble = Color(0xff1B2027);
 const kAccentColor = Color(0xff329EAD);
 const kPrimaryBackground = Color(0xff0E1D30);
