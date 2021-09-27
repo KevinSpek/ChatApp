@@ -6,7 +6,6 @@ import 'package:groupidy/utils.dart';
 import 'package:groupidy/view/components/button.dart';
 import 'package:groupidy/view/components/circle_image.dart';
 import 'package:groupidy/view/components/custom_editable_text.dart';
-import 'package:groupidy/view/components/member_info.dart';
 import 'package:groupidy/view/components/members.dart';
 import 'package:groupidy/view/group_view/channel_image_change.dart';
 

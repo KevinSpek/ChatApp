@@ -42,70 +42,69 @@ class _GroupInformationState extends State<GroupInformation> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: kSecondaryBackground,
-      child: Padding(
-        padding: const EdgeInsets.all(32),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                CircleImage(
-                  size: 160,
-                  imagePath: _group.imgPath,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 32),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(right: 16),
-                            child: Text(
-                              _group.name + "#" + _group.tag,
-                              style: kSubTitle.copyWith(color: kWhite),
-                            ),
-                          ),
-                          CustomIconButton(
-                            onPressed: () => _handleCopyTag(context),
-                            icon: Icons.copy,
-                          ),
-                          CustomIconButton(
-                            onPressed: () => _handleTagChange(context),
-                            icon: Icons.refresh,
-                          )
-                        ],
-                      ),
-                      SizedBox(
-                        width: 360,
-                        child: Text(
-                          "Copy and share the tag with friends to invite them into the group",
-                          style: kBodySmall.copyWith(color: kWhiteSecondary),
-                        ),
-                      )
-                    ],
+    return Expanded(
+      child: SingleChildScrollView(
+          padding: const EdgeInsets.all(32),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  CircleImage(
+                    size: 160,
+                    imagePath: _group.imgPath,
                   ),
-                )
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 32),
-              child: Divider(
-                height: 1,
-                color: kWhiteDisabled,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 32),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(right: 16),
+                              child: Text(
+                                _group.name + "#" + _group.tag,
+                                style: kSubTitle.copyWith(color: kWhite),
+                              ),
+                            ),
+                            CustomIconButton(
+                              onPressed: () => _handleCopyTag(context),
+                              icon: Icons.copy,
+                            ),
+                            CustomIconButton(
+                              onPressed: () => _handleTagChange(context),
+                              icon: Icons.refresh,
+                            )
+                          ],
+                        ),
+                        SizedBox(
+                          width: 360,
+                          child: Text(
+                            "Copy and share the tag with friends to invite them into the group",
+                            style: kBodySmall.copyWith(color: kWhiteSecondary),
+                          ),
+                        )
+                      ],
+                    ),
+                  )
+                ],
               ),
-            ),
-            Members(
-              membersUids: _group.uids,
-              title: 'Group members',
-              ownerUid: _group.ownerUid,
-            )
-          ],
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 32),
+                child: Divider(
+                  height: 1,
+                  color: kWhiteDisabled,
+                ),
+              ),
+              Members(
+                membersUids: _group.uids,
+                title: 'Group members',
+                ownerUid: _group.ownerUid,
+              )
+            ],
+          ),
         ),
-      ),
     );
   }
 }
