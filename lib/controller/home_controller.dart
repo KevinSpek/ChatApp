@@ -21,5 +21,14 @@ class HomeController extends GetxController {
     }
   }
 
+  String getImagePath(HomeType item) {
+    switch (item) {
+      case HomeType.chatidy : return "chatidy.svg";
+      case HomeType.groups : return "group.svg";
+      case HomeType.profile : return "user.svg";
+      case HomeType.settings : return "settings.svg";
+    }
+  }
+
   final List menuItems = [HomeType.chatidy, HomeType.groups, HomeType.profile, HomeType.settings];
 }

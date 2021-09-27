@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_svg/parser.dart';
 import 'package:get/get.dart';
 import 'package:groupidy/colors.dart';
 import 'package:groupidy/controller/home_controller.dart';
@@ -26,18 +25,17 @@ class _HomeMenuState extends State<HomeMenu> {
           Row(
             children: [
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(16.0),
                 child: Text(
                   "Groupidy",
-                  textAlign: TextAlign.start,
-                  style: kSubTitle.copyWith(color: Colors.white),
+                  style: kSubTitle.copyWith(color: kWhite),
                 ),
               ),
               Spacer()
             ],
           ),
           SizedBox(
-            height: 24,
+            height: 8,
           ),
           Expanded(
             child: ListView.builder(
@@ -47,6 +45,7 @@ class _HomeMenuState extends State<HomeMenu> {
                 return Obx(() => MenuItem(
                     selected: homeController.homeType.value == currentHomeType,
                     text: homeController.getTitle(currentHomeType),
+                    imagePath: homeController.getImagePath(currentHomeType),
                     onTap: () => {homeController.updateItem(currentHomeType)}));
               },
             ),
@@ -62,10 +61,13 @@ class MenuItem extends StatelessWidget {
     Key? key,
     required this.selected,
     required this.text,
+    required this.imagePath,
     required this.onTap,
   }) : super(key: key);
+
   final bool selected;
   final String text;
+  final String imagePath;
   final VoidCallback onTap;
 
   @override
@@ -79,16 +81,16 @@ class MenuItem extends StatelessWidget {
           decoration: BoxDecoration(
               border: Border(
                   right: BorderSide(
-            color: selected ? kWhite : Colors.white.withOpacity(0),
+            color: selected ? kWhite : Colors.transparent,
             width: 3,
           ))),
           child: Row(
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 8, right: 16),
+                padding: const EdgeInsets.only(left: 16, right: 16),
                 child: SvgPicture.asset(
-                  "assets/chatidy.svg",
-                  semanticsLabel: 'chatidy',
+                  imagePath,
+                  semanticsLabel: text,
                   width: 32,
                   height: 32,
                   color: selected ? kWhite : kWhiteSecondary,
