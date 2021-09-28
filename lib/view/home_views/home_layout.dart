@@ -3,6 +3,9 @@ import 'package:get/get.dart';
 import 'package:groupidy/controller/home_controller.dart';
 import 'package:groupidy/responsive/responsive_layout.dart';
 import 'package:groupidy/view/home_views/home_screen_desktop.dart';
+import 'package:groupidy/view/home_views/home_screen_mobile.dart';
+
+import 'home_menu.dart';
 
 class HomeLayout extends StatefulWidget {
   const HomeLayout({Key? key}) : super(key: key);
@@ -13,8 +16,21 @@ class HomeLayout extends StatefulWidget {
 
 class _HomeLayoutState extends State<HomeLayout> {
   final HomeController homeController = Get.put(HomeController());
+
   @override
   Widget build(BuildContext context) {
-    return ResponsiveLayout(mobile: HomeScreenDesktop());
+    return Scaffold(
+      body: ResponsiveLayout(
+        mobile: HomeScreenMobile(),
+        desktop: Row(children: [
+          HomeMenu(),
+          HomeScreenDesktop(),
+        ]),
+        tablet: Row(children: [
+          HomeMenu(),
+          HomeScreenDesktop(),
+        ]),
+      ),
+    );
   }
 }

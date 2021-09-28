@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:groupidy/colors.dart';
 import 'package:groupidy/constants.dart';
 import 'package:groupidy/typography.dart';
-import 'package:groupidy/view/home_views/settings_items/settings_toggle.dart';
+import 'settings_items/settings_toggle.dart';
 
 class HomeSettings extends StatelessWidget {
   const HomeSettings({Key? key}) : super(key: key);

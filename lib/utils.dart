@@ -24,12 +24,7 @@ String capitalize(String string) {
 }
 
 String presentTime(DateTime date) {
-  String completeZero(String str) {
-    if (str.length == 1) {
-      return '0${str}';
-    }
-    return str;
-  }
+  String completeZero(String str) => str.length == 1 ? '0' + str : str;
 
   String hour = '${date.hour}';
   String minute = '${date.minute}';
@@ -47,3 +42,12 @@ void dialog({required BuildContext context, required Widget child}) {
     ),
   );
 }
+
+void showToast(BuildContext context, String message) {
+    final scaffold = ScaffoldMessenger.of(context);
+    scaffold.showSnackBar(
+      SnackBar(
+        content: Text(message),
+      ),
+    );
+  }

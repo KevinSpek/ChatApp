@@ -6,8 +6,8 @@ import 'package:groupidy/view/components/item_info.dart';
 import 'package:groupidy/view/notification_views/notification_item.dart';
 import 'package:groupidy/view/notification_views/notification_side.dart';
 
-import '../../colors.dart';
-import '../../typography.dart';
+import '../../../colors.dart';
+import '../../../typography.dart';
 
 class ChatidyMenu extends StatelessWidget {
   const ChatidyMenu(

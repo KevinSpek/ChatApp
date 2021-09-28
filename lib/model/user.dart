@@ -12,4 +12,8 @@ class User {
     required this.nickname,
     this.imgPath = "",
   });
+
+  String getNicknameTagCombination() {
+    return nickname + '#' + tag;
+  }
 }

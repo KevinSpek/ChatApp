@@ -7,7 +7,8 @@ import 'package:groupidy/view/components/circle_image.dart';
 import 'package:groupidy/view/components/custom_icon_button.dart';
 import 'package:groupidy/view/components/messages_container.dart';
 import 'package:groupidy/view/components/textfield_bar.dart';
-import 'package:groupidy/view/home_views/home_chatidy_menu.dart';
+
+import 'home_chatidy_menu.dart';
 
 class HomeChatidy extends StatefulWidget {
   const HomeChatidy({Key? key}) : super(key: key);

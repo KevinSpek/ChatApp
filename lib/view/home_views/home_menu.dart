@@ -18,21 +18,26 @@ class _HomeMenuState extends State<HomeMenu> {
 
   @override
   Widget build(BuildContext context) {
+    bool hideNavText = context.width < 1200;
     return Container(
       color: kPrimaryColor,
+      width: hideNavText ? 70 : 200,
       child: Column(
         children: [
-          Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text(
-                  "Groupidy",
-                  style: kSubTitle.copyWith(color: kWhite),
+          Visibility(
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text(
+                    "Groupidy",
+                    style: kSubTitle.copyWith(color: kWhite),
+                  ),
                 ),
-              ),
-              Spacer()
-            ],
+                Spacer()
+              ],
+            ),
+            visible: !hideNavText,
           ),
           SizedBox(
             height: 8,
@@ -43,10 +48,12 @@ class _HomeMenuState extends State<HomeMenu> {
               itemBuilder: (buildContext, index) {
                 HomeType currentHomeType = homeController.menuItems[index];
                 return Obx(() => MenuItem(
+                    noText: hideNavText,
                     selected: homeController.homeType.value == currentHomeType,
                     text: homeController.getTitle(currentHomeType),
                     imagePath: homeController.getImagePath(currentHomeType),
-                    onTap: () => {homeController.updateItem(currentHomeType)}));
+                    onTap: () => {homeController.updateItem(currentHomeType)}
+                    ));
               },
             ),
           ),
@@ -63,12 +70,14 @@ class MenuItem extends StatelessWidget {
     required this.text,
     required this.imagePath,
     required this.onTap,
+    this.noText = false,
   }) : super(key: key);
 
   final bool selected;
   final String text;
   final String imagePath;
   final VoidCallback onTap;
+  final bool noText;
 
   @override
   Widget build(BuildContext context) {
@@ -96,14 +105,17 @@ class MenuItem extends StatelessWidget {
                   color: selected ? kWhite : kWhiteSecondary,
                 ),
               ),
-              Container(
-                child: Text(
-                  text,
-                  textAlign: TextAlign.start,
-                  style: kBodyLarge.copyWith(
-                    color: selected ? kWhite : kWhiteSecondary,
+              Visibility(
+                child: Container(
+                  child: Text(
+                    text,
+                    textAlign: TextAlign.start,
+                    style: kBodyLarge.copyWith(
+                      color: selected ? kWhite : kWhiteSecondary,
+                    ),
                   ),
                 ),
+                visible: !noText,
               ),
             ],
           ),
