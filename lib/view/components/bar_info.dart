@@ -11,7 +11,8 @@ class BarInfo extends StatelessWidget {
     required this.title,
     this.subTitle,
     this.imagePath,
-    this.sideWidget,
+    this.leftWidget,
+    this.rightWidget,
     this.useIconText = false,
     this.iconText,
   }) : super(key: key);
@@ -21,7 +22,8 @@ class BarInfo extends StatelessWidget {
   final String title;
   final String? subTitle;
   final String? imagePath;
-  final Widget? sideWidget;
+  final Widget? leftWidget;
+  final Widget? rightWidget;
   final bool useIconText;
   final String? iconText;
 
@@ -35,6 +37,7 @@ class BarInfo extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            leftWidget == null ? SizedBox.shrink() : leftWidget!,
             InkWell(
               onTap: itemInfoClick,
               child: Row(
@@ -50,7 +53,7 @@ class BarInfo extends StatelessWidget {
               ),
             ),
             Spacer(),
-            sideWidget == null ? SizedBox.shrink() : sideWidget!,
+            rightWidget == null ? SizedBox.shrink() : rightWidget!,
           ],
         ),
       ),

@@ -14,6 +14,7 @@ class Button extends StatelessWidget {
   final EdgeInsetsGeometry? margin;
   final bool standout;
   final bool showBackground;
+  final Color backgroundColor;
 
   const Button({
     Key? key,
@@ -24,6 +25,7 @@ class Button extends StatelessWidget {
     this.textStyle,
     this.standout = true,
     this.showBackground = true,
+    this.backgroundColor = kAccentColor,
   }) : super(key: key);
 
   @override
@@ -38,7 +40,7 @@ class Button extends StatelessWidget {
         style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all<Color>(showBackground
                 ? standout
-                    ? kAccentColor
+                    ? backgroundColor
                     : kSecondaryBubble
                 : Colors.transparent)),
       ),

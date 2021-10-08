@@ -82,7 +82,7 @@ class _GroupScreenDesktopState extends State<GroupScreenDesktop> {
                   imagePath: widget.group.imgPath,
                   subTitle: '${widget.group.uids.length} Users',
                   itemInfoClick: _handleShowGroupProfile,
-                  sideWidget: Row(
+                  rightWidget: Row(
                     children: [
                       Icon(Icons.person_add, color: kWhite),
                       SizedBox(width: 12),
@@ -100,7 +100,7 @@ class _GroupScreenDesktopState extends State<GroupScreenDesktop> {
                       useIconText: !_currentChannel.isImage,
                       iconText: _currentChannel.iconText,
                       itemInfoClick: () => setState(() {_showChannelInformation = true;}),
-                      sideWidget: Row(
+                      rightWidget: Row(
                         children: [
                           CustomIconButton(icon: Icons.settings_rounded),
                           SizedBox(width: 12),
