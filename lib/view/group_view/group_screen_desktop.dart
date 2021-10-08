@@ -37,8 +37,7 @@ class _GroupScreenDesktopState extends State<GroupScreenDesktop> {
   void initState() {
     if (widget.group.pids.length == 0) return;
     setState(() {
-      _currentChannel = dChannels
-          .firstWhere((channel) => channel.pid == widget.group.pids[0]);
+      _currentChannel = dChannels.firstWhere((channel) => channel.pid == widget.group.pids[0]);
       _showGroupProfile = false;
       _showChannelInformation = false;
     });
@@ -62,12 +61,15 @@ class _GroupScreenDesktopState extends State<GroupScreenDesktop> {
 
   @override
   Widget build(BuildContext context) {
+    final bool noText = MediaQuery.of(context).size.width < 1200;
+    final double menuWidth = noText ? 80 : 332;
     return Scaffold(
         body: Row(
       children: [
         Container(
           width: menuWidth,
           child: GroupMenu(
+            noText: noText,
             pids: widget.group.pids,
             onChannelChange: handleChannelChange,
           ),
@@ -86,8 +88,7 @@ class _GroupScreenDesktopState extends State<GroupScreenDesktop> {
                     children: [
                       Icon(Icons.person_add, color: kWhite),
                       SizedBox(width: 12),
-                      Text('Invite Friends',
-                          style: kBodySmall.copyWith(color: kWhite)),
+                      Text('Invite Friends', style: kBodySmall.copyWith(color: kWhite)),
                     ],
                   )),
               _showGroupProfile
@@ -99,7 +100,9 @@ class _GroupScreenDesktopState extends State<GroupScreenDesktop> {
                       color: kAccentColor.withOpacity(0.8),
                       useIconText: !_currentChannel.isImage,
                       iconText: _currentChannel.iconText,
-                      itemInfoClick: () => setState(() {_showChannelInformation = true;}),
+                      itemInfoClick: () => setState(() {
+                        _showChannelInformation = true;
+                      }),
                       rightWidget: Row(
                         children: [
                           CustomIconButton(icon: Icons.settings_rounded),
