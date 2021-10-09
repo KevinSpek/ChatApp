@@ -67,7 +67,7 @@ class _GroupMenuState extends State<GroupMenu> {
                     ),
                   ],
                 ),
-          SizedBox(height: 36),
+          SizedBox(height: widget.noText ? 8 : 36),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: widget.noText
