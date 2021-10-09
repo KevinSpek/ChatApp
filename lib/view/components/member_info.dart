@@ -17,7 +17,7 @@ class MemberInfo extends StatefulWidget {
 }
 
 class _MemberInfoState extends State<MemberInfo> {
-  User _user = User(uid: '', tag: '', nickname: '');
+  UserGp _user = UserGp(uid: '', tag: '', nickname: '');
 
   @override
   void initState() {

@@ -15,7 +15,7 @@ class HomeProfile extends StatefulWidget {
 }
 
 class _HomeProfileState extends State<HomeProfile> {
-  User _currentUser = dUser1;
+  UserGp _currentUser = dUser1;
 
   void _showToast(BuildContext context, String message) {
     final scaffold = ScaffoldMessenger.of(context);

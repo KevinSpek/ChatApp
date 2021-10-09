@@ -11,7 +11,7 @@ import '../../../utils.dart';
 class HomeProfileMobile extends StatelessWidget {
   const HomeProfileMobile({Key? key, required this.user}) : super(key: key);
 
-  final User user;
+  final UserGp user;
 
   void handleCopyTag(BuildContext context) {
     Clipboard.setData(

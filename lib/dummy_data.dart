@@ -11,10 +11,10 @@ import 'package:groupidy/model/user.dart';
 
 String dUid = '1';
 
-User dUser1 = User(uid: '1', tag: 'ab12', nickname: 'Eden', imgPath: 'https://media-exp1.licdn.com/dms/image/C4D03AQEQe6M3QwTC0w/profile-displayphoto-shrink_200_200/0/1561177184315?e=1636588800&v=beta&t=gGT8U9O7wb1TkjbUcusCYrT0aFpJ_ruE8ANmKV5AMPA');
-User dUser2 = User(uid: '2', tag: 'Vf43', nickname: 'Barak', imgPath: 'https://media-exp1.licdn.com/dms/image/C4D03AQFRv1zfNm1LxQ/profile-displayphoto-shrink_100_100/0/1589882621994?e=1636588800&v=beta&t=ZACv92u-qzGmEomhZlhQngvkErWiYUy7Q6jWo8MyMaI');
-User dUser3 = User(uid: '3', tag: 'l432', nickname: 'Nethanel', imgPath: "https://fiverr-res.cloudinary.com/t_profile_original,q_auto,f_auto/attachments/profile/photo/d6ed158fde7e38a00e345019da620e7b-1522352574301/428b40f8-bf05-4ff8-9bdc-4ef72bb9e829.jpg");
-User dUser4 = User(uid: '4', tag: 'j792', nickname: 'Kevin', imgPath: "https://media-exp1.licdn.com/dms/image/C4D03AQEaowcCOLbjHA/profile-displayphoto-shrink_200_200/0/1618726633039?e=1634169600&v=beta&t=F4b94FPBWoHjqeHeKiuOatlA1tmu_cnyq5M4diiEhk4");
+UserGp dUser1 = UserGp(uid: '1', tag: 'ab12', nickname: 'Eden', imgPath: 'https://media-exp1.licdn.com/dms/image/C4D03AQEQe6M3QwTC0w/profile-displayphoto-shrink_200_200/0/1561177184315?e=1636588800&v=beta&t=gGT8U9O7wb1TkjbUcusCYrT0aFpJ_ruE8ANmKV5AMPA');
+UserGp dUser2 = UserGp(uid: '2', tag: 'Vf43', nickname: 'Barak', imgPath: 'https://media-exp1.licdn.com/dms/image/C4D03AQFRv1zfNm1LxQ/profile-displayphoto-shrink_100_100/0/1589882621994?e=1636588800&v=beta&t=ZACv92u-qzGmEomhZlhQngvkErWiYUy7Q6jWo8MyMaI');
+UserGp dUser3 = UserGp(uid: '3', tag: 'l432', nickname: 'Nethanel', imgPath: "https://fiverr-res.cloudinary.com/t_profile_original,q_auto,f_auto/attachments/profile/photo/d6ed158fde7e38a00e345019da620e7b-1522352574301/428b40f8-bf05-4ff8-9bdc-4ef72bb9e829.jpg");
+UserGp dUser4 = UserGp(uid: '4', tag: 'j792', nickname: 'Kevin', imgPath: "https://media-exp1.licdn.com/dms/image/C4D03AQEaowcCOLbjHA/profile-displayphoto-shrink_200_200/0/1618726633039?e=1634169600&v=beta&t=F4b94FPBWoHjqeHeKiuOatlA1tmu_cnyq5M4diiEhk4");
 
 Group dGroup = Group(gid: '', name: 'Groupidy', tag: '12Df', imgPath: 'https://play-lh.googleusercontent.com/T318ypZHcazneol5LFPSp7H-Pw14y2FZ5RVZO_An5tx-4m-IYIjcqqoOMxNlYupbdg', ownerUid: '1', lastUpdated: DateTime.now(), uids: ['1', '2', '3', '4'], pids: ['1', '2', '3']);
 
@@ -42,7 +42,7 @@ List<Group> dGroups = [
 
 Post dPost = Post(chatMsg: Message(senderID: dUid, msg: loremIpsumLong, date: DateTime.now().subtract(Duration(minutes: 17)), userNickname: "ntnlbar"));
 
-List<User> dUsers = [dUser1, dUser2, dUser3, dUser4];
+List<UserGp> dUsers = [dUser1, dUser2, dUser3, dUser4];
 
 List<Message> dGroupMessages = [
   Message(senderID: '1', msg: 'Lets play tonight?', date: DateTime(2020, 12, 20, 17, 30), userNickname: 'Eden'),
@@ -89,13 +89,13 @@ Post dPost1 = Post(chatMsg: Message(senderID: '1', msg: loremIpsumLong, date: Da
 
 Post dPost2 = Post(chatMsg: Message(senderID: '2', msg: loremIpsumShort, date: DateTime(2020, 12, 24, 11, 29), userNickname: 'Barak'), comments: 3, likes: 29);
 
-Chat dChat1 = Chat(lastUpdated: DateTime.now().subtract(Duration(minutes: 6)), messages: dChatidiyMessages, uids: ["1", "2"], userToChat: User(uid: '2', tag: '#123', nickname: 'Barak'));
+Chat dChat1 = Chat(lastUpdated: DateTime.now().subtract(Duration(minutes: 6)), messages: dChatidiyMessages, uids: ["1", "2"], userToChat: UserGp(uid: '2', tag: '#123', nickname: 'Barak'));
 
 Chat dChat2 = Chat(
     lastUpdated: DateTime.now().subtract(Duration(minutes: 13)),
     messages: dChatidiyMessages2,
     uids: ["1", "3"],
-    userToChat: User(uid: '3', tag: '#123', nickname: 'ntnlbar', imgPath: "https://fiverr-res.cloudinary.com/t_profile_original,q_auto,f_auto/attachments/profile/photo/d6ed158fde7e38a00e345019da620e7b-1522352574301/428b40f8-bf05-4ff8-9bdc-4ef72bb9e829.jpg"));
+    userToChat: UserGp(uid: '3', tag: '#123', nickname: 'ntnlbar', imgPath: "https://fiverr-res.cloudinary.com/t_profile_original,q_auto,f_auto/attachments/profile/photo/d6ed158fde7e38a00e345019da620e7b-1522352574301/428b40f8-bf05-4ff8-9bdc-4ef72bb9e829.jpg"));
 
 List<Chat> dChats = [
   dChat1,

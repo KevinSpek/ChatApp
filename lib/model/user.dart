@@ -1,4 +1,4 @@
-class User {
+class UserGp {
   final String uid;
   final String tag;
   String nickname;
@@ -6,7 +6,7 @@ class User {
   String imgPath = '';
   DateTime lastUpdated = DateTime.now();
 
-  User({
+  UserGp({
     required this.uid,
     required this.tag,
     required this.nickname,

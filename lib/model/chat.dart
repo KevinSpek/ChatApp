@@ -5,7 +5,7 @@ class Chat {
   List<Message> messages;
   DateTime lastUpdated;
   List<String> uids;
-  User userToChat;
+  UserGp userToChat;
 
   Chat({
     required this.lastUpdated,

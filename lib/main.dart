@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:groupidy/colors.dart';
+import 'package:groupidy/controller/user_controller.dart';
 import 'package:groupidy/dummy_data.dart';
 import 'package:groupidy/model/channels/channel_type.dart';
 import 'package:groupidy/utils.dart';
@@ -31,6 +32,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+  final UserController userController = Get.put(UserController());
 
   @override
   Widget build(BuildContext context) {
@@ -43,20 +45,33 @@ class _MyAppState extends State<MyApp> {
         }
 
         if (snapshot.connectionState == ConnectionState.done) {
-          return GetMaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: 'Groupidy',
-            initialRoute: '/home',
-            routes: {
-              '/': (context) => WelcomeLayout(),
-              '/join': (context) => JoinLayout(),
-              '/login': (context) => LoginLayout(),
-              '/splash': (context) => SplashLayout(),
-              '/home': (context) => HomeLayout(),
-              '/group': (context) => GroupLayout(),
-              '/test': (context) => WelcomeLayout(),
-            },
-          );
+          return Obx(() {
+            if (userController.isLoggedIn.value) {
+              return GetMaterialApp(
+                    debugShowCheckedModeBanner: false,
+                    title: 'Groupidy',
+                    initialRoute: '/home',
+                    routes: {
+                      '/home': (context) => HomeLayout(),
+                      '/group': (context) => GroupLayout(),
+                      '/splash': (context) => SplashLayout(),
+                      '/test': (context) => WelcomeLayout(),
+                    },
+                  );
+            } else {
+                return GetMaterialApp(
+                    debugShowCheckedModeBanner: false,
+                    title: 'Groupidy',
+                    initialRoute: '/',
+                    routes: {
+                      '/': (context) => WelcomeLayout(),
+                      '/join': (context) => JoinLayout(),
+                      '/login': (context) => LoginLayout(),
+                      '/splash': (context) => SplashLayout(),
+                    },
+                  );
+            }
+          });
         }
 
         return SplashLayout();
