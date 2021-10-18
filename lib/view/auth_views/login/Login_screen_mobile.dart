@@ -17,6 +17,11 @@ class LoginScreenMobile extends StatefulWidget {
 class _LoginScreenMobileState extends State<LoginScreenMobile> {
   var pos = JoinPosition.phoneNumber;
 
+  String phone = "";
+  String verification = "";
+  bool isError = false;
+  bool isLoading = false;
+
   void _conitnue() {
     if (pos == JoinPosition.phoneNumber) {
       setState(() {
@@ -26,6 +31,25 @@ class _LoginScreenMobileState extends State<LoginScreenMobile> {
       // login user....
       Get..toNamed('/home');
     }
+  }
+
+  void phoneSubmit(String newPhone) {
+    phone = newPhone;
+  }
+
+  void verificationSubmit(String newVerification) {
+    verification = newVerification;
+  }
+
+  void onError(bool newError) {
+    isError = newError;
+  }
+
+  void onSuccess() {
+    setState(() {
+      isError = false;
+      isLoading = false;
+    });
   }
 
   @override
@@ -61,6 +85,11 @@ class _LoginScreenMobileState extends State<LoginScreenMobile> {
                         hintText: "123 123 123",
                         show: pos == JoinPosition.phoneNumber,
                         joinPosition: JoinPosition.phoneNumber,
+                        onNickname: (str) {},
+                        onPhone: phoneSubmit,
+                        onVerification: (str) {},
+                        onError: onError,
+                        onSuccess: onSuccess,
                       ),
                       JoinComponent(
                         title: "Enter verification code",
@@ -69,6 +98,11 @@ class _LoginScreenMobileState extends State<LoginScreenMobile> {
                         hintText: "Example: 123456",
                         show: pos == JoinPosition.VerificationCode,
                         joinPosition: JoinPosition.VerificationCode,
+                        onNickname: (str) {},
+                        onPhone: (str) {},
+                        onVerification: verificationSubmit,
+                        onError: onError,
+                        onSuccess: onSuccess,
                       ),
                     ],
                   ),

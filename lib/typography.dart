@@ -8,4 +8,4 @@ final kSubTitle = GoogleFonts.rubik(textStyle: TextStyle(fontSize: 26, fontWeigh
 final kBodyLarge = GoogleFonts.rubik(textStyle: TextStyle(fontSize: 24, fontWeight: FontWeight.w400, letterSpacing: -0.5));
 final kBodyRegular = GoogleFonts.rubik(textStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.w400, letterSpacing: 2));
 final kBodySmall = GoogleFonts.rubik(textStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, letterSpacing: 2));
-final kCaption = GoogleFonts.rubik(textStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w400, letterSpacing: -1));
+final kCaption = GoogleFonts.rubik(textStyle: TextStyle(fontSize: 12, fontWeight: FontWeight.w400, letterSpacing: 1));

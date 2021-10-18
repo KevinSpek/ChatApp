@@ -5,6 +5,7 @@ import 'package:groupidy/colors.dart';
 import 'package:groupidy/controller/user_controller.dart';
 import 'package:groupidy/dummy_data.dart';
 import 'package:groupidy/model/channels/channel_type.dart';
+import 'package:groupidy/routes/app_pages.dart';
 import 'package:groupidy/utils.dart';
 import 'package:groupidy/view/auth_views/join/join_layout.dart';
 import 'package:groupidy/view/auth_views/login/login_layout.dart';
@@ -34,6 +35,37 @@ class _MyAppState extends State<MyApp> {
   final Future<FirebaseApp> _initialization = Firebase.initializeApp();
   final UserController userController = Get.put(UserController());
 
+  bool isLoading = false;
+  late bool prevLogState;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    prevLogState = userController.isLoggedIn.value;
+    super.initState();
+  }
+
+  void redirect() {
+    setState(() {
+      isLoading = true;
+    });
+    String route = Get.currentRoute;
+    if (userController.isLoggedIn.value) {
+      List<String> allowedRoutes = ["/home", "/group"];
+      if (!(allowedRoutes.contains(route))) {
+        Get.toNamed("/home");
+      }
+    } else {
+      List<String> allowedRoutes = ["/join", "/login", "/"];
+      if (!(allowedRoutes.contains(route))) {
+        Get.toNamed("/");
+      }
+    }
+    setState(() {
+      isLoading = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -46,34 +78,16 @@ class _MyAppState extends State<MyApp> {
 
         if (snapshot.connectionState == ConnectionState.done) {
           return Obx(() {
-            if (userController.isLoggedIn.value) {
-              return GetMaterialApp(
-                    debugShowCheckedModeBanner: false,
-                    title: 'Groupidy',
-                    initialRoute: '/home',
-                    routes: {
-                      '/home': (context) => HomeLayout(),
-                      '/group': (context) => GroupLayout(),
-                      '/splash': (context) => SplashLayout(),
-                      '/test': (context) => WelcomeLayout(),
-                    },
-                  );
-            } else {
-                return GetMaterialApp(
-                    debugShowCheckedModeBanner: false,
-                    title: 'Groupidy',
-                    initialRoute: '/',
-                    routes: {
-                      '/': (context) => WelcomeLayout(),
-                      '/join': (context) => JoinLayout(),
-                      '/login': (context) => LoginLayout(),
-                      '/splash': (context) => SplashLayout(),
-                    },
-                  );
-            }
+            bool isLogged = userController.isLoggedIn.value;
+
+            return GetMaterialApp(
+              debugShowCheckedModeBanner: false,
+              title: 'Groupidy',
+              initialRoute: AppPages.INITIAL,
+              getPages: AppPages.routes,
+            );
           });
         }
-
         return SplashLayout();
       },
     );

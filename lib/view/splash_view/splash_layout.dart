@@ -4,7 +4,9 @@ import 'package:groupidy/responsive/responsive_layout.dart';
 import 'splash_screen_mobile.dart';
 
 class SplashLayout extends StatelessWidget {
-  const SplashLayout({Key? key}) : super(key: key);
+  const SplashLayout({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

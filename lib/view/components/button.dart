@@ -34,15 +34,25 @@ class Button extends StatelessWidget {
       margin: margin,
       width: width,
       height: kButtonHeight,
-      child: TextButton(
-        onPressed: onPressed,
-        child: Text(text, style: textStyle == null ? kBodyLarge.copyWith(color: Colors.white) : textStyle),
-        style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all<Color>(showBackground
-                ? standout
-                    ? backgroundColor
-                    : kSecondaryBubble
-                : Colors.transparent)),
+      decoration: BoxDecoration(
+        color: showBackground
+            ? standout
+                ? backgroundColor
+                : kSecondaryBubble
+            : Colors.transparent,
+      ),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: onPressed,
+          highlightColor: kPrimaryColor.withOpacity(0.3),
+          child: Center(
+            child: Text(
+              text,
+              style: textStyle == null ? kBodyLarge.copyWith(color: Colors.white) : textStyle,
+            ),
+          ),
+        ),
       ),
     );
   }
