@@ -45,27 +45,6 @@ class _MyAppState extends State<MyApp> {
     super.initState();
   }
 
-  void redirect() {
-    setState(() {
-      isLoading = true;
-    });
-    String route = Get.currentRoute;
-    if (userController.isLoggedIn.value) {
-      List<String> allowedRoutes = ["/home", "/group"];
-      if (!(allowedRoutes.contains(route))) {
-        Get.toNamed("/home");
-      }
-    } else {
-      List<String> allowedRoutes = ["/join", "/login", "/"];
-      if (!(allowedRoutes.contains(route))) {
-        Get.toNamed("/");
-      }
-    }
-    setState(() {
-      isLoading = false;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
