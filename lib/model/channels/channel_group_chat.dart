@@ -1,15 +1,15 @@
+import 'package:groupidy/enums/channel_types.dart';
 import 'package:groupidy/model/channels/channel.dart';
-import 'package:groupidy/model/channels/channel_type.dart';
 import '../chat.dart';
 
 class ChannelGroupChat extends Channel {
-  Chat chat;
+  Chat? chat;
 
   ChannelGroupChat({
     pid, 
     name, 
     imgPath = '', 
-    required this.chat,
+    this.chat,
     isImage = false,
     iconText,
     desc,
@@ -26,4 +26,11 @@ class ChannelGroupChat extends Channel {
             desc: desc,
             isLimited: isLimited,
             uidsAllowed: uidsAllowed,);
+
+  static ChannelGroupChat fromMap(Map<String, dynamic> map) {
+    return new ChannelGroupChat(
+      pid: map['pid'],
+      name: map['name'],
+    );
+  }
 }

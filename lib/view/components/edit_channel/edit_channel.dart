@@ -81,7 +81,7 @@ class _EditChannelState extends State<EditChannel> {
                         width: 80,
                       ),
                       Text(
-                        widget.channel.getTypeString(),
+                        widget.channel.type.toString(),
                         style: kBodySmall.copyWith(color: kWhiteSecondary),
                       )
                     ],

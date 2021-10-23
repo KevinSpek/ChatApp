@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:groupidy/colors.dart';
+import 'package:groupidy/services/firestore_service.dart';
 import 'package:groupidy/view/components/create_join_group/create_group.dart';
 import 'package:groupidy/view/components/create_join_group/join_group.dart';
 import 'package:groupidy/view/components/create_join_group/top_bar.dart';
@@ -19,8 +20,8 @@ class _CreateJoinGroupState extends State<CreateJoinGroup> {
   void handleCancel() {}
 
   void handleCreateGroup() {
-    if (isValidTag(_insertedTag)) {
-      // create group
+    if (_insertedTag.length > 3) {
+      FirestoreService.createGroup(_insertedTag, 'loggedinuseruid');
     }
   }
 

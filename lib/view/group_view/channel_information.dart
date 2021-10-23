@@ -51,7 +51,7 @@ class _ChannelInformationState extends State<ChannelInformation> {
                     Padding(
                       padding: const EdgeInsets.only(top: 4),
                       child: Text(
-                        widget.channel.getTypeString(),
+                        widget.channel.type.toString(),
                         style: kBodyRegular.copyWith(color: kWhiteSecondary),
                       ),
                     )

@@ -18,7 +18,7 @@ class GroupListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String lastUpdateTime = presentTime(group.lastUpdated);
+    String lastUpdateTime = presentTime(group.lastUpdated ?? DateTime.now());
 
     return InkWell(
       onTap: () => onTap(group.gid),

@@ -13,4 +13,8 @@ class Chat {
     required this.uids,
     required this.userToChat,
   });
+
+  static Chat Empty() {
+    return new Chat(lastUpdated: DateTime.now(), messages: [], uids: [], userToChat: UserGp.empty());
+  }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:groupidy/colors.dart';
-import 'package:groupidy/model/channels/channel_type.dart';
+import 'package:groupidy/enums/channel_types.dart';
 import 'package:groupidy/typography.dart';
 import 'package:groupidy/view/components/button.dart';
 import 'package:groupidy/view/components/create_new_channel/channel_icon_input.dart';

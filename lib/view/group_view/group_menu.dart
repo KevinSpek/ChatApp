@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:groupidy/colors.dart';
+import 'package:groupidy/controller/group_controller.dart';
 import 'package:groupidy/dummy_data.dart';
 import 'package:groupidy/model/channels/channel.dart';
 import 'package:groupidy/model/notification_message.dart';
@@ -28,6 +29,7 @@ class GroupMenu extends StatefulWidget {
 }
 
 class _GroupMenuState extends State<GroupMenu> {
+  GroupController groupController = Get.find();
   List<Channel> _channels = [];
 
   @override
@@ -100,13 +102,13 @@ class _GroupMenuState extends State<GroupMenu> {
             height: 2,
           ),
           Expanded(
-            child: ListView.separated(
-              itemCount: _channels.length,
+            child: Obx(() => ListView.separated(
+              itemCount: groupController.channels.value.length,
               separatorBuilder: (BuildContext context, int index) => Divider(
                 height: 1,
               ),
               itemBuilder: (BuildContext context, int index) {
-                Channel channel = _channels[index];
+                Channel channel = groupController.channels.value[index];
                 return widget.noText
                     ? Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -145,7 +147,7 @@ class _GroupMenuState extends State<GroupMenu> {
                         onTap: () => widget.onChannelChange(channel),
                       );
               },
-            ),
+            )),
           ),
         ],
       ),
