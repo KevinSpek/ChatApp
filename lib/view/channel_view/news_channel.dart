@@ -18,7 +18,7 @@ class NewsChannel extends StatelessWidget {
           children: [
             Expanded(
                 child: MessagesContainer(
-              chat: news.chat,
+              chat: news.chat!,
               myUid: uid,
             )),
             news.uidsAllowedToWrite!.contains(uid)

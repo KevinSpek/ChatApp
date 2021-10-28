@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:groupidy/controller/group_controller.dart';
 import 'package:groupidy/dummy_data.dart';
 import 'package:groupidy/model/group.dart';
 import 'package:groupidy/view/components/circle_image.dart';
@@ -19,6 +21,7 @@ class GroupInformation extends StatefulWidget {
 }
 
 class _GroupInformationState extends State<GroupInformation> {
+  GroupController groupController = Get.find();
   Group _group = dGroup;
 
   void _showToast(BuildContext context, String message) {
@@ -31,7 +34,7 @@ class _GroupInformationState extends State<GroupInformation> {
   }
 
   void _handleCopyTag(BuildContext context) {
-    Clipboard.setData(ClipboardData(text: _group.name + "#" + _group.tag));
+    Clipboard.setData(ClipboardData(text: groupController.getGroupNameAndTag()));
     _showToast(context, "Group tag copied to clipboard.");
   }
 
@@ -50,10 +53,10 @@ class _GroupInformationState extends State<GroupInformation> {
             children: [
               Row(
                 children: [
-                  CircleImage(
+                  Obx(() => CircleImage(
                     size: 160,
-                    imagePath: _group.imgPath,
-                  ),
+                    imagePath: groupController.groupImageDownloadUrl.value,
+                  )),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 32),
                     child: Column(
@@ -63,10 +66,10 @@ class _GroupInformationState extends State<GroupInformation> {
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(right: 16),
-                              child: Text(
-                                _group.name + "#" + _group.tag,
+                              child: Obx(() => Text(
+                                groupController.getGroupNameAndTag(),
                                 style: kSubTitle.copyWith(color: kWhite),
-                              ),
+                              )),
                             ),
                             CustomIconButton(
                               onPressed: () => _handleCopyTag(context),
@@ -97,11 +100,11 @@ class _GroupInformationState extends State<GroupInformation> {
                   color: kWhiteDisabled,
                 ),
               ),
-              Members(
-                membersUids: _group.uids,
+              Obx(() => Members(
+                membersUids: groupController.getGroupMembersUids(),
                 title: 'Group members',
-                ownerUid: _group.ownerUid,
-              )
+                ownerUid: groupController.getGroupOwnerUid(),
+              ))
             ],
           ),
         ),

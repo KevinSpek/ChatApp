@@ -1,4 +1,6 @@
-import 'package:groupidy/model/channels/channel_type.dart';
+import 'package:groupidy/enums/channel_types.dart';
+import 'package:groupidy/model/channels/channel_group_chat.dart';
+import 'package:groupidy/model/channels/forum.dart';
 
 abstract class Channel {
   final String pid;
@@ -27,8 +29,21 @@ abstract class Channel {
     this.uidsAllowedToWrite,
   });
 
-  String getTypeString() {
-    String? res = channelTypeString[type];
-    return res == null ? '' : res;
+  static Channel fromMap(Map<String, dynamic> map) {
+    switch (map['type']) {
+      case ChannelType.news:
+        return ChannelForum.fromMap(map);
+      case ChannelType.groupChat:
+        return ChannelGroupChat.fromMap(map);
+      case ChannelType.forum:
+        return ChannelForum.fromMap(map);
+    }
+    return ChannelGroupChat.fromMap(map);
+  }
+
+  static Map<String, dynamic> toMap(Channel channel) {
+    return {
+
+    };
   }
 }

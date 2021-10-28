@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:groupidy/colors.dart';
 import 'package:groupidy/controller/user_controller.dart';
 import 'package:groupidy/dummy_data.dart';
-import 'package:groupidy/model/channels/channel_type.dart';
 import 'package:groupidy/routes/app_pages.dart';
 import 'package:groupidy/utils.dart';
 import 'package:groupidy/view/auth_views/join/join_layout.dart';

@@ -26,7 +26,7 @@ class _GroupChatChannelState extends State<GroupChatChannel> {
             children: [
               Expanded(
                   child: MessagesContainer(
-                chat: widget.groupChat.chat,
+                chat: widget.groupChat.chat!,
                 myUid: widget.uid,
               )),
               TextFieldBar(

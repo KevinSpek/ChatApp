@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:groupidy/colors.dart';
-import 'package:groupidy/model/channels/channel_type.dart';
-
+import 'package:groupidy/enums/channel_types.dart';
 import '../../../typography.dart';
 
 class ChooseChannelType extends StatelessWidget {
@@ -39,7 +38,7 @@ class ChooseChannelType extends StatelessWidget {
               return DropdownMenuItem(
                 value: channelType,
                 child: Text(
-                  channelTypeString[channelType]!,
+                  value.toString(),
                   style: kBodyRegular.copyWith(color: kWhite),
                 ),
               );

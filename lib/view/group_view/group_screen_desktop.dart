@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:groupidy/colors.dart';
+import 'package:groupidy/controller/group_controller.dart';
 import 'package:groupidy/dummy_data.dart';
 import 'package:groupidy/model/channels/channel.dart';
 import 'package:groupidy/model/group.dart';
@@ -27,6 +29,8 @@ class GroupScreenDesktop extends StatefulWidget {
 }
 
 class _GroupScreenDesktopState extends State<GroupScreenDesktop> {
+  GroupController groupController = Get.find();
+
   final double menuWidth = 332;
 
   Channel _currentChannel = dChannel3;
@@ -37,7 +41,8 @@ class _GroupScreenDesktopState extends State<GroupScreenDesktop> {
   void initState() {
     if (widget.group.pids.length == 0) return;
     setState(() {
-      _currentChannel = dChannels.firstWhere((channel) => channel.pid == widget.group.pids[0]);
+      _currentChannel = dChannels
+          .firstWhere((channel) => channel.pid == widget.group.pids[0]);
       _showGroupProfile = false;
       _showChannelInformation = false;
     });
@@ -79,24 +84,25 @@ class _GroupScreenDesktopState extends State<GroupScreenDesktop> {
           width: MediaQuery.of(context).size.width - menuWidth,
           child: Column(
             children: [
-              BarInfo(
-                  title: widget.group.name,
-                  imagePath: widget.group.imgPath,
-                  subTitle: '${widget.group.uids.length} Users',
+              Obx(() => BarInfo(
+                  title: groupController.getGroupName(),
+                  imagePath: groupController.groupImageDownloadUrl.value,
+                  subTitle: '${groupController.getGroupSize()} Users',
                   itemInfoClick: _handleShowGroupProfile,
                   rightWidget: Row(
                     children: [
                       Icon(Icons.person_add, color: kWhite),
                       SizedBox(width: 12),
-                      Text('Invite Friends', style: kBodySmall.copyWith(color: kWhite)),
+                      Text('Invite Friends',
+                          style: kBodySmall.copyWith(color: kWhite)),
                     ],
-                  )),
+                  ))),
               _showGroupProfile
                   ? GroupInformation(group: widget.group)
                   : BarInfo(
                       title: _currentChannel.name,
                       imagePath: _currentChannel.imgPath,
-                      subTitle: _currentChannel.getTypeString(),
+                      subTitle: _currentChannel.type.toString(),
                       color: kAccentColor.withOpacity(0.8),
                       useIconText: !_currentChannel.isImage,
                       iconText: _currentChannel.iconText,

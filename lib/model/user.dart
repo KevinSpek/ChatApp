@@ -16,4 +16,16 @@ class UserGp {
   String getNicknameTagCombination() {
     return nickname + '#' + tag;
   }
+
+  static UserGp fromMap(Map<String, dynamic> map) {
+    return new UserGp(
+      uid: map['uid'], 
+      tag: map['tag'], 
+      nickname: map['nickname'],
+      imgPath: map['imgPath']);
+  }
+  
+  static UserGp empty() {
+    return new UserGp(uid: '', tag: '', nickname: '');
+  }
 }
