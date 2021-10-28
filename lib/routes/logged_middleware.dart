@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:groupidy/controller/user_controller.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:groupidy/routes/app_pages.dart';
 
 class LoggedMiddleware extends GetMiddleware {
   @override
   RouteSettings? redirect(String? route) {
-    UserController userController = Get.find();
-    if (userController.isLoggedIn.value) {
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+
+    if (_auth.currentUser != null) {
       return RouteSettings(name: Routes.HOME);
     }
   }

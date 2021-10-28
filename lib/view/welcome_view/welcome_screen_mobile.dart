@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:groupidy/colors.dart';
 import 'package:groupidy/controller/user_controller.dart';
+import 'package:groupidy/routes/app_pages.dart';
 import 'package:groupidy/view/components/button.dart';
 
 import '../../typography.dart';
-
 
 class WelcomeScreenMobile extends StatelessWidget {
   WelcomeScreenMobile({Key? key}) : super(key: key);
@@ -49,21 +49,9 @@ class WelcomeScreenMobile extends StatelessWidget {
                   child: Button(
                       width: 300,
                       onPressed: () => {
-                            Get..toNamed('/join'),
+                            Get..toNamed(Routes.LOGIN),
                           },
-                      text: "Join"),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: Button(
-                      standout: false,
-                      showBackground: false,
-                      textStyle: kBodyLarge.copyWith(color: Colors.white.withOpacity(0.8)),
-                      width: 300,
-                      onPressed: () => {
-                            Get..toNamed('/login'),
-                          },
-                      text: "Login"),
+                      text: "Enter App"),
                 ),
                 SizedBox(
                   height: 24,

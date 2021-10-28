@@ -11,30 +11,28 @@ part 'app_routes.dart';
 
 class AppPages {
   AppPages._();
-  static const INITIAL = Routes.WELCOME;
+  static const INITIAL = Routes.SPLASH;
   static final routes = [
     GetPage(
       name: _Paths.HOME,
       page: () => HomeLayout(),
       middlewares: [NotLoggedMiddleware()],
+      transition: Transition.fade,
     ),
     GetPage(
       name: _Paths.GROUP,
       page: () => GroupLayout(),
       middlewares: [NotLoggedMiddleware()],
+      transition: Transition.fade,
     ),
     GetPage(
       name: _Paths.SPLASH,
       page: () => SplashLayout(),
+      transition: Transition.fade,
     ),
     GetPage(
       name: _Paths.WELCOME,
       page: () => WelcomeLayout(),
-      middlewares: [LoggedMiddleware()],
-    ),
-    GetPage(
-      name: _Paths.JOIN,
-      page: () => JoinLayout(),
       middlewares: [LoggedMiddleware()],
     ),
     GetPage(

@@ -3,8 +3,11 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 class FirestoreService {
   FirestoreService shared = FirestoreService();
+  
 
-
+  void setUser(UserGp) {
+    
+  }
 
   
 }

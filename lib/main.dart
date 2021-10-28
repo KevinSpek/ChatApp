@@ -35,16 +35,6 @@ class _MyAppState extends State<MyApp> {
   final Future<FirebaseApp> _initialization = Firebase.initializeApp();
   final UserController userController = Get.put(UserController());
 
-  bool isLoading = false;
-  late bool prevLogState;
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    prevLogState = userController.isLoggedIn.value;
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -52,20 +42,19 @@ class _MyAppState extends State<MyApp> {
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           print(snapshot.error);
-          return MaterialApp(home: Text("Problem with app"));
+          return GetMaterialApp(home: Text("Problem with app"));
         }
 
         if (snapshot.connectionState == ConnectionState.done) {
-          return Obx(() {
-            bool isLogged = userController.isLoggedIn.value;
-
-            return GetMaterialApp(
-              debugShowCheckedModeBanner: false,
-              title: 'Groupidy',
-              initialRoute: AppPages.INITIAL,
-              getPages: AppPages.routes,
-            );
-          });
+          return GetMaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Groupidy',
+            initialRoute: AppPages.INITIAL,
+            getPages: AppPages.routes,
+            onInit: () {
+              userController.listenToAuthState();
+            },
+          );
         }
         return SplashLayout();
       },
