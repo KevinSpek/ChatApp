@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:groupidy/colors.dart';
+import 'package:groupidy/controller/user_controller.dart';
 import 'package:groupidy/dummy_data.dart';
 import 'package:groupidy/model/user.dart';
 import 'package:groupidy/typography.dart';
@@ -15,7 +17,7 @@ class HomeProfile extends StatefulWidget {
 }
 
 class _HomeProfileState extends State<HomeProfile> {
-  UserGp _currentUser = dUser1;
+  UserController userController = Get.find();
 
   void _showToast(BuildContext context, String message) {
     final scaffold = ScaffoldMessenger.of(context);
@@ -27,8 +29,7 @@ class _HomeProfileState extends State<HomeProfile> {
   }
 
   void _handleCopyTag(BuildContext context) {
-    Clipboard.setData(
-        ClipboardData(text: _currentUser.nickname + "#" + _currentUser.tag));
+    Clipboard.setData(ClipboardData(text: userController.getUser()!.nickname + "#" + userController.getUser()!.tag));
     _showToast(context, "User tag copied to clipboard.");
   }
 
@@ -49,7 +50,7 @@ class _HomeProfileState extends State<HomeProfile> {
               children: [
                 CircleImage(
                   size: 160,
-                  imagePath: _currentUser.imgPath,
+                  imagePath: userController.getUser()!.imgPath,
                 ),
                 Expanded(
                   child: Padding(
@@ -62,7 +63,7 @@ class _HomeProfileState extends State<HomeProfile> {
                             Padding(
                               padding: const EdgeInsets.only(right: 16),
                               child: Text(
-                                _currentUser.nickname + "#" + _currentUser.tag,
+                                userController.getUser()!.nickname + "#" + userController.getUser()!.tag,
                                 style: kSubTitle.copyWith(color: kWhite),
                               ),
                             ),

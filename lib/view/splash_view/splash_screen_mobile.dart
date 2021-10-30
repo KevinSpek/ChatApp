@@ -18,6 +18,7 @@ class _SplashScreenMobileState extends State<SplashScreenMobile> {
   @override
   void initState() {
     super.initState();
+    userController.fetchUser();
   }
 
   @override

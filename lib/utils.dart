@@ -61,8 +61,8 @@ bool isPhoneValid(String value) {
 }
 
 bool isNicknameValid(String value) {
-  var validCharacters = RegExp(r'[a-zA-Z][a-zA-Z0-9]+$');
-  if (value.length < 4 || !validCharacters.hasMatch(value)) {
+  var validCharacters = RegExp(r'[a-zA-Z][a-zA-Z0-9]+');
+  if (value.length < 3 || !validCharacters.hasMatch(value)) {
     return false;
   }
   return true;

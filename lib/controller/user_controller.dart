@@ -6,12 +6,14 @@ import 'package:groupidy/model/user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:groupidy/routes/app_pages.dart';
+import 'package:groupidy/services/firestore_service.dart';
+import 'package:groupidy/utils.dart';
 
 class UserController extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   ConfirmationResult? confirmationResult;
 
-  var user = Rx<UserGp?>(null);
+  UserGp? _user;
 
   UserController() {
     if (kIsWeb) {
@@ -27,7 +29,7 @@ class UserController extends GetxController {
       print('User is signed in!');
       // TODO: Check if user first time signed in and act accordinly
 
-      Get.toNamed(Routes.HOME);
+      Get.toNamed(Routes.SPLASH);
     }
   }
 
@@ -38,8 +40,6 @@ class UserController extends GetxController {
   }
 
   void registerUser(AuthCredential credential) async {
-    UserGp newUser = UserGp(nickname: '', tag: '', uid: '');
-    this.user.value = newUser;
     await _auth.signInWithCredential(credential);
   }
 
@@ -107,4 +107,40 @@ class UserController extends GetxController {
   void signOut() {
     _auth.signOut();
   }
+
+  void createNewUser(String nickname) async {
+    if (_auth.currentUser != null) {
+      bool isExist = await FirestoreService.isUserExists(_auth.currentUser!.uid);
+      if (!isExist) {
+        String tag = tagGenerator();
+        UserGp newUser = UserGp(nickname: nickname, tag: tag, uid: _auth.currentUser!.uid);
+        await FirestoreService.createUser(newUser);
+        _user = newUser;
+      } else {
+        // USER ALREADY EXISTS IN DATA BASE
+      }
+    } else {
+      // USER IS NOT SIGNED IN!
+    }
+  }
+
+  void fetchUser() {
+    if (_auth.currentUser == null) {
+      // NO USER!
+      print("User not signed in!");
+      return;
+    }
+
+    FirestoreService.getUser(_auth.currentUser!.uid, (UserGp? userGp) {
+      if (userGp != null) {
+        this._user = userGp;
+      } else {
+        // NO USERE!
+      }
+      print("User redirects....");
+      Get.toNamed(Routes.HOME);
+    });
+  }
+
+  UserGp? getUser() => this._user;
 }

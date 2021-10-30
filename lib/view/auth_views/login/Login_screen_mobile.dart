@@ -107,7 +107,6 @@ class _LoginScreenMobileState extends State<LoginScreenMobile> {
         children: [
           Container(color: kSecondaryBackground),
           Container(
-            width: width,
             child: Padding(
               padding: const EdgeInsets.all(kPadding),
               child: Column(
@@ -141,7 +140,6 @@ class _LoginScreenMobileState extends State<LoginScreenMobile> {
                                   decoration: new InputDecoration(
                                     hintText: "",
                                     hintStyle: kBodyRegular.copyWith(color: Colors.white30),
-                                    
                                   ),
                                   style: kBodyRegular.copyWith(color: Colors.white),
                                   onChanged: (newPhone) {
