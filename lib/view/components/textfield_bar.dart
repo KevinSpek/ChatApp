@@ -63,7 +63,10 @@ class _TextFieldBarState extends State<TextFieldBar> {
                 child: Material(
                   color: kAccentColor,
                   child: InkWell(
-                    onTap: () => {widget.onSend(textController.text)},
+                    onTap: () {
+                      widget.onSend(textController.text);
+                      textController.text = '';
+                    },
                     child: SizedBox(
                       height: sendButtonSize,
                       width: sendButtonSize,

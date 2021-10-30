@@ -51,7 +51,7 @@ class _PostBubbleState extends State<PostBubble> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ItemInfo(
-              title: widget.post.chatMsg.userNickname,
+              title: widget.post.chatMsg.senderNickname,
               subTitle: getPostTimeFormat(widget.post.chatMsg.date),
               imageSize: 48,
             ),

@@ -7,23 +7,37 @@ class ChannelForum extends Channel {
   List<Post> posts;
 
   ChannelForum({
-    pid,
-    name,
+    required pid,
+    required name,
     imgPath = '',
     isImage = false,
     iconText,
     desc,
     isLimited = false,
     uidsAllowed,
-    uidsAlloedToWrite,
-    uidsAllowedToWrite = const [],
+    uidsAllowedToWrite = const <String>[],
     this.posts = const [],
-  }) : super(pid: pid, name: name, type: ChannelType.forum, imgPath: imgPath, isImage: isImage, iconText: iconText, desc: desc, isLimited: isLimited, uidsAllowed: uidsAllowed, uidsAllowedToWrite: uidsAlloedToWrite);
+  }) : super(pid: pid, name: name, type: ChannelType.forum, imgPath: imgPath, isImage: isImage, iconText: iconText, desc: desc, isLimited: isLimited, uidsAllowed: uidsAllowed, uidsAllowedToWrite: uidsAllowedToWrite);
 
   static ChannelForum fromMap(Map<String, dynamic> map) {
     return new ChannelForum(
       pid: map['pid'],
       name: map['name'],
     );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'pid': pid,
+      'name': name,
+      'imgPath': imgPath,
+      'type': type.index,
+      'isImage': isImage,
+      'iconText': iconText,
+      'desc': desc,
+      'isLimited': isLimited,
+      'uidsAllowed': uidsAllowed,
+      'uidsAllowedToWrite': uidsAllowedToWrite,
+    };
   }
 }

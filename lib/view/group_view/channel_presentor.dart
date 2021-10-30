@@ -26,7 +26,7 @@ class ChannelPresentor extends StatelessWidget {
           uid: dUid,
         );
       case ChannelType.groupChat:
-        return GroupChatChannel(groupChat: channel as ChannelGroupChat, uid: dUid);
+        return GroupChatChannel();
       case ChannelType.none:
         break;
     }

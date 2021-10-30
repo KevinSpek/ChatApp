@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:groupidy/colors.dart';
 import 'package:groupidy/controller/group_controller.dart';
-import 'package:groupidy/dummy_data.dart';
 import 'package:groupidy/model/channels/channel.dart';
 import 'package:groupidy/model/notification_message.dart';
 import 'package:groupidy/typography.dart';
@@ -15,13 +14,9 @@ import 'package:groupidy/view/group_view/channel_list_item.dart';
 class GroupMenu extends StatefulWidget {
   const GroupMenu({
     Key? key,
-    required this.pids,
-    required this.onChannelChange,
     this.noText = false,
   }) : super(key: key);
 
-  final List<String> pids;
-  final Function(Channel) onChannelChange;
   final bool noText;
 
   @override
@@ -30,15 +25,6 @@ class GroupMenu extends StatefulWidget {
 
 class _GroupMenuState extends State<GroupMenu> {
   GroupController groupController = Get.find();
-  List<Channel> _channels = [];
-
-  @override
-  void initState() {
-    setState(() {
-      _channels = widget.pids.map((pid) => dChannels.firstWhere((channel) => channel.pid == pid)).toList();
-    });
-    super.initState();
-  }
 
   void _handleReturnHome() {
     // TODO: manage controller accordingly
@@ -113,7 +99,7 @@ class _GroupMenuState extends State<GroupMenu> {
                     ? Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: InkWell(
-                          onTap: () => widget.onChannelChange(channel),
+                          onTap: () => groupController.handleChannelChange(channel),
                           child: CircleImage(
                             size: 64,
                             imagePath: channel.imgPath,
@@ -144,7 +130,7 @@ class _GroupMenuState extends State<GroupMenu> {
                             time: DateTime.now(),
                           ),
                         ],
-                        onTap: () => widget.onChannelChange(channel),
+                        onTap: () => groupController.handleChannelChange(channel),
                       );
               },
             )),

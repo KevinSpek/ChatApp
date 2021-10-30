@@ -7,8 +7,8 @@ class ChannelNews extends Channel {
   Chat? chat;
 
   ChannelNews({
-    pid,
-    name,
+    required pid,
+    required name,
     imgPath = '',
     this.chat,
     isImage = false,
@@ -33,7 +33,21 @@ class ChannelNews extends Channel {
     return new ChannelNews(
       pid: map['pid'],
       name: map['name'],
-      uidsAllowedToWrite: []
+      uidsAllowedToWrite: List<String>.from([]),
     );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'pid': pid,
+      'name': name,
+      'imgPath': imgPath,
+      'type': type.index,
+      'isImage': isImage,
+      'iconText': iconText,
+      'desc': desc,
+      'isLimited': isLimited,
+      'uidsAllowed': uidsAllowed,
+    };
   }
 }

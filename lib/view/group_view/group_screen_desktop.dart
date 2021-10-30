@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:groupidy/colors.dart';
 import 'package:groupidy/controller/group_controller.dart';
 import 'package:groupidy/dummy_data.dart';
+import 'package:groupidy/enums/channel_types.dart';
 import 'package:groupidy/model/channels/channel.dart';
 import 'package:groupidy/model/group.dart';
 import 'package:groupidy/typography.dart';
@@ -33,37 +34,6 @@ class _GroupScreenDesktopState extends State<GroupScreenDesktop> {
 
   final double menuWidth = 332;
 
-  Channel _currentChannel = dChannel3;
-  bool _showGroupProfile = false;
-  bool _showChannelInformation = false;
-
-  @override
-  void initState() {
-    if (widget.group.pids.length == 0) return;
-    setState(() {
-      _currentChannel = dChannels
-          .firstWhere((channel) => channel.pid == widget.group.pids[0]);
-      _showGroupProfile = false;
-      _showChannelInformation = false;
-    });
-    super.initState();
-  }
-
-  void handleChannelChange(Channel channel) {
-    setState(() {
-      _currentChannel = channel;
-      _showGroupProfile = false;
-      _showChannelInformation = false;
-    });
-  }
-
-  void _handleShowGroupProfile() {
-    setState(() {
-      _showGroupProfile = true;
-      _showChannelInformation = false;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     final bool noText = MediaQuery.of(context).size.width < 1200;
@@ -75,8 +45,6 @@ class _GroupScreenDesktopState extends State<GroupScreenDesktop> {
           width: menuWidth,
           child: GroupMenu(
             noText: noText,
-            pids: widget.group.pids,
-            onChannelChange: handleChannelChange,
           ),
         ),
         Container(
@@ -88,7 +56,7 @@ class _GroupScreenDesktopState extends State<GroupScreenDesktop> {
                   title: groupController.getGroupName(),
                   imagePath: groupController.groupImageDownloadUrl.value,
                   subTitle: '${groupController.getGroupSize()} Users',
-                  itemInfoClick: _handleShowGroupProfile,
+                  itemInfoClick: groupController.handleShowGroupProfile,
                   rightWidget: Row(
                     children: [
                       Icon(Icons.person_add, color: kWhite),
@@ -97,18 +65,16 @@ class _GroupScreenDesktopState extends State<GroupScreenDesktop> {
                           style: kBodySmall.copyWith(color: kWhite)),
                     ],
                   ))),
-              _showGroupProfile
+              Obx(() => groupController.showGroupProfile.value
                   ? GroupInformation(group: widget.group)
                   : BarInfo(
-                      title: _currentChannel.name,
-                      imagePath: _currentChannel.imgPath,
-                      subTitle: _currentChannel.type.toString(),
+                      title: groupController.currentChannel.value.name,
+                      imagePath: groupController.currentChannel.value.imgPath,
+                      subTitle: channelTypeString[groupController.currentChannel.value.type],
                       color: kAccentColor.withOpacity(0.8),
-                      useIconText: !_currentChannel.isImage,
-                      iconText: _currentChannel.iconText,
-                      itemInfoClick: () => setState(() {
-                        _showChannelInformation = true;
-                      }),
+                      useIconText: !groupController.currentChannel.value.isImage,
+                      iconText: groupController.currentChannel.value.iconText,
+                      itemInfoClick:  groupController.handleShowChannelInformation,
                       rightWidget: Row(
                         children: [
                           CustomIconButton(icon: Icons.settings_rounded),
@@ -116,15 +82,13 @@ class _GroupScreenDesktopState extends State<GroupScreenDesktop> {
                           CustomIconButton(icon: Icons.search_rounded),
                         ],
                       ),
-                    ),
-              Visibility(
-                child: _showChannelInformation
-                    ? ChannelInformation(
-                        channel: _currentChannel,
-                      )
-                    : ChannelPresentor(channel: _currentChannel),
-                visible: !_showGroupProfile,
-              ),
+                    )),
+              Obx(() => Visibility(
+                child: groupController.showChannelInformation.value
+                    ? ChannelInformation()
+                    : ChannelPresentor(channel: groupController.currentChannel.value),
+                visible: !groupController.showGroupProfile.value,
+              )),
             ],
           ),
         ),

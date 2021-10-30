@@ -37,7 +37,7 @@ class Group {
         tag: map['tag'],
         imgPath: map['imgPath'],
         ownerUid: map['ownerUid'],
-        lastUpdated: map['lastUpdated'].toDate(),
+        lastUpdated: map['lastUpdated']?.toDate() ,
         uids: List<String>.from(map['uids']),
         pids: List<String>.from(map['pids']));
   }

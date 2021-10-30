@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:groupidy/model/channels/channel.dart';
+import 'package:get/get.dart';
+import 'package:groupidy/controller/channel_controller.dart';
 import 'package:groupidy/view/components/button.dart';
 import 'package:groupidy/view/components/create_new_channel/channel_icon_input.dart';
-
 import '../../colors.dart';
-import '../../typography.dart';
 
 class ChannelImageChange extends StatefulWidget {
-  const ChannelImageChange({Key? key, required this.channel}) : super(key: key);
-
-  final Channel channel;
+  const ChannelImageChange({Key? key}) : super(key: key);
 
   @override
   _ChannelImageChangeState createState() => _ChannelImageChangeState();
 }
 
 class _ChannelImageChangeState extends State<ChannelImageChange> {
+  var channelController = Get.find<ChannelController>();
+
   String _iconText = "";
   bool _invalidName = false;
   List<bool> _iconTypeSelected = [true, false];
@@ -43,7 +42,7 @@ class _ChannelImageChangeState extends State<ChannelImageChange> {
                       },
                     )
                   },
-                  channelName: widget.channel.name,
+                  channelName: channelController.getName(),
                   iconText: _iconText,
                   onIconTextChange: (text) => {
                     setState(() {

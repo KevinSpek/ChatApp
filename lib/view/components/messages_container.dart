@@ -22,9 +22,9 @@ class MessagesContainer extends StatelessWidget {
             padding: const EdgeInsets.all(16.0),
             child: MessageBubble(
               msg: message.msg,
-              senderName: message.userNickname,
+              senderName: message.senderNickname,
               sentTime: message.date,
-              isMyMessage: myUid == message.senderID,
+              isMyMessage: myUid == message.senderUid,
             ),
           );
         }).toList(),

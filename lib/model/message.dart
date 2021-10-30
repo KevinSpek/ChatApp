@@ -1,13 +1,30 @@
 class Message {
-  final String senderID;
+  final String senderUid;
   final String msg;
   final DateTime date;
-  final String userNickname;
+  final String senderNickname;
 
   Message({
-    required this.senderID,
+    required this.senderUid,
     required this.msg,
     required this.date,
-    required this.userNickname,
+    required this.senderNickname,
   });
+
+  static Message fromMap(Map<String, dynamic> map) {
+    return new Message(
+      senderUid: map['senderUid'], 
+      msg: map['msg'], 
+      date: map['date'], 
+      senderNickname: map['senderNickname']);
+  }
+
+  static Map<String, dynamic> toMap(Message message) {
+    return {
+      'senderUid': message.senderUid,
+      'msg': message.msg,
+      'date': message.date,
+      'senderNickname': message.senderNickname
+    };
+  }
 }

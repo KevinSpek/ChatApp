@@ -34,11 +34,11 @@ class ChooseChannelType extends StatelessWidget {
             ),
             onChanged: (ChannelType? val) => onValueChange(val),
             dropdownColor: kPrimaryBackground,
-            items: ChannelType.values.map((ChannelType channelType) {
+            items: ChannelType.values.sublist(1).map((ChannelType channelType) {
               return DropdownMenuItem(
                 value: channelType,
                 child: Text(
-                  value.toString(),
+                  channelTypeString[channelType] ?? '',
                   style: kBodyRegular.copyWith(color: kWhite),
                 ),
               );

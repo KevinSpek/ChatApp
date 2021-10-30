@@ -18,7 +18,7 @@ UserGp dUser4 = UserGp(uid: '4', tag: 'j792', nickname: 'Kevin', imgPath: "https
 
 Group dGroup = Group(gid: '', name: 'Groupidy', tag: '12Df', imgPath: 'https://play-lh.googleusercontent.com/T318ypZHcazneol5LFPSp7H-Pw14y2FZ5RVZO_An5tx-4m-IYIjcqqoOMxNlYupbdg', ownerUid: '1', lastUpdated: DateTime.now(), uids: ['1', '2', '3', '4'], pids: ['1', '2', '3']);
 
-Channel dChannel1 = ChannelGroupChat(pid: '1', name: 'Develop', chat: dChat1, iconText: 'DEV', isLimited: true, uidsAllowed: ['1', '3']);
+Channel dChannel1 = ChannelGroupChat(pid: '1', name: 'Develop', cid: 'cid', iconText: 'DEV', isLimited: true, uidsAllowed: ['1', '3']);
 
 Channel dChannel2 = ChannelNews(
     pid: '2',
@@ -40,30 +40,30 @@ List<Group> dGroups = [
   Group(gid: '', imgPath: 'images/dummy_piano.png', lastUpdated: DateTime.now(), name: 'Piano Players', ownerUid: 'kev', tag: '123', uids: [], pids: ['pidNews'], notifications: [dNotification4]),
 ];
 
-Post dPost = Post(chatMsg: Message(senderID: dUid, msg: loremIpsumLong, date: DateTime.now().subtract(Duration(minutes: 17)), userNickname: "ntnlbar"));
+Post dPost = Post(chatMsg: Message(senderUid: dUid, msg: loremIpsumLong, date: DateTime.now().subtract(Duration(minutes: 17)), senderNickname: "ntnlbar"));
 
 List<UserGp> dUsers = [dUser1, dUser2, dUser3, dUser4];
 
 List<Message> dGroupMessages = [
-  Message(senderID: '1', msg: 'Lets play tonight?', date: DateTime(2020, 12, 20, 17, 30), userNickname: 'Eden'),
-  Message(senderID: '3', msg: 'I am in!', date: DateTime(2020, 12, 20, 17, 33), userNickname: 'Nethanel'),
-  Message(senderID: '4', msg: 'Lets meet around 18:00', date: DateTime(2020, 12, 20, 17, 34), userNickname: 'Kevin'),
-  Message(senderID: '2', msg: 'Cool im down', date: DateTime(2020, 12, 20), userNickname: 'Barak'),
-  Message(senderID: '1', msg: 'Great then it is scheduled.', date: DateTime(2020, 12, 22), userNickname: 'Kevin'),
+  Message(senderUid: '1', msg: 'Lets play tonight?', date: DateTime(2020, 12, 20, 17, 30), senderNickname: 'Eden'),
+  Message(senderUid: '3', msg: 'I am in!', date: DateTime(2020, 12, 20, 17, 33), senderNickname: 'Nethanel'),
+  Message(senderUid: '4', msg: 'Lets meet around 18:00', date: DateTime(2020, 12, 20, 17, 34), senderNickname: 'Kevin'),
+  Message(senderUid: '2', msg: 'Cool im down', date: DateTime(2020, 12, 20), senderNickname: 'Barak'),
+  Message(senderUid: '1', msg: 'Great then it is scheduled.', date: DateTime(2020, 12, 22), senderNickname: 'Kevin'),
 ];
 
 List<Message> dChatidiyMessages = [
-  Message(senderID: '1', msg: 'Hey are you free?', date: DateTime(2020, 12, 24, 11, 22), userNickname: 'Eden'),
-  Message(senderID: '2', msg: 'Yes what do you need', date: DateTime(2020, 12, 24, 11, 23), userNickname: 'Barak'),
-  Message(senderID: '1', msg: 'Just checkin, wandering how are you', date: DateTime(2020, 12, 24, 11, 24), userNickname: 'Eden'),
-  Message(senderID: '2', msg: 'Got it. bye.', date: DateTime(2020, 12, 24, 11, 25), userNickname: 'Barak'),
+  Message(senderUid: '1', msg: 'Hey are you free?', date: DateTime(2020, 12, 24, 11, 22), senderNickname: 'Eden'),
+  Message(senderUid: '2', msg: 'Yes what do you need', date: DateTime(2020, 12, 24, 11, 23), senderNickname: 'Barak'),
+  Message(senderUid: '1', msg: 'Just checkin, wandering how are you', date: DateTime(2020, 12, 24, 11, 24), senderNickname: 'Eden'),
+  Message(senderUid: '2', msg: 'Got it. bye.', date: DateTime(2020, 12, 24, 11, 25), senderNickname: 'Barak'),
 ];
 
 List<Message> dChatidiyMessages2 = [
-  Message(senderID: '3', msg: 'Hello!', date: DateTime(2020, 12, 24, 11, 23), userNickname: 'ntnlbar'),
-  Message(senderID: '1', msg: 'Hey are you?', date: DateTime(2020, 12, 24, 11, 22), userNickname: 'Eden'),
-  Message(senderID: '1', msg: 'I have exiting news', date: DateTime(2020, 12, 24, 11, 24), userNickname: 'Eden'),
-  Message(senderID: '3', msg: 'What are the new? I cannot wait!', date: DateTime(2020, 12, 24, 11, 25), userNickname: 'ntnlbar'),
+  Message(senderUid: '3', msg: 'Hello!', date: DateTime(2020, 12, 24, 11, 23), senderNickname: 'ntnlbar'),
+  Message(senderUid: '1', msg: 'Hey are you?', date: DateTime(2020, 12, 24, 11, 22), senderNickname: 'Eden'),
+  Message(senderUid: '1', msg: 'I have exiting news', date: DateTime(2020, 12, 24, 11, 24), senderNickname: 'Eden'),
+  Message(senderUid: '3', msg: 'What are the new? I cannot wait!', date: DateTime(2020, 12, 24, 11, 25), senderNickname: 'ntnlbar'),
 ];
 
 Channel pidNews = ChannelNews(pid: 'pidNews', name: 'News', chat: dChat2, uidsAllowedToWrite: ['1']);
@@ -85,9 +85,9 @@ Pellentesque ut urna purus. Praesent ut nulla sem. Etiam sed elit odio. Suspendi
 
 Mauris gravida imperdiet dui, eget condimentum sapien eleifend vitae. Sed lobortis, purus sit amet convallis tincidunt, mi lorem pellentesque ipsum, quis commodo ligula justo ut mauris. Vestibulum eu justo sit amet ex fermentum dictum. Vivamus massa nulla, feugiat non tellus vel, laoreet pulvinar lectus. Pellentesque lectus ex, commodo sit amet eleifend a, imperdiet eget metus. Nunc placerat tellus lectus, rhoncus blandit justo tincidunt ac. Donec justo nisl, aliquam vitae magna a, aliquet gravida nisi. In vestibulum neque eget eleifend blandit. Vivamus porta volutpat turpis quis ullamcorper. Praesent sit amet tristique quam, vitae porttitor nibh. Nulla mattis vestibulum libero ac faucibus.''';
 
-Post dPost1 = Post(chatMsg: Message(senderID: '1', msg: loremIpsumLong, date: DateTime(2020, 12, 24, 11, 24), userNickname: 'Eden'), comments: 1, likes: 2);
+Post dPost1 = Post(chatMsg: Message(senderUid: '1', msg: loremIpsumLong, date: DateTime(2020, 12, 24, 11, 24), senderNickname: 'Eden'), comments: 1, likes: 2);
 
-Post dPost2 = Post(chatMsg: Message(senderID: '2', msg: loremIpsumShort, date: DateTime(2020, 12, 24, 11, 29), userNickname: 'Barak'), comments: 3, likes: 29);
+Post dPost2 = Post(chatMsg: Message(senderUid: '2', msg: loremIpsumShort, date: DateTime(2020, 12, 24, 11, 29), senderNickname: 'Barak'), comments: 3, likes: 29);
 
 Chat dChat1 = Chat(lastUpdated: DateTime.now().subtract(Duration(minutes: 6)), messages: dChatidiyMessages, uids: ["1", "2"], userToChat: UserGp(uid: '2', tag: '#123', nickname: 'Barak'));
 

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:groupidy/colors.dart';
+import 'package:groupidy/controller/channel_controller.dart';
+import 'package:groupidy/enums/channel_types.dart';
 import 'package:groupidy/model/channels/channel.dart';
 import 'package:groupidy/typography.dart';
 import 'package:groupidy/utils.dart';
@@ -10,15 +13,15 @@ import 'package:groupidy/view/components/members.dart';
 import 'package:groupidy/view/group_view/channel_image_change.dart';
 
 class ChannelInformation extends StatefulWidget {
-  const ChannelInformation({Key? key, required this.channel}) : super(key: key);
-
-  final Channel channel;
+  const ChannelInformation({Key? key}) : super(key: key);
 
   @override
   _ChannelInformationState createState() => _ChannelInformationState();
 }
 
 class _ChannelInformationState extends State<ChannelInformation> {
+  var channelController = Get.find<ChannelController>();
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -30,39 +33,40 @@ class _ChannelInformationState extends State<ChannelInformation> {
           children: [
             Row(
               children: [
-                CircleImage(
+                Obx(() => CircleImage(
                   size: 120,
-                  imagePath: widget.channel.imgPath,
-                  useText: !widget.channel.isImage,
-                  text: widget.channel.iconText,
+                  imagePath: channelController.getImgPath(),
+                  useText: !channelController.getIsImage(),
+                  text: channelController.getIconText(),
                   padding: EdgeInsets.only(right: 32, bottom: 32),
                   onClick: () => dialog(
                       context: context,
-                      child: ChannelImageChange(channel: widget.channel)),
-                ),
+                      child: ChannelImageChange()),
+                )),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    CustomEditableText(
-                      initialText: widget.channel.name,
+                    Obx(() => CustomEditableText(
+                      initialText: channelController.getName(),
                       textStyle: kSubTitle.copyWith(color: kWhite),
                       maxLines: 1,
-                    ),
+                    )),
                     Padding(
                       padding: const EdgeInsets.only(top: 4),
-                      child: Text(
-                        widget.channel.type.toString(),
+                      child: Obx(() => Text(
+                        channelTypeString[channelController.getType()]!,
                         style: kBodyRegular.copyWith(color: kWhiteSecondary),
-                      ),
+                      )),
                     )
                   ],
                 )
               ],
             ),
-            CustomEditableText(
+            Obx(() => CustomEditableText(
               hint: "Insert channel description",
-              initialText: widget.channel.desc,
-            ),
+              onTextChange: (s) => channelController.updateChannelDescription(s),
+              initialText: channelController.getDescription(),
+            )),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 32),
               child: Divider(
@@ -70,7 +74,7 @@ class _ChannelInformationState extends State<ChannelInformation> {
                 color: kWhiteDisabled,
               ),
             ),
-            widget.channel.isLimited
+            Obx(() => channelController.getIsLimited()
                 ? Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -82,12 +86,11 @@ class _ChannelInformationState extends State<ChannelInformation> {
                         ),
                       ),
                       Members(
-                        membersUids:
-                            widget.channel.uidsAllowed ?? List<String>.empty(),
+                        membersUids: channelController.getUidsAllowed(),
                         title: 'Channel members',
                       ),
                       Button(
-                        onPressed: () => {},
+                        onPressed: channelController.setChannelNotLimited(),
                         text: 'Transform to normal channel',
                         width: 350,
                         margin: EdgeInsets.only(top: 32),
@@ -101,7 +104,7 @@ class _ChannelInformationState extends State<ChannelInformation> {
                 : Text(
                     "This channel is Normal, Everyone in the group can enter it.",
                     style: kBodySmall.copyWith(color: kWhiteSecondary),
-                  )
+                  ))
           ],
         ),
       ),
