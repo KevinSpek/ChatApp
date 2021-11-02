@@ -1,36 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:groupidy/controller/channel_controller.dart';
 import 'package:groupidy/dummy_data.dart';
 import 'package:groupidy/enums/channel_types.dart';
-import 'package:groupidy/model/channels/channel.dart';
-import 'package:groupidy/model/channels/channel_group_chat.dart';
 import 'package:groupidy/model/channels/forum.dart';
-import 'package:groupidy/model/channels/news.dart';
 import 'package:groupidy/view/channel_view/forum_channel.dart';
 import 'package:groupidy/view/channel_view/group_chat_channel.dart';
 import 'package:groupidy/view/channel_view/news_channel.dart';
 
-class ChannelPresentor extends StatelessWidget {
-  const ChannelPresentor({Key? key, required this.channel}) : super(key: key);
-  final Channel channel;
+class ChannelPresentor extends StatefulWidget {
+  const ChannelPresentor({Key? key, required this.type}) : super(key: key);
+
+  final ChannelType type;
+
+  @override
+  State<ChannelPresentor> createState() => _ChannelPresentorState();
+}
+
+class _ChannelPresentorState extends State<ChannelPresentor> {
+  ChannelController channelController = Get.find();
+
   @override
   Widget build(BuildContext context) {
-    switch (channel.type) {
+    switch (widget.type) {
       case ChannelType.news:
-        return NewsChannel(
-          news: channel as ChannelNews,
-          uid: dUid,
-        );
+        return NewsChannel();
       case ChannelType.forum:
         return ForumChannel(
-          forum: channel as ChannelForum,
+          forum: channelController.channel as ChannelForum,
           uid: dUid,
         );
       case ChannelType.groupChat:
         return GroupChatChannel();
       case ChannelType.none:
-        break;
+        return Container();
     }
-
-    return Container();
   }
 }

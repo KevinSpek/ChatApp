@@ -1,24 +1,18 @@
+import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:groupidy/controller/channel_controller.dart';
 import 'package:groupidy/enums/channel_types.dart';
 import 'package:groupidy/model/channels/channel.dart';
 import 'package:groupidy/model/group.dart';
 import 'package:groupidy/services/firestore_service.dart';
-
-import '../dummy_data.dart';
 
 class GroupController extends GetxController {
   var group = Rx<Group?>(null);
   var groupImageDownloadUrl = Rx<String?>(null);
   var channels = Rx<List<Channel>>([]);
   var showGroupProfile = false.obs;
-  var showChannelInformation = false.obs;
-  var currentChannel = dChannel3.obs;
   var _gid = '';
-
-  var channelControlller = Get.find<ChannelController>();
 
   GroupController(String gid) {
     _gid = gid;
@@ -56,27 +50,37 @@ class GroupController extends GetxController {
         });
   }
 
-  void createChannel(String name, ChannelType type) {
+  void createChannel(String name, ChannelType type, bool isImage,
+      String iconText, String imgPath) {
     if (group.value != null) {
-      FirestoreService.createChannel(group.value!.gid, name, type);
+      FirestoreService.createChannel(
+          group.value!.gid, name, type, isImage, iconText, imgPath)
+          .then((channel) {
+            channels.value.add(channel);
+            channels.refresh();
+          });
     }
   }
 
   void handleShowGroupProfile() {
     showGroupProfile.value = true;
-    showChannelInformation.value = false;
   }
 
   void handleShowChannelInformation() {
     showGroupProfile.value = false;
-    showChannelInformation.value = true;
   }
 
   void handleChannelChange(Channel channel) {
-    currentChannel.value = channel;
     showGroupProfile.value = false;
-    showChannelInformation.value = false;
-    channelControlller.handleChannelChange(channel);
+  }
+
+  void updateGroupTag() {
+    if (group.value == null)
+      return;
+    var newTag = 'abc' + Random().nextInt(9).toString();
+    group.value!.tag = newTag;
+    group.refresh();
+    FirestoreService.updateGroup(group.value!.gid, {'tag': newTag});
   }
 
   String getGroupName() => group.value?.name ?? "";

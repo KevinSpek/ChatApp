@@ -2,19 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:groupidy/controller/group_controller.dart';
-import 'package:groupidy/dummy_data.dart';
-import 'package:groupidy/model/group.dart';
 import 'package:groupidy/view/components/circle_image.dart';
 import 'package:groupidy/view/components/custom_icon_button.dart';
 import 'package:groupidy/view/components/members.dart';
 
 import '../../colors.dart';
 import '../../typography.dart';
+import '../../utils.dart';
 
 class GroupInformation extends StatefulWidget {
-  const GroupInformation({Key? key, required this.group}) : super(key: key);
-
-  final Group group;
+  const GroupInformation({Key? key}) : super(key: key);
 
   @override
   _GroupInformationState createState() => _GroupInformationState();
@@ -22,25 +19,16 @@ class GroupInformation extends StatefulWidget {
 
 class _GroupInformationState extends State<GroupInformation> {
   GroupController groupController = Get.find();
-  Group _group = dGroup;
-
-  void _showToast(BuildContext context, String message) {
-    final scaffold = ScaffoldMessenger.of(context);
-    scaffold.showSnackBar(
-      SnackBar(
-        content: Text(message),
-      ),
-    );
-  }
 
   void _handleCopyTag(BuildContext context) {
     Clipboard.setData(ClipboardData(text: groupController.getGroupNameAndTag()));
-    _showToast(context, "Group tag copied to clipboard.");
+    showToast(context, "Group tag copied to clipboard.");
   }
 
   void _handleTagChange(BuildContext context) {
     // Handle tag change async
-    _showToast(context, "Tag changed succesfully.");
+    groupController.updateGroupTag();
+    showToast(context, "Tag changed succesfully.");
   }
 
   @override

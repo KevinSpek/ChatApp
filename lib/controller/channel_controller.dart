@@ -1,4 +1,6 @@
 
+import 'dart:developer';
+
 import 'package:get/get.dart';
 import 'package:groupidy/enums/channel_types.dart';
 import 'package:groupidy/model/channels/channel.dart';
@@ -6,15 +8,24 @@ import 'package:groupidy/services/firestore_service.dart';
 
 class ChannelController extends GetxController {
   var channel = Rx<Channel?>(null);
+  var showChannelInformation = false.obs;
   var _gid = '';
 
-  ChannelController(Channel channel, String gid) {
-    this.channel.value = channel;
+  ChannelController(String gid) {
     _gid = gid;
   }
 
   void handleChannelChange(Channel channel) {
     this.channel.value = channel;
+    this.showChannelInformation.value = false;
+  }
+
+  void handleShowChannelInformation() {
+    this.showChannelInformation.value = true;
+  }
+
+  void handleHideChannelInformation() {
+    this.showChannelInformation.value = false;
   }
 
   Future<void> updateChannelName(String name) {
@@ -31,6 +42,7 @@ class ChannelController extends GetxController {
     channel.value!.isImage = isImage;
     channel.value!.iconText = iconText;
     channel.value!.imgPath = imgPath;
+    channel.refresh();
     return FirestoreService.updateChannel(_gid, channel.value!.pid, {"isImage": isImage, "iconText": iconText, "imgPath": imgPath});
   }
 
@@ -43,10 +55,11 @@ class ChannelController extends GetxController {
   String getDescription() => channel.value?.desc ?? '';
   ChannelType getType() => channel.value?.type ?? ChannelType.none;
   bool getIsImage() => channel.value?.isImage ?? false;
-  String getIconText() => channel.value?.iconText ?? '';
+  String getIconText() => channel.value?.iconText ?? channel.value!.name.substring(0, 3);
   String getImgPath() => channel.value?.imgPath ?? '';
   bool getIsLimited() => channel.value?.isLimited ?? false;
   List<String> getUidsAllowed() => channel.value?.uidsAllowed ?? <String>[];
+  List<String> getUidsAllowedToWrite() => channel.value?.uidsAllowedToWrite ?? <String>[];
   bool isChatChannel() => channel.value?.isChatChannel() ?? false;
   String getCid() => channel.value!.getCid();
 }

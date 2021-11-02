@@ -11,3 +11,10 @@ var channelTypeString = {
   ChannelType.groupChat: 'Group chat',
   ChannelType.forum: 'Forum',
 };
+
+var channelTypeByOrder = [
+  ChannelType.none,
+  ChannelType.news,
+  ChannelType.groupChat,
+  ChannelType.forum
+];

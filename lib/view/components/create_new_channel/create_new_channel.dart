@@ -28,7 +28,12 @@ class _CreateNewChannelState extends State<CreateNewChannel> {
   void handleClose() {}
 
   void handleCreateChannel() {
-    groupController.createChannel(_name, _type);
+    groupController.createChannel(
+      _name, 
+      _type, 
+      _iconTypeSelected[1], 
+      _iconText == "" ? _name.substring(0, 3).toUpperCase() : _iconText, 
+      '');
   }
 
   @override

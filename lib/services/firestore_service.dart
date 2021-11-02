@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:groupidy/enums/channel_types.dart';
 import 'package:groupidy/model/channels/channel.dart';
-import 'package:groupidy/model/chat.dart';
 import 'package:groupidy/model/chatChannel.dart';
 import 'package:groupidy/model/group.dart';
 import 'package:groupidy/model/message.dart';
@@ -28,14 +27,23 @@ class FirestoreService {
         .set(groupToCreate);
   }
 
-  static Future<void> createChannel(String gid, String name, ChannelType type) {
+  static Future<void> updateGroup(String gid, Map<String, Object?> updatedData) {
+    return firestore
+        .collection('groups')
+        .doc(gid)
+        .update(updatedData);
+  }
+
+  static Future<Channel> createChannel(String gid, String name, ChannelType type,
+      bool isImage, String iconText, String imgPath) {
     var pid = firestore
         .collection('groups')
         .doc('gid')
         .collection('channels')
         .doc()
         .id;
-    var channelToCreate = Channel.createChannel(pid, name, type);
+    var channelToCreate =
+        Channel.createChannel(pid, name, type, isImage, iconText, imgPath);
 
     var batch = firestore.batch();
     var channelRef = firestore
@@ -62,7 +70,7 @@ class FirestoreService {
       batch.set<ChatChannel>(chatRef, chatToCreate);
     }
 
-    return batch.commit();
+    return batch.commit().then((_) => channelToCreate);
   }
 
   static String getCid() {
@@ -126,8 +134,8 @@ class FirestoreService {
         .collection('messages')
         .doc()
         .withConverter<Message>(
-          fromFirestore: (doc, _) => Message.fromMap(doc.data()!), 
-          toFirestore: (message, _) => Message.toMap(message))
+            fromFirestore: (doc, _) => Message.fromMap(doc.data()!),
+            toFirestore: (message, _) => Message.toMap(message))
         .set(message);
   }
 
@@ -137,11 +145,24 @@ class FirestoreService {
         .doc(cid)
         .collection('messages')
         .withConverter<Message>(
-          fromFirestore: (doc, _) => Message.fromMap(doc.data()!), 
-          toFirestore: (message, _) => Message.toMap(message))
+            fromFirestore: (doc, _) => Message.fromMap(doc.data()!),
+            toFirestore: (message, _) => Message.toMap(message))
         .orderBy('date')
-        .limit(5)
+        .limit(10)
         .get();
+  }
+
+  static Stream<QuerySnapshot<Message>> setChatListener(String cid) {
+    return firestore
+      .collection('chats')
+      .doc(cid)
+      .collection('messages')
+      .withConverter<Message>(
+            fromFirestore: (doc, _) => Message.fromMap(doc.data()!),
+            toFirestore: (message, _) => Message.toMap(message))
+      .orderBy('date')
+      .limit(5)
+      .snapshots();
   }
 
   static Future<DocumentSnapshot<ChatChannel>> getChat(String cid) {
@@ -149,8 +170,8 @@ class FirestoreService {
         .collection('chats')
         .doc(cid)
         .withConverter<ChatChannel>(
-          fromFirestore: (doc, _) => ChatChannel.fromMap(doc.data()!), 
-          toFirestore: (chat, _) => ChatChannel.toMap(chat))
+            fromFirestore: (doc, _) => ChatChannel.fromMap(doc.data()!),
+            toFirestore: (chat, _) => ChatChannel.toMap(chat))
         .get();
   }
 }

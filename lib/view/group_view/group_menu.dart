@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:groupidy/colors.dart';
+import 'package:groupidy/controller/channel_controller.dart';
 import 'package:groupidy/controller/group_controller.dart';
 import 'package:groupidy/model/channels/channel.dart';
 import 'package:groupidy/model/notification_message.dart';
@@ -14,10 +15,7 @@ import 'package:groupidy/view/group_view/channel_list_item.dart';
 class GroupMenu extends StatefulWidget {
   const GroupMenu({
     Key? key,
-    this.noText = false,
   }) : super(key: key);
-
-  final bool noText;
 
   @override
   _GroupMenuState createState() => _GroupMenuState();
@@ -25,19 +23,29 @@ class GroupMenu extends StatefulWidget {
 
 class _GroupMenuState extends State<GroupMenu> {
   GroupController groupController = Get.find();
+  ChannelController channelController = Get.find();
 
   void _handleReturnHome() {
     // TODO: manage controller accordingly
     Get.toNamed('/home');
   }
 
+  void handleChannelChange(Channel channel) {
+    groupController.handleChannelChange(channel);
+    channelController.handleChannelChange(channel);
+  }
+
   @override
   Widget build(BuildContext context) {
+    final bool noText = MediaQuery.of(context).size.width < 1200;
+    final double menuWidth = noText ? 80 : 332;
+
     return Container(
+      width: menuWidth,
       color: kPrimaryColor,
       child: Column(
         children: [
-          widget.noText
+          noText
               ? CustomIconButton(
                   icon: Icons.arrow_back_rounded,
                   onPressed: _handleReturnHome,
@@ -55,10 +63,10 @@ class _GroupMenuState extends State<GroupMenu> {
                     ),
                   ],
                 ),
-          SizedBox(height: widget.noText ? 8 : 36),
+          SizedBox(height: noText ? 8 : 36),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: widget.noText
+            child: noText
                 ? Column(
                     children: [
                       CustomIconButton(icon: Icons.search),
@@ -95,11 +103,11 @@ class _GroupMenuState extends State<GroupMenu> {
               ),
               itemBuilder: (BuildContext context, int index) {
                 Channel channel = groupController.channels.value[index];
-                return widget.noText
+                return noText
                     ? Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: InkWell(
-                          onTap: () => groupController.handleChannelChange(channel),
+                          onTap: () => handleChannelChange(channel),
                           child: CircleImage(
                             size: 64,
                             imagePath: channel.imgPath,
@@ -130,7 +138,7 @@ class _GroupMenuState extends State<GroupMenu> {
                             time: DateTime.now(),
                           ),
                         ],
-                        onTap: () => groupController.handleChannelChange(channel),
+                        onTap: () => handleChannelChange(channel),
                       );
               },
             )),

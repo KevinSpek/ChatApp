@@ -16,10 +16,19 @@ class _ChannelImageChangeState extends State<ChannelImageChange> {
   var channelController = Get.find<ChannelController>();
 
   String _iconText = "";
-  bool _invalidName = false;
   List<bool> _iconTypeSelected = [true, false];
 
-  void handleClose() {}
+  @override 
+  void initState() {
+    setState(() {
+      _iconText = channelController.getIconText();
+    });
+    super.initState();
+  }
+
+  void handleUpdate() {
+    channelController.updateChannelImage(_iconTypeSelected[1], _iconText, '');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +61,7 @@ class _ChannelImageChangeState extends State<ChannelImageChange> {
                 )),
             Spacer(),
             Button(
-              onPressed: null,
+              onPressed: handleUpdate,
               text: "Update",
               width: double.infinity,
             )

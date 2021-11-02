@@ -7,12 +7,11 @@ import 'package:groupidy/services/storage_service.dart';
 class Group {
   final String gid;
   final String name;
-  final String tag;
+  String tag;
   final String? imgPath;
   final String ownerUid;
   DateTime? lastUpdated;
   List<String> uids;
-  List<String> pids;
   List<NotificationMessage> notifications;
 
   Group(
@@ -23,11 +22,10 @@ class Group {
       required this.ownerUid,
       this.lastUpdated,
       required this.uids,
-      required this.pids,
       this.notifications = const []});
 
   static Group createNewGroup(String gid, String name, String ownerUid) {
-    return new Group(gid: gid, name: name, tag: 'test', ownerUid: ownerUid, uids: [], pids: []);
+    return new Group(gid: gid, name: name, tag: 'test', ownerUid: ownerUid, uids: [ownerUid]);
   }
 
   static Group fromMap(Map<String, dynamic> map) {
@@ -38,8 +36,7 @@ class Group {
         imgPath: map['imgPath'],
         ownerUid: map['ownerUid'],
         lastUpdated: map['lastUpdated']?.toDate() ,
-        uids: List<String>.from(map['uids']),
-        pids: List<String>.from(map['pids']));
+        uids: List<String>.from(map['uids']));
   }
 
   static Map<String, dynamic> toMap(Group group) {
@@ -50,7 +47,6 @@ class Group {
       "imgPath": group.imgPath,
       "ownerUid": group.ownerUid,
       "uids": group.uids,
-      "pids": group.pids,
     };
   }
 
@@ -60,17 +56,5 @@ class Group {
 
   Future<String> getImageUrl() async {
     return imgPath != null ? await StorageService.getDownloadUrl(imgPath!) : '';
-  }
-
-  Future<List<DocumentSnapshot<Channel>>> getChannels() async {
-    var futures = <Future<DocumentSnapshot<Channel>>>[];
-    for (var pid in pids) {
-      futures.add(getChannel(pid));
-    }
-    return await Future.wait(futures);
-  }
-
-  Future<DocumentSnapshot<Channel>> getChannel(String pid) {
-    return FirestoreService.getChannel(gid, pid);
   }
 }

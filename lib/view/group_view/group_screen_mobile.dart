@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:groupidy/colors.dart';
 import 'package:groupidy/constants.dart';
 import 'package:groupidy/dummy_data.dart';
+import 'package:groupidy/enums/channel_types.dart';
 import 'package:groupidy/model/channels/channel.dart';
 import 'package:groupidy/model/group.dart';
 import 'package:groupidy/utils.dart';
@@ -33,9 +34,7 @@ class _GroupScreenMobileState extends State<GroupScreenMobile> {
 
   @override
   void initState() {
-    setState(() {
-      _channels = widget.group.pids.map((pid) => dChannels.firstWhere((channel) => channel.pid == pid)).toList();
-    });
+    
     super.initState();
   }
 
@@ -144,7 +143,7 @@ class _GroupScreenMobileState extends State<GroupScreenMobile> {
                 ),
               ),
             ),
-            ChannelPresentor(channel: widget.currChannel),
+            ChannelPresentor(type: ChannelType.none,),
           ],
         ),
       ),

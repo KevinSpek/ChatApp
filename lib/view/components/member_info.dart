@@ -52,9 +52,10 @@ class _MemberInfoState extends State<MemberInfo> {
       child: Row(
         children: [
           CircleImage(
-            size: 24,
+            size: 32,
             imagePath: _imageDownloadUrl,
           ),
+          SizedBox(width: 8,),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: Text(

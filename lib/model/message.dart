@@ -15,7 +15,7 @@ class Message {
     return new Message(
       senderUid: map['senderUid'], 
       msg: map['msg'], 
-      date: map['date'], 
+      date: map['date']?.toDate(), 
       senderNickname: map['senderNickname']);
   }
 

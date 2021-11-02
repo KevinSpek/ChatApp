@@ -1,27 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:groupidy/colors.dart';
-import 'package:groupidy/model/channels/news.dart';
+import 'package:groupidy/controller/channel_controller.dart';
+import 'package:groupidy/controller/chat_controller.dart';
 import 'package:groupidy/typography.dart';
 import 'package:groupidy/view/components/messages_container.dart';
 import 'package:groupidy/view/components/textfield_bar.dart';
 
-class NewsChannel extends StatelessWidget {
-  const NewsChannel({Key? key, required this.news, required this.uid})
+class NewsChannel extends StatefulWidget {
+  const NewsChannel({Key? key})
       : super(key: key);
-  final ChannelNews news;
-  final String uid;
+
+  @override
+  State<NewsChannel> createState() => _NewsChannelState();
+}
+
+class _NewsChannelState extends State<NewsChannel> {
+  var channelController = Get.find<ChannelController>();
+  var chatController = Get.put(ChatController());
+
+  @override
+  void initState() {
+    chatController.loadChat(channelController.getCid());
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Expanded(
         child: Column(
           children: [
-            Expanded(
+            Obx(() => Expanded(
                 child: MessagesContainer(
-              chat: news.chat!,
-              myUid: uid,
-            )),
-            news.uidsAllowedToWrite!.contains(uid)
+              chat: chatController.getChat(),
+              myUid: 'useruid',
+            ))),
+            Obx(() => channelController.getUidsAllowedToWrite().contains('useruid')
                 ? TextFieldBar(
                     onSend: (s) => {},
                     outerPadding: 16,
@@ -41,7 +56,7 @@ class NewsChannel extends StatelessWidget {
                         textAlign: TextAlign.center,
                       ),
                     ),
-                  )
+                  ))
           ],
         ),
       ),

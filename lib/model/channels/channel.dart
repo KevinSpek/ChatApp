@@ -31,12 +31,26 @@ abstract class Channel {
     this.uidsAllowedToWrite,
   });
 
-  static Channel createChannel(String pid, String name, ChannelType type) {
+  static Channel createChannel(String pid, String name, ChannelType type,
+      bool isImage, String iconText, String imgPath) {
     switch (type) {
       case ChannelType.news:
-        return new ChannelNews(pid: pid, name: name, uidsAllowedToWrite: []);
+        return new ChannelNews(
+            pid: pid,
+            name: name,
+            uidsAllowedToWrite: <String>[],
+            cid: FirestoreService.getCid(),
+            isImage: isImage,
+            iconText: iconText,
+            imgPath: imgPath);
       case ChannelType.groupChat:
-        return new ChannelGroupChat(pid: pid, name: name, cid: FirestoreService.getCid());
+        return new ChannelGroupChat(
+            pid: pid,
+            name: name,
+            cid: FirestoreService.getCid(),
+            isImage: isImage,
+            iconText: iconText,
+            imgPath: imgPath);
       case ChannelType.forum:
         return new ChannelForum(pid: pid, name: name);
       case ChannelType.none:
@@ -46,14 +60,15 @@ abstract class Channel {
 
   static Channel fromMap(Map<String, dynamic> map) {
     switch (map['type']) {
-      case ChannelType.news:
-        return ChannelForum.fromMap(map);
-      case ChannelType.groupChat:
+      case 1:
+        return ChannelNews.fromMap(map);
+      case 2:
         return ChannelGroupChat.fromMap(map);
-      case ChannelType.forum:
+      case 3:
         return ChannelForum.fromMap(map);
+      default:
+        return ChannelGroupChat.fromMap(map);
     }
-    return ChannelGroupChat.fromMap(map);
   }
 
   static Map<String, dynamic> toMap(Channel channel) {
@@ -76,6 +91,8 @@ abstract class Channel {
   String getCid() {
     if (type == ChannelType.groupChat) {
       return (this as ChannelGroupChat).cid;
+    } else if (type == ChannelType.news) {
+      return (this as ChannelNews).cid;
     }
     return "";
   }

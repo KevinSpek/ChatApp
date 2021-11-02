@@ -16,14 +16,12 @@ UserGp dUser2 = UserGp(uid: '2', tag: 'Vf43', nickname: 'Barak', imgPath: 'https
 UserGp dUser3 = UserGp(uid: '3', tag: 'l432', nickname: 'Nethanel', imgPath: "https://fiverr-res.cloudinary.com/t_profile_original,q_auto,f_auto/attachments/profile/photo/d6ed158fde7e38a00e345019da620e7b-1522352574301/428b40f8-bf05-4ff8-9bdc-4ef72bb9e829.jpg");
 UserGp dUser4 = UserGp(uid: '4', tag: 'j792', nickname: 'Kevin', imgPath: "https://media-exp1.licdn.com/dms/image/C4D03AQEaowcCOLbjHA/profile-displayphoto-shrink_200_200/0/1618726633039?e=1634169600&v=beta&t=F4b94FPBWoHjqeHeKiuOatlA1tmu_cnyq5M4diiEhk4");
 
-Group dGroup = Group(gid: '', name: 'Groupidy', tag: '12Df', imgPath: 'https://play-lh.googleusercontent.com/T318ypZHcazneol5LFPSp7H-Pw14y2FZ5RVZO_An5tx-4m-IYIjcqqoOMxNlYupbdg', ownerUid: '1', lastUpdated: DateTime.now(), uids: ['1', '2', '3', '4'], pids: ['1', '2', '3']);
-
 Channel dChannel1 = ChannelGroupChat(pid: '1', name: 'Develop', cid: 'cid', iconText: 'DEV', isLimited: true, uidsAllowed: ['1', '3']);
 
 Channel dChannel2 = ChannelNews(
     pid: '2',
     name: 'Administration',
-    chat: dChat1,
+    cid: '',
     isImage: true,
     desc: 'Channel for admin news & very important management updates',
     uidsAllowedToWrite: ['1', '2', '3', '4'],
@@ -35,9 +33,9 @@ NotificationMessage dNotification3 = NotificationMessage(chatID: '123', notifica
 NotificationMessage dNotification4 = NotificationMessage(chatID: '123', notificationType: NotificationType.groupChat, numNewMessages: 7, time: DateTime.now());
 
 List<Group> dGroups = [
-  Group(gid: '', imgPath: 'images/dummy_game.png', lastUpdated: DateTime.now(), name: 'Gamerzzz', ownerUid: 'kev', tag: '123', uids: [], pids: ['pidGroupChat'], notifications: [dNotification1, dNotification2]),
-  Group(gid: '', imgPath: 'images/dummy_wrest.png', lastUpdated: DateTime.now(), name: 'Wrestlers', ownerUid: 'kev', tag: '123', uids: [], pids: ['pidForum'], notifications: [dNotification3, dNotification4]),
-  Group(gid: '', imgPath: 'images/dummy_piano.png', lastUpdated: DateTime.now(), name: 'Piano Players', ownerUid: 'kev', tag: '123', uids: [], pids: ['pidNews'], notifications: [dNotification4]),
+  Group(gid: '', imgPath: 'images/dummy_game.png', lastUpdated: DateTime.now(), name: 'Gamerzzz', ownerUid: 'kev', tag: '123', uids: [], notifications: [dNotification1, dNotification2]),
+  Group(gid: '', imgPath: 'images/dummy_wrest.png', lastUpdated: DateTime.now(), name: 'Wrestlers', ownerUid: 'kev', tag: '123', uids: [], notifications: [dNotification3, dNotification4]),
+  Group(gid: '', imgPath: 'images/dummy_piano.png', lastUpdated: DateTime.now(), name: 'Piano Players', ownerUid: 'kev', tag: '123', uids: [], notifications: [dNotification4]),
 ];
 
 Post dPost = Post(chatMsg: Message(senderUid: dUid, msg: loremIpsumLong, date: DateTime.now().subtract(Duration(minutes: 17)), senderNickname: "ntnlbar"));
@@ -66,7 +64,7 @@ List<Message> dChatidiyMessages2 = [
   Message(senderUid: '3', msg: 'What are the new? I cannot wait!', date: DateTime(2020, 12, 24, 11, 25), senderNickname: 'ntnlbar'),
 ];
 
-Channel pidNews = ChannelNews(pid: 'pidNews', name: 'News', chat: dChat2, uidsAllowedToWrite: ['1']);
+Channel pidNews = ChannelNews(pid: 'pidNews', name: 'News', cid: '', uidsAllowedToWrite: ['1']);
 
 // Channel pidForum = Channel(pid: 'pidForum', name: 'Forum');
 // Channel pidGroupChat = Channel(pid: 'pidGroupChat', name: 'Group chat');

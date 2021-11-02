@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:groupidy/controller/channel_controller.dart';
 import 'package:groupidy/controller/group_controller.dart';
 import 'package:groupidy/dummy_data.dart';
+import 'package:groupidy/model/group.dart';
 import 'package:groupidy/responsive/responsive_layout.dart';
 import 'package:groupidy/view/group_view/group_screen_desktop.dart';
 import 'package:groupidy/view/group_view/group_screen_mobile.dart';
@@ -15,8 +16,8 @@ class GroupLayout extends StatefulWidget {
 }
 
 class _GroupLayoutState extends State<GroupLayout> {
-  final ChannelController channelController = Get.put(ChannelController(dChannel3, "aGvrK7u5uFQjDnvs51NZ"));
-  final GroupController groupController = Get.put(GroupController("aGvrK7u5uFQjDnvs51NZ"));
+  final ChannelController channelController = Get.put(ChannelController("NuILkZj4kL36juKv7Qsd"));
+  final GroupController groupController = Get.put(GroupController("NuILkZj4kL36juKv7Qsd"));
 
   @override 
   void initState() {
@@ -27,13 +28,10 @@ class _GroupLayoutState extends State<GroupLayout> {
   @override
   Widget build(BuildContext context) {
     return ResponsiveLayout(
-      desktop: GroupScreenDesktop(
-        group: dGroup,
-        currChannel: pidNews,
-      ),
+      desktop: GroupScreenDesktop(),
       mobile: GroupScreenMobile(
         currChannel: pidNews,
-        group: dGroup,
+        group: Group(gid: '', name: 'test', tag: 'test', ownerUid: 'ownerUid', uids: []),
       ),
     );
   }
