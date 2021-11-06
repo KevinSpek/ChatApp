@@ -13,12 +13,10 @@ class SplashScreenMobile extends StatefulWidget {
 }
 
 class _SplashScreenMobileState extends State<SplashScreenMobile> {
-  final UserController userController = Get.find();
 
   @override
   void initState() {
     super.initState();
-    userController.fetchUser();
   }
 
   @override

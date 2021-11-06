@@ -9,7 +9,7 @@ class NotSavedUserMiddleware extends GetMiddleware {
   RouteSettings? redirect(String? route) {
     final UserController userController = Get.find();
 
-    if (userController.getUser() == null) {
+    if (!userController.isUserExists()) {
       return RouteSettings(name: Routes.NEWUSER);
     }
   }

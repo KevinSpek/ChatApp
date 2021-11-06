@@ -7,6 +7,7 @@ import 'package:groupidy/model/user.dart';
 import 'package:groupidy/typography.dart';
 import 'package:groupidy/utils.dart';
 import 'package:groupidy/view/components/button.dart';
+import 'package:groupidy/view/components/loading.dart';
 
 class NewUserMobile extends StatefulWidget {
   const NewUserMobile({Key? key}) : super(key: key);
@@ -20,6 +21,7 @@ class _NewUserMobileState extends State<NewUserMobile> {
   final TextEditingController textEditingController = TextEditingController();
   bool isNickValid = false;
   bool isStart = true;
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,13 +34,22 @@ class _NewUserMobileState extends State<NewUserMobile> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                "Welcome to Groupidy!",
-                style: kTitle2.copyWith(color: kWhite),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  "Welcome to Groupidy!",
+                  style: kTitle2.copyWith(color: kWhite),
+                ),
               ),
-              Text(
-                "Before proceeding configure your profile",
-                style: kBodyLarge.copyWith(color: kWhiteSecondary),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  "Before proceeding configure your profile",
+                  style: kBodyLarge.copyWith(color: kWhiteSecondary),
+                ),
+              ),
+              SizedBox(
+                height: 20,
               ),
               Padding(
                 padding: const EdgeInsets.all(16.0),
@@ -82,21 +93,37 @@ class _NewUserMobileState extends State<NewUserMobile> {
                 ),
               ),
               Spacer(),
-              Button(
-                onPressed: isNickValid
-                    ? () {
-                        // TODO: upload user data
-                        userController.createNewUser(textEditingController.text);
-                      }
-                    : null,
-                text: "Submit",
-                width: 300,
+              Opacity(
+                opacity: isButtonValid() ? 1 : 0.5,
+                child: Button(
+                  onPressed: isNickValid
+                      ? () {
+                          setState(() {
+                            isLoading = true;
+                          });
+                          userController.createNewUser(textEditingController.text);
+                        }
+                      : null,
+                  text: "Submit",
+                  width: 300,
+                ),
               ),
               Spacer(),
             ],
           ),
-        )
+        ),
+        Loading(
+          isLoading: isLoading,
+        ),
       ],
     ));
+  }
+
+  bool isButtonValid() {
+    if (!isNickValid || isLoading || isStart) {
+      return false;
+    }
+
+    return true;
   }
 }

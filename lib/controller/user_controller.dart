@@ -11,7 +11,7 @@ import 'package:groupidy/utils.dart';
 
 class UserController extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  ConfirmationResult? confirmationResult;
+  ConfirmationResult? _confirmationResult;
 
   UserGp? _user;
 
@@ -30,6 +30,7 @@ class UserController extends GetxController {
       // TODO: Check if user first time signed in and act accordinly
 
       Get.toNamed(Routes.SPLASH);
+      this.fetchUser();
     }
   }
 
@@ -47,8 +48,8 @@ class UserController extends GetxController {
     if (kIsWeb) {
       // running on the web!
 
-      if (confirmationResult == null) {
-        confirmationResult = await _auth.signInWithPhoneNumber(
+      if (_confirmationResult == null) {
+        _confirmationResult = await _auth.signInWithPhoneNumber(
             phoneNumber,
             RecaptchaVerifier(
               size: RecaptchaVerifierSize.compact,
@@ -71,7 +72,7 @@ class UserController extends GetxController {
                   : () {},
             ));
       } else {
-        confirmationResult!.confirm(smsCode).catchError((error) {
+        _confirmationResult!.confirm(smsCode).catchError((error) {
           smsVerificationFailed();
         });
       }
@@ -99,11 +100,6 @@ class UserController extends GetxController {
     }
   }
 
-  void someFunc() async {
-    String phone = "";
-    ConfirmationResult confirmation = await _auth.signInWithPhoneNumber(phone);
-  }
-
   void signOut() {
     _auth.signOut();
   }
@@ -116,11 +112,14 @@ class UserController extends GetxController {
         UserGp newUser = UserGp(nickname: nickname, tag: tag, uid: _auth.currentUser!.uid);
         await FirestoreService.createUser(newUser);
         _user = newUser;
+        Get.toNamed(Routes.HOME);
       } else {
         // USER ALREADY EXISTS IN DATA BASE
+        this.fetchUser();
       }
     } else {
       // USER IS NOT SIGNED IN!
+      Get.toNamed(Routes.WELCOME);
     }
   }
 
@@ -128,19 +127,22 @@ class UserController extends GetxController {
     if (_auth.currentUser == null) {
       // NO USER!
       print("User not signed in!");
+      Get.toNamed(Routes.WELCOME);
       return;
     }
 
     FirestoreService.getUser(_auth.currentUser!.uid, (UserGp? userGp) {
       if (userGp != null) {
         this._user = userGp;
+        Get.toNamed(Routes.HOME);
       } else {
         // NO USERE!
+        Get.toNamed(Routes.NEWUSER);
       }
       print("User redirects....");
-      Get.toNamed(Routes.HOME);
     });
   }
 
   UserGp? getUser() => this._user;
+  bool isUserExists() => this._user != null;
 }

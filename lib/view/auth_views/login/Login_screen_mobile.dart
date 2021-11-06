@@ -6,6 +6,7 @@ import 'package:groupidy/utils.dart';
 import 'package:groupidy/view/auth_views/login/login_component.dart';
 import 'package:groupidy/view/components/button.dart';
 import 'package:groupidy/view/auth_views/join/join_component.dart';
+import 'package:groupidy/view/components/loading.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
@@ -211,29 +212,7 @@ class _LoginScreenMobileState extends State<LoginScreenMobile> {
               ),
             ),
           ),
-          IgnorePointer(
-            ignoring: isLoading ? false : true,
-            child: Opacity(
-              opacity: isLoading ? 1 : 0,
-              child: Stack(
-                alignment: AlignmentDirectional.center,
-                children: [
-                  Container(color: Colors.black.withOpacity(0.3)),
-                  Container(
-                    width: 100,
-                    height: 48,
-                    child: LoadingIndicator(
-                      indicatorType: Indicator.ballRotate,
-                      colors: [kAccentColor, kAccentColor.withOpacity(0.8), kAccentColor.withOpacity(0.6)],
-                      strokeWidth: 3,
-                      backgroundColor: Colors.transparent,
-                      pathBackgroundColor: Colors.transparent,
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),
+          Loading(isLoading: isLoading,),
         ],
       ),
     );
