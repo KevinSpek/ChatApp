@@ -3,7 +3,6 @@ import 'package:groupidy/model/channels/channel_group_chat.dart';
 import 'package:groupidy/model/channels/forum.dart';
 import 'package:groupidy/model/channels/news.dart';
 import 'package:groupidy/services/firestore_service.dart';
-import 'package:groupidy/view/channel_view/group_chat_channel.dart';
 
 abstract class Channel {
   final String pid;

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:groupidy/enums/channel_types.dart';
 import 'package:groupidy/model/channels/channel.dart';
 

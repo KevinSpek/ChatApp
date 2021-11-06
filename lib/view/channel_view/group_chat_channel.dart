@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:groupidy/controller/channel_controller.dart';
 import 'package:groupidy/controller/chat_controller.dart';
-import 'package:groupidy/model/channels/channel_group_chat.dart';
-import 'package:groupidy/model/chat.dart';
-import 'package:groupidy/view/components/message_bubble.dart';
 import 'package:groupidy/view/components/messages_container.dart';
 import 'package:groupidy/view/components/textfield_bar.dart';
 

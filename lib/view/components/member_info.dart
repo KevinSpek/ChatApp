@@ -1,4 +1,3 @@
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:groupidy/controller/group_controller.dart';
@@ -7,7 +6,6 @@ import 'package:groupidy/services/firestore_service.dart';
 import 'package:groupidy/services/storage_service.dart';
 
 import '../../colors.dart';
-import '../../dummy_data.dart';
 import '../../typography.dart';
 import 'circle_image.dart';
 

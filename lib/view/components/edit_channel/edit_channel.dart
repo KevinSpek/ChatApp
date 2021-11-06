@@ -17,7 +17,7 @@ class EditChannel extends StatefulWidget {
 
 class _EditChannelState extends State<EditChannel> {
   String _iconText = "";
-  bool _invalidName = false;
+  //bool _invalidName = false;
   List<bool> _iconTypeSelected = [true, false];
 
   void handleClose() {}

@@ -1,6 +1,5 @@
 import 'package:groupidy/enums/channel_types.dart';
 import 'package:groupidy/model/channels/channel.dart';
-import '../chat.dart';
 
 class ChannelGroupChat extends Channel {
   String cid;

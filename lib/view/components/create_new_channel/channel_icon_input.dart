@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:groupidy/constants.dart';
 import 'package:groupidy/view/components/button.dart';
 import 'package:groupidy/view/components/circle_image.dart';
 

@@ -38,7 +38,7 @@ class _NewsChannelState extends State<NewsChannel> {
             ))),
             Obx(() => channelController.getUidsAllowedToWrite().contains('useruid')
                 ? TextFieldBar(
-                    onSend: (s) => {},
+                    onSend: (s) => chatController.addMessage(s),
                     outerPadding: 16,
                     textStyle: kBodyRegular.copyWith(color: kWhite),
                     hintStyle: kBodyRegular.copyWith(color: kWhiteDisabled),

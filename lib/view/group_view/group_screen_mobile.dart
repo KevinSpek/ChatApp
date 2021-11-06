@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:groupidy/colors.dart';
 import 'package:groupidy/constants.dart';
-import 'package:groupidy/dummy_data.dart';
-import 'package:groupidy/enums/channel_types.dart';
-import 'package:groupidy/model/channels/channel.dart';
-import 'package:groupidy/model/group.dart';
+import 'package:groupidy/controller/channel_controller.dart';
+import 'package:groupidy/controller/group_controller.dart';
 import 'package:groupidy/utils.dart';
 import 'package:groupidy/view/components/bar_info.dart';
 import 'package:groupidy/view/components/button.dart';
@@ -18,25 +16,15 @@ import 'package:sliding_up_panel/sliding_up_panel.dart';
 class GroupScreenMobile extends StatefulWidget {
   GroupScreenMobile({
     Key? key,
-    required this.group,
-    required this.currChannel,
   }) : super(key: key);
-
-  final Group group;
-  Channel currChannel;
 
   @override
   _GroupScreenMobileState createState() => _GroupScreenMobileState();
 }
 
 class _GroupScreenMobileState extends State<GroupScreenMobile> {
-  List<Channel> _channels = [];
-
-  @override
-  void initState() {
-    
-    super.initState();
-  }
+  GroupController groupController = Get.find();
+  ChannelController channelController = Get.find();
 
   PanelController _pc = new PanelController();
 
@@ -85,7 +73,7 @@ class _GroupScreenMobileState extends State<GroupScreenMobile> {
         color: kSecondaryBackground,
         child: Column(
           children: [
-            BarInfo(
+            Obx(() =>BarInfo(
               leftWidget: CustomIconButton(
                 icon: Icons.arrow_back,
                 onPressed: () {
@@ -98,28 +86,25 @@ class _GroupScreenMobileState extends State<GroupScreenMobile> {
                   _pc.open();
                 },
               ),
-              title: widget.group.name,
-              subTitle: widget.currChannel.name,
+              title: groupController.getGroupName(),
+              subTitle: channelController.getName(),
               itemInfoClick: () => {},
               color: kPrimaryColor,
-            ),
-            Container(
+            )),
+            Obx(() => Container(
               height: 84,
               width: MediaQuery.of(context).size.width,
               color: kPrimaryColor,
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
-                  children: _channels.map((channel) {
-                    // TODO: extract channel image...
+                  children: channelController.channels.value.map((channel) {
                     return Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: InkWell(
                         onTap: () {
-                          // TODO: on click change currChannel!
-                          setState(() {
-                            widget.currChannel = channel;
-                          });
+                          groupController.handleChannelChange(channel);
+                          channelController.handleChannelChange(channel);
                         },
                         child: Column(
                           children: [
@@ -133,7 +118,7 @@ class _GroupScreenMobileState extends State<GroupScreenMobile> {
                             Spacer(),
                             Visibility(
                               child: Container(height: 2, width: 64, color: kWhite),
-                              visible: channel.pid == widget.currChannel.pid,
+                              visible: channel.pid == channelController.getPid(),
                             ),
                           ],
                         ),
@@ -142,8 +127,8 @@ class _GroupScreenMobileState extends State<GroupScreenMobile> {
                   }).toList(),
                 ),
               ),
-            ),
-            ChannelPresentor(type: ChannelType.none,),
+            )),
+            Obx(() => ChannelPresentor(type: channelController.getType())),
           ],
         ),
       ),

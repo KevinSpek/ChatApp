@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter/material.dart';
-
 class OrientationLayout extends StatelessWidget {
   const OrientationLayout({
     Key? key,

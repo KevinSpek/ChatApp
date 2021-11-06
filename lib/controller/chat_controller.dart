@@ -30,8 +30,6 @@ class ChatController extends GetxController {
 
     var messageObject = new Message(senderUid: '', senderNickname: 'nix', date: DateTime.now(), msg: message);
     FirestoreService.addMessage(channelChat.value!.cid, messageObject);
-    channelChat.value!.messages.add(messageObject);
-    channelChat.refresh();
   }
 
   void loadMessages() {

@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:groupidy/enums/channel_types.dart';
 import 'package:groupidy/model/channels/channel.dart';
 import 'package:groupidy/model/group.dart';
 import 'package:groupidy/services/firestore_service.dart';
@@ -10,7 +9,6 @@ import 'package:groupidy/services/firestore_service.dart';
 class GroupController extends GetxController {
   var group = Rx<Group?>(null);
   var groupImageDownloadUrl = Rx<String?>(null);
-  var channels = Rx<List<Channel>>([]);
   var showGroupProfile = false.obs;
   var _gid = '';
 
@@ -26,40 +24,8 @@ class GroupController extends GetxController {
         getGroupImageUrl().then((String? imageDownloadUrl) {
           groupImageDownloadUrl.value = imageDownloadUrl;
         });
-        loadChannels();
       }
     });
-  }
-
-  void loadChannels() {
-    if (group.value == null) return;
-    FirestoreService.getChannels(group.value!.gid).then((query) => {
-          query.docs.forEach((doc) {
-            var channelToAdd = doc.data();
-            if (!channels.value
-                .any((channel) => channel.pid == channelToAdd.pid)) {
-              channels.value.add(channelToAdd);
-            } else {
-              //update existing channel
-              var channelIndex = channels.value
-                  .indexWhere((channel) => channel.pid == channelToAdd.pid);
-              channels.value[channelIndex] = channelToAdd;
-            }
-            channels.refresh();
-          })
-        });
-  }
-
-  void createChannel(String name, ChannelType type, bool isImage,
-      String iconText, String imgPath) {
-    if (group.value != null) {
-      FirestoreService.createChannel(
-          group.value!.gid, name, type, isImage, iconText, imgPath)
-          .then((channel) {
-            channels.value.add(channel);
-            channels.refresh();
-          });
-    }
   }
 
   void handleShowGroupProfile() {

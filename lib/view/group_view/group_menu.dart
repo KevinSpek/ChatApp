@@ -97,12 +97,12 @@ class _GroupMenuState extends State<GroupMenu> {
           ),
           Expanded(
             child: Obx(() => ListView.separated(
-              itemCount: groupController.channels.value.length,
+              itemCount: channelController.channels.value.length,
               separatorBuilder: (BuildContext context, int index) => Divider(
                 height: 1,
               ),
               itemBuilder: (BuildContext context, int index) {
-                Channel channel = groupController.channels.value[index];
+                Channel channel = channelController.channels.value[index];
                 return noText
                     ? Padding(
                         padding: const EdgeInsets.all(8.0),

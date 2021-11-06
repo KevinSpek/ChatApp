@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:groupidy/controller/channel_controller.dart';
 import 'package:groupidy/controller/group_controller.dart';
-import 'package:groupidy/dummy_data.dart';
-import 'package:groupidy/model/group.dart';
 import 'package:groupidy/responsive/responsive_layout.dart';
 import 'package:groupidy/view/group_view/group_screen_desktop.dart';
 import 'package:groupidy/view/group_view/group_screen_mobile.dart';
@@ -22,6 +20,7 @@ class _GroupLayoutState extends State<GroupLayout> {
   @override 
   void initState() {
     groupController.loadGroup();
+    channelController.loadChannels();
     super.initState();
   }
 
@@ -29,10 +28,7 @@ class _GroupLayoutState extends State<GroupLayout> {
   Widget build(BuildContext context) {
     return ResponsiveLayout(
       desktop: GroupScreenDesktop(),
-      mobile: GroupScreenMobile(
-        currChannel: pidNews,
-        group: Group(gid: '', name: 'test', tag: 'test', ownerUid: 'ownerUid', uids: []),
-      ),
+      mobile: GroupScreenMobile(),
     );
   }
 }

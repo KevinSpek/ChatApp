@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:groupidy/colors.dart';
-import 'package:groupidy/controller/group_controller.dart';
+import 'package:groupidy/controller/channel_controller.dart';
 import 'package:groupidy/enums/channel_types.dart';
-import 'package:groupidy/services/firestore_service.dart';
 import 'package:groupidy/typography.dart';
 import 'package:groupidy/view/components/button.dart';
 import 'package:groupidy/view/components/create_new_channel/channel_icon_input.dart';
@@ -18,7 +17,8 @@ class CreateNewChannel extends StatefulWidget {
 }
 
 class _CreateNewChannelState extends State<CreateNewChannel> {
-  GroupController groupController = Get.find();
+  ChannelController channelController = Get.find();
+
   ChannelType _type = ChannelType.forum;
   String _name = "";
   String _iconText = "";
@@ -28,7 +28,7 @@ class _CreateNewChannelState extends State<CreateNewChannel> {
   void handleClose() {}
 
   void handleCreateChannel() {
-    groupController.createChannel(
+    channelController.createChannel(
       _name, 
       _type, 
       _iconTypeSelected[1], 

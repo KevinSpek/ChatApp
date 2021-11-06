@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:groupidy/model/channels/channel.dart';
 import 'package:groupidy/model/notification_message.dart';
-import 'package:groupidy/view/components/circle_image.dart';
 import 'package:groupidy/view/components/item_info.dart';
-import 'package:groupidy/view/notification_views/notification_item.dart';
-import 'package:groupidy/view/notification_views/notification_side.dart';
 import 'package:groupidy/view/notification_views/notifications_group.dart';
 
 import '../../colors.dart';

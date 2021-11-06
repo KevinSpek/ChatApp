@@ -1,7 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:groupidy/model/channels/channel.dart';
 import 'package:groupidy/model/notification_message.dart';
-import 'package:groupidy/services/firestore_service.dart';
 import 'package:groupidy/services/storage_service.dart';
 
 class Group {
