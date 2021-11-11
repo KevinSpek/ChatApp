@@ -1,3 +1,4 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -31,6 +32,15 @@ class _GroupInformationState extends State<GroupInformation> {
     showToast(context, "Tag changed succesfully.");
   }
 
+  void _handleImagePick() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.image
+    );
+    if (result != null) {
+      groupController.handleUpdateImage(result.files.first);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -43,7 +53,8 @@ class _GroupInformationState extends State<GroupInformation> {
                 children: [
                   Obx(() => CircleImage(
                     size: 160,
-                    imagePath: groupController.groupImageDownloadUrl.value,
+                    imagePath: groupController.getGroupImgPath(),
+                    onClick: _handleImagePick,
                   )),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 32),

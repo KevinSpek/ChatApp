@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:groupidy/view/components/button.dart';
 import 'package:groupidy/view/components/circle_image.dart';
@@ -6,13 +8,24 @@ import '../../../colors.dart';
 import '../../../typography.dart';
 
 class ChannelIconInput extends StatelessWidget {
-  const ChannelIconInput({Key? key, required this.iconTypeSelected, required this.onIconTypeSelect, required this.iconText, required this.channelName, required this.onIconTextChange}) : super(key: key);
+  const ChannelIconInput(
+      {Key? key,
+      required this.iconTypeSelected,
+      required this.onIconTypeSelect,
+      required this.iconText,
+      required this.channelName,
+      required this.onIconTextChange,
+      this.imageBytes,
+      required this.handleImagePick})
+      : super(key: key);
 
   final List<bool> iconTypeSelected;
   final Function(int) onIconTypeSelect;
   final Function(String) onIconTextChange;
+  final VoidCallback handleImagePick;
   final String iconText;
   final String channelName;
+  final Uint8List? imageBytes;
 
   @override
   Widget build(BuildContext context) {
@@ -69,6 +82,8 @@ class ChannelIconInput extends StatelessWidget {
                   : iconText,
               imagePath: '',
               placeholderPath: '',
+              useBytes: imageBytes != null,
+              imageBytes: imageBytes,
             )
           ],
         ),
@@ -93,7 +108,12 @@ class ChannelIconInput extends StatelessWidget {
                     ),
                     style: kBodyRegular.copyWith(color: Colors.white),
                   )
-                : Button(onPressed: null, text: "Choose icon image", textStyle: kBodyRegular.copyWith(color: kWhite), standout: false, width: 240))
+                : Button(
+                    onPressed: handleImagePick,
+                    text: "Choose icon image",
+                    textStyle: kBodyRegular.copyWith(color: kWhite),
+                    standout: false,
+                    width: 240))
       ],
     );
   }

@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:groupidy/colors.dart';
@@ -15,6 +17,8 @@ class CircleImage extends StatelessWidget {
     this.text,
     this.padding,
     this.onClick,
+    this.useBytes = false,
+    this.imageBytes,
   }) : super(key: key);
 
   final String? imagePath;
@@ -25,6 +29,8 @@ class CircleImage extends StatelessWidget {
   final String? text;
   final EdgeInsetsGeometry? padding;
   final VoidCallback? onClick;
+  final bool useBytes;
+  final Uint8List? imageBytes;
 
   @override
   Widget build(BuildContext context) {
@@ -34,35 +40,46 @@ class CircleImage extends StatelessWidget {
         onTap: onClick,
         child: ClipRRect(
             borderRadius: BorderRadius.circular(size / 2),
-            child: useText
-                ? Container(
-                    width: size,
-                    height: size,
-                    decoration: BoxDecoration(
-                      color: kAccentColor,
-                    ),
-                    child: Center(
-                        child: Text(
-                      text == null ? '' : text!,
-                      style: kBodySmall.copyWith(color: kWhite, fontSize: size * 0.3),
-                    )),
-                  )
-                : CachedNetworkImage(
-                    imageUrl: imagePath == null ? '' : imagePath!,
-                    placeholder: (context, url) => CircularProgressIndicator(),
-                    errorWidget: (context, url, error) => Container(
-                      color: placeholderBackgroundColor,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: placeholderPath == '' ? null : Image(
-                          image: AssetImage(placeholderPath),
-                        ),
-                      ),
-                    ),
+            child: useBytes
+                ? Image.memory(
+                    imageBytes!,
                     width: size,
                     height: size,
                     fit: BoxFit.cover,
-                  )),
+                  )
+                : useText
+                    ? Container(
+                        width: size,
+                        height: size,
+                        decoration: BoxDecoration(
+                          color: kAccentColor,
+                        ),
+                        child: Center(
+                            child: Text(
+                          text == null ? '' : text!,
+                          style: kBodySmall.copyWith(
+                              color: kWhite, fontSize: size * 0.3),
+                        )),
+                      )
+                    : CachedNetworkImage(
+                        imageUrl: imagePath == null ? '' : imagePath!,
+                        placeholder: (context, url) =>
+                            CircularProgressIndicator(),
+                        errorWidget: (context, url, error) => Container(
+                          color: placeholderBackgroundColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: placeholderPath == ''
+                                ? null
+                                : Image(
+                                    image: AssetImage(placeholderPath),
+                                  ),
+                          ),
+                        ),
+                        width: size,
+                        height: size,
+                        fit: BoxFit.cover,
+                      )),
       ),
     );
   }

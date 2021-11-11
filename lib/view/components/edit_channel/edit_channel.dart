@@ -90,6 +90,7 @@ class _EditChannelState extends State<EditChannel> {
                 Padding(
                     padding: const EdgeInsets.only(top: 16),
                     child: ChannelIconInput(
+                      handleImagePick: () => {},
                       iconTypeSelected: _iconTypeSelected,
                       onIconTypeSelect: (index) => {
                         setState(

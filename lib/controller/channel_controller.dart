@@ -1,7 +1,9 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
 import 'package:groupidy/enums/channel_types.dart';
 import 'package:groupidy/model/channels/channel.dart';
 import 'package:groupidy/services/firestore_service.dart';
+import 'package:groupidy/services/storage_service.dart';
 
 class ChannelController extends GetxController {
   var channel = Rx<Channel?>(null);
@@ -65,14 +67,29 @@ class ChannelController extends GetxController {
         _gid, channel.value!.pid, {"desc": description});
   }
 
-  Future<void> updateChannelImage(
-      bool isImage, String iconText, String imgPath) {
-    channel.value!.isImage = isImage;
-    channel.value!.iconText = iconText;
-    channel.value!.imgPath = imgPath;
-    channel.refresh();
-    return FirestoreService.updateChannel(_gid, channel.value!.pid,
-        {"isImage": isImage, "iconText": iconText, "imgPath": imgPath});
+  void updateChannelImage(
+      bool isImage, String iconText, PlatformFile? file) {
+    if (file == null || file.bytes == null) {
+      channel.value!.isImage = isImage;
+      channel.value!.iconText = iconText;
+      channel.refresh();
+      FirestoreService.updateChannel(
+          _gid, channel.value!.pid, {"isImage": isImage, "iconText": iconText});
+    } else {
+      StorageService.uploadFile(
+              'groups/' +
+                  _gid +
+                  '/channels/' +
+                  channel.value!.pid +
+                  '/' +
+                  file.name,
+              file.bytes!)
+          .then((downloadUrl) {
+        FirestoreService.updateChannel(_gid, channel.value!.pid, {"isImage": isImage,  "iconText": iconText, 'imgPath': downloadUrl});
+        channel.value!.imgPath = downloadUrl;
+        channel.refresh();
+      });
+    }
   }
 
   Future<void> setChannelNotLimited() {

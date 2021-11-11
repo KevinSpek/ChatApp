@@ -80,6 +80,7 @@ class _CreateNewChannelState extends State<CreateNewChannel> {
                 Padding(
                     padding: const EdgeInsets.only(top: 16),
                     child: ChannelIconInput(
+                      handleImagePick: () => {},
                       iconTypeSelected: _iconTypeSelected,
                       onIconTypeSelect: (index) => {
                         setState(

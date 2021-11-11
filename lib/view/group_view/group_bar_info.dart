@@ -20,7 +20,7 @@ class _GroupBarInfoState extends State<GroupBarInfo> {
   Widget build(BuildContext context) {
     return Obx(() => BarInfo(
         title: groupController.getGroupName(),
-        imagePath: groupController.groupImageDownloadUrl.value,
+        imagePath: groupController.getGroupImgPath(),
         subTitle: '${groupController.getGroupSize()} Users',
         itemInfoClick: groupController.handleShowGroupProfile,
         rightWidget: Row(

@@ -5,7 +5,7 @@ class Group {
   final String gid;
   final String name;
   String tag;
-  final String? imgPath;
+  String? imgPath;
   final String ownerUid;
   DateTime? lastUpdated;
   List<String> uids;

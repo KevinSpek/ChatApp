@@ -1,3 +1,4 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:groupidy/controller/channel_controller.dart';
@@ -17,8 +18,9 @@ class _ChannelImageChangeState extends State<ChannelImageChange> {
 
   String _iconText = "";
   List<bool> _iconTypeSelected = [true, false];
+  PlatformFile? _file;
 
-  @override 
+  @override
   void initState() {
     setState(() {
       _iconText = channelController.getIconText();
@@ -26,15 +28,27 @@ class _ChannelImageChangeState extends State<ChannelImageChange> {
     super.initState();
   }
 
+  void handleImagePick() async {
+    FilePickerResult? result =
+        await FilePicker.platform.pickFiles(type: FileType.image);
+    if (result != null) {
+      setState(() {
+        _file = result.files.first;
+      });
+    }
+  }
+
   void handleUpdate() {
-    channelController.updateChannelImage(_iconTypeSelected[1], _iconText, '');
+    channelController.updateChannelImage(
+        _iconTypeSelected[1], _iconText, _file);
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
         padding: EdgeInsets.all(16),
-        constraints: BoxConstraints(maxHeight: 300, maxWidth: 400, minWidth: 350),
+        constraints:
+            BoxConstraints(maxHeight: 300, maxWidth: 400, minWidth: 350),
         color: kSecondaryBackground,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,6 +56,7 @@ class _ChannelImageChangeState extends State<ChannelImageChange> {
             Padding(
                 padding: const EdgeInsets.only(top: 16),
                 child: ChannelIconInput(
+                  handleImagePick: handleImagePick,
                   iconTypeSelected: _iconTypeSelected,
                   onIconTypeSelect: (index) => {
                     setState(
@@ -58,6 +73,7 @@ class _ChannelImageChangeState extends State<ChannelImageChange> {
                       _iconText = text;
                     })
                   },
+                  imageBytes: _file != null ? _file!.bytes : null,
                 )),
             Spacer(),
             Button(
