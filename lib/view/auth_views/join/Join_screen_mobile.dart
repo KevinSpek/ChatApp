@@ -42,13 +42,13 @@ class _JoinScreenMobileState extends State<JoinScreenMobile> {
 
       userController.registerPhone(
           phoneNumber: phone,
-          nickname: nickname,
-          verificationFailed: () {
+          smsVerificationFailed: () {
             setState(() {
               isError = true;
               isLoading = false;
             });
-          });
+          },
+          reCAPTCHAFailed: () {});
 
       setState(() {
         isLoading = false;
@@ -94,14 +94,14 @@ class _JoinScreenMobileState extends State<JoinScreenMobile> {
     verification = newVerification;
     userController.registerPhone(
         phoneNumber: phone,
-        nickname: nickname,
         smsCode: newVerification,
-        verificationFailed: () {
+        smsVerificationFailed: () {
           setState(() {
             isError = true;
             isLoading = false;
           });
-        });
+        },
+        reCAPTCHAFailed: () {});
     // TODO Submit verification
   }
 

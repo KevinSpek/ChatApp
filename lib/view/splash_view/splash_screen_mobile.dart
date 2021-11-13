@@ -1,10 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:groupidy/colors.dart';
+import 'package:groupidy/controller/user_controller.dart';
 
 import '../../typography.dart';
 
-class SplashScreenMobile extends StatelessWidget {
+class SplashScreenMobile extends StatefulWidget {
   const SplashScreenMobile({Key? key}) : super(key: key);
+
+  @override
+  State<SplashScreenMobile> createState() => _SplashScreenMobileState();
+}
+
+class _SplashScreenMobileState extends State<SplashScreenMobile> {
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

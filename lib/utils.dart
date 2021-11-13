@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'dart:math';
 import 'package:groupidy/responsive/device_screen_type.dart';
 import 'package:groupidy/view/components/general_dialog.dart';
 
@@ -35,7 +35,6 @@ String presentTime(DateTime date) {
 void dialog({required BuildContext context, required Widget child}) {
   showDialog(
     barrierColor: Colors.black.withOpacity(0.3),
-    
     context: context,
     builder: (_) => GeneralDialog(
       child: child,
@@ -44,10 +43,34 @@ void dialog({required BuildContext context, required Widget child}) {
 }
 
 void showToast(BuildContext context, String message) {
-    final scaffold = ScaffoldMessenger.of(context);
-    scaffold.showSnackBar(
-      SnackBar(
-        content: Text(message),
-      ),
-    );
+  final scaffold = ScaffoldMessenger.of(context);
+  scaffold.showSnackBar(
+    SnackBar(
+      content: Text(message),
+    ),
+  );
+}
+
+bool isPhoneValid(String value) {
+  String patttern = r'(^(?:[+0]9)?[0-9]{9,12}$)';
+  RegExp regExp = new RegExp(patttern);
+  if (!regExp.hasMatch(value)) {
+    return false;
   }
+  return true;
+}
+
+bool isNicknameValid(String value) {
+  var validCharacters = RegExp(r'[a-zA-Z][a-zA-Z0-9]+');
+  if (value.length < 3 || !validCharacters.hasMatch(value)) {
+    return false;
+  }
+  return true;
+}
+
+String tagGenerator() {
+  int tagLength = 4;
+  String chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  Random rnd = Random();
+  return List.generate(tagLength, (index) => chars[rnd.nextInt(chars.length)]).join();
+}

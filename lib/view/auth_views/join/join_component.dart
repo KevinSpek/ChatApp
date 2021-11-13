@@ -145,10 +145,9 @@ class _JoinComponentState extends State<JoinComponent> {
                                       String code = cc.dialCode != null ? cc.dialCode! : "";
                                       print(code + newPhone);
                                       widget.onPhone(code + newPhone);
-                                      
+
                                       setState(() {
                                         widget.onError(false);
-
                                       });
                                     } else {
                                       setState(() {

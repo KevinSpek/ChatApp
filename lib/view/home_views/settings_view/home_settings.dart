@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:groupidy/colors.dart';
 import 'package:groupidy/constants.dart';
+import 'package:groupidy/controller/user_controller.dart';
 import 'package:groupidy/typography.dart';
 import 'settings_items/settings_toggle.dart';
 
 class HomeSettings extends StatelessWidget {
-  const HomeSettings({Key? key}) : super(key: key);
+  HomeSettings({Key? key}) : super(key: key);
   final widthRatio = 0.7;
+  final UserController userController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,6 +53,7 @@ class HomeSettings extends StatelessWidget {
                     ),
                     onPressed: () {
                       // TODO: LOGOUT!
+                      userController.signOut();
                     },
                     child: Text(
                       'LOGOUT',

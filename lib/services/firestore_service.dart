@@ -115,11 +115,12 @@ class FirestoreService {
   }
 
   static getUser(String uid, Function(UserGp?) onComplete) {
-    firestore
+/*     firestore
         .collection('users')
         .doc(uid)
         .get()
-        .then((DocumentSnapshot<Map<String, dynamic>> doc) {
+        .then((DocumentSnapshot<Map<String, dynamic>> doc) { */
+    firestore.collection('users').doc(uid).get().then((DocumentSnapshot<Map<String, dynamic>> doc) {
       if (doc.exists) {
         onComplete(UserGp.fromMap(doc.data()!));
       }
@@ -174,4 +175,15 @@ class FirestoreService {
             toFirestore: (chat, _) => ChatChannel.toMap(chat))
         .get();
   }
+
+  static Future<bool> isUserExists(String uid) async {
+    var docRef = firestore.collection('users').doc(uid);
+    var doc = await docRef.get();
+    return doc.exists;
+  }
+
+  static Future<void> createUser(UserGp userToCreate) {
+    return firestore.collection('users').doc(userToCreate.uid).withConverter<UserGp>(fromFirestore: (doc, _) => UserGp.fromMap(doc.data()!), toFirestore: (user, _) => UserGp.toMap(user)).set(userToCreate);
+  }
+
 }

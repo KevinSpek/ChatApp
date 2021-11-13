@@ -4,12 +4,12 @@ import 'package:groupidy/controller/user_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:groupidy/routes/app_pages.dart';
 
-class LoggedMiddleware extends GetMiddleware {
+class SavedUserMiddleware extends GetMiddleware {
   @override
   RouteSettings? redirect(String? route) {
-    final FirebaseAuth _auth = FirebaseAuth.instance;
+    final UserController userController = Get.find();
 
-    if (_auth.currentUser != null) {
+    if (userController.isUserExists()) {
       return RouteSettings(name: Routes.HOME);
     }
   }
