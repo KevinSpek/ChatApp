@@ -17,6 +17,7 @@ class ItemInfo extends StatelessWidget {
     this.useText = false,
     this.text,
     this.padding,
+    this.placeHolderPath
   }) : super(key: key);
 
   final String title;
@@ -29,6 +30,7 @@ class ItemInfo extends StatelessWidget {
   final bool useText;
   final String? text;
   final EdgeInsetsGeometry? padding;
+  final String? placeHolderPath;
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +43,7 @@ class ItemInfo extends StatelessWidget {
             imagePath: imagePath,
             useText: useText,
             text: text,
+            placeholderPath: placeHolderPath ?? null,
           ),
           SizedBox(width: spacing),
           Column(

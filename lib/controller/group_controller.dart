@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
@@ -7,6 +5,7 @@ import 'package:groupidy/model/channels/channel.dart';
 import 'package:groupidy/model/group.dart';
 import 'package:groupidy/services/firestore_service.dart';
 import 'package:groupidy/services/storage_service.dart';
+import 'package:groupidy/utils.dart';
 
 class GroupController extends GetxController {
   var group = Rx<Group?>(null);
@@ -52,7 +51,7 @@ class GroupController extends GetxController {
   void updateGroupTag() {
     if (group.value == null)
       return;
-    var newTag = 'abc' + Random().nextInt(9).toString();
+    var newTag = tagGenerator();
     group.value!.tag = newTag;
     group.refresh();
     FirestoreService.updateGroup(group.value!.gid, {'tag': newTag});

@@ -47,6 +47,15 @@ class ChannelController extends GetxController {
     this.showChannelInformation.value = false;
   }
 
+  void handleChannelDelete() {
+    FirestoreService.deleteChannel(_gid, channel.value!.pid).then((value) {
+      channels.value.removeWhere((element) => element.pid == channel.value!.pid);
+      showChannelInformation.value = false;
+      channel.value = null;
+      channels.refresh();
+    });
+  }
+
   void handleShowChannelInformation() {
     this.showChannelInformation.value = true;
   }
@@ -67,8 +76,7 @@ class ChannelController extends GetxController {
         _gid, channel.value!.pid, {"desc": description});
   }
 
-  void updateChannelImage(
-      bool isImage, String iconText, PlatformFile? file) {
+  void updateChannelImage(bool isImage, String iconText, PlatformFile? file) {
     if (file == null || file.bytes == null) {
       channel.value!.isImage = isImage;
       channel.value!.iconText = iconText;
@@ -85,7 +93,8 @@ class ChannelController extends GetxController {
                   file.name,
               file.bytes!)
           .then((downloadUrl) {
-        FirestoreService.updateChannel(_gid, channel.value!.pid, {"isImage": isImage,  "iconText": iconText, 'imgPath': downloadUrl});
+        FirestoreService.updateChannel(_gid, channel.value!.pid,
+            {"isImage": isImage, "iconText": iconText, 'imgPath': downloadUrl});
         channel.value!.imgPath = downloadUrl;
         channel.refresh();
       });

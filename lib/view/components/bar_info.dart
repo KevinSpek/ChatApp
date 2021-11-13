@@ -15,6 +15,7 @@ class BarInfo extends StatelessWidget {
     this.rightWidget,
     this.useIconText = false,
     this.iconText,
+    this.placeHolderPath,
   }) : super(key: key);
 
   final Color color;
@@ -26,6 +27,7 @@ class BarInfo extends StatelessWidget {
   final Widget? rightWidget;
   final bool useIconText;
   final String? iconText;
+  final String? placeHolderPath;
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +50,7 @@ class BarInfo extends StatelessWidget {
                     subTitle: subTitle,
                     useText: useIconText,
                     text: iconText,
+                    placeHolderPath: placeHolderPath,
                   ),
                 ],
               ),

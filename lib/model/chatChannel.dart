@@ -28,5 +28,5 @@ class ChatChannel extends Chat {
     };
   }
 
-  static ChatChannel empty() => new ChatChannel(cid: '', lastUpdated: DateTime.now(), messages: []);
+  static ChatChannel empty() => new ChatChannel(cid: '', lastUpdated: DateTime.now(), messages: <Message>[]);
 }

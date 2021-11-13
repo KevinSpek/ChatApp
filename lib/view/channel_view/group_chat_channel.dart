@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:groupidy/controller/channel_controller.dart';
 import 'package:groupidy/controller/chat_controller.dart';
+import 'package:groupidy/controller/user_controller.dart';
 import 'package:groupidy/view/components/messages_container.dart';
 import 'package:groupidy/view/components/textfield_bar.dart';
 
@@ -17,12 +18,25 @@ class GroupChatChannel extends StatefulWidget {
 class _GroupChatChannelState extends State<GroupChatChannel> {
   var channelController = Get.find<ChannelController>();
   var chatController = Get.put(ChatController());
+  var userController = Get.put(UserController());
+  var _scrollController = ScrollController();
 
   @override
   void initState() {
     chatController.loadChat(channelController.getCid());
+    _scrollController.addListener(() { 
+      if (_scrollController.position.atEdge && _scrollController.offset != 0) {
+        chatController.loadOldMessages();
+      }
+    });
     super.initState();
   }
+
+  @override void didUpdateWidget(covariant GroupChatChannel oldWidget) {
+    chatController.loadChat(channelController.getCid());
+    super.didUpdateWidget(oldWidget);
+  }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -34,10 +48,11 @@ class _GroupChatChannelState extends State<GroupChatChannel> {
               Expanded(
                   child: Obx(() => MessagesContainer(
                 chat: chatController.getChat(),
-                myUid: '',
+                myUid: userController.getUser()!.uid,
+                scrollController: _scrollController,
               ))),
               TextFieldBar(
-                onSend: (s) => chatController.addMessage(s),
+                onSend: (s) => chatController.addMessage(s, userController.getUser()!.uid, userController.getUser()!.nickname),
                 outerPadding: 16,
                 textStyle: kBodyRegular.copyWith(color: kWhite),
                 hintStyle: kBodyRegular.copyWith(color: kWhiteDisabled),

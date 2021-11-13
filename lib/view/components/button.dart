@@ -38,6 +38,7 @@ class Button extends StatelessWidget {
                 ? backgroundColor
                 : kSecondaryBubble
             : Colors.transparent,
+        borderRadius: BorderRadius.circular(8.0)
       ),
       child: Material(
         color: Colors.transparent,

@@ -29,6 +29,7 @@ class _GroupBarInfoState extends State<GroupBarInfo> {
             SizedBox(width: 12),
             Text('Invite Friends', style: kBodySmall.copyWith(color: kWhite)),
           ],
-        )));
+        ),
+        placeHolderPath: 'images/group_placeholder.png',));
   }
 }

@@ -18,13 +18,24 @@ class FirestoreService {
     var gid = firestore.collection('groups').doc().id;
     Group groupToCreate = Group.createNewGroup(gid, name, ownerUid);
 
-    return firestore
+    var batch = firestore.batch();
+
+    batch.set(
+      firestore
         .collection('groups')
         .doc(gid)
         .withConverter<Group>(
             fromFirestore: (doc, _) => Group.fromMap(doc.data()!),
-            toFirestore: (group, _) => Group.toMap(group))
-        .set(groupToCreate);
+            toFirestore: (group, _) => Group.toMap(group)), 
+      groupToCreate);
+    
+    batch.update(
+      firestore
+        .collection('users')
+        .doc(ownerUid), 
+      {'gids': FieldValue.arrayUnion([gid])});
+
+    return batch.commit();
   }
 
   static Future<void> updateGroup(String gid, Map<String, Object?> updatedData) {
@@ -92,6 +103,15 @@ class FirestoreService {
         .get();
   }
 
+  static Future<void> deleteChannel(String gid, String pid) {
+    return firestore
+        .collection('groups')
+        .doc(gid)
+        .collection('channels')
+        .doc(pid).delete();
+  }
+
+
   static Future<QuerySnapshot<Channel>> getChannels(String gid) {
     return firestore
         .collection('groups')
@@ -153,6 +173,20 @@ class FirestoreService {
         .get();
   }
 
+  static Future<QuerySnapshot<Message>> getOldMessages(String cid, DateTime fromDate) {
+    return firestore
+        .collection('chats')
+        .doc(cid)
+        .collection('messages')
+        .withConverter<Message>(
+            fromFirestore: (doc, _) => Message.fromMap(doc.data()!),
+            toFirestore: (message, _) => Message.toMap(message))
+        .where('date', isLessThan: Timestamp.fromDate(fromDate))
+        .orderBy('date', descending: true)
+        .limit(10)
+        .get();
+  }
+
   static Stream<QuerySnapshot<Message>> setChatListener(String cid) {
     return firestore
       .collection('chats')
@@ -161,8 +195,8 @@ class FirestoreService {
       .withConverter<Message>(
             fromFirestore: (doc, _) => Message.fromMap(doc.data()!),
             toFirestore: (message, _) => Message.toMap(message))
-      .orderBy('date')
-      .limit(5)
+      .orderBy('date', descending: true)
+      .limit(10)
       .snapshots();
   }
 

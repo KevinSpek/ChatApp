@@ -11,7 +11,7 @@ class CircleImage extends StatelessWidget {
     Key? key,
     this.imagePath,
     this.size = 80,
-    this.placeholderPath = "images/user_placeholder.png",
+    this.placeholderPath,
     this.placeholderBackgroundColor = kSecondaryBubble,
     this.useText = false,
     this.text,
@@ -23,7 +23,7 @@ class CircleImage extends StatelessWidget {
 
   final String? imagePath;
   final double size;
-  final String placeholderPath;
+  final String? placeholderPath;
   final Color placeholderBackgroundColor;
   final bool useText;
   final String? text;
@@ -68,12 +68,11 @@ class CircleImage extends StatelessWidget {
                         errorWidget: (context, url, error) => Container(
                           color: placeholderBackgroundColor,
                           child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: placeholderPath == ''
-                                ? null
-                                : Image(
-                                    image: AssetImage(placeholderPath),
-                                  ),
+                            padding: EdgeInsets.all(size / 4.0),
+                            child: Image(
+                              image: AssetImage(placeholderPath ??
+                                  "images/user_placeholder.png"),
+                            ),
                           ),
                         ),
                         width: size,

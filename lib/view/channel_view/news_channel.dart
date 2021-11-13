@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:groupidy/colors.dart';
 import 'package:groupidy/controller/channel_controller.dart';
 import 'package:groupidy/controller/chat_controller.dart';
+import 'package:groupidy/controller/user_controller.dart';
 import 'package:groupidy/typography.dart';
 import 'package:groupidy/view/components/messages_container.dart';
 import 'package:groupidy/view/components/textfield_bar.dart';
@@ -18,10 +19,17 @@ class NewsChannel extends StatefulWidget {
 class _NewsChannelState extends State<NewsChannel> {
   var channelController = Get.find<ChannelController>();
   var chatController = Get.put(ChatController());
+  var userController = Get.put(UserController());
+  var _scrollController = ScrollController();
 
   @override
   void initState() {
     chatController.loadChat(channelController.getCid());
+    _scrollController.addListener(() { 
+      if (_scrollController.position.atEdge && _scrollController.offset != 0) {
+        chatController.loadOldMessages();
+      }
+    });
     super.initState();
   }
 
@@ -34,11 +42,12 @@ class _NewsChannelState extends State<NewsChannel> {
             Obx(() => Expanded(
                 child: MessagesContainer(
               chat: chatController.getChat(),
-              myUid: 'useruid',
+              myUid: userController.getUser()!.uid,
+              scrollController: _scrollController,
             ))),
             Obx(() => channelController.getUidsAllowedToWrite().contains('useruid')
                 ? TextFieldBar(
-                    onSend: (s) => chatController.addMessage(s),
+                    onSend: (s) => chatController.addMessage(s, userController.getUser()!.uid, userController.getUser()!.nickname),
                     outerPadding: 16,
                     textStyle: kBodyRegular.copyWith(color: kWhite),
                     hintStyle: kBodyRegular.copyWith(color: kWhiteDisabled),

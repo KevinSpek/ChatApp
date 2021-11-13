@@ -1,5 +1,6 @@
 import 'package:groupidy/model/notification_message.dart';
 import 'package:groupidy/services/storage_service.dart';
+import 'package:groupidy/utils.dart';
 
 class Group {
   final String gid;
@@ -22,7 +23,7 @@ class Group {
       this.notifications = const []});
 
   static Group createNewGroup(String gid, String name, String ownerUid) {
-    return new Group(gid: gid, name: name, tag: 'test', ownerUid: ownerUid, uids: [ownerUid]);
+    return new Group(gid: gid, name: name, tag: tagGenerator(), ownerUid: ownerUid, uids: [ownerUid]);
   }
 
   static Group fromMap(Map<String, dynamic> map) {

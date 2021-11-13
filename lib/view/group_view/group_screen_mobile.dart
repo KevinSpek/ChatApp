@@ -11,6 +11,7 @@ import 'package:groupidy/view/components/circle_image.dart';
 import 'package:groupidy/view/components/create_new_channel/create_new_channel.dart';
 import 'package:groupidy/view/components/custom_icon_button.dart';
 import 'package:groupidy/view/group_view/channel_presentor.dart';
+import 'package:groupidy/view/group_view/group_information.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class GroupScreenMobile extends StatefulWidget {
@@ -87,8 +88,8 @@ class _GroupScreenMobileState extends State<GroupScreenMobile> {
                 },
               ),
               title: groupController.getGroupName(),
-              subTitle: channelController.getName(),
-              itemInfoClick: () => {},
+              subTitle: channelController.getName() == '' ? null : channelController.getName(),
+              itemInfoClick: () => groupController.handleShowGroupProfile(),
               color: kPrimaryColor,
             )),
             Obx(() => Container(
@@ -128,7 +129,7 @@ class _GroupScreenMobileState extends State<GroupScreenMobile> {
                 ),
               ),
             )),
-            Obx(() => ChannelPresentor(type: channelController.getType())),
+            Obx(() => groupController.showGroupProfile.value ? GroupInformation() : ChannelPresentor(type: channelController.getType())),
           ],
         ),
       ),

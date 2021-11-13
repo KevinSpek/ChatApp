@@ -14,8 +14,8 @@ class GroupLayout extends StatefulWidget {
 }
 
 class _GroupLayoutState extends State<GroupLayout> {
-  final ChannelController channelController = Get.put(ChannelController("NuILkZj4kL36juKv7Qsd"));
-  final GroupController groupController = Get.put(GroupController("NuILkZj4kL36juKv7Qsd"));
+  final ChannelController channelController = Get.put(ChannelController("M08qrfFFnYQdYIL5qdEU"));
+  final GroupController groupController = Get.put(GroupController("M08qrfFFnYQdYIL5qdEU"));
 
   @override 
   void initState() {

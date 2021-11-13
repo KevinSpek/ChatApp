@@ -98,6 +98,7 @@ class _HomeChatidyState extends State<HomeChatidy> {
                               child: MessagesContainer(
                             chat: _chats[_currentChatIndex],
                             myUid: _myUid,
+                            scrollController: ScrollController(),
                           )),
                           TextFieldBar(
                             onSend: handleSendMessage,

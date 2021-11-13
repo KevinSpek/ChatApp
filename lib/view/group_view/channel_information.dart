@@ -33,39 +33,40 @@ class _ChannelInformationState extends State<ChannelInformation> {
             Row(
               children: [
                 Obx(() => CircleImage(
-                  size: 120,
-                  imagePath: channelController.getImgPath(),
-                  useText: !channelController.getIsImage(),
-                  text: channelController.getIconText(),
-                  padding: EdgeInsets.only(right: 32, bottom: 32),
-                  onClick: () => dialog(
-                      context: context,
-                      child: ChannelImageChange()),
-                )),
+                      size: 120,
+                      imagePath: channelController.getImgPath(),
+                      useText: !channelController.getIsImage(),
+                      text: channelController.getIconText(),
+                      padding: EdgeInsets.only(right: 32, bottom: 32),
+                      onClick: () =>
+                          dialog(context: context, child: ChannelImageChange()),
+                    )),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Obx(() => CustomEditableText(
-                      initialText: channelController.getName(),
-                      textStyle: kSubTitle.copyWith(color: kWhite),
-                      maxLines: 1,
-                    )),
+                          initialText: channelController.getName(),
+                          textStyle: kSubTitle.copyWith(color: kWhite),
+                          maxLines: 1,
+                        )),
                     Padding(
                       padding: const EdgeInsets.only(top: 4),
                       child: Obx(() => Text(
-                        channelTypeString[channelController.getType()]!,
-                        style: kBodyRegular.copyWith(color: kWhiteSecondary),
-                      )),
+                            channelTypeString[channelController.getType()]!,
+                            style:
+                                kBodyRegular.copyWith(color: kWhiteSecondary),
+                          )),
                     )
                   ],
                 )
               ],
             ),
             Obx(() => CustomEditableText(
-              hint: "Insert channel description",
-              onTextChange: (s) => channelController.updateChannelDescription(s),
-              initialText: channelController.getDescription(),
-            )),
+                  hint: "Insert channel description",
+                  onTextChange: (s) =>
+                      channelController.updateChannelDescription(s),
+                  initialText: channelController.getDescription(),
+                )),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 32),
               child: Divider(
@@ -103,7 +104,13 @@ class _ChannelInformationState extends State<ChannelInformation> {
                 : Text(
                     "This channel is Normal, Everyone in the group can enter it.",
                     style: kBodySmall.copyWith(color: kWhiteSecondary),
-                  ))
+                  )),
+            Button(
+              onPressed: channelController.handleChannelDelete,
+              text: "Delete Channel",
+              width: 240,
+              margin: EdgeInsets.only(top: 32),
+            )
           ],
         ),
       ),

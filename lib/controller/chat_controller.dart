@@ -22,13 +22,13 @@ class ChatController extends GetxController {
     } 
   }
 
-  void addMessage(String message) {
+  void addMessage(String message, String senderUid, String senderNickname) {
     if (channelChat.value == null) {
       print("channelChat is null!");
       return;
     }
 
-    var messageObject = new Message(senderUid: '', senderNickname: 'nix', date: DateTime.now(), msg: message);
+    var messageObject = new Message(senderUid: senderUid, senderNickname: senderNickname, date: DateTime.now(), msg: message);
     FirestoreService.addMessage(channelChat.value!.cid, messageObject);
   }
 
@@ -45,6 +45,17 @@ class ChatController extends GetxController {
       });
   }
 
+  void loadOldMessages() {
+    if (channelChat.value == null)
+      return;
+    
+    FirestoreService.getOldMessages(channelChat.value!.cid, channelChat.value!.messages.last.date)
+      .then((querySnapshot) {
+        channelChat.value!.messages.addAll(querySnapshot.docs.map((e) => e.data()));
+        channelChat.refresh();
+      });
+  }
+
   void setListener() {
     if (channelChat.value == null)
       return;
@@ -54,9 +65,9 @@ class ChatController extends GetxController {
     }
 
     _messegesListener = FirestoreService.setChatListener(channelChat.value!.cid).listen((event) { 
-      event.docChanges.forEach((element) {
-        channelChat.value!.messages.add(element.doc.data()!);
-      });
+      channelChat.value!.messages.insertAll(0, event.docChanges
+        .where((e) => e.type == DocumentChangeType.added)
+        .map((e) => e.doc.data()!));
       channelChat.refresh();
     });
   }
