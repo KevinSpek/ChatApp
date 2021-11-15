@@ -9,14 +9,14 @@ import 'package:groupidy/utils.dart';
 import 'package:groupidy/view/components/button.dart';
 import 'package:groupidy/view/components/loading.dart';
 
-class NewUserMobile extends StatefulWidget {
-  const NewUserMobile({Key? key}) : super(key: key);
+class NewUserDesktop extends StatefulWidget {
+  const NewUserDesktop({Key? key}) : super(key: key);
 
   @override
-  State<NewUserMobile> createState() => _NewUserMobileState();
+  State<NewUserDesktop> createState() => _NewUserDesktopState();
 }
 
-class _NewUserMobileState extends State<NewUserMobile> {
+class _NewUserDesktopState extends State<NewUserDesktop> {
   UserController userController = Get.find();
   final TextEditingController textEditingController = TextEditingController();
   bool isNickValid = false;
@@ -26,10 +26,10 @@ class _NewUserMobileState extends State<NewUserMobile> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Loading(
-          isLoading: isLoading,
-          child: Stack(
-              alignment: AlignmentDirectional.center,
-              children: [
+      isLoading: isLoading,
+      child: Stack(
+        alignment: AlignmentDirectional.center,
+        children: [
           Container(color: kSecondaryBackground),
           Padding(
             padding: const EdgeInsets.all(kPadding),
@@ -50,9 +50,7 @@ class _NewUserMobileState extends State<NewUserMobile> {
                     style: kBodyLarge.copyWith(color: kWhiteSecondary),
                   ),
                 ),
-                SizedBox(
-                  height: 20,
-                ),
+                Spacer(),
                 Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Container(
@@ -72,7 +70,7 @@ class _NewUserMobileState extends State<NewUserMobile> {
                             isStart = false;
                           });
                         }
-        
+
                         setState(() {
                           isNickValid = isNicknameValid(value);
                         });
@@ -94,7 +92,6 @@ class _NewUserMobileState extends State<NewUserMobile> {
                     ),
                   ),
                 ),
-                Spacer(),
                 Opacity(
                   opacity: isButtonValid() ? 1 : 0.5,
                   child: Button(
@@ -114,10 +111,9 @@ class _NewUserMobileState extends State<NewUserMobile> {
               ],
             ),
           ),
-          
-              ],
-            ),
-        ));
+        ],
+      ),
+    ));
   }
 
   bool isButtonValid() {
