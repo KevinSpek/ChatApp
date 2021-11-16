@@ -51,7 +51,13 @@ abstract class Channel {
             iconText: iconText,
             imgPath: imgPath);
       case ChannelType.forum:
-        return new ChannelForum(pid: pid, name: name);
+        return new ChannelForum(
+            pid: pid,
+            name: name,
+            cid: FirestoreService.getCid(),
+            isImage: isImage,
+            iconText: iconText,
+            imgPath: imgPath);
       case ChannelType.none:
         return new ChannelNews(pid: pid, name: name, uidsAllowedToWrite: []);
     }
@@ -84,7 +90,7 @@ abstract class Channel {
   }
 
   bool isChatChannel() {
-    return type == ChannelType.groupChat || type == ChannelType.news;
+    return type == ChannelType.groupChat || type == ChannelType.news || type == ChannelType.forum;
   }
 
   String getCid() {
@@ -92,6 +98,8 @@ abstract class Channel {
       return (this as ChannelGroupChat).cid;
     } else if (type == ChannelType.news) {
       return (this as ChannelNews).cid;
+    } else if (type == ChannelType.forum) {
+      return (this as ChannelForum).cid;
     }
     return "";
   }

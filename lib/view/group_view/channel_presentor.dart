@@ -26,10 +26,7 @@ class _ChannelPresentorState extends State<ChannelPresentor> {
       case ChannelType.news:
         return NewsChannel();
       case ChannelType.forum:
-        return ForumChannel(
-          forum: channelController.channel as ChannelForum,
-          uid: dUid,
-        );
+        return ForumChannel();
       case ChannelType.groupChat:
         return GroupChatChannel();
       case ChannelType.none:

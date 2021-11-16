@@ -1,29 +1,42 @@
 import 'package:groupidy/enums/channel_types.dart';
-import 'package:groupidy/model/post.dart';
 
 import 'channel.dart';
 
 class ChannelForum extends Channel {
-  List<Post> posts;
+  String cid;
 
   ChannelForum({
     required pid,
     required name,
+    this.cid = '',
     imgPath = '',
     isImage = false,
     iconText,
     desc,
     isLimited = false,
     uidsAllowed,
-    uidsAllowedToWrite = const <String>[],
-    this.posts = const [],
-  }) : super(pid: pid, name: name, type: ChannelType.forum, imgPath: imgPath, isImage: isImage, iconText: iconText, desc: desc, isLimited: isLimited, uidsAllowed: uidsAllowed, uidsAllowedToWrite: uidsAllowedToWrite);
+  }) : super(
+            pid: pid,
+            name: name,
+            type: ChannelType.forum,
+            imgPath: imgPath,
+            isImage: isImage,
+            iconText: iconText,
+            desc: desc,
+            isLimited: isLimited,
+            uidsAllowed: uidsAllowed);
 
   static ChannelForum fromMap(Map<String, dynamic> map) {
     return new ChannelForum(
-      pid: map['pid'],
-      name: map['name'],
-    );
+        pid: map['pid'],
+        name: map['name'],
+        imgPath: map['imgPath'],
+        isImage: map['isImage'],
+        iconText: map['iconText'],
+        desc: map['desc'],
+        isLimited: map['isLimited'],
+        uidsAllowed: map['uidsAllowed'],
+        cid: map['cid']);
   }
 
   Map<String, dynamic> toMap() {
@@ -37,7 +50,7 @@ class ChannelForum extends Channel {
       'desc': desc,
       'isLimited': isLimited,
       'uidsAllowed': uidsAllowed,
-      'uidsAllowedToWrite': uidsAllowedToWrite,
+      'cid': cid
     };
   }
 }

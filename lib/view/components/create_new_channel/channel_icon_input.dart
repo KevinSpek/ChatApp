@@ -7,7 +7,7 @@ import 'package:groupidy/view/components/circle_image.dart';
 import '../../../colors.dart';
 import '../../../typography.dart';
 
-class ChannelIconInput extends StatelessWidget {
+class ChannelIconInput extends StatefulWidget {
   const ChannelIconInput(
       {Key? key,
       required this.iconTypeSelected,
@@ -26,6 +26,22 @@ class ChannelIconInput extends StatelessWidget {
   final String iconText;
   final String channelName;
   final Uint8List? imageBytes;
+
+  @override
+  State<ChannelIconInput> createState() => _ChannelIconInputState();
+}
+
+class _ChannelIconInputState extends State<ChannelIconInput> {
+  var textController = TextEditingController(text: '');
+
+  @override void initState() {
+    textController.text = widget.iconText;
+    super.initState();
+  }
+
+  void handleChange(String s) {
+    
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,9 +79,9 @@ class ChannelIconInput extends StatelessWidget {
                       ),
                     ),
                   ],
-                  isSelected: iconTypeSelected,
+                  isSelected: widget.iconTypeSelected,
                   fillColor: kAccentColor,
-                  onPressed: onIconTypeSelect,
+                  onPressed: widget.onIconTypeSelect,
                   borderRadius: BorderRadius.all(Radius.circular(8)),
                   borderColor: kAccentColor,
                   selectedBorderColor: kAccentColor,
@@ -74,16 +90,16 @@ class ChannelIconInput extends StatelessWidget {
             ]),
             CircleImage(
               size: 64,
-              useText: iconTypeSelected[0],
-              text: iconText.length == 0
-                  ? channelName.length > 3
-                      ? channelName.substring(0, 3).toUpperCase()
-                      : channelName.toUpperCase()
-                  : iconText,
+              useText: widget.iconTypeSelected[0],
+              text: widget.iconText.length == 0
+                  ? widget.channelName.length > 3
+                      ? widget.channelName.substring(0, 3).toUpperCase()
+                      : widget.channelName.toUpperCase()
+                  : widget.iconText,
               imagePath: '',
               placeholderPath: '',
-              useBytes: imageBytes != null,
-              imageBytes: imageBytes,
+              useBytes: widget.imageBytes != null,
+              imageBytes: widget.imageBytes,
             )
           ],
         ),
@@ -92,24 +108,25 @@ class ChannelIconInput extends StatelessWidget {
         ),
         Padding(
             padding: const EdgeInsets.all(16),
-            child: iconTypeSelected[0]
+            child: widget.iconTypeSelected[0]
                 ? TextField(
+                    controller: textController,
                     maxLength: 3,
-                    onChanged: onIconTextChange,
+                    onChanged: widget.onIconTextChange,
                     textAlign: TextAlign.start,
                     decoration: InputDecoration(
-                      hintText: channelName.length == 0
+                      hintText: widget.channelName.length == 0
                           ? "Icon Text"
-                          : channelName.length > 3
-                              ? channelName.substring(0, 3).toUpperCase()
-                              : channelName.toUpperCase(),
+                          : widget.channelName.length > 3
+                              ? widget.channelName.substring(0, 3).toUpperCase()
+                              : widget.channelName.toUpperCase(),
                       counterText: "",
                       hintStyle: kBodyRegular.copyWith(color: kWhiteDisabled),
                     ),
                     style: kBodyRegular.copyWith(color: Colors.white),
                   )
                 : Button(
-                    onPressed: handleImagePick,
+                    onPressed: widget.handleImagePick,
                     text: "Choose icon image",
                     textStyle: kBodyRegular.copyWith(color: kWhite),
                     standout: false,

@@ -1,6 +1,5 @@
 import 'package:groupidy/model/channels/channel.dart';
 import 'package:groupidy/model/channels/channel_group_chat.dart';
-import 'package:groupidy/model/channels/forum.dart';
 import 'package:groupidy/model/channels/news.dart';
 import 'package:groupidy/model/chat.dart';
 import 'package:groupidy/model/group.dart';
@@ -100,6 +99,6 @@ List<Chat> dChats = [
   dChat2,
 ];
 
-Channel dChannel3 = ChannelForum(pid: '3', name: 'HR', posts: [dPost1, dPost2], iconText: 'FR');
+//Channel dChannel3 = ChannelForum(pid: '3', name: 'HR', posts: [dPost1, dPost2], iconText: 'FR');
 
-List<Channel> dChannels = [dChannel1, dChannel2, dChannel3];
+//List<Channel> dChannels = [dChannel1, dChannel2, dChannel3];
