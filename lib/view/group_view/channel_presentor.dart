@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:groupidy/controller/channel_controller.dart';
-import 'package:groupidy/dummy_data.dart';
 import 'package:groupidy/enums/channel_types.dart';
-import 'package:groupidy/model/channels/forum.dart';
 import 'package:groupidy/view/channel_view/forum_channel.dart';
 import 'package:groupidy/view/channel_view/group_chat_channel.dart';
 import 'package:groupidy/view/channel_view/news_channel.dart';
