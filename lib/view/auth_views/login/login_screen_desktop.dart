@@ -13,14 +13,14 @@ import '../../../colors.dart';
 import '../../../constants.dart';
 import '../../../typography.dart';
 
-class LoginScreenMobile extends StatefulWidget {
-  const LoginScreenMobile({Key? key}) : super(key: key);
+class LoginScreenDesktop extends StatefulWidget {
+  const LoginScreenDesktop({Key? key}) : super(key: key);
 
   @override
-  _LoginScreenMobileState createState() => _LoginScreenMobileState();
+  _LoginScreenDesktopState createState() => _LoginScreenDesktopState();
 }
 
-class _LoginScreenMobileState extends State<LoginScreenMobile> {
+class _LoginScreenDesktopState extends State<LoginScreenDesktop> {
   UserController userController = Get.find();
   final PageController _pageController = PageController(initialPage: 0);
   final TextEditingController _textEditingController = TextEditingController();
@@ -114,6 +114,7 @@ class _LoginScreenMobileState extends State<LoginScreenMobile> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    Spacer(),
                     Expanded(
                       child: PageView(
                         controller: _pageController,
@@ -150,7 +151,7 @@ class _LoginScreenMobileState extends State<LoginScreenMobile> {
                                           isStart = !isStart;
                                         });
                                       }
-      
+
                                       if (isPhoneValid(newPhone)) {
                                         String code = cc.dialCode != null ? cc.dialCode! : "";
                                         print(code + newPhone);
@@ -191,7 +192,6 @@ class _LoginScreenMobileState extends State<LoginScreenMobile> {
                         ],
                       ),
                     ),
-                    Spacer(),
                     Opacity(
                       opacity: isCode
                           ? 0
@@ -213,7 +213,6 @@ class _LoginScreenMobileState extends State<LoginScreenMobile> {
                 ),
               ),
             ),
-            
           ],
         ),
       ),

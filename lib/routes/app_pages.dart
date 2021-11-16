@@ -2,7 +2,6 @@ import 'package:get/get.dart';
 import 'package:groupidy/routes/logged_middleware.dart';
 import 'package:groupidy/routes/not_logged_middleware.dart';
 import 'package:groupidy/routes/saved_user_middleware.dart';
-import 'package:groupidy/view/auth_views/join/join_layout.dart';
 import 'package:groupidy/view/auth_views/login/login_layout.dart';
 import 'package:groupidy/view/group_view/group_layout.dart';
 import 'package:groupidy/view/home_views/home_layout.dart';
