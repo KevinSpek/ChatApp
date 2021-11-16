@@ -33,9 +33,9 @@ class ChannelController extends GetxController {
         });
   }
 
-  void createChannel(String name, ChannelType type, bool isImage,
+  Future<void> createChannel(String name, ChannelType type, bool isImage,
       String iconText, String imgPath) {
-    FirestoreService.createChannel(_gid, name, type, isImage, iconText, imgPath)
+    return FirestoreService.createChannel(_gid, name, type, isImage, iconText, imgPath)
         .then((channel) {
       channels.value.add(channel);
       channels.refresh();
