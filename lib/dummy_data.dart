@@ -31,15 +31,15 @@ NotificationMessage dNotification2 = NotificationMessage(chatID: '123', notifica
 NotificationMessage dNotification3 = NotificationMessage(chatID: '123', notificationType: NotificationType.news, numNewMessages: 3, time: DateTime.now());
 NotificationMessage dNotification4 = NotificationMessage(chatID: '123', notificationType: NotificationType.groupChat, numNewMessages: 7, time: DateTime.now());
 
-List<Group> dGroups = [
-  Group(gid: '', imgPath: 'images/dummy_game.png', lastUpdated: DateTime.now(), name: 'Gamerzzz', ownerUid: 'kev', tag: '123', uids: [], notifications: [dNotification1, dNotification2]),
-  Group(gid: '', imgPath: 'images/dummy_wrest.png', lastUpdated: DateTime.now(), name: 'Wrestlers', ownerUid: 'kev', tag: '123', uids: [], notifications: [dNotification3, dNotification4]),
-  Group(gid: '', imgPath: 'images/dummy_piano.png', lastUpdated: DateTime.now(), name: 'Piano Players', ownerUid: 'kev', tag: '123', uids: [], notifications: [dNotification4]),
-];
+// List<Group> dGroups = [
+//   Group(gid: '', imgPath: 'images/dummy_game.png', lastUpdated: DateTime.now(), name: 'Gamerzzz', ownerUid: 'kev', tag: '123', uids: [], notifications: [dNotification1, dNotification2]),
+//   Group(gid: '', imgPath: 'images/dummy_wrest.png', lastUpdated: DateTime.now(), name: 'Wrestlers', ownerUid: 'kev', tag: '123', uids: [], notifications: [dNotification3, dNotification4]),
+//   Group(gid: '', imgPath: 'images/dummy_piano.png', lastUpdated: DateTime.now(), name: 'Piano Players', ownerUid: 'kev', tag: '123', uids: [], notifications: [dNotification4]),
+// ];
 
 Post dPost = Post(chatMsg: Message(senderUid: dUid, msg: loremIpsumLong, date: DateTime.now().subtract(Duration(minutes: 17)), senderNickname: "ntnlbar"));
 
-List<UserGp> dUsers = [dUser1, dUser2, dUser3, dUser4];
+// List<UserGp> dUsers = [dUser1, dUser2, dUser3, dUser4];
 
 List<Message> dGroupMessages = [
   Message(senderUid: '1', msg: 'Lets play tonight?', date: DateTime(2020, 12, 20, 17, 30), senderNickname: 'Eden'),

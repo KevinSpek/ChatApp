@@ -26,8 +26,7 @@ class _GroupMenuState extends State<GroupMenu> {
   ChannelController channelController = Get.find();
 
   void _handleReturnHome() {
-    // TODO: manage controller accordingly
-    Get.toNamed('/home');
+    Get.offNamed('/home');
   }
 
   void handleChannelChange(Channel channel) {
@@ -97,51 +96,51 @@ class _GroupMenuState extends State<GroupMenu> {
           ),
           Expanded(
             child: Obx(() => ListView.separated(
-              itemCount: channelController.channels.value.length,
-              separatorBuilder: (BuildContext context, int index) => Divider(
-                height: 1,
-              ),
-              itemBuilder: (BuildContext context, int index) {
-                Channel channel = channelController.channels.value[index];
-                return noText
-                    ? Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: InkWell(
-                          onTap: () => handleChannelChange(channel),
-                          child: CircleImage(
-                            size: 64,
-                            imagePath: channel.imgPath,
-                            useText: !channel.isImage,
-                            text: channel.iconText,
-                          ),
-                        ),
-                      )
-                    : ChannelListItem(
-                        channel: channel,
-                        notifications: [
-                          NotificationMessage(
-                            chatID: '123',
-                            notificationType: NotificationType.chatidy,
-                            numNewMessages: 5,
-                            time: DateTime.now(),
-                          ),
-                          NotificationMessage(
-                            chatID: '123',
-                            notificationType: NotificationType.forum,
-                            numNewMessages: 5,
-                            time: DateTime.now(),
-                          ),
-                          NotificationMessage(
-                            chatID: '123',
-                            notificationType: NotificationType.news,
-                            numNewMessages: 5,
-                            time: DateTime.now(),
-                          ),
-                        ],
-                        onTap: () => handleChannelChange(channel),
-                      );
-              },
-            )),
+                  itemCount: channelController.channels.value.length,
+                  separatorBuilder: (BuildContext context, int index) => Divider(
+                    height: 1,
+                  ),
+                  itemBuilder: (BuildContext context, int index) {
+                    Channel channel = channelController.channels.value[index];
+                    return noText
+                        ? Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: InkWell(
+                              onTap: () => handleChannelChange(channel),
+                              child: CircleImage(
+                                size: 64,
+                                imagePath: channel.imgPath,
+                                useText: !channel.isImage,
+                                text: channel.iconText,
+                              ),
+                            ),
+                          )
+                        : ChannelListItem(
+                            channel: channel,
+                            notifications: [
+                              NotificationMessage(
+                                chatID: '123',
+                                notificationType: NotificationType.chatidy,
+                                numNewMessages: 5,
+                                time: DateTime.now(),
+                              ),
+                              NotificationMessage(
+                                chatID: '123',
+                                notificationType: NotificationType.forum,
+                                numNewMessages: 5,
+                                time: DateTime.now(),
+                              ),
+                              NotificationMessage(
+                                chatID: '123',
+                                notificationType: NotificationType.news,
+                                numNewMessages: 5,
+                                time: DateTime.now(),
+                              ),
+                            ],
+                            onTap: () => handleChannelChange(channel),
+                          );
+                  },
+                )),
           ),
         ],
       ),

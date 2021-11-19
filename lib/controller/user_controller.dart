@@ -13,7 +13,7 @@ class UserController extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   ConfirmationResult? _confirmationResult;
 
-  UserGp? _user;
+  var user = Rx<UserGp?>(null);
 
   UserController() {
     if (kIsWeb) {
@@ -111,7 +111,7 @@ class UserController extends GetxController {
         String tag = tagGenerator();
         UserGp newUser = UserGp(nickname: nickname, tag: tag, uid: _auth.currentUser!.uid);
         await FirestoreService.createUser(newUser);
-        _user = newUser;
+        user.value = newUser;
         Get.toNamed(Routes.HOME);
       } else {
         // USER ALREADY EXISTS IN DATA BASE
@@ -133,7 +133,7 @@ class UserController extends GetxController {
 
     FirestoreService.getUser(_auth.currentUser!.uid, (UserGp? userGp) {
       if (userGp != null) {
-        this._user = userGp;
+        this.user.value = userGp;
         Get.toNamed(Routes.HOME);
       } else {
         // NO USERE!
@@ -143,6 +143,16 @@ class UserController extends GetxController {
     });
   }
 
-  UserGp? getUser() => this._user;
-  bool isUserExists() => this._user != null;
+
+    void updateProfileTag() {
+    if (user.value == null)
+      return;
+    var newTag = tagGenerator();
+    user.value!.tag = newTag;
+    user.refresh();
+    FirestoreService.updateUser(user.value!.uid, {'tag': newTag});
+  }
+
+  
+  bool isUserExists() => this.user != null;
 }

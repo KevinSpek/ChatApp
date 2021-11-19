@@ -92,6 +92,13 @@ class _LoginScreenDesktopState extends State<LoginScreenDesktop> {
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    _textEditingController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -115,7 +122,8 @@ class _LoginScreenDesktopState extends State<LoginScreenDesktop> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Spacer(),
-                    Expanded(
+                    Container(
+                      height: 244,
                       child: PageView(
                         controller: _pageController,
                         physics: NeverScrollableScrollPhysics(),
@@ -141,6 +149,10 @@ class _LoginScreenDesktopState extends State<LoginScreenDesktop> {
                                     textAlign: TextAlign.center,
                                     keyboardType: TextInputType.number,
                                     decoration: new InputDecoration(
+                                      enabledBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(color: kWhiteSecondary),
+                                      ),
+                                      counterText: "",
                                       hintText: "",
                                       hintStyle: kBodyRegular.copyWith(color: Colors.white30),
                                     ),

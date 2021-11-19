@@ -1,24 +1,26 @@
 class UserGp {
   final String uid;
-  final String tag;
+  String tag;
   String nickname;
 
   String imgPath = '';
   DateTime lastUpdated = DateTime.now();
+  List<String> gids;
 
-  UserGp({
-    required this.uid,
-    required this.tag,
-    required this.nickname,
-    this.imgPath = "",
-  });
+  UserGp({required this.uid, required this.tag, required this.nickname, this.imgPath = "", this.gids = const []});
 
   String getNicknameTagCombination() {
     return nickname + '#' + tag;
   }
 
   static UserGp fromMap(Map<String, dynamic> map) {
-    return new UserGp(uid: map['uid'], tag: map['tag'], nickname: map['nickname'], imgPath: map['imgPath']);
+    return new UserGp(
+      uid: map['uid'],
+      tag: map['tag'],
+      nickname: map['nickname'],
+      imgPath: map['imgPath'],
+      gids: (map['groups'].cast<String>()),
+    );
   }
 
   static Map<String, dynamic> toMap(UserGp user) {
@@ -27,6 +29,7 @@ class UserGp {
       'tag': user.tag,
       'nickname': user.nickname,
       'imgPath': user.imgPath,
+      'groups': user.gids,
     };
   }
 

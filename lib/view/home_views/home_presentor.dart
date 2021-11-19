@@ -14,9 +14,7 @@ class HomePresentor extends StatelessWidget {
   Widget build(BuildContext context) {
     switch (homeType) {
       case HomeType.groups:
-        return HomeGroups(
-          groups: dGroups,
-        );
+        return HomeGroups();
 
       case HomeType.chatidy:
         return HomeChatidy();

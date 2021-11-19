@@ -48,11 +48,11 @@ class _GroupChatChannelState extends State<GroupChatChannel> {
               Expanded(
                   child: Obx(() => MessagesContainer(
                 chat: chatController.getChat(),
-                myUid: userController.getUser()!.uid,
+                myUid: userController.user.value!.uid,
                 scrollController: _scrollController,
               ))),
               TextFieldBar(
-                onSend: (s) => chatController.addMessage(s, userController.getUser()!.uid, userController.getUser()!.nickname),
+                onSend: (s) => chatController.addMessage(s, userController.user.value!.uid, userController.user.value!.nickname),
                 outerPadding: 16,
                 textStyle: kBodyRegular.copyWith(color: kWhite),
                 hintStyle: kBodyRegular.copyWith(color: kWhiteDisabled),

@@ -102,7 +102,7 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
       body: TabBarView(
         controller: _tabController,
         children: <Widget>[
-          HomeGroups(groups: dGroups),
+          HomeGroups(),
           HomeChatidyMobile(
             chats: dChats,
           ),

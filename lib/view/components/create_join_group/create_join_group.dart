@@ -24,7 +24,7 @@ class _CreateJoinGroupState extends State<CreateJoinGroup> {
 
   void handleCreateGroup() {
     if (_insertedTag.length > 3) {
-      FirestoreService.createGroup(_insertedTag, userController.getUser()!.uid);
+      FirestoreService.createGroup(_insertedTag, userController.user.value!.uid);
     }
   }
 

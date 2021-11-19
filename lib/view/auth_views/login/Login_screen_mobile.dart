@@ -92,6 +92,13 @@ class _LoginScreenMobileState extends State<LoginScreenMobile> {
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    _textEditingController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -114,7 +121,8 @@ class _LoginScreenMobileState extends State<LoginScreenMobile> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Expanded(
+                    Container(
+                      height: 244,
                       child: PageView(
                         controller: _pageController,
                         physics: NeverScrollableScrollPhysics(),
@@ -140,6 +148,10 @@ class _LoginScreenMobileState extends State<LoginScreenMobile> {
                                     textAlign: TextAlign.center,
                                     keyboardType: TextInputType.number,
                                     decoration: new InputDecoration(
+                                      enabledBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(color: kWhiteSecondary),
+                                      ),
+                                      counterText: "",
                                       hintText: "",
                                       hintStyle: kBodyRegular.copyWith(color: Colors.white30),
                                     ),
@@ -150,7 +162,7 @@ class _LoginScreenMobileState extends State<LoginScreenMobile> {
                                           isStart = !isStart;
                                         });
                                       }
-      
+
                                       if (isPhoneValid(newPhone)) {
                                         String code = cc.dialCode != null ? cc.dialCode! : "";
                                         print(code + newPhone);
@@ -213,7 +225,6 @@ class _LoginScreenMobileState extends State<LoginScreenMobile> {
                 ),
               ),
             ),
-            
           ],
         ),
       ),

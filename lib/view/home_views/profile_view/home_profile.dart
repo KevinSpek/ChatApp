@@ -29,12 +29,13 @@ class _HomeProfileState extends State<HomeProfile> {
   }
 
   void _handleCopyTag(BuildContext context) {
-    Clipboard.setData(ClipboardData(text: userController.getUser()!.nickname + "#" + userController.getUser()!.tag));
+    Clipboard.setData(ClipboardData(text: userController.user.value!.nickname + "#" + userController.user.value!.tag));
     _showToast(context, "User tag copied to clipboard.");
   }
 
   void _handleTagChange(BuildContext context) {
     // Handle tag change async
+    userController.updateProfileTag();
     _showToast(context, "Tag changed succesfully.");
   }
 
@@ -48,9 +49,11 @@ class _HomeProfileState extends State<HomeProfile> {
           children: [
             Row(
               children: [
-                CircleImage(
-                  size: 160,
-                  imagePath: userController.getUser()!.imgPath,
+                Obx(
+                  () => CircleImage(
+                    size: 160,
+                    imagePath: userController.user.value!.imgPath,
+                  ),
                 ),
                 Expanded(
                   child: Padding(
@@ -62,9 +65,11 @@ class _HomeProfileState extends State<HomeProfile> {
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(right: 16),
-                              child: Text(
-                                userController.getUser()!.nickname + "#" + userController.getUser()!.tag,
-                                style: kSubTitle.copyWith(color: kWhite),
+                              child: Obx(
+                                () => Text(
+                                  userController.user.value!.nickname + "#" + userController.user.value!.tag,
+                                  style: kSubTitle.copyWith(color: kWhite),
+                                ),
                               ),
                             ),
                             CustomIconButton(
