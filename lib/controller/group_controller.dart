@@ -7,9 +7,11 @@ import 'package:groupidy/services/firestore_service.dart';
 import 'package:groupidy/services/storage_service.dart';
 import 'package:groupidy/utils.dart';
 
+enum Mode { content, info, add }
+
 class GroupController extends GetxController {
   var group = Rx<Group?>(null);
-  var showGroupProfile = false.obs;
+  var mode = Mode.content.obs;
   var _gid = '';
 
   GroupController(String gid) {
@@ -28,29 +30,33 @@ class GroupController extends GetxController {
   void handleUpdateImage(PlatformFile imageData) {
     if (imageData.bytes == null) return;
     if (group.value == null) return;
-    StorageService.uploadFile('groups/' + _gid + '/' + imageData.name, imageData.bytes!)
-      .then((downloadUrl) {
-        FirestoreService.updateGroup(_gid, {'imgPath': downloadUrl});
-        group.value!.imgPath = downloadUrl;
-        group.refresh();
-      });
+    StorageService.uploadFile(
+            'groups/' + _gid + '/' + imageData.name, imageData.bytes!)
+        .then((downloadUrl) {
+      FirestoreService.updateGroup(_gid, {'imgPath': downloadUrl});
+      group.value!.imgPath = downloadUrl;
+      group.refresh();
+    });
+  }
+
+  void changeMode(Mode mode) {
+    this.mode.value = mode;
   }
 
   void handleShowGroupProfile() {
-    showGroupProfile.value = true;
+    mode.value = Mode.info;
   }
 
   void handleShowChannelInformation() {
-    showGroupProfile.value = false;
+    mode.value = Mode.content;
   }
 
   void handleChannelChange(Channel channel) {
-    showGroupProfile.value = false;
+    mode.value = Mode.content;
   }
 
   void updateGroupTag() {
-    if (group.value == null)
-      return;
+    if (group.value == null) return;
     var newTag = tagGenerator();
     group.value!.tag = newTag;
     group.refresh();

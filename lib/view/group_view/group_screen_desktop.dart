@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:groupidy/colors.dart';
 import 'package:groupidy/controller/group_controller.dart';
+import 'package:groupidy/view/group_view/channel_create.dart';
 import 'package:groupidy/view/group_view/channel_layout.dart';
 import 'package:groupidy/view/group_view/group_bar_info.dart';
 import 'package:groupidy/view/group_view/group_menu.dart';
@@ -30,9 +31,16 @@ class _GroupScreenDesktopState extends State<GroupScreenDesktop> {
                 child: Column(
                   children: [
                     GroupBarInfo(),
-                    Obx(() => groupController.showGroupProfile.value
-                        ? GroupInformation()
-                        : ChannelLayout()),
+                    Obx(() {
+                      switch (groupController.mode.value) {
+                        case Mode.content:
+                          return ChannelLayout();
+                        case Mode.info:
+                          return GroupInformation();
+                        case Mode.add:
+                          return ChannelCreate();
+                      }
+                    }),
                   ],
                 ))),
       ],

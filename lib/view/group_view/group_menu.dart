@@ -71,7 +71,7 @@ class _GroupMenuState extends State<GroupMenu> {
                       CustomIconButton(icon: Icons.search),
                       CustomIconButton(
                         icon: Icons.add,
-                        onPressed: () => dialog(context: context, child: CreateNewChannel()),
+                        onPressed: () {groupController.changeMode(Mode.add);},//() => dialog(context: context, child: CreateNewChannel()),
                       ),
                     ],
                   )
@@ -85,7 +85,7 @@ class _GroupMenuState extends State<GroupMenu> {
                       CustomIconButton(icon: Icons.search),
                       CustomIconButton(
                         icon: Icons.add,
-                        onPressed: () => dialog(context: context, child: CreateNewChannel()),
+                        onPressed: () {groupController.changeMode(Mode.add);},
                       ),
                     ],
                   ),
