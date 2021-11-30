@@ -11,7 +11,8 @@ class CustomEditableText extends StatefulWidget {
       this.hintStyle,
       this.maxLines,
       this.maxLength,
-      this.onTextChange})
+      this.onTextChange,
+      this.editable = true})
       : super(key: key);
 
   final String? initialText;
@@ -21,6 +22,7 @@ class CustomEditableText extends StatefulWidget {
   final int? maxLines;
   final int? maxLength;
   final Function(String)? onTextChange;
+  final bool editable;
 
   @override
   _CustomEditableTextState createState() => _CustomEditableTextState();
@@ -56,7 +58,7 @@ class _CustomEditableTextState extends State<CustomEditableText> {
       _isEditMode = false;
       _text = textEditingController.text;
     });
-    widget.onTextChange!(textEditingController.text);
+    if (widget.onTextChange != null) widget.onTextChange!(textEditingController.text);
   }
 
   void handleRejectEdit() {
@@ -71,6 +73,7 @@ class _CustomEditableTextState extends State<CustomEditableText> {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        widget.editable ? 
         _isEditMode
             ? Row(
                 children: [
@@ -102,7 +105,7 @@ class _CustomEditableTextState extends State<CustomEditableText> {
                   Icons.edit_rounded,
                   color: kWhite,
                   size: 24,
-                )),
+                )) : SizedBox.shrink(),
         Container(
           child: TextField(
             readOnly: !_isEditMode,
@@ -117,7 +120,7 @@ class _CustomEditableTextState extends State<CustomEditableText> {
                 border: InputBorder.none,
                 isDense: true,
                 counterText: '',
-                contentPadding: EdgeInsets.only(left: 8)),
+                contentPadding: EdgeInsets.only(left: widget.editable ? 8 : 0)),
             style: widget.textStyle ?? kBodyRegular.copyWith(color: kWhite),
           ),
           width: 300,

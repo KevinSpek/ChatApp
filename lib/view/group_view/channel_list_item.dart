@@ -6,7 +6,6 @@ import 'package:groupidy/view/notification_views/notifications_group.dart';
 
 import '../../colors.dart';
 import '../../typography.dart';
-import '../../utils.dart';
 
 class ChannelListItem extends StatelessWidget {
   const ChannelListItem(
@@ -42,7 +41,7 @@ class ChannelListItem extends StatelessWidget {
           children: [
             ItemInfo(
               title: channel.name,
-              subTitle: "Latest message",
+              /* subTitle: "Latest message", */
               imagePath: channel.imgPath,
               imageSize: 64,
               spacing: 20,
@@ -55,10 +54,10 @@ class ChannelListItem extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Text(
+                /* Text(
                   '${presentTime(latestMessageTime())}',
                   style: kCaption.copyWith(color: kWhiteSecondary),
-                ),
+                ), */
                 NotificationsGroup(
                   notifications: notifications,
                 ),

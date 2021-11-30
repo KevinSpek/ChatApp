@@ -69,4 +69,5 @@ class GroupController extends GetxController {
   List<String> getGroupMembersUids() => group.value?.uids ?? [];
   String getGroupOwnerUid() => group.value?.ownerUid ?? "";
   String getGroupImgPath() => group.value?.imgPath ?? "";
+  bool isGroupAdmin(String uid) => group.value?.ownerUid == uid;
 }

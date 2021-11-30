@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:groupidy/colors.dart';
+import 'package:groupidy/controller/home_controller.dart';
 import 'package:groupidy/controller/user_controller.dart';
 import 'package:groupidy/services/firestore_service.dart';
 import 'package:groupidy/view/components/create_join_group/create_group.dart';
@@ -19,12 +20,20 @@ class _CreateJoinGroupState extends State<CreateJoinGroup> {
   bool _invalidTag = false;
   String _insertedTag = "";
   var userController = Get.find<UserController>();
+  var homeController = Get.find<HomeController>();
 
-  void handleCancel() {}
+  void handleCancel(BuildContext context) {
+    Navigator.pop(context);
+  }
 
-  void handleCreateGroup() {
+  void handleCreateGroup(BuildContext contex) {
     if (_insertedTag.length > 3) {
-      FirestoreService.createGroup(_insertedTag, userController.user.value!.uid);
+      FirestoreService.createGroup(_insertedTag, userController.user.value!.uid)
+        .then((group) {
+          userController.user.value?.gids.add(group.gid);
+          homeController.groups.value.add(group);
+          Navigator.pop(context);
+        });
     }
   }
 
@@ -88,15 +97,15 @@ class _CreateJoinGroupState extends State<CreateJoinGroup> {
           ),
           _isJoinGroup
               ? JoinGroup(
-                  onCancel: handleCancel,
+                  onCancel: () => handleCancel(context),
                   onTextChanged: handleTagChange,
                   onMainButtonClick: handleJoinGroup,
                   invalidTag: _invalidTag,
                 )
               : CreateGroup(
-                  onCancel: handleCancel,
+                  onCancel: () => handleCancel(context),
                   onTextChanged: handleTagChange,
-                  onMainButtonClick: handleCreateGroup,
+                  onMainButtonClick: () => handleCreateGroup(context),
                 ),
         ],
       ),

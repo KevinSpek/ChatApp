@@ -42,10 +42,10 @@ class _NewsChannelState extends State<NewsChannel> {
             Obx(() => Expanded(
                 child: MessagesContainer(
               chat: chatController.getChat(),
-              myUid: userController.user.value!.uid,
+              myUid: userController.getUserUid(),
               scrollController: _scrollController,
             ))),
-            Obx(() => channelController.getUidsAllowedToWrite().contains('useruid')
+            Obx(() => channelController.getUidsAllowedToWrite().contains(userController.getUserUid())
                 ? TextFieldBar(
                     onSend: (s) => chatController.addMessage(s, userController.user.value!.uid, userController.user.value!.nickname),
                     outerPadding: 16,
