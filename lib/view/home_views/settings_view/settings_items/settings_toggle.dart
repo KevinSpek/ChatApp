@@ -4,8 +4,9 @@ import 'package:groupidy/constants.dart';
 import 'package:groupidy/typography.dart';
 
 class SettingsToggle extends StatefulWidget {
-  const SettingsToggle({Key? key, required this.title, required this.onChange}) : super(key: key);
-  final Function(bool) onChange;
+  const SettingsToggle({Key? key, required this.title, required this.onChange})
+      : super(key: key);
+  final Function(bool)? onChange;
   final String title;
 
   @override
@@ -13,29 +14,39 @@ class SettingsToggle extends StatefulWidget {
 }
 
 class _SettingsToggleState extends State<SettingsToggle> {
-  bool toggleValue = false;
+  bool toggleValue = true;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: kPadding, vertical: kPadding / 2),
+        padding: const EdgeInsets.symmetric(
+            horizontal: kPadding, vertical: kPadding / 2),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
               widget.title,
-              style: kBodyRegular.copyWith(color: kWhite, fontWeight: FontWeight.bold),
+              style: kBodyRegular.copyWith(
+                  color: kWhite, fontWeight: FontWeight.bold),
             ),
             Spacer(),
-            Switch.adaptive(
-                value: toggleValue,
-                onChanged: (newValue) {
-                  setState(() {
-                    toggleValue = newValue;
-                  });
-                  widget.onChange(newValue);
-                })
+            IgnorePointer(
+              ignoring: widget.onChange == null ? true : false,
+              child: Opacity(
+                opacity: widget.onChange == null ? 0.5 : 1.0,
+                child: Switch.adaptive(
+                    value: toggleValue,
+                    onChanged: widget.onChange == null
+                        ? (newValue) {}
+                        : (newValue) {
+                            setState(() {
+                              toggleValue = newValue;
+                            });
+                            widget.onChange!(newValue);
+                          }),
+              ),
+            )
           ],
         ),
       ),

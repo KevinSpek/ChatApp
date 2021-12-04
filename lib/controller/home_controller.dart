@@ -43,8 +43,9 @@ class HomeController extends GetxController {
     }
   }
 
+// TODO: OPEN BETA UNCOMMENT chatidy
   final List menuItems = [
-    HomeType.chatidy,
+    // HomeType.chatidy,
     HomeType.groups,
     HomeType.profile,
     HomeType.settings
