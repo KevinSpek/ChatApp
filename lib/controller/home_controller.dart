@@ -43,9 +43,18 @@ class HomeController extends GetxController {
     }
   }
 
-  final List menuItems = [HomeType.chatidy, HomeType.groups, HomeType.profile, HomeType.settings];
+  final List menuItems = [
+    HomeType.chatidy,
+    HomeType.groups,
+    HomeType.profile,
+    HomeType.settings
+  ];
 
   void loadGroups(List<String> gids) {
+    if (gids.length == 0) {
+      return;
+    }
+
     FirestoreService.getGroups(gids).then((query) => {
           query.docs.forEach((doc) {
             var groupToAdd = doc.data();
@@ -53,15 +62,14 @@ class HomeController extends GetxController {
               groups.value.add(groupToAdd);
             } else {
               //update existing channel
-              var groupIndex = groups.value.indexWhere((group) => group.gid == groupToAdd.gid);
+              var groupIndex = groups.value
+                  .indexWhere((group) => group.gid == groupToAdd.gid);
               groups.value[groupIndex] = groupToAdd;
             }
             groups.refresh();
           })
         });
   }
-
-
 
   void navigateToGroup(String gid) {
     this.currentGroup = gid;

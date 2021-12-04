@@ -8,7 +8,7 @@ class NotSavedUserMiddleware extends GetMiddleware {
   @override
   RouteSettings? redirect(String? route) {
     final UserController userController = Get.find();
-    print(userController);
+
     if (!userController.isUserExists()) {
       return RouteSettings(name: Routes.NEWUSER);
     }

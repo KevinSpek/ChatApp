@@ -24,14 +24,6 @@ class _NewUserMobileState extends State<NewUserMobile> {
   bool isLoading = false;
 
   @override
-  void initState() {
-    // TODO: implement initState
-    print("HHHHH");
-    print(userController);
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Loading(

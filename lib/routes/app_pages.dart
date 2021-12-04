@@ -14,7 +14,7 @@ part 'app_routes.dart';
 
 class AppPages {
   AppPages._();
-  static const INITIAL = Routes.WELCOME;
+  static const INITIAL = Routes.SPLASH;
   static final routes = [
     GetPage(
       name: _Paths.HOME,
@@ -29,11 +29,10 @@ class AppPages {
       transition: Transition.fade,
     ),
     GetPage(
-      name: _Paths.NEWUSER,
-      page: () => NewUserLayout(),
-      middlewares: [NotLoggedMiddleware(), SavedUserMiddleware()],
-      transition: Transition.fade
-    ),
+        name: _Paths.NEWUSER,
+        page: () => NewUserLayout(),
+        middlewares: [NotLoggedMiddleware(), SavedUserMiddleware()],
+        transition: Transition.fade),
     GetPage(
       name: _Paths.SPLASH,
       page: () => SplashLayout(),
