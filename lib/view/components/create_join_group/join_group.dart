@@ -9,13 +9,17 @@ class JoinGroup extends StatelessWidget {
       required this.onCancel,
       required this.onTextChanged,
       required this.onMainButtonClick,
-      this.invalidTag = false})
+      this.invalidTag = false,
+      this.groupNotExists = false,
+      this.alreadyInTheGroup = false})
       : super(key: key);
 
   final VoidCallback onCancel;
   final Function(String) onTextChanged;
   final VoidCallback onMainButtonClick;
   final bool invalidTag;
+  final bool groupNotExists;
+  final bool alreadyInTheGroup;
 
   @override
   Widget build(BuildContext context) {
@@ -52,10 +56,17 @@ class JoinGroup extends StatelessWidget {
           ),
           Visibility(
             child: Text(
-              "* Group not exists or invalid tag",
+              "* Group not exists",
               style: kBodySmall.copyWith(color: kError),
             ),
-            visible: false,
+            visible: groupNotExists,
+          ),
+          Visibility(
+            child: Text(
+              "* Already in the group",
+              style: kBodySmall.copyWith(color: kError),
+            ),
+            visible: alreadyInTheGroup,
           ),
           BottomButtons(
             mainButtonText: "Join",

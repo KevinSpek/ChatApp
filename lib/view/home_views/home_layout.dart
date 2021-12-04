@@ -23,7 +23,6 @@ class _HomeLayoutState extends State<HomeLayout> {
   void initState() {
     homeController.loadGroups(userController.user.value!.gids);
     super.initState();
-    
   }
 
   @override

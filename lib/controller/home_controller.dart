@@ -9,7 +9,7 @@ class HomeController extends GetxController {
 
   var currentGroup = "";
 
-  var homeType = Rx<HomeType>(HomeType.chatidy);
+  var homeType = Rx<HomeType>(HomeType.groups);
 
   void updateItem(HomeType item) {
     homeType.value = item;
@@ -62,7 +62,7 @@ class HomeController extends GetxController {
             if (!groups.value.any((group) => group.gid == groupToAdd.gid)) {
               groups.value.add(groupToAdd);
             } else {
-              //update existing channel
+              //update existing group
               var groupIndex = groups.value
                   .indexWhere((group) => group.gid == groupToAdd.gid);
               groups.value[groupIndex] = groupToAdd;
@@ -75,5 +75,42 @@ class HomeController extends GetxController {
   void navigateToGroup(String gid) {
     this.currentGroup = gid;
     Get.toNamed('/group');
+  }
+
+  void joinGroup(
+      {required String name,
+      required String tag,
+      required String uid,
+      required Function onNotExists,
+      required Function onSucess,
+      required Function onExists}) async {
+    if (groups.value.any((group) => group.name == name && group.tag == tag)) {
+      // Group already exists
+      onExists();
+      return;
+    }
+
+    FirestoreService.getGroupByName(name, tag).then((query) {
+      List<Group> gs = [];
+      var docs = query.docs.forEach((doc) {
+        gs.add(doc.data());
+      });
+
+      if (gs.length == 0) {
+        // there is no such group
+        onNotExists();
+      } else if (gs.length == 1) {
+        // Found group
+        FirestoreService.joinUserToGroup(uid, gs[0].gid);
+        onSucess();
+
+        groups.value.add(gs[0]);
+
+        groups.refresh();
+      } else {
+        // There are more than 1 group with the same name
+        //TODO handle groups with same name
+      }
+    });
   }
 }

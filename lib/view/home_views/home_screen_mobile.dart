@@ -12,7 +12,6 @@ import 'package:groupidy/view/home_views/settings_view/home_settings.dart';
 
 import 'chatidy_view/home_chatidy mobile.dart';
 
-
 HomeType getHomeTypeFromPageIndex(int pageIndex) {
   switch (pageIndex) {
     case 1:
@@ -58,9 +57,10 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
     _tabController = TabController(length: 3, vsync: this);
     _isSettings = homeController.homeType.value == HomeType.settings;
     if (!_isSettings)
-      _tabController.index = getPageIndexFromHomeType(homeController.homeType.value);
+      _tabController.index =
+          getPageIndexFromHomeType(homeController.homeType.value);
     else
-     Get.to(HomeSettings());
+      Get.to(HomeSettings());
     _tabController.addListener(() {
       homeController.updateItem(getHomeTypeFromPageIndex(_tabController.index));
     });
@@ -90,9 +90,10 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
             Tab(
               text: "Groups",
             ),
-            Tab(
-              text: "Chatidy",
-            ),
+            // TODO: UNCOMMENT IN BETA
+            // Tab(
+            //   text: "Chatidy",
+            // ),
             Tab(
               text: "Profile",
             )
