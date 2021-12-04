@@ -54,7 +54,8 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(
+        length: 2, vsync: this); // TODO: switch to length 3 IN BETA
     _isSettings = homeController.homeType.value == HomeType.settings;
     if (!_isSettings)
       _tabController.index =
@@ -80,7 +81,7 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
         leading: CustomIconButton(icon: Icons.settings_rounded),
         bottom: TabBar(
           controller: _tabController,
-          indicatorWeight: 3,
+          indicatorWeight: 2, // TODO: switch to 3 IN BETA
           indicatorColor: kWhite,
           indicatorSize: TabBarIndicatorSize.label,
           labelStyle: kBodyRegular,
@@ -104,9 +105,10 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
         controller: _tabController,
         children: <Widget>[
           HomeGroups(),
-          HomeChatidyMobile(
-            chats: dChats,
-          ),
+          // TODO:  UNCOMMENT IN BETA
+          // HomeChatidyMobile(
+          //   chats: dChats,
+          // ),
           HomeProfileMobile(user: dUser1),
         ],
       ),
