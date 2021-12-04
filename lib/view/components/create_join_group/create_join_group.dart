@@ -30,7 +30,7 @@ class _CreateJoinGroupState extends State<CreateJoinGroup> {
 
   void handleJoinGroup() {
     if (isValidTag(_insertedTag)) {
-      // attempt join group
+      // TODO: attempt join group
     }
   }
 

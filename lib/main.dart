@@ -30,9 +30,7 @@ class _MyAppState extends State<MyApp> {
         if (snapshot.hasError) {
           print(snapshot.error);
           return GetMaterialApp(home: Text("Problem with app"));
-        }
-
-        if (snapshot.connectionState == ConnectionState.done) {
+        } else if (snapshot.connectionState == ConnectionState.done) {
           return GetMaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'Groupidy',
@@ -42,8 +40,9 @@ class _MyAppState extends State<MyApp> {
               userController.listenToAuthState();
             },
           );
+        } else {
+          return SplashLayout();
         }
-        return SplashLayout();
       },
     );
   }

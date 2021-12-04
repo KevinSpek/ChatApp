@@ -1,12 +1,14 @@
 import 'dart:html';
 import 'dart:io';
 
+import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
 import 'package:groupidy/model/user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:groupidy/routes/app_pages.dart';
 import 'package:groupidy/services/firestore_service.dart';
+import 'package:groupidy/services/storage_service.dart';
 import 'package:groupidy/utils.dart';
 
 class UserController extends GetxController {
@@ -44,7 +46,12 @@ class UserController extends GetxController {
     await _auth.signInWithCredential(credential);
   }
 
-  void registerPhone({required String phoneNumber, String smsCode = "", required Function smsVerificationFailed, Function? reCAPTCHAFailed, Function? reCAPTCHASuccess}) async {
+  void registerPhone(
+      {required String phoneNumber,
+      String smsCode = "",
+      required Function smsVerificationFailed,
+      Function? reCAPTCHAFailed,
+      Function? reCAPTCHASuccess}) async {
     if (kIsWeb) {
       // running on the web!
 
@@ -64,7 +71,8 @@ class UserController extends GetxController {
               onSuccess: reCAPTCHASuccess != null
                   ? () {
                       reCAPTCHASuccess();
-                      final el = window.document.getElementById('__ff-recaptcha-container');
+                      final el = window.document
+                          .getElementById('__ff-recaptcha-container');
                       if (el != null) {
                         el.style.visibility = 'hidden';
                       }
@@ -89,7 +97,8 @@ class UserController extends GetxController {
           smsVerificationFailed();
         },
         codeSent: (String verificationId, int? resendToken) async {
-          PhoneAuthCredential credential = PhoneAuthProvider.credential(verificationId: verificationId, smsCode: smsCode);
+          PhoneAuthCredential credential = PhoneAuthProvider.credential(
+              verificationId: verificationId, smsCode: smsCode);
 
           registerUser(credential);
         },
@@ -106,10 +115,12 @@ class UserController extends GetxController {
 
   void createNewUser(String nickname) async {
     if (_auth.currentUser != null) {
-      bool isExist = await FirestoreService.isUserExists(_auth.currentUser!.uid);
+      bool isExist =
+          await FirestoreService.isUserExists(_auth.currentUser!.uid);
       if (!isExist) {
         String tag = tagGenerator();
-        UserGp newUser = UserGp(nickname: nickname, tag: tag, uid: _auth.currentUser!.uid);
+        UserGp newUser =
+            UserGp(nickname: nickname, tag: tag, uid: _auth.currentUser!.uid);
         await FirestoreService.createUser(newUser);
         user.value = newUser;
         Get.toNamed(Routes.HOME);
@@ -134,25 +145,35 @@ class UserController extends GetxController {
     FirestoreService.getUser(_auth.currentUser!.uid, (UserGp? userGp) {
       if (userGp != null) {
         this.user.value = userGp;
+        print("User redirects to HOME");
         Get.toNamed(Routes.HOME);
       } else {
         // NO USERE!
+        print("User redirects to NEWUSER");
         Get.toNamed(Routes.NEWUSER);
       }
-      print("User redirects....");
     });
   }
 
-
-    void updateProfileTag() {
-    if (user.value == null)
-      return;
+  void updateProfileTag() {
+    if (user.value == null) return;
     var newTag = tagGenerator();
     user.value!.tag = newTag;
     user.refresh();
     FirestoreService.updateUser(user.value!.uid, {'tag': newTag});
   }
 
-  
-  bool isUserExists() => this.user != null;
+  void handleUpdateImage(PlatformFile imageData) {
+    if (imageData.bytes == null) return;
+    if (user.value == null) return;
+    StorageService.uploadFile(
+            'users/' + user.value!.uid + '/' + imageData.name, imageData.bytes!)
+        .then((downloadUrl) {
+      FirestoreService.updateGroup(user.value!.uid, {'imgPath': downloadUrl});
+      user.value!.imgPath = downloadUrl;
+      user.refresh();
+    });
+  }
+
+  bool isUserExists() => this.user.value != null;
 }

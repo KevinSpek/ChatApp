@@ -1,3 +1,4 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -39,6 +40,13 @@ class _HomeProfileState extends State<HomeProfile> {
     _showToast(context, "Tag changed succesfully.");
   }
 
+  void _handleImagePick() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles(type: FileType.image);
+    if (result != null) {
+      userController.handleUpdateImage(result.files.first);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -53,6 +61,7 @@ class _HomeProfileState extends State<HomeProfile> {
                   () => CircleImage(
                     size: 160,
                     imagePath: userController.user.value!.imgPath,
+                    onClick: _handleImagePick,
                   ),
                 ),
                 Expanded(

@@ -22,14 +22,23 @@ class _NewUserMobileState extends State<NewUserMobile> {
   bool isNickValid = false;
   bool isStart = true;
   bool isLoading = false;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    print("HHHHH");
+    print(userController);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Loading(
-          isLoading: isLoading,
-          child: Stack(
-              alignment: AlignmentDirectional.center,
-              children: [
+      isLoading: isLoading,
+      child: Stack(
+        alignment: AlignmentDirectional.center,
+        children: [
           Container(color: kSecondaryBackground),
           Padding(
             padding: const EdgeInsets.all(kPadding),
@@ -72,7 +81,7 @@ class _NewUserMobileState extends State<NewUserMobile> {
                             isStart = false;
                           });
                         }
-        
+
                         setState(() {
                           isNickValid = isNicknameValid(value);
                         });
@@ -103,7 +112,8 @@ class _NewUserMobileState extends State<NewUserMobile> {
                             setState(() {
                               isLoading = true;
                             });
-                            userController.createNewUser(textEditingController.text);
+                            userController
+                                .createNewUser(textEditingController.text);
                           }
                         : null,
                     text: "Submit",
@@ -114,10 +124,9 @@ class _NewUserMobileState extends State<NewUserMobile> {
               ],
             ),
           ),
-          
-              ],
-            ),
-        ));
+        ],
+      ),
+    ));
   }
 
   bool isButtonValid() {

@@ -56,7 +56,7 @@ class _GroupInformationState extends State<GroupInformation> {
                     imagePath: groupController.getGroupImgPath(),
                     onClick: _handleImagePick,
                     placeholderPath: 'images/group_placeholder.png',
-                  )),
+                  ),),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 32),
                     child: Column(
