@@ -28,21 +28,21 @@ class CreateGroup extends StatelessWidget {
               textAlign: TextAlign.start,
               onChanged: onTextChanged,
               decoration: InputDecoration(
-                hintText: "Example: groupidy#aB12",
+                hintText: "Example: Groupidy",
                 counterText: "",
                 hintStyle: kBodyRegular.copyWith(color: kWhiteDisabled),
               ),
               style: kBodyRegular.copyWith(color: Colors.white),
             ),
           ),
-          Padding(
+         /*  Padding(
             padding: const EdgeInsets.only(top: 16),
             child: Text(
               "Group image",
               style: kBodyRegular.copyWith(color: kWhite),
             ),
-          ),
-          Padding(
+          ), */
+          /* Padding(
               padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 16),
               child: ElevatedButton(
                 onPressed: () {},
@@ -55,7 +55,7 @@ class CreateGroup extends StatelessWidget {
                   primary: kWhiteSecondary,
                   fixedSize: Size(80 , 80),
                 ),
-              )),
+              )), */
           BottomButtons(
               mainButtonText: "Create",
               onMainButtonClick: onMainButtonClick,

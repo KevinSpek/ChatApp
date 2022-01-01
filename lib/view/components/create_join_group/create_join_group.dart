@@ -27,12 +27,18 @@ class _CreateJoinGroupState extends State<CreateJoinGroup> {
   var userController = Get.find<UserController>();
   var homeController = Get.find<HomeController>();
 
-  void handleCancel() {}
+  void handleCancel(BuildContext context) {
+    Navigator.pop(context);
+  }
 
-  void handleCreateGroup() {
+  void handleCreateGroup(BuildContext contex) {
     if (_insertedTag.length > 3) {
-      FirestoreService.createGroup(
-          _insertedTag, userController.user.value!.uid);
+      FirestoreService.createGroup(_insertedTag, userController.user.value!.uid)
+        .then((group) {
+          userController.user.value?.gids.add(group.gid);
+          homeController.groups.value.add(group);
+          Navigator.pop(context);
+        });
     }
   }
 
@@ -127,7 +133,7 @@ class _CreateJoinGroupState extends State<CreateJoinGroup> {
           ),
           _isJoinGroup
               ? JoinGroup(
-                  onCancel: handleCancel,
+                  onCancel: () => handleCancel(context),
                   onTextChanged: handleTagChange,
                   onMainButtonClick: handleJoinGroup,
                   invalidTag: _invalidTag,
@@ -135,9 +141,9 @@ class _CreateJoinGroupState extends State<CreateJoinGroup> {
                   alreadyInTheGroup: _alreadyInTheGroup,
                 )
               : CreateGroup(
-                  onCancel: handleCancel,
+                  onCancel: () => handleCancel(context),
                   onTextChanged: handleTagChange,
-                  onMainButtonClick: handleCreateGroup,
+                  onMainButtonClick: () => handleCreateGroup(context),
                 ),
         ],
       ),

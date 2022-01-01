@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:groupidy/controller/group_controller.dart';
+import 'package:groupidy/controller/user_controller.dart';
 import 'package:groupidy/view/components/circle_image.dart';
 import 'package:groupidy/view/components/custom_icon_button.dart';
 import 'package:groupidy/view/components/members.dart';
@@ -20,6 +21,7 @@ class GroupInformation extends StatefulWidget {
 
 class _GroupInformationState extends State<GroupInformation> {
   GroupController groupController = Get.find();
+  UserController userController = Get.find();
 
   void _handleCopyTag(BuildContext context) {
     Clipboard.setData(ClipboardData(text: groupController.getGroupNameAndTag()));
@@ -54,7 +56,7 @@ class _GroupInformationState extends State<GroupInformation> {
                   Obx(() => CircleImage(
                     size: 160,
                     imagePath: groupController.getGroupImgPath(),
-                    onClick: _handleImagePick,
+                    onClick: groupController.isGroupAdmin(userController.getUserUid()) ? _handleImagePick : null,
                     placeholderPath: 'images/group_placeholder.png',
                   ),),
                   Padding(
@@ -75,10 +77,10 @@ class _GroupInformationState extends State<GroupInformation> {
                               onPressed: () => _handleCopyTag(context),
                               icon: Icons.copy,
                             ),
-                            CustomIconButton(
+                            groupController.isGroupAdmin(userController.getUserUid()) ? CustomIconButton(
                               onPressed: () => _handleTagChange(context),
                               icon: Icons.refresh,
-                            )
+                            ) : SizedBox.shrink()
                           ],
                         ),
                         SizedBox(

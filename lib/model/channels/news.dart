@@ -38,7 +38,7 @@ class ChannelNews extends Channel {
       iconText: map['iconText'],
       desc: map['desc'],
       uidsAllowed: map['uidsAllowed'],
-      uidsAllowedToWrite: map['uidsAllowedToWrite'],
+      uidsAllowedToWrite: map['uidsAllowedToWrite']?.cast<String>(),
       cid: map['cid']
     );
   }
@@ -54,7 +54,7 @@ class ChannelNews extends Channel {
       'desc': desc,
       'isLimited': isLimited,
       'uidsAllowed': uidsAllowed,
-      'uidsAllowedToWrite': uidsAllowed,
+      'uidsAllowedToWrite': uidsAllowedToWrite,
       'cid': cid
     };
   }

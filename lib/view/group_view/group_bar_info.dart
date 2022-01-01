@@ -3,9 +3,6 @@ import 'package:get/get.dart';
 import 'package:groupidy/controller/group_controller.dart';
 import 'package:groupidy/view/components/bar_info.dart';
 
-import '../../colors.dart';
-import '../../typography.dart';
-
 class GroupBarInfo extends StatefulWidget {
   const GroupBarInfo({Key? key}) : super(key: key);
 
@@ -23,13 +20,13 @@ class _GroupBarInfoState extends State<GroupBarInfo> {
         imagePath: groupController.getGroupImgPath(),
         subTitle: '${groupController.getGroupSize()} Users',
         itemInfoClick: groupController.handleShowGroupProfile,
-        rightWidget: Row(
+        /* rightWidget: Row(
           children: [
             Icon(Icons.person_add, color: kWhite),
             SizedBox(width: 12),
             Text('Invite Friends', style: kBodySmall.copyWith(color: kWhite)),
           ],
-        ),
+        ), */
         placeHolderPath: 'images/group_placeholder.png',));
   }
 }

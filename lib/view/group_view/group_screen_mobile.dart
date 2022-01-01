@@ -91,6 +91,8 @@ class _GroupScreenMobileState extends State<GroupScreenMobile> {
               subTitle: channelController.getName() == '' ? null : channelController.getName(),
               itemInfoClick: () => groupController.handleShowGroupProfile(),
               color: kPrimaryColor,
+              imagePath: groupController.getGroupImgPath(),
+              placeHolderPath: 'images/group_placeholder.png',
             )),
             Obx(() => Container(
               height: 84,
@@ -129,7 +131,13 @@ class _GroupScreenMobileState extends State<GroupScreenMobile> {
                 ),
               ),
             )),
-            Obx(() => groupController.showGroupProfile.value ? GroupInformation() : ChannelPresentor(type: channelController.getType())),
+            Obx(() {
+              switch (groupController.mode.value) {
+                case Mode.content: return ChannelPresentor(type: channelController.getType());
+                case Mode.info: return GroupInformation();
+                case Mode.add: return Container();
+              }
+            })
           ],
         ),
       ),

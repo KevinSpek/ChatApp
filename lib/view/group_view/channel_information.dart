@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:groupidy/colors.dart';
 import 'package:groupidy/controller/channel_controller.dart';
+import 'package:groupidy/controller/group_controller.dart';
+import 'package:groupidy/controller/user_controller.dart';
 import 'package:groupidy/enums/channel_types.dart';
 import 'package:groupidy/typography.dart';
 import 'package:groupidy/utils.dart';
@@ -20,6 +22,8 @@ class ChannelInformation extends StatefulWidget {
 
 class _ChannelInformationState extends State<ChannelInformation> {
   var channelController = Get.find<ChannelController>();
+  var groupController = Get.find<GroupController>();
+  var userController = Get.find<UserController>();
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +42,8 @@ class _ChannelInformationState extends State<ChannelInformation> {
                       useText: !channelController.getIsImage(),
                       text: channelController.getIconText(),
                       padding: EdgeInsets.only(right: 32, bottom: 32),
-                      onClick: () =>
-                          dialog(context: context, child: ChannelImageChange()),
+                      onClick: groupController.isGroupAdmin(userController.getUserUid()) ? () =>
+                          dialog(context: context, child: ChannelImageChange()) : null,
                     )),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,7 +51,9 @@ class _ChannelInformationState extends State<ChannelInformation> {
                     Obx(() => CustomEditableText(
                           initialText: channelController.getName(),
                           textStyle: kSubTitle.copyWith(color: kWhite),
+                          onTextChange: channelController.updateChannelName,
                           maxLines: 1,
+                          editable: groupController.isGroupAdmin(userController.getUserUid()),
                         )),
                     Padding(
                       padding: const EdgeInsets.only(top: 4),
@@ -66,6 +72,7 @@ class _ChannelInformationState extends State<ChannelInformation> {
                   onTextChange: (s) =>
                       channelController.updateChannelDescription(s),
                   initialText: channelController.getDescription(),
+                  editable: groupController.isGroupAdmin(userController.getUserUid()),
                 )),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 32),

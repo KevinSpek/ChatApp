@@ -31,13 +31,13 @@ abstract class Channel {
   });
 
   static Channel createChannel(String pid, String name, ChannelType type,
-      bool isImage, String iconText, String imgPath) {
+      bool isImage, String iconText, String imgPath, String ownerUid) {
     switch (type) {
       case ChannelType.news:
         return new ChannelNews(
             pid: pid,
             name: name,
-            uidsAllowedToWrite: <String>[],
+            uidsAllowedToWrite: <String>[ownerUid],
             cid: FirestoreService.getCid(),
             isImage: isImage,
             iconText: iconText,

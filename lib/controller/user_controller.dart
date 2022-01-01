@@ -176,4 +176,5 @@ class UserController extends GetxController {
   }
 
   bool isUserExists() => this.user.value != null;
+  String getUserUid() => this.user.value?.uid ?? '';
 }

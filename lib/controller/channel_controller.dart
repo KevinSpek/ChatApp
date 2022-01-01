@@ -33,12 +33,13 @@ class ChannelController extends GetxController {
         });
   }
 
-  Future<void> createChannel(String name, ChannelType type, bool isImage,
-      String iconText, String imgPath) {
-    return FirestoreService.createChannel(_gid, name, type, isImage, iconText, imgPath)
+  Future<Channel> createChannel(String name, ChannelType type, bool isImage,
+      String iconText, String imgPath, String ownerUid) {
+    return FirestoreService.createChannel(_gid, name, type, isImage, iconText, imgPath, ownerUid)
         .then((channel) {
       channels.value.add(channel);
       channels.refresh();
+      return channel;
     });
   }
 
@@ -66,6 +67,9 @@ class ChannelController extends GetxController {
 
   Future<void> updateChannelName(String name) {
     channel.value!.name = name;
+    channels.value.firstWhere((c) => c.pid == channel.value!.pid).name = name;
+    channels.refresh();
+    channel.refresh();
     return FirestoreService.updateChannel(
         _gid, channel.value!.pid, {"name": name});
   }

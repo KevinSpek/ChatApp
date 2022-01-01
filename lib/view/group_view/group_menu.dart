@@ -3,12 +3,10 @@ import 'package:get/get.dart';
 import 'package:groupidy/colors.dart';
 import 'package:groupidy/controller/channel_controller.dart';
 import 'package:groupidy/controller/group_controller.dart';
+import 'package:groupidy/controller/user_controller.dart';
 import 'package:groupidy/model/channels/channel.dart';
-import 'package:groupidy/model/notification_message.dart';
 import 'package:groupidy/typography.dart';
-import 'package:groupidy/utils.dart';
 import 'package:groupidy/view/components/circle_image.dart';
-import 'package:groupidy/view/components/create_new_channel/create_new_channel.dart';
 import 'package:groupidy/view/components/custom_icon_button.dart';
 import 'package:groupidy/view/group_view/channel_list_item.dart';
 
@@ -24,6 +22,7 @@ class GroupMenu extends StatefulWidget {
 class _GroupMenuState extends State<GroupMenu> {
   GroupController groupController = Get.find();
   ChannelController channelController = Get.find();
+  UserController userController = Get.find();
 
   void _handleReturnHome() {
     Get.offNamed('/home');
@@ -69,10 +68,10 @@ class _GroupMenuState extends State<GroupMenu> {
                 ? Column(
                     children: [
                       CustomIconButton(icon: Icons.search),
-                      CustomIconButton(
+                      Obx(() => groupController.isGroupAdmin(userController.getUserUid()) ? CustomIconButton(
                         icon: Icons.add,
-                        onPressed: () => dialog(context: context, child: CreateNewChannel()),
-                      ),
+                        onPressed: () {groupController.changeMode(Mode.add);},
+                      ) : SizedBox.shrink()),
                     ],
                   )
                 : Row(
@@ -83,10 +82,10 @@ class _GroupMenuState extends State<GroupMenu> {
                       ),
                       Spacer(),
                       CustomIconButton(icon: Icons.search),
-                      CustomIconButton(
+                      Obx(() => groupController.isGroupAdmin(userController.getUserUid()) ? CustomIconButton(
                         icon: Icons.add,
-                        onPressed: () => dialog(context: context, child: CreateNewChannel()),
-                      ),
+                        onPressed: () {groupController.changeMode(Mode.add);},
+                      ) : SizedBox.shrink()),
                     ],
                   ),
           ),
@@ -117,26 +116,7 @@ class _GroupMenuState extends State<GroupMenu> {
                           )
                         : ChannelListItem(
                             channel: channel,
-                            notifications: [
-                              NotificationMessage(
-                                chatID: '123',
-                                notificationType: NotificationType.chatidy,
-                                numNewMessages: 5,
-                                time: DateTime.now(),
-                              ),
-                              NotificationMessage(
-                                chatID: '123',
-                                notificationType: NotificationType.forum,
-                                numNewMessages: 5,
-                                time: DateTime.now(),
-                              ),
-                              NotificationMessage(
-                                chatID: '123',
-                                notificationType: NotificationType.news,
-                                numNewMessages: 5,
-                                time: DateTime.now(),
-                              ),
-                            ],
+                            notifications: [],
                             onTap: () => handleChannelChange(channel),
                           );
                   },

@@ -33,6 +33,7 @@ class _CreateNewChannelState extends State<CreateNewChannel> {
       _type, 
       _iconTypeSelected[1], 
       _iconText == "" ? _name.substring(0, 3).toUpperCase() : _iconText, 
+      '',
       '').then((_) => Navigator.pop(context));
   }
 

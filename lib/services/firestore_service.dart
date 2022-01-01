@@ -42,7 +42,7 @@ class FirestoreService {
     return batch.commit();
   }
 
-  static Future<void> createGroup(String name, String ownerUid) {
+  static Future<Group> createGroup(String name, String ownerUid) {
     var gid = firestore.collection('groups').doc().id;
     Group groupToCreate = Group.createNewGroup(gid, name, ownerUid);
 
@@ -55,10 +55,10 @@ class FirestoreService {
         groupToCreate);
 
     batch.update(firestore.collection('users').doc(ownerUid), {
-      'gids': FieldValue.arrayUnion([gid])
+      'groups': FieldValue.arrayUnion([gid])
     });
 
-    return batch.commit();
+    return batch.commit().then((_) => groupToCreate);
   }
 
   static Future<QuerySnapshot<Group>> getGroups(List<String> gids) {
@@ -80,16 +80,22 @@ class FirestoreService {
     return firestore.collection('users').doc(uid).update(updatedData);
   }
 
-  static Future<Channel> createChannel(String gid, String name,
-      ChannelType type, bool isImage, String iconText, String imgPath) {
+  static Future<Channel> createChannel(
+      String gid,
+      String name,
+      ChannelType type,
+      bool isImage,
+      String iconText,
+      String imgPath,
+      String ownerUid) {
     var pid = firestore
         .collection('groups')
         .doc('gid')
         .collection('channels')
         .doc()
         .id;
-    var channelToCreate =
-        Channel.createChannel(pid, name, type, isImage, iconText, imgPath);
+    var channelToCreate = Channel.createChannel(
+        pid, name, type, isImage, iconText, imgPath, ownerUid);
 
     var batch = firestore.batch();
     var channelRef = firestore
@@ -140,13 +146,16 @@ class FirestoreService {
   }
 
   static Future<void> deleteChannel(String gid, String pid) {
-    return firestore
+    var batch = firestore.batch();
+    batch.delete(firestore
         .collection('groups')
         .doc(gid)
-        //
         .collection('channels')
-        .doc(pid)
-        .delete();
+        .doc(pid));
+        
+    // Delete chat of channel if exists
+
+    return batch.commit();
   }
 
   static Future<QuerySnapshot<Channel>> getChannels(String gid) {
