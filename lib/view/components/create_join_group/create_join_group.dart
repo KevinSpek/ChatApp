@@ -8,7 +8,6 @@ import 'package:groupidy/utils.dart';
 import 'package:groupidy/view/components/create_join_group/create_group.dart';
 import 'package:groupidy/view/components/create_join_group/join_group.dart';
 import 'package:groupidy/view/components/create_join_group/top_bar.dart';
-import 'package:groupidy/view/components/loading.dart';
 
 class CreateJoinGroup extends StatefulWidget {
   const CreateJoinGroup({Key? key}) : super(key: key);
@@ -22,7 +21,6 @@ class _CreateJoinGroupState extends State<CreateJoinGroup> {
   bool _invalidTag = false;
   bool _groupNotExists = false;
   bool _alreadyInTheGroup = false;
-  bool _loading = false;
   String _insertedTag = "";
   var userController = Get.find<UserController>();
   var homeController = Get.find<HomeController>();
@@ -44,11 +42,7 @@ class _CreateJoinGroupState extends State<CreateJoinGroup> {
 
   void handleJoinGroup() {
     if (isValidTag(_insertedTag)) {
-      // TODO: attempt join group
       var tagData = _insertedTag.split("#");
-      setState(() {
-        _loading = true;
-      });
       homeController.joinGroup(
           name: tagData[0],
           tag: tagData[1],
@@ -56,7 +50,6 @@ class _CreateJoinGroupState extends State<CreateJoinGroup> {
           onNotExists: () {
             setState(() {
               _groupNotExists = true;
-              _loading = false;
             });
           },
           onSucess: () {
@@ -66,7 +59,6 @@ class _CreateJoinGroupState extends State<CreateJoinGroup> {
           onExists: () {
             setState(() {
               _alreadyInTheGroup = true;
-              _loading = false;
             });
           });
     }
@@ -84,7 +76,6 @@ class _CreateJoinGroupState extends State<CreateJoinGroup> {
       _invalidTag = false;
       _groupNotExists = false;
       _alreadyInTheGroup = false;
-      _loading = false;
       _insertedTag = "";
     });
   }

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:groupidy/colors.dart';
-import 'package:groupidy/typography.dart';
 import 'package:groupidy/view/components/button.dart';
 
 class BottomButtons extends StatelessWidget {

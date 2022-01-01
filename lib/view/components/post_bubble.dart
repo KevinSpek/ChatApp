@@ -3,7 +3,6 @@ import 'package:groupidy/colors.dart';
 import 'package:groupidy/constants.dart';
 import 'package:groupidy/model/post.dart';
 import 'package:groupidy/typography.dart';
-import 'package:groupidy/view/components/circle_image.dart';
 import 'package:groupidy/view/components/item_info.dart';
 import 'package:groupidy/view/components/textfield_bar.dart';
 
@@ -33,11 +32,11 @@ bool seeMore = false;
 bool type = false;
 
 void _handleAddComment(String commentText) {
-  // TODO: Add comment
+  // Add comment
 }
 
 void _handleLike() {
-  // TODO: post like
+  // post like
 }
 
 class _PostBubbleState extends State<PostBubble> {

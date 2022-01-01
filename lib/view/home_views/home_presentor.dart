@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:groupidy/dummy_data.dart';
 import 'package:groupidy/view/home_views/groups_view/home_groups.dart';
 import 'package:groupidy/view/home_views/profile_view/home_profile.dart';
 import 'package:groupidy/view/home_views/settings_view/home_settings.dart';
@@ -15,16 +14,12 @@ class HomePresentor extends StatelessWidget {
     switch (homeType) {
       case HomeType.groups:
         return HomeGroups();
-
       case HomeType.chatidy:
         return HomeChatidy();
       case HomeType.settings:
-        // TODO: Handle this case.
         return HomeSettings();
       case HomeType.profile:
         return HomeProfile();
     }
-
-    return Text("No widget...");
   }
 }

@@ -57,7 +57,6 @@ class HomeSettings extends StatelessWidget {
                           ),
                         ),
                         onPressed: () {
-                          // TODO: LOGOUT!
                           userController.signOut();
                         },
                         child: Text(

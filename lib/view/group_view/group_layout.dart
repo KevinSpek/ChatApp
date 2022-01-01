@@ -30,12 +30,6 @@ class _GroupLayoutState extends State<GroupLayout> {
   }
 
   @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return ResponsiveLayout(
       desktop: GroupScreenDesktop(),

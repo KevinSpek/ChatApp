@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:groupidy/colors.dart';
 import 'package:groupidy/constants.dart';
 import 'package:groupidy/controller/user_controller.dart';
-import 'package:groupidy/model/user.dart';
 import 'package:groupidy/typography.dart';
 import 'package:groupidy/utils.dart';
 import 'package:groupidy/view/components/button.dart';

@@ -54,7 +54,7 @@ class _GroupScreenMobileState extends State<GroupScreenMobile> {
           Button(
             width: MediaQuery.of(context).size.width - 96,
             onPressed: () {
-              // TODO: EDIT CHANNEL
+              // EDIT CHANNEL
             },
             text: "Edit Channel",
             backgroundColor: kSecondaryBubble,
@@ -63,7 +63,7 @@ class _GroupScreenMobileState extends State<GroupScreenMobile> {
           Button(
             width: MediaQuery.of(context).size.width - 96,
             onPressed: () {
-              // TODO: DELETE CHANNEL
+              // DELETE CHANNEL
             },
             text: "Delete Channel",
             backgroundColor: kSecondaryBubble,

@@ -4,8 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:groupidy/colors.dart';
 import 'package:groupidy/controller/user_controller.dart';
-import 'package:groupidy/dummy_data.dart';
-import 'package:groupidy/model/user.dart';
 import 'package:groupidy/typography.dart';
 import 'package:groupidy/view/components/circle_image.dart';
 import 'package:groupidy/view/components/custom_icon_button.dart';

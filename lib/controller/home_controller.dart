@@ -1,4 +1,3 @@
-import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
 import 'package:groupidy/model/group.dart';
 import 'package:groupidy/services/firestore_service.dart';
@@ -14,7 +13,6 @@ class HomeController extends GetxController {
   void updateItem(HomeType item) {
     homeType.value = item;
     homeType.refresh();
-    //this.update();
   }
 
   String getTitle(HomeType item) {
@@ -43,7 +41,6 @@ class HomeController extends GetxController {
     }
   }
 
-// TODO: OPEN BETA UNCOMMENT chatidy
   final List menuItems = [
     // HomeType.chatidy,
     HomeType.groups,
@@ -91,10 +88,10 @@ class HomeController extends GetxController {
     }
 
     FirestoreService.getGroupByName(name, tag).then((query) {
-      List<Group> gs = [];
-      var docs = query.docs.forEach((doc) {
-        gs.add(doc.data());
-      });
+      //List<Group> gs = [];
+      var gs = query.docs.map((doc) {
+        return doc.data();
+      }).toList();
 
       if (gs.length == 0) {
         // there is no such group
@@ -103,13 +100,10 @@ class HomeController extends GetxController {
         // Found group
         FirestoreService.joinUserToGroup(uid, gs[0].gid);
         onSucess();
-
         groups.value.add(gs[0]);
-
         groups.refresh();
       } else {
         // There are more than 1 group with the same name
-        //TODO handle groups with same name
       }
     });
   }

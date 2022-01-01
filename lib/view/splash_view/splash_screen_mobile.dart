@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:groupidy/colors.dart';
-import 'package:groupidy/controller/user_controller.dart';
-
 import '../../typography.dart';
 
 class SplashScreenMobile extends StatelessWidget {
@@ -21,7 +18,7 @@ class SplashScreenMobile extends StatelessWidget {
             children: [
               Image.asset('images/LOGO.png'),
               Text(
-                'Groupidy',
+                'BondBox',
                 style: kTitle1.copyWith(color: kWhite),
               ),
             ],

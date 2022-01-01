@@ -33,7 +33,7 @@ class _MyAppState extends State<MyApp> {
         } else if (snapshot.connectionState == ConnectionState.done) {
           return GetMaterialApp(
             debugShowCheckedModeBanner: false,
-            title: 'Groupidy',
+            title: 'BondBox',
             initialRoute: AppPages.INITIAL,
             getPages: AppPages.routes,
             onInit: () {

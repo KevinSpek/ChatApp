@@ -3,8 +3,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:groupidy/colors.dart';
 import 'package:groupidy/controller/home_controller.dart';
-import 'package:groupidy/controller/user_controller.dart';
-import 'package:groupidy/model/group.dart';
 import 'package:groupidy/utils.dart';
 import 'package:groupidy/view/components/create_join_group/create_join_group.dart';
 import 'package:groupidy/view/home_views/groups_view/group_add_item.dart';

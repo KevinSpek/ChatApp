@@ -40,7 +40,7 @@ class JoinGroup extends StatelessWidget {
               onChanged: onTextChanged,
               textAlign: TextAlign.start,
               decoration: InputDecoration(
-                hintText: "Example: groupidy#aB12",
+                hintText: "Example: BondBox#aB12",
                 counterText: "",
                 hintStyle: kBodyRegular.copyWith(color: kWhiteDisabled),
               ),

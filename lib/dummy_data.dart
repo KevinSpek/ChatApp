@@ -2,7 +2,6 @@ import 'package:groupidy/model/channels/channel.dart';
 import 'package:groupidy/model/channels/channel_group_chat.dart';
 import 'package:groupidy/model/channels/news.dart';
 import 'package:groupidy/model/chat.dart';
-import 'package:groupidy/model/group.dart';
 import 'package:groupidy/model/message.dart';
 import 'package:groupidy/model/notification_message.dart';
 import 'package:groupidy/model/post.dart';

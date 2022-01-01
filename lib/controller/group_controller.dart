@@ -12,14 +12,14 @@ enum Mode { content, info, add }
 class GroupController extends GetxController {
   var group = Rx<Group?>(null);
   var mode = Mode.content.obs;
-  var _gid = '';
+  var _gid = ''.obs;
 
   GroupController(String gid) {
-    _gid = gid;
+    _gid.value = gid;
   }
 
   void loadGroup() async {
-    FirestoreService.getGroup(_gid,
+    FirestoreService.getGroup(_gid.value,
         (DocumentSnapshot<Map<String, dynamic>> documentSnapshot) {
       if (documentSnapshot.exists) {
         group.value = Group.fromMap(documentSnapshot.data()!);
@@ -31,9 +31,9 @@ class GroupController extends GetxController {
     if (imageData.bytes == null) return;
     if (group.value == null) return;
     StorageService.uploadFile(
-            'groups/' + _gid + '/' + imageData.name, imageData.bytes!)
+            'groups/' + _gid.value + '/' + imageData.name, imageData.bytes!)
         .then((downloadUrl) {
-      FirestoreService.updateGroup(_gid, {'imgPath': downloadUrl});
+      FirestoreService.updateGroup(_gid.value, {'imgPath': downloadUrl});
       group.value!.imgPath = downloadUrl;
       group.refresh();
     });

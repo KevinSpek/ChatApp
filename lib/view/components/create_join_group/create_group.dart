@@ -28,7 +28,7 @@ class CreateGroup extends StatelessWidget {
               textAlign: TextAlign.start,
               onChanged: onTextChanged,
               decoration: InputDecoration(
-                hintText: "Example: Groupidy",
+                hintText: "Example: BondBox",
                 counterText: "",
                 hintStyle: kBodyRegular.copyWith(color: kWhiteDisabled),
               ),

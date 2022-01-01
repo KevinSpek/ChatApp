@@ -1,5 +1,5 @@
+// ignore: avoid_web_libraries_in_flutter
 import 'dart:html';
-import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
@@ -29,8 +29,6 @@ class UserController extends GetxController {
       Get.toNamed(Routes.WELCOME);
     } else {
       print('User is signed in!');
-      // TODO: Check if user first time signed in and act accordinly
-
       Get.toNamed(Routes.SPLASH);
       this.fetchUser();
     }
@@ -102,9 +100,7 @@ class UserController extends GetxController {
 
           registerUser(credential);
         },
-        codeAutoRetrievalTimeout: (String verificationId) {
-          // TODO: handle timeout of when automatic sms code handling fails
-        },
+        codeAutoRetrievalTimeout: (String verificationId) {},
       );
     }
   }

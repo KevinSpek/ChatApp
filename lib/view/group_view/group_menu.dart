@@ -56,7 +56,7 @@ class _GroupMenuState extends State<GroupMenu> {
                     ),
                     SizedBox(width: 12),
                     Text(
-                      'Groupidy',
+                      'BondBox',
                       style: kBodyRegular.copyWith(color: kWhite),
                     ),
                   ],

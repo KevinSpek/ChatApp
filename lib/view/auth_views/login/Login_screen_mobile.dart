@@ -6,7 +6,6 @@ import 'package:groupidy/utils.dart';
 import 'package:groupidy/view/auth_views/login/login_component.dart';
 import 'package:groupidy/view/components/button.dart';
 import 'package:groupidy/view/components/loading.dart';
-import 'package:loading_indicator/loading_indicator.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../../../colors.dart';
@@ -93,14 +92,12 @@ class _LoginScreenMobileState extends State<LoginScreenMobile> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     _textEditingController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,

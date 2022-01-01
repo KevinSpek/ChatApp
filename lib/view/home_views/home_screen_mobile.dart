@@ -10,8 +10,6 @@ import 'package:groupidy/view/home_views/home_type.dart';
 import 'package:groupidy/view/home_views/profile_view/home_profile_mobile.dart';
 import 'package:groupidy/view/home_views/settings_view/home_settings.dart';
 
-import 'chatidy_view/home_chatidy mobile.dart';
-
 HomeType getHomeTypeFromPageIndex(int pageIndex) {
   switch (pageIndex) {
     case 1:
@@ -55,7 +53,7 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
   void initState() {
     super.initState();
     _tabController = TabController(
-        length: 2, vsync: this); // TODO: switch to length 3 IN BETA
+        length: 2, vsync: this);
     _isSettings = homeController.homeType.value == HomeType.settings;
     if (!_isSettings)
       _tabController.index =
@@ -71,7 +69,7 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Groupidy",
+        title: Text("BondBox",
             style: kBodyLarge.copyWith(
               color: kWhite,
             )),
@@ -81,7 +79,7 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
         leading: CustomIconButton(icon: Icons.settings_rounded),
         bottom: TabBar(
           controller: _tabController,
-          indicatorWeight: 2, // TODO: switch to 3 IN BETA
+          indicatorWeight: 2,
           indicatorColor: kWhite,
           indicatorSize: TabBarIndicatorSize.label,
           labelStyle: kBodyRegular,
@@ -91,7 +89,6 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
             Tab(
               text: "Groups",
             ),
-            // TODO: UNCOMMENT IN BETA
             // Tab(
             //   text: "Chatidy",
             // ),
@@ -105,7 +102,6 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
         controller: _tabController,
         children: <Widget>[
           HomeGroups(),
-          // TODO:  UNCOMMENT IN BETA
           // HomeChatidyMobile(
           //   chats: dChats,
           // ),

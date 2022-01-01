@@ -69,7 +69,7 @@ class NotificationItem extends StatelessWidget {
               '${notification.numNewMessages}',
               textAlign: TextAlign.center,
               style: kCaption.copyWith(color: kWhite),
-            ), // TODO: Add number of notifications!
+            ),
             Image.asset(
               'images/${notification.notificationType.toString().split('.').last}.png',
               width: 16,

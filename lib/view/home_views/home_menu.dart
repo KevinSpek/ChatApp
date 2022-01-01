@@ -30,7 +30,7 @@ class _HomeMenuState extends State<HomeMenu> {
                 Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Text(
-                    "Groupidy",
+                    "BondBox",
                     style: kSubTitle.copyWith(color: kWhite),
                   ),
                 ),
