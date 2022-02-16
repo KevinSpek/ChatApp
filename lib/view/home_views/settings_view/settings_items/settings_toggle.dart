@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:groupidy/colors.dart';
-import 'package:groupidy/constants.dart';
-import 'package:groupidy/typography.dart';
+import 'package:chatapp/colors.dart';
+import 'package:chatapp/constants.dart';
+import 'package:chatapp/typography.dart';
 
 class SettingsToggle extends StatefulWidget {
-  const SettingsToggle({Key? key, required this.title, required this.onChange})
-      : super(key: key);
+  const SettingsToggle({Key? key, required this.title, required this.onChange}) : super(key: key);
   final Function(bool)? onChange;
   final String title;
 
@@ -20,15 +19,13 @@ class _SettingsToggleState extends State<SettingsToggle> {
   Widget build(BuildContext context) {
     return Container(
       child: Padding(
-        padding: const EdgeInsets.symmetric(
-            horizontal: kPadding, vertical: kPadding / 2),
+        padding: const EdgeInsets.symmetric(horizontal: kPadding, vertical: kPadding / 2),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
               widget.title,
-              style: kBodyRegular.copyWith(
-                  color: kWhite, fontWeight: FontWeight.bold),
+              style: kBodyRegular.copyWith(color: kWhite, fontWeight: FontWeight.bold),
             ),
             Spacer(),
             IgnorePointer(

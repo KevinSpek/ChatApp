@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:groupidy/responsive/sizing_information.dart';
-import 'package:groupidy/utils.dart';
+import 'package:chatapp/responsive/sizing_information.dart';
+import 'package:chatapp/utils.dart';
 
 class ResponsiveBuilder extends StatelessWidget {
   const ResponsiveBuilder({Key? key, required this.builder}) : super(key: key);

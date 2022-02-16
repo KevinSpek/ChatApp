@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:groupidy/colors.dart';
-import 'package:groupidy/constants.dart';
-import 'package:groupidy/controller/user_controller.dart';
-import 'package:groupidy/typography.dart';
-import 'package:groupidy/utils.dart';
-import 'package:groupidy/view/components/button.dart';
-import 'package:groupidy/view/components/loading.dart';
+import 'package:chatapp/colors.dart';
+import 'package:chatapp/constants.dart';
+import 'package:chatapp/controller/user_controller.dart';
+import 'package:chatapp/typography.dart';
+import 'package:chatapp/utils.dart';
+import 'package:chatapp/view/components/button.dart';
+import 'package:chatapp/view/components/loading.dart';
 
 class NewUserMobile extends StatefulWidget {
   const NewUserMobile({Key? key}) : super(key: key);
@@ -39,7 +39,7 @@ class _NewUserMobileState extends State<NewUserMobile> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    "Welcome to Groupidy!",
+                    "Welcome to chatapp!",
                     style: kTitle2.copyWith(color: kWhite),
                   ),
                 ),
@@ -103,8 +103,7 @@ class _NewUserMobileState extends State<NewUserMobile> {
                             setState(() {
                               isLoading = true;
                             });
-                            userController
-                                .createNewUser(textEditingController.text);
+                            userController.createNewUser(textEditingController.text);
                           }
                         : null,
                     text: "Submit",

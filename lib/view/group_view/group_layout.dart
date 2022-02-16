@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:groupidy/controller/channel_controller.dart';
-import 'package:groupidy/controller/group_controller.dart';
-import 'package:groupidy/controller/home_controller.dart';
-import 'package:groupidy/responsive/responsive_layout.dart';
-import 'package:groupidy/view/group_view/group_screen_desktop.dart';
-import 'package:groupidy/view/group_view/group_screen_mobile.dart';
+import 'package:chatapp/controller/channel_controller.dart';
+import 'package:chatapp/controller/group_controller.dart';
+import 'package:chatapp/controller/home_controller.dart';
+import 'package:chatapp/responsive/responsive_layout.dart';
+import 'package:chatapp/view/group_view/group_screen_desktop.dart';
+import 'package:chatapp/view/group_view/group_screen_mobile.dart';
 
 class GroupLayout extends StatefulWidget {
   const GroupLayout({Key? key}) : super(key: key);

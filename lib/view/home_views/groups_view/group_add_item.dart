@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:groupidy/colors.dart';
-import 'package:groupidy/typography.dart';
+import 'package:chatapp/colors.dart';
+import 'package:chatapp/typography.dart';
 
 class GroupAddItem extends StatelessWidget {
   const GroupAddItem({Key? key, required this.onClick}) : super(key: key);

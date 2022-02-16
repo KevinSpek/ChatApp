@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:groupidy/controller/channel_controller.dart';
-import 'package:groupidy/enums/channel_types.dart';
-import 'package:groupidy/view/channel_view/forum_channel.dart';
-import 'package:groupidy/view/channel_view/group_chat_channel.dart';
-import 'package:groupidy/view/channel_view/news_channel.dart';
+import 'package:chatapp/controller/channel_controller.dart';
+import 'package:chatapp/enums/channel_types.dart';
+import 'package:chatapp/view/channel_view/forum_channel.dart';
+import 'package:chatapp/view/channel_view/group_chat_channel.dart';
+import 'package:chatapp/view/channel_view/news_channel.dart';
 
 class ChannelPresentor extends StatefulWidget {
   const ChannelPresentor({Key? key, required this.type}) : super(key: key);

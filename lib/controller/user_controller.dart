@@ -3,13 +3,13 @@ import 'dart:html';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
-import 'package:groupidy/model/user.dart';
+import 'package:chatapp/model/user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
-import 'package:groupidy/routes/app_pages.dart';
-import 'package:groupidy/services/firestore_service.dart';
-import 'package:groupidy/services/storage_service.dart';
-import 'package:groupidy/utils.dart';
+import 'package:chatapp/routes/app_pages.dart';
+import 'package:chatapp/services/firestore_service.dart';
+import 'package:chatapp/services/storage_service.dart';
+import 'package:chatapp/utils.dart';
 
 class UserController extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -44,12 +44,7 @@ class UserController extends GetxController {
     await _auth.signInWithCredential(credential);
   }
 
-  void registerPhone(
-      {required String phoneNumber,
-      String smsCode = "",
-      required Function smsVerificationFailed,
-      Function? reCAPTCHAFailed,
-      Function? reCAPTCHASuccess}) async {
+  void registerPhone({required String phoneNumber, String smsCode = "", required Function smsVerificationFailed, Function? reCAPTCHAFailed, Function? reCAPTCHASuccess}) async {
     if (kIsWeb) {
       // running on the web!
 
@@ -69,8 +64,7 @@ class UserController extends GetxController {
               onSuccess: reCAPTCHASuccess != null
                   ? () {
                       reCAPTCHASuccess();
-                      final el = window.document
-                          .getElementById('__ff-recaptcha-container');
+                      final el = window.document.getElementById('__ff-recaptcha-container');
                       if (el != null) {
                         el.style.visibility = 'hidden';
                       }
@@ -95,8 +89,7 @@ class UserController extends GetxController {
           smsVerificationFailed();
         },
         codeSent: (String verificationId, int? resendToken) async {
-          PhoneAuthCredential credential = PhoneAuthProvider.credential(
-              verificationId: verificationId, smsCode: smsCode);
+          PhoneAuthCredential credential = PhoneAuthProvider.credential(verificationId: verificationId, smsCode: smsCode);
 
           registerUser(credential);
         },
@@ -111,12 +104,10 @@ class UserController extends GetxController {
 
   void createNewUser(String nickname) async {
     if (_auth.currentUser != null) {
-      bool isExist =
-          await FirestoreService.isUserExists(_auth.currentUser!.uid);
+      bool isExist = await FirestoreService.isUserExists(_auth.currentUser!.uid);
       if (!isExist) {
         String tag = tagGenerator();
-        UserGp newUser =
-            UserGp(nickname: nickname, tag: tag, uid: _auth.currentUser!.uid);
+        UserGp newUser = UserGp(nickname: nickname, tag: tag, uid: _auth.currentUser!.uid);
         await FirestoreService.createUser(newUser);
         user.value = newUser;
         Get.toNamed(Routes.HOME);
@@ -162,9 +153,7 @@ class UserController extends GetxController {
   void handleUpdateImage(PlatformFile imageData) {
     if (imageData.bytes == null) return;
     if (user.value == null) return;
-    StorageService.uploadFile(
-            'users/' + user.value!.uid + '/' + imageData.name, imageData.bytes!)
-        .then((downloadUrl) {
+    StorageService.uploadFile('users/' + user.value!.uid + '/' + imageData.name, imageData.bytes!).then((downloadUrl) {
       FirestoreService.updateGroup(user.value!.uid, {'imgPath': downloadUrl});
       user.value!.imgPath = downloadUrl;
       user.refresh();

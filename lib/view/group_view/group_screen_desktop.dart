@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:groupidy/colors.dart';
-import 'package:groupidy/controller/group_controller.dart';
-import 'package:groupidy/view/group_view/channel_create.dart';
-import 'package:groupidy/view/group_view/channel_layout.dart';
-import 'package:groupidy/view/group_view/group_bar_info.dart';
-import 'package:groupidy/view/group_view/group_menu.dart';
+import 'package:chatapp/colors.dart';
+import 'package:chatapp/controller/group_controller.dart';
+import 'package:chatapp/view/group_view/channel_create.dart';
+import 'package:chatapp/view/group_view/channel_layout.dart';
+import 'package:chatapp/view/group_view/group_bar_info.dart';
+import 'package:chatapp/view/group_view/group_menu.dart';
 
 import 'group_information.dart';
 

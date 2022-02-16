@@ -1,9 +1,9 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:groupidy/controller/channel_controller.dart';
-import 'package:groupidy/view/components/button.dart';
-import 'package:groupidy/view/components/create_new_channel/channel_icon_input.dart';
+import 'package:chatapp/controller/channel_controller.dart';
+import 'package:chatapp/view/components/button.dart';
+import 'package:chatapp/view/components/create_new_channel/channel_icon_input.dart';
 import '../../colors.dart';
 
 class ChannelImageChange extends StatefulWidget {
@@ -29,8 +29,7 @@ class _ChannelImageChangeState extends State<ChannelImageChange> {
   }
 
   void handleImagePick() async {
-    FilePickerResult? result =
-        await FilePicker.platform.pickFiles(type: FileType.image);
+    FilePickerResult? result = await FilePicker.platform.pickFiles(type: FileType.image);
     if (result != null) {
       setState(() {
         _file = result.files.first;
@@ -39,16 +38,14 @@ class _ChannelImageChangeState extends State<ChannelImageChange> {
   }
 
   void handleUpdate() {
-    channelController.updateChannelImage(
-        _iconTypeSelected[1], _iconText, _file);
+    channelController.updateChannelImage(_iconTypeSelected[1], _iconText, _file);
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
         padding: EdgeInsets.all(16),
-        constraints:
-            BoxConstraints(maxHeight: 300, maxWidth: 400, minWidth: 350),
+        constraints: BoxConstraints(maxHeight: 300, maxWidth: 400, minWidth: 350),
         color: kSecondaryBackground,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

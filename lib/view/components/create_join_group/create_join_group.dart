@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:groupidy/colors.dart';
-import 'package:groupidy/controller/home_controller.dart';
-import 'package:groupidy/controller/user_controller.dart';
-import 'package:groupidy/services/firestore_service.dart';
-import 'package:groupidy/utils.dart';
-import 'package:groupidy/view/components/create_join_group/create_group.dart';
-import 'package:groupidy/view/components/create_join_group/join_group.dart';
-import 'package:groupidy/view/components/create_join_group/top_bar.dart';
+import 'package:chatapp/colors.dart';
+import 'package:chatapp/controller/home_controller.dart';
+import 'package:chatapp/controller/user_controller.dart';
+import 'package:chatapp/services/firestore_service.dart';
+import 'package:chatapp/utils.dart';
+import 'package:chatapp/view/components/create_join_group/create_group.dart';
+import 'package:chatapp/view/components/create_join_group/join_group.dart';
+import 'package:chatapp/view/components/create_join_group/top_bar.dart';
 
 class CreateJoinGroup extends StatefulWidget {
   const CreateJoinGroup({Key? key}) : super(key: key);
@@ -31,12 +31,11 @@ class _CreateJoinGroupState extends State<CreateJoinGroup> {
 
   void handleCreateGroup(BuildContext contex) {
     if (_insertedTag.length > 3) {
-      FirestoreService.createGroup(_insertedTag, userController.user.value!.uid)
-        .then((group) {
-          userController.user.value?.gids.add(group.gid);
-          homeController.groups.value.add(group);
-          Navigator.pop(context);
-        });
+      FirestoreService.createGroup(_insertedTag, userController.user.value!.uid).then((group) {
+        userController.user.value?.gids.add(group.gid);
+        homeController.groups.value.add(group);
+        Navigator.pop(context);
+      });
     }
   }
 
@@ -111,9 +110,7 @@ class _CreateJoinGroupState extends State<CreateJoinGroup> {
   Widget build(BuildContext context) {
     return Container(
       width: 400,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(8)),
-          color: kSecondaryBackground),
+      decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(8)), color: kSecondaryBackground),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [

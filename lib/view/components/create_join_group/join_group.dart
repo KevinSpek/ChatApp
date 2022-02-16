@@ -1,18 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:groupidy/colors.dart';
-import 'package:groupidy/typography.dart';
-import 'package:groupidy/view/components/create_join_group/bottom_buttons.dart';
+import 'package:chatapp/colors.dart';
+import 'package:chatapp/typography.dart';
+import 'package:chatapp/view/components/create_join_group/bottom_buttons.dart';
 
 class JoinGroup extends StatelessWidget {
-  const JoinGroup(
-      {Key? key,
-      required this.onCancel,
-      required this.onTextChanged,
-      required this.onMainButtonClick,
-      this.invalidTag = false,
-      this.groupNotExists = false,
-      this.alreadyInTheGroup = false})
-      : super(key: key);
+  const JoinGroup({Key? key, required this.onCancel, required this.onTextChanged, required this.onMainButtonClick, this.invalidTag = false, this.groupNotExists = false, this.alreadyInTheGroup = false}) : super(key: key);
 
   final VoidCallback onCancel;
   final Function(String) onTextChanged;

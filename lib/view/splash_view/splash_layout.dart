@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:groupidy/responsive/responsive_layout.dart';
+import 'package:chatapp/responsive/responsive_layout.dart';
 
 import 'splash_screen_mobile.dart';
 

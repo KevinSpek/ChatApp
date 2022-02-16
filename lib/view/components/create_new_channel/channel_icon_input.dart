@@ -1,23 +1,14 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:groupidy/view/components/button.dart';
-import 'package:groupidy/view/components/circle_image.dart';
+import 'package:chatapp/view/components/button.dart';
+import 'package:chatapp/view/components/circle_image.dart';
 
 import '../../../colors.dart';
 import '../../../typography.dart';
 
 class ChannelIconInput extends StatefulWidget {
-  const ChannelIconInput(
-      {Key? key,
-      required this.iconTypeSelected,
-      required this.onIconTypeSelect,
-      required this.iconText,
-      required this.channelName,
-      required this.onIconTextChange,
-      this.imageBytes,
-      required this.handleImagePick})
-      : super(key: key);
+  const ChannelIconInput({Key? key, required this.iconTypeSelected, required this.onIconTypeSelect, required this.iconText, required this.channelName, required this.onIconTextChange, this.imageBytes, required this.handleImagePick}) : super(key: key);
 
   final List<bool> iconTypeSelected;
   final Function(int) onIconTypeSelect;
@@ -34,14 +25,13 @@ class ChannelIconInput extends StatefulWidget {
 class _ChannelIconInputState extends State<ChannelIconInput> {
   var textController = TextEditingController(text: '');
 
-  @override void initState() {
+  @override
+  void initState() {
     textController.text = widget.iconText;
     super.initState();
   }
 
-  void handleChange(String s) {
-    
-  }
+  void handleChange(String s) {}
 
   @override
   Widget build(BuildContext context) {
@@ -125,12 +115,7 @@ class _ChannelIconInputState extends State<ChannelIconInput> {
                     ),
                     style: kBodyRegular.copyWith(color: Colors.white),
                   )
-                : Button(
-                    onPressed: widget.handleImagePick,
-                    text: "Choose icon image",
-                    textStyle: kBodyRegular.copyWith(color: kWhite),
-                    standout: false,
-                    width: 240))
+                : Button(onPressed: widget.handleImagePick, text: "Choose icon image", textStyle: kBodyRegular.copyWith(color: kWhite), standout: false, width: 240))
       ],
     );
   }

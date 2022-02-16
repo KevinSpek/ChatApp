@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:groupidy/responsive/device_screen_type.dart';
-import 'package:groupidy/responsive/responsive_builder.dart';
+import 'package:chatapp/responsive/device_screen_type.dart';
+import 'package:chatapp/responsive/responsive_builder.dart';
 
 class ResponsiveLayout extends StatelessWidget {
   const ResponsiveLayout({
@@ -18,12 +18,9 @@ class ResponsiveLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
       builder: (context, sizingInformation) {
-        if (sizingInformation.deviceScreenType == DeviceScreenType.Desktop &&
-            desktop != null) {
+        if (sizingInformation.deviceScreenType == DeviceScreenType.Desktop && desktop != null) {
           return desktop ?? SizedBox();
-        } else if (sizingInformation.deviceScreenType ==
-                DeviceScreenType.Tablet &&
-            tablet != null) {
+        } else if (sizingInformation.deviceScreenType == DeviceScreenType.Tablet && tablet != null) {
           return tablet ?? SizedBox();
         } else {
           return mobile;

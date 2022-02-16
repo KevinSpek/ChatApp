@@ -1,16 +1,16 @@
 {
   "project_info": {
     "project_number": "484527828219",
-    "firebase_url": "https://groupidy.firebaseio.com",
-    "project_id": "groupidy",
-    "storage_bucket": "groupidy.appspot.com"
+    "firebase_url": "https://chatapp.firebaseio.com",
+    "project_id": "chatapp",
+    "storage_bucket": "chatapp.appspot.com"
   },
   "client": [
     {
       "client_info": {
         "mobilesdk_app_id": "1:484527828219:android:76bd81b43ab55ef161145e",
         "android_client_info": {
-          "package_name": "com.groupidy"
+          "package_name": "com.chatapp"
         }
       },
       "oauth_client": [
@@ -35,7 +35,7 @@
               "client_id": "484527828219-0037cp5mm9mgaqnckp11u82o5tjmr8kt.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.Groupidy.app"
+                "bundle_id": "com.chatapp.app"
               }
             }
           ]

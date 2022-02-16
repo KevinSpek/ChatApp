@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:groupidy/model/channels/channel.dart';
-import 'package:groupidy/view/components/create_new_channel/channel_icon_input.dart';
+import 'package:chatapp/model/channels/channel.dart';
+import 'package:chatapp/view/components/create_new_channel/channel_icon_input.dart';
 
 import '../../../colors.dart';
 import '../../../typography.dart';

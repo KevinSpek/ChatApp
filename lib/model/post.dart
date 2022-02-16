@@ -1,4 +1,4 @@
-import 'package:groupidy/model/message.dart';
+import 'package:chatapp/model/message.dart';
 
 class Post {
   final Message chatMsg;

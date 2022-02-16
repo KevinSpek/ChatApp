@@ -1,4 +1,4 @@
-# groupidy
+# chatapp
 
 A new Flutter project.
 

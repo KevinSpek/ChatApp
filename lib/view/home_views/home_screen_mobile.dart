@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:groupidy/colors.dart';
-import 'package:groupidy/controller/home_controller.dart';
-import 'package:groupidy/dummy_data.dart';
-import 'package:groupidy/typography.dart';
-import 'package:groupidy/view/components/custom_icon_button.dart';
-import 'package:groupidy/view/home_views/groups_view/home_groups.dart';
-import 'package:groupidy/view/home_views/home_type.dart';
-import 'package:groupidy/view/home_views/profile_view/home_profile_mobile.dart';
-import 'package:groupidy/view/home_views/settings_view/home_settings.dart';
+import 'package:chatapp/colors.dart';
+import 'package:chatapp/controller/home_controller.dart';
+import 'package:chatapp/dummy_data.dart';
+import 'package:chatapp/typography.dart';
+import 'package:chatapp/view/components/custom_icon_button.dart';
+import 'package:chatapp/view/home_views/groups_view/home_groups.dart';
+import 'package:chatapp/view/home_views/home_type.dart';
+import 'package:chatapp/view/home_views/profile_view/home_profile_mobile.dart';
+import 'package:chatapp/view/home_views/settings_view/home_settings.dart';
 
 HomeType getHomeTypeFromPageIndex(int pageIndex) {
   switch (pageIndex) {
@@ -43,8 +43,7 @@ class HomeScreenMobile extends StatefulWidget {
   _HomeScreenMobileState createState() => _HomeScreenMobileState();
 }
 
-class _HomeScreenMobileState extends State<HomeScreenMobile>
-    with TickerProviderStateMixin {
+class _HomeScreenMobileState extends State<HomeScreenMobile> with TickerProviderStateMixin {
   late TabController _tabController;
   HomeController homeController = Get.find();
   bool _isSettings = false;
@@ -52,12 +51,10 @@ class _HomeScreenMobileState extends State<HomeScreenMobile>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(
-        length: 2, vsync: this);
+    _tabController = TabController(length: 2, vsync: this);
     _isSettings = homeController.homeType.value == HomeType.settings;
     if (!_isSettings)
-      _tabController.index =
-          getPageIndexFromHomeType(homeController.homeType.value);
+      _tabController.index = getPageIndexFromHomeType(homeController.homeType.value);
     else
       Get.to(HomeSettings());
     _tabController.addListener(() {

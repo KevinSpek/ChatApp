@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:groupidy/colors.dart';
-import 'package:groupidy/enums/channel_types.dart';
+import 'package:chatapp/colors.dart';
+import 'package:chatapp/enums/channel_types.dart';
 import '../../../typography.dart';
 
 class ChooseChannelType extends StatelessWidget {

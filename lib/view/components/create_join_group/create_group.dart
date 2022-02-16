@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:groupidy/colors.dart';
-import 'package:groupidy/typography.dart';
-import 'package:groupidy/view/components/create_join_group/bottom_buttons.dart';
+import 'package:chatapp/colors.dart';
+import 'package:chatapp/typography.dart';
+import 'package:chatapp/view/components/create_join_group/bottom_buttons.dart';
 
 class CreateGroup extends StatelessWidget {
   const CreateGroup({Key? key, required this.onCancel, required this.onTextChanged, required this.onMainButtonClick}) : super(key: key);
@@ -35,7 +35,7 @@ class CreateGroup extends StatelessWidget {
               style: kBodyRegular.copyWith(color: Colors.white),
             ),
           ),
-         /*  Padding(
+          /*  Padding(
             padding: const EdgeInsets.only(top: 16),
             child: Text(
               "Group image",
@@ -56,10 +56,7 @@ class CreateGroup extends StatelessWidget {
                   fixedSize: Size(80 , 80),
                 ),
               )), */
-          BottomButtons(
-              mainButtonText: "Create",
-              onMainButtonClick: onMainButtonClick,
-              onCancelClick: onCancel)
+          BottomButtons(mainButtonText: "Create", onMainButtonClick: onMainButtonClick, onCancelClick: onCancel)
         ],
       ),
     );

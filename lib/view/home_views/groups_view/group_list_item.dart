@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:groupidy/colors.dart';
-import 'package:groupidy/model/group.dart';
-import 'package:groupidy/typography.dart';
-import 'package:groupidy/utils.dart';
-import 'package:groupidy/view/components/item_info.dart';
-import 'package:groupidy/view/notification_views/notification_item.dart';
-import 'package:groupidy/view/notification_views/notification_side.dart';
+import 'package:chatapp/colors.dart';
+import 'package:chatapp/model/group.dart';
+import 'package:chatapp/typography.dart';
+import 'package:chatapp/utils.dart';
+import 'package:chatapp/view/components/item_info.dart';
+import 'package:chatapp/view/notification_views/notification_item.dart';
+import 'package:chatapp/view/notification_views/notification_side.dart';
 
 class GroupListItem extends StatelessWidget {
   const GroupListItem({

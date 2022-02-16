@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
-import 'package:groupidy/model/channels/channel.dart';
-import 'package:groupidy/model/group.dart';
-import 'package:groupidy/services/firestore_service.dart';
-import 'package:groupidy/services/storage_service.dart';
-import 'package:groupidy/utils.dart';
+import 'package:chatapp/model/channels/channel.dart';
+import 'package:chatapp/model/group.dart';
+import 'package:chatapp/services/firestore_service.dart';
+import 'package:chatapp/services/storage_service.dart';
+import 'package:chatapp/utils.dart';
 
 enum Mode { content, info, add }
 
@@ -19,8 +19,7 @@ class GroupController extends GetxController {
   }
 
   void loadGroup() async {
-    FirestoreService.getGroup(_gid.value,
-        (DocumentSnapshot<Map<String, dynamic>> documentSnapshot) {
+    FirestoreService.getGroup(_gid.value, (DocumentSnapshot<Map<String, dynamic>> documentSnapshot) {
       if (documentSnapshot.exists) {
         group.value = Group.fromMap(documentSnapshot.data()!);
       }
@@ -30,9 +29,7 @@ class GroupController extends GetxController {
   void handleUpdateImage(PlatformFile imageData) {
     if (imageData.bytes == null) return;
     if (group.value == null) return;
-    StorageService.uploadFile(
-            'groups/' + _gid.value + '/' + imageData.name, imageData.bytes!)
-        .then((downloadUrl) {
+    StorageService.uploadFile('groups/' + _gid.value + '/' + imageData.name, imageData.bytes!).then((downloadUrl) {
       FirestoreService.updateGroup(_gid.value, {'imgPath': downloadUrl});
       group.value!.imgPath = downloadUrl;
       group.refresh();

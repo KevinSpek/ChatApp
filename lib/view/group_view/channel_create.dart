@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:groupidy/colors.dart';
-import 'package:groupidy/controller/channel_controller.dart';
-import 'package:groupidy/controller/group_controller.dart';
-import 'package:groupidy/controller/user_controller.dart';
-import 'package:groupidy/enums/channel_types.dart';
-import 'package:groupidy/typography.dart';
-import 'package:groupidy/view/components/button.dart';
-import 'package:groupidy/view/components/custom_dropdown.dart';
-import 'package:groupidy/view/components/custom_text_field.dart';
+import 'package:chatapp/colors.dart';
+import 'package:chatapp/controller/channel_controller.dart';
+import 'package:chatapp/controller/group_controller.dart';
+import 'package:chatapp/controller/user_controller.dart';
+import 'package:chatapp/enums/channel_types.dart';
+import 'package:chatapp/typography.dart';
+import 'package:chatapp/view/components/button.dart';
+import 'package:chatapp/view/components/custom_dropdown.dart';
+import 'package:chatapp/view/components/custom_text_field.dart';
 
 class ChannelCreate extends StatefulWidget {
   const ChannelCreate({Key? key}) : super(key: key);
@@ -36,24 +36,17 @@ class _ChannelCreateState extends State<ChannelCreate> {
         _invalidName = true;
       });
       return;
-    }
-    else {
+    } else {
       setState(() {
         _invalidName = false;
       });
     }
 
-    channelController.createChannel(
-      _name, 
-      _type, 
-      false, 
-      _name.substring(0, 3).toUpperCase(), 
-      '',
-      userController.user.value!.uid).then((channel) {
-        groupContoller.changeMode(Mode.content);
-        channelController.handleChannelChange(channel);
-        channelController.handleShowChannelInformation();
-      });
+    channelController.createChannel(_name, _type, false, _name.substring(0, 3).toUpperCase(), '', userController.user.value!.uid).then((channel) {
+      groupContoller.changeMode(Mode.content);
+      channelController.handleChannelChange(channel);
+      channelController.handleShowChannelInformation();
+    });
   }
 
   @override
@@ -74,7 +67,7 @@ class _ChannelCreateState extends State<ChannelCreate> {
             labelText: 'Name',
             hintText: 'Example: News & Updates',
             padding: EdgeInsets.only(top: 32, bottom: 16),
-            errorText: _invalidName ? 'Name must be at least 3 characters long'  : '',
+            errorText: _invalidName ? 'Name must be at least 3 characters long' : '',
           ),
           CustomDropdown(
             labelText: 'Type',
@@ -85,12 +78,7 @@ class _ChannelCreateState extends State<ChannelCreate> {
               });
             },
           ),
-          Button(
-            onPressed: _handleCreateChannel,
-            text: "Create",
-            width: 500,
-            margin: EdgeInsets.only(top: 32)
-          )
+          Button(onPressed: _handleCreateChannel, text: "Create", width: 500, margin: EdgeInsets.only(top: 32))
         ],
       ),
     );

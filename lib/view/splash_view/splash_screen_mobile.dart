@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:groupidy/colors.dart';
+import 'package:chatapp/colors.dart';
 import '../../typography.dart';
 
 class SplashScreenMobile extends StatelessWidget {

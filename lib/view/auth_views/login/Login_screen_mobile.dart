@@ -1,11 +1,11 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:groupidy/controller/user_controller.dart';
-import 'package:groupidy/utils.dart';
-import 'package:groupidy/view/auth_views/login/login_component.dart';
-import 'package:groupidy/view/components/button.dart';
-import 'package:groupidy/view/components/loading.dart';
+import 'package:chatapp/controller/user_controller.dart';
+import 'package:chatapp/utils.dart';
+import 'package:chatapp/view/auth_views/login/login_component.dart';
+import 'package:chatapp/view/components/button.dart';
+import 'package:chatapp/view/components/loading.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../../../colors.dart';

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:groupidy/colors.dart';
+import 'package:chatapp/colors.dart';
 
 class CustomIconButton extends StatelessWidget {
-  const CustomIconButton(
-      {Key? key,
-      this.onPressed,
-      required this.icon,
-      this.color,})
-      : super(key: key);
+  const CustomIconButton({
+    Key? key,
+    this.onPressed,
+    required this.icon,
+    this.color,
+  }) : super(key: key);
 
   final VoidCallback? onPressed;
   final IconData icon;

@@ -1,10 +1,10 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:groupidy/colors.dart';
-import 'package:groupidy/controller/user_controller.dart';
-import 'package:groupidy/routes/app_pages.dart';
-import 'package:groupidy/view/components/button.dart';
+import 'package:chatapp/colors.dart';
+import 'package:chatapp/controller/user_controller.dart';
+import 'package:chatapp/routes/app_pages.dart';
+import 'package:chatapp/view/components/button.dart';
 
 import '../../typography.dart';
 

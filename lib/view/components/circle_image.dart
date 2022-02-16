@@ -2,7 +2,7 @@ import 'dart:typed_data';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:groupidy/colors.dart';
+import 'package:chatapp/colors.dart';
 
 import '../../typography.dart';
 
@@ -57,21 +57,18 @@ class CircleImage extends StatelessWidget {
                         child: Center(
                             child: Text(
                           text == null ? '' : text!,
-                          style: kBodySmall.copyWith(
-                              color: kWhite, fontSize: size * 0.3),
+                          style: kBodySmall.copyWith(color: kWhite, fontSize: size * 0.3),
                         )),
                       )
                     : CachedNetworkImage(
                         imageUrl: imagePath == null ? '' : imagePath!,
-                        placeholder: (context, url) =>
-                            CircularProgressIndicator(),
+                        placeholder: (context, url) => CircularProgressIndicator(),
                         errorWidget: (context, url, error) => Container(
                           color: placeholderBackgroundColor,
                           child: Padding(
                             padding: EdgeInsets.all(size / 4.0),
                             child: Image(
-                              image: AssetImage(placeholderPath ??
-                                  "images/user_placeholder.png"),
+                              image: AssetImage(placeholderPath ?? "images/user_placeholder.png"),
                             ),
                           ),
                         ),

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:groupidy/colors.dart';
-import 'package:groupidy/controller/home_controller.dart';
-import 'package:groupidy/typography.dart';
-import 'package:groupidy/view/home_views/home_type.dart';
+import 'package:chatapp/colors.dart';
+import 'package:chatapp/controller/home_controller.dart';
+import 'package:chatapp/typography.dart';
+import 'package:chatapp/view/home_views/home_type.dart';
 
 class HomeMenu extends StatefulWidget {
   const HomeMenu({Key? key}) : super(key: key);
@@ -47,13 +47,7 @@ class _HomeMenuState extends State<HomeMenu> {
               itemCount: homeController.menuItems.length,
               itemBuilder: (buildContext, index) {
                 HomeType currentHomeType = homeController.menuItems[index];
-                return Obx(() => MenuItem(
-                    noText: hideNavText,
-                    selected: homeController.homeType.value == currentHomeType,
-                    text: homeController.getTitle(currentHomeType),
-                    imagePath: homeController.getImagePath(currentHomeType),
-                    onTap: () => {homeController.updateItem(currentHomeType)}
-                    ));
+                return Obx(() => MenuItem(noText: hideNavText, selected: homeController.homeType.value == currentHomeType, text: homeController.getTitle(currentHomeType), imagePath: homeController.getImagePath(currentHomeType), onTap: () => {homeController.updateItem(currentHomeType)}));
               },
             ),
           ),
@@ -81,7 +75,6 @@ class MenuItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16.0),
       child: InkWell(

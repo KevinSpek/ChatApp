@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:groupidy/model/notification_message.dart';
+import 'package:chatapp/model/notification_message.dart';
 
 import 'notification_item.dart';
 import 'notification_side.dart';

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:groupidy/colors.dart';
-import 'package:groupidy/controller/home_controller.dart';
-import 'package:groupidy/utils.dart';
-import 'package:groupidy/view/components/create_join_group/create_join_group.dart';
-import 'package:groupidy/view/home_views/groups_view/group_add_item.dart';
-import 'package:groupidy/view/home_views/groups_view/group_list_item.dart';
+import 'package:chatapp/colors.dart';
+import 'package:chatapp/controller/home_controller.dart';
+import 'package:chatapp/utils.dart';
+import 'package:chatapp/view/components/create_join_group/create_join_group.dart';
+import 'package:chatapp/view/home_views/groups_view/group_add_item.dart';
+import 'package:chatapp/view/home_views/groups_view/group_list_item.dart';
 
 class HomeGroups extends StatefulWidget {
   const HomeGroups({
@@ -20,7 +20,6 @@ class HomeGroups extends StatefulWidget {
 class _HomeGroupsState extends State<HomeGroups> {
   HomeController homeController = Get.find();
 
-  
   void _handleGroupTap(String gid) {
     homeController.navigateToGroup(gid);
   }

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:groupidy/colors.dart';
-import 'package:groupidy/dummy_data.dart';
-import 'package:groupidy/model/chat.dart';
-import 'package:groupidy/typography.dart';
-import 'package:groupidy/view/components/circle_image.dart';
-import 'package:groupidy/view/components/custom_icon_button.dart';
-import 'package:groupidy/view/components/messages_container.dart';
-import 'package:groupidy/view/components/textfield_bar.dart';
+import 'package:chatapp/colors.dart';
+import 'package:chatapp/dummy_data.dart';
+import 'package:chatapp/model/chat.dart';
+import 'package:chatapp/typography.dart';
+import 'package:chatapp/view/components/circle_image.dart';
+import 'package:chatapp/view/components/custom_icon_button.dart';
+import 'package:chatapp/view/components/messages_container.dart';
+import 'package:chatapp/view/components/textfield_bar.dart';
 
 import 'home_chatidy_menu.dart';
 
@@ -72,8 +72,7 @@ class _HomeChatidyState extends State<HomeChatidy> {
                           padding: const EdgeInsets.all(16),
                           child: CircleImage(
                             size: 48,
-                            imagePath:
-                                _chats[_currentChatIndex].userToChat.imgPath,
+                            imagePath: _chats[_currentChatIndex].userToChat.imgPath,
                           ),
                         ),
                         Expanded(
@@ -82,7 +81,8 @@ class _HomeChatidyState extends State<HomeChatidy> {
                           style: kBodyRegular.copyWith(color: kWhite),
                         )),
                         CustomIconButton(
-                            icon: Icons.settings_rounded,)
+                          icon: Icons.settings_rounded,
+                        )
                       ],
                     ),
                   ),
@@ -91,23 +91,20 @@ class _HomeChatidyState extends State<HomeChatidy> {
                   child: Container(
                     width: double.infinity,
                     color: kSecondaryBackground,
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                              child: MessagesContainer(
-                            chat: _chats[_currentChatIndex],
-                            myUid: _myUid,
-                            scrollController: ScrollController(),
-                          )),
-                          TextFieldBar(
-                            onSend: handleSendMessage,
-                            outerPadding: 16,
-                            textStyle: kBodyRegular.copyWith(color: kWhite),
-                            hintStyle:
-                                kBodyRegular.copyWith(color: kWhiteDisabled),
-                          ),
-                        ]),
+                    child: Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                      Expanded(
+                          child: MessagesContainer(
+                        chat: _chats[_currentChatIndex],
+                        myUid: _myUid,
+                        scrollController: ScrollController(),
+                      )),
+                      TextFieldBar(
+                        onSend: handleSendMessage,
+                        outerPadding: 16,
+                        textStyle: kBodyRegular.copyWith(color: kWhite),
+                        hintStyle: kBodyRegular.copyWith(color: kWhiteDisabled),
+                      ),
+                    ]),
                   ),
                 )
               ],

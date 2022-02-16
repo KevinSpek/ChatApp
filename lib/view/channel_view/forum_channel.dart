@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-//import 'package:groupidy/model/channels/forum.dart';
-//import 'package:groupidy/view/components/post_bubble.dart';
+//import 'package:chatapp/model/channels/forum.dart';
+//import 'package:chatapp/view/components/post_bubble.dart';
 
 class ForumChannel extends StatefulWidget {
   const ForumChannel({Key? key}) : super(key: key);
@@ -14,7 +14,7 @@ class _ForumChannelState extends State<ForumChannel> {
   Widget build(BuildContext context) {
     print("here");
     return Container(
-      /* child: Expanded(
+        /* child: Expanded(
         child: ListView.separated(
             itemCount: 0,
             separatorBuilder: (BuildContext context, int index) => Divider(height: 1),
@@ -28,6 +28,6 @@ class _ForumChannelState extends State<ForumChannel> {
               );
             }),
       ), */
-    );
+        );
   }
 }

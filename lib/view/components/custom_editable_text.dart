@@ -1,19 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:groupidy/colors.dart';
-import 'package:groupidy/typography.dart';
+import 'package:chatapp/colors.dart';
+import 'package:chatapp/typography.dart';
 
 class CustomEditableText extends StatefulWidget {
-  const CustomEditableText(
-      {Key? key,
-      this.initialText = '',
-      this.hint = '',
-      this.textStyle,
-      this.hintStyle,
-      this.maxLines,
-      this.maxLength,
-      this.onTextChange,
-      this.editable = true})
-      : super(key: key);
+  const CustomEditableText({Key? key, this.initialText = '', this.hint = '', this.textStyle, this.hintStyle, this.maxLines, this.maxLength, this.onTextChange, this.editable = true}) : super(key: key);
 
   final String? initialText;
   final String hint;
@@ -73,39 +63,40 @@ class _CustomEditableTextState extends State<CustomEditableText> {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        widget.editable ? 
-        _isEditMode
-            ? Row(
-                children: [
-                  IconButton(
-                      padding: EdgeInsets.zero,
-                      constraints: BoxConstraints(),
-                      onPressed: handleAcceptEdit,
-                      icon: Icon(
-                        Icons.check_rounded,
-                        color: kWhite,
-                        size: 24,
-                      )),
-                  IconButton(
-                      padding: EdgeInsets.zero,
-                      constraints: BoxConstraints(),
-                      onPressed: handleRejectEdit,
-                      icon: Icon(
-                        Icons.close_rounded,
-                        color: kWhite,
-                        size: 24,
-                      )),
-                ],
-              )
-            : IconButton(
-                padding: EdgeInsets.zero,
-                constraints: BoxConstraints(),
-                onPressed: handleStartEditMode,
-                icon: Icon(
-                  Icons.edit_rounded,
-                  color: kWhite,
-                  size: 24,
-                )) : SizedBox.shrink(),
+        widget.editable
+            ? _isEditMode
+                ? Row(
+                    children: [
+                      IconButton(
+                          padding: EdgeInsets.zero,
+                          constraints: BoxConstraints(),
+                          onPressed: handleAcceptEdit,
+                          icon: Icon(
+                            Icons.check_rounded,
+                            color: kWhite,
+                            size: 24,
+                          )),
+                      IconButton(
+                          padding: EdgeInsets.zero,
+                          constraints: BoxConstraints(),
+                          onPressed: handleRejectEdit,
+                          icon: Icon(
+                            Icons.close_rounded,
+                            color: kWhite,
+                            size: 24,
+                          )),
+                    ],
+                  )
+                : IconButton(
+                    padding: EdgeInsets.zero,
+                    constraints: BoxConstraints(),
+                    onPressed: handleStartEditMode,
+                    icon: Icon(
+                      Icons.edit_rounded,
+                      color: kWhite,
+                      size: 24,
+                    ))
+            : SizedBox.shrink(),
         Container(
           child: TextField(
             readOnly: !_isEditMode,
@@ -113,14 +104,7 @@ class _CustomEditableTextState extends State<CustomEditableText> {
             maxLength: widget.maxLength ?? 200,
             keyboardType: TextInputType.multiline,
             maxLines: widget.maxLines ?? null,
-            decoration: InputDecoration(
-                hintText: widget.hint,
-                hintStyle: widget.hintStyle ??
-                    kBodyRegular.copyWith(color: kWhiteSecondary),
-                border: InputBorder.none,
-                isDense: true,
-                counterText: '',
-                contentPadding: EdgeInsets.only(left: widget.editable ? 8 : 0)),
+            decoration: InputDecoration(hintText: widget.hint, hintStyle: widget.hintStyle ?? kBodyRegular.copyWith(color: kWhiteSecondary), border: InputBorder.none, isDense: true, counterText: '', contentPadding: EdgeInsets.only(left: widget.editable ? 8 : 0)),
             style: widget.textStyle ?? kBodyRegular.copyWith(color: kWhite),
           ),
           width: 300,

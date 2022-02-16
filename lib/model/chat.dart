@@ -1,5 +1,5 @@
-import 'package:groupidy/model/message.dart';
-import 'package:groupidy/model/user.dart';
+import 'package:chatapp/model/message.dart';
+import 'package:chatapp/model/user.dart';
 
 class Chat {
   final String cid;
@@ -21,21 +21,11 @@ class Chat {
   }
 
   static Chat fromMap(Map<String, dynamic> map) {
-    return new Chat(
-      cid: map['cid'],
-      lastUpdated: map['lastUpdated'], 
-      messages: <Message>[], 
-      uids: map['uid'], 
-      userToChat: map['userToChat']);
+    return new Chat(cid: map['cid'], lastUpdated: map['lastUpdated'], messages: <Message>[], uids: map['uid'], userToChat: map['userToChat']);
   }
 
   static Map<String, dynamic> toMap(Chat chat) {
-    return {
-      'cid': chat.cid,
-      'lastUpdated': chat.lastUpdated,
-      'uids': chat.uids,
-      'userToChat': chat.userToChat
-    };
+    return {'cid': chat.cid, 'lastUpdated': chat.lastUpdated, 'uids': chat.uids, 'userToChat': chat.userToChat};
   }
 
   static Chat empty() {

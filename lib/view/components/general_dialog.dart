@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:groupidy/constants.dart';
+import 'package:chatapp/constants.dart';
 
 class GeneralDialog extends StatelessWidget {
   const GeneralDialog({Key? key, required this.child}) : super(key: key);

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:groupidy/constants.dart';
+import 'package:chatapp/constants.dart';
 
 import '../../../colors.dart';
 import '../../../typography.dart';
@@ -33,13 +33,12 @@ class Button extends StatelessWidget {
       width: width,
       height: kButtonHeight,
       decoration: BoxDecoration(
-        color: showBackground
-            ? standout
-                ? backgroundColor
-                : kSecondaryBubble
-            : Colors.transparent,
-        borderRadius: BorderRadius.circular(8.0)
-      ),
+          color: showBackground
+              ? standout
+                  ? backgroundColor
+                  : kSecondaryBubble
+              : Colors.transparent,
+          borderRadius: BorderRadius.circular(8.0)),
       child: Material(
         color: Colors.transparent,
         child: InkWell(

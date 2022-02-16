@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:groupidy/view/components/button.dart';
+import 'package:chatapp/view/components/button.dart';
 
 class BottomButtons extends StatelessWidget {
   const BottomButtons({Key? key, required this.mainButtonText, required this.onMainButtonClick, required this.onCancelClick}) : super(key: key);

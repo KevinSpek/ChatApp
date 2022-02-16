@@ -1,8 +1,8 @@
-import 'package:groupidy/enums/channel_types.dart';
-import 'package:groupidy/model/channels/channel_group_chat.dart';
-import 'package:groupidy/model/channels/forum.dart';
-import 'package:groupidy/model/channels/news.dart';
-import 'package:groupidy/services/firestore_service.dart';
+import 'package:chatapp/enums/channel_types.dart';
+import 'package:chatapp/model/channels/channel_group_chat.dart';
+import 'package:chatapp/model/channels/forum.dart';
+import 'package:chatapp/model/channels/news.dart';
+import 'package:chatapp/services/firestore_service.dart';
 
 abstract class Channel {
   final String pid;
@@ -30,34 +30,14 @@ abstract class Channel {
     this.uidsAllowedToWrite,
   });
 
-  static Channel createChannel(String pid, String name, ChannelType type,
-      bool isImage, String iconText, String imgPath, String ownerUid) {
+  static Channel createChannel(String pid, String name, ChannelType type, bool isImage, String iconText, String imgPath, String ownerUid) {
     switch (type) {
       case ChannelType.news:
-        return new ChannelNews(
-            pid: pid,
-            name: name,
-            uidsAllowedToWrite: <String>[ownerUid],
-            cid: FirestoreService.getCid(),
-            isImage: isImage,
-            iconText: iconText,
-            imgPath: imgPath);
+        return new ChannelNews(pid: pid, name: name, uidsAllowedToWrite: <String>[ownerUid], cid: FirestoreService.getCid(), isImage: isImage, iconText: iconText, imgPath: imgPath);
       case ChannelType.groupChat:
-        return new ChannelGroupChat(
-            pid: pid,
-            name: name,
-            cid: FirestoreService.getCid(),
-            isImage: isImage,
-            iconText: iconText,
-            imgPath: imgPath);
+        return new ChannelGroupChat(pid: pid, name: name, cid: FirestoreService.getCid(), isImage: isImage, iconText: iconText, imgPath: imgPath);
       case ChannelType.forum:
-        return new ChannelForum(
-            pid: pid,
-            name: name,
-            cid: FirestoreService.getCid(),
-            isImage: isImage,
-            iconText: iconText,
-            imgPath: imgPath);
+        return new ChannelForum(pid: pid, name: name, cid: FirestoreService.getCid(), isImage: isImage, iconText: iconText, imgPath: imgPath);
       case ChannelType.none:
         return new ChannelNews(pid: pid, name: name, uidsAllowedToWrite: []);
     }

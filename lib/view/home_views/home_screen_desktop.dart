@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:groupidy/controller/home_controller.dart';
-import 'package:groupidy/view/home_views/home_presentor.dart';
+import 'package:chatapp/controller/home_controller.dart';
+import 'package:chatapp/view/home_views/home_presentor.dart';
+
 class HomeScreenDesktop extends StatefulWidget {
-  const HomeScreenDesktop({Key? key})
-      : super(key: key);
+  const HomeScreenDesktop({Key? key}) : super(key: key);
 
   @override
   _HomeScreenDesktopState createState() => _HomeScreenDesktopState();

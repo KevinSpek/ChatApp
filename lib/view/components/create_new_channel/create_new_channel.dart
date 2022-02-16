@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:groupidy/colors.dart';
-import 'package:groupidy/controller/channel_controller.dart';
-import 'package:groupidy/enums/channel_types.dart';
-import 'package:groupidy/typography.dart';
-import 'package:groupidy/view/components/button.dart';
-import 'package:groupidy/view/components/create_new_channel/channel_icon_input.dart';
-import 'package:groupidy/view/components/create_new_channel/channel_name.dart';
-import 'package:groupidy/view/components/create_new_channel/choose_channel_type.dart';
+import 'package:chatapp/colors.dart';
+import 'package:chatapp/controller/channel_controller.dart';
+import 'package:chatapp/enums/channel_types.dart';
+import 'package:chatapp/typography.dart';
+import 'package:chatapp/view/components/button.dart';
+import 'package:chatapp/view/components/create_new_channel/channel_icon_input.dart';
+import 'package:chatapp/view/components/create_new_channel/channel_name.dart';
+import 'package:chatapp/view/components/create_new_channel/choose_channel_type.dart';
 
 class CreateNewChannel extends StatefulWidget {
   const CreateNewChannel({Key? key}) : super(key: key);
@@ -28,13 +28,7 @@ class _CreateNewChannelState extends State<CreateNewChannel> {
   void handleClose() {}
 
   void handleCreateChannel() {
-    channelController.createChannel(
-      _name, 
-      _type, 
-      _iconTypeSelected[1], 
-      _iconText == "" ? _name.substring(0, 3).toUpperCase() : _iconText, 
-      '',
-      '').then((_) => Navigator.pop(context));
+    channelController.createChannel(_name, _type, _iconTypeSelected[1], _iconText == "" ? _name.substring(0, 3).toUpperCase() : _iconText, '', '').then((_) => Navigator.pop(context));
   }
 
   @override

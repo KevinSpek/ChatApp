@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:groupidy/colors.dart';
-import 'package:groupidy/typography.dart';
+import 'package:chatapp/colors.dart';
+import 'package:chatapp/typography.dart';
 
 class TopBar extends StatelessWidget {
-  const TopBar({
-    Key? key, 
-    required this.isJoinGroup, 
-    required this.onToggleJoinGroup, 
-    required this.onToggleCreateGroup}) : super(key: key);
+  const TopBar({Key? key, required this.isJoinGroup, required this.onToggleJoinGroup, required this.onToggleCreateGroup}) : super(key: key);
 
   final bool isJoinGroup;
   final VoidCallback onToggleJoinGroup;
@@ -45,17 +41,11 @@ class TopBar extends StatelessWidget {
 }
 
 class TopButton extends StatelessWidget {
-  const TopButton(
-      {Key? key,
-      required this.text,
-      required this.selected,
-      required this.onClick})
-      : super(key: key);
+  const TopButton({Key? key, required this.text, required this.selected, required this.onClick}) : super(key: key);
 
   final String text;
   final bool selected;
   final VoidCallback onClick;
-
 
   @override
   Widget build(BuildContext context) {
@@ -63,9 +53,7 @@ class TopButton extends StatelessWidget {
       onPressed: onClick,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 0),
-        child: Text(text,
-            style: kBodyRegular.copyWith(
-                color: selected ? kWhite : kWhiteSecondary)),
+        child: Text(text, style: kBodyRegular.copyWith(color: selected ? kWhite : kWhiteSecondary)),
       ),
     );
   }

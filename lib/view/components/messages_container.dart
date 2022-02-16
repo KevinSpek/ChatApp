@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:groupidy/model/chat.dart';
-import 'package:groupidy/model/message.dart';
+import 'package:chatapp/model/chat.dart';
+import 'package:chatapp/model/message.dart';
 
 import 'message_bubble.dart';
 
 class MessagesContainer extends StatelessWidget {
-  const MessagesContainer({Key? key, required this.chat, required this.myUid, required this.scrollController})
-      : super(key: key);
+  const MessagesContainer({Key? key, required this.chat, required this.myUid, required this.scrollController}) : super(key: key);
 
   final Chat chat;
   final String myUid;

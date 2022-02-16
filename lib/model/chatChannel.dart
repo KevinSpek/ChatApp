@@ -1,9 +1,8 @@
-import 'package:groupidy/dummy_data.dart';
-import 'package:groupidy/model/message.dart';
+import 'package:chatapp/dummy_data.dart';
+import 'package:chatapp/model/message.dart';
 import 'chat.dart';
 
 class ChatChannel extends Chat {
-
   ChatChannel({
     required cid,
     required lastUpdated,
@@ -15,10 +14,7 @@ class ChatChannel extends Chat {
   }
 
   static ChatChannel fromMap(Map<String, dynamic> map) {
-    return new ChatChannel(
-      cid: map['cid'],
-      lastUpdated: map['lastUpdated']?.toDate(),
-      messages: <Message>[]);
+    return new ChatChannel(cid: map['cid'], lastUpdated: map['lastUpdated']?.toDate(), messages: <Message>[]);
   }
 
   static Map<String, dynamic> toMap(ChatChannel chat) {

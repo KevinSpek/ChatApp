@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
-import 'package:groupidy/model/group.dart';
-import 'package:groupidy/services/firestore_service.dart';
-import 'package:groupidy/view/home_views/home_type.dart';
+import 'package:chatapp/model/group.dart';
+import 'package:chatapp/services/firestore_service.dart';
+import 'package:chatapp/view/home_views/home_type.dart';
 
 class HomeController extends GetxController {
   var groups = Rx<List<Group>>([]);
@@ -60,8 +60,7 @@ class HomeController extends GetxController {
               groups.value.add(groupToAdd);
             } else {
               //update existing group
-              var groupIndex = groups.value
-                  .indexWhere((group) => group.gid == groupToAdd.gid);
+              var groupIndex = groups.value.indexWhere((group) => group.gid == groupToAdd.gid);
               groups.value[groupIndex] = groupToAdd;
             }
             groups.refresh();
@@ -74,13 +73,7 @@ class HomeController extends GetxController {
     Get.toNamed('/group');
   }
 
-  void joinGroup(
-      {required String name,
-      required String tag,
-      required String uid,
-      required Function onNotExists,
-      required Function onSucess,
-      required Function onExists}) async {
+  void joinGroup({required String name, required String tag, required String uid, required Function onNotExists, required Function onSucess, required Function onExists}) async {
     if (groups.value.any((group) => group.name == name && group.tag == tag)) {
       // Group already exists
       onExists();

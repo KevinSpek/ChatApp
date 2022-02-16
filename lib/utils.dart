@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
-import 'package:groupidy/responsive/device_screen_type.dart';
-import 'package:groupidy/view/components/general_dialog.dart';
+import 'package:chatapp/responsive/device_screen_type.dart';
+import 'package:chatapp/view/components/general_dialog.dart';
 
 DeviceScreenType getDeviceType(MediaQueryData mediaQuery) {
   double deviceWidth = mediaQuery.size.width;

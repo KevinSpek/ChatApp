@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:groupidy/colors.dart';
-import 'package:groupidy/controller/channel_controller.dart';
-import 'package:groupidy/controller/chat_controller.dart';
-import 'package:groupidy/controller/user_controller.dart';
-import 'package:groupidy/typography.dart';
-import 'package:groupidy/view/components/messages_container.dart';
-import 'package:groupidy/view/components/textfield_bar.dart';
+import 'package:chatapp/colors.dart';
+import 'package:chatapp/controller/channel_controller.dart';
+import 'package:chatapp/controller/chat_controller.dart';
+import 'package:chatapp/controller/user_controller.dart';
+import 'package:chatapp/typography.dart';
+import 'package:chatapp/view/components/messages_container.dart';
+import 'package:chatapp/view/components/textfield_bar.dart';
 
 class NewsChannel extends StatefulWidget {
-  const NewsChannel({Key? key})
-      : super(key: key);
+  const NewsChannel({Key? key}) : super(key: key);
 
   @override
   State<NewsChannel> createState() => _NewsChannelState();
@@ -25,7 +24,7 @@ class _NewsChannelState extends State<NewsChannel> {
   @override
   void initState() {
     chatController.loadChat(channelController.getCid());
-    _scrollController.addListener(() { 
+    _scrollController.addListener(() {
       if (_scrollController.position.atEdge && _scrollController.offset != 0) {
         chatController.loadOldMessages();
       }
@@ -40,11 +39,11 @@ class _NewsChannelState extends State<NewsChannel> {
         child: Column(
           children: [
             Obx(() => Expanded(
-                child: MessagesContainer(
-              chat: chatController.getChat(),
-              myUid: userController.getUserUid(),
-              scrollController: _scrollController,
-            ))),
+                    child: MessagesContainer(
+                  chat: chatController.getChat(),
+                  myUid: userController.getUserUid(),
+                  scrollController: _scrollController,
+                ))),
             Obx(() => channelController.getUidsAllowedToWrite().contains(userController.getUserUid())
                 ? TextFieldBar(
                     onSend: (s) => chatController.addMessage(s, userController.user.value!.uid, userController.user.value!.nickname),

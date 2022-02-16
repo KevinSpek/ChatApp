@@ -1,19 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:groupidy/model/channels/channel.dart';
-import 'package:groupidy/model/notification_message.dart';
-import 'package:groupidy/view/components/item_info.dart';
-import 'package:groupidy/view/notification_views/notifications_group.dart';
+import 'package:chatapp/model/channels/channel.dart';
+import 'package:chatapp/model/notification_message.dart';
+import 'package:chatapp/view/components/item_info.dart';
+import 'package:chatapp/view/notification_views/notifications_group.dart';
 
 import '../../colors.dart';
 import '../../typography.dart';
 
 class ChannelListItem extends StatelessWidget {
-  const ChannelListItem(
-      {Key? key,
-      required this.channel,
-      required this.notifications,
-      this.onTap})
-      : super(key: key);
+  const ChannelListItem({Key? key, required this.channel, required this.notifications, this.onTap}) : super(key: key);
 
   final Channel channel;
   final List<NotificationMessage> notifications;

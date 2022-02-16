@@ -1,11 +1,11 @@
-import 'package:groupidy/model/channels/channel.dart';
-import 'package:groupidy/model/channels/channel_group_chat.dart';
-import 'package:groupidy/model/channels/news.dart';
-import 'package:groupidy/model/chat.dart';
-import 'package:groupidy/model/message.dart';
-import 'package:groupidy/model/notification_message.dart';
-import 'package:groupidy/model/post.dart';
-import 'package:groupidy/model/user.dart';
+import 'package:chatapp/model/channels/channel.dart';
+import 'package:chatapp/model/channels/channel_group_chat.dart';
+import 'package:chatapp/model/channels/news.dart';
+import 'package:chatapp/model/chat.dart';
+import 'package:chatapp/model/message.dart';
+import 'package:chatapp/model/notification_message.dart';
+import 'package:chatapp/model/post.dart';
+import 'package:chatapp/model/user.dart';
 
 String dUid = '1';
 

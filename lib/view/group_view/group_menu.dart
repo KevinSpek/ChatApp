@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:groupidy/colors.dart';
-import 'package:groupidy/controller/channel_controller.dart';
-import 'package:groupidy/controller/group_controller.dart';
-import 'package:groupidy/controller/user_controller.dart';
-import 'package:groupidy/model/channels/channel.dart';
-import 'package:groupidy/typography.dart';
-import 'package:groupidy/view/components/circle_image.dart';
-import 'package:groupidy/view/components/custom_icon_button.dart';
-import 'package:groupidy/view/group_view/channel_list_item.dart';
+import 'package:chatapp/colors.dart';
+import 'package:chatapp/controller/channel_controller.dart';
+import 'package:chatapp/controller/group_controller.dart';
+import 'package:chatapp/controller/user_controller.dart';
+import 'package:chatapp/model/channels/channel.dart';
+import 'package:chatapp/typography.dart';
+import 'package:chatapp/view/components/circle_image.dart';
+import 'package:chatapp/view/components/custom_icon_button.dart';
+import 'package:chatapp/view/group_view/channel_list_item.dart';
 
 class GroupMenu extends StatefulWidget {
   const GroupMenu({
@@ -68,10 +68,14 @@ class _GroupMenuState extends State<GroupMenu> {
                 ? Column(
                     children: [
                       CustomIconButton(icon: Icons.search),
-                      Obx(() => groupController.isGroupAdmin(userController.getUserUid()) ? CustomIconButton(
-                        icon: Icons.add,
-                        onPressed: () {groupController.changeMode(Mode.add);},
-                      ) : SizedBox.shrink()),
+                      Obx(() => groupController.isGroupAdmin(userController.getUserUid())
+                          ? CustomIconButton(
+                              icon: Icons.add,
+                              onPressed: () {
+                                groupController.changeMode(Mode.add);
+                              },
+                            )
+                          : SizedBox.shrink()),
                     ],
                   )
                 : Row(
@@ -82,10 +86,14 @@ class _GroupMenuState extends State<GroupMenu> {
                       ),
                       Spacer(),
                       CustomIconButton(icon: Icons.search),
-                      Obx(() => groupController.isGroupAdmin(userController.getUserUid()) ? CustomIconButton(
-                        icon: Icons.add,
-                        onPressed: () {groupController.changeMode(Mode.add);},
-                      ) : SizedBox.shrink()),
+                      Obx(() => groupController.isGroupAdmin(userController.getUserUid())
+                          ? CustomIconButton(
+                              icon: Icons.add,
+                              onPressed: () {
+                                groupController.changeMode(Mode.add);
+                              },
+                            )
+                          : SizedBox.shrink()),
                     ],
                   ),
           ),

@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:groupidy/controller/group_controller.dart';
-import 'package:groupidy/model/user.dart';
-import 'package:groupidy/services/firestore_service.dart';
-import 'package:groupidy/services/storage_service.dart';
+import 'package:chatapp/controller/group_controller.dart';
+import 'package:chatapp/model/user.dart';
+import 'package:chatapp/services/firestore_service.dart';
+import 'package:chatapp/services/storage_service.dart';
 
 import '../../colors.dart';
 import '../../typography.dart';
 import 'circle_image.dart';
 
 class MemberInfo extends StatefulWidget {
-  const MemberInfo({Key? key, required this.uid, this.isOwner})
-      : super(key: key);
+  const MemberInfo({Key? key, required this.uid, this.isOwner}) : super(key: key);
 
   final String uid;
   final isOwner;
@@ -31,12 +30,11 @@ class _MemberInfoState extends State<MemberInfo> {
       if (user != null) {
         setState(() {
           _user = user;
-          StorageService.getDownloadUrl(user.imgPath)
-            .then((downloadUrl) {
-              setState(() {
-                _imageDownloadUrl = downloadUrl;
-              });
+          StorageService.getDownloadUrl(user.imgPath).then((downloadUrl) {
+            setState(() {
+              _imageDownloadUrl = downloadUrl;
             });
+          });
         });
       }
     });
@@ -53,7 +51,9 @@ class _MemberInfoState extends State<MemberInfo> {
             size: 32,
             imagePath: _imageDownloadUrl,
           ),
-          SizedBox(width: 8,),
+          SizedBox(
+            width: 8,
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: Text(

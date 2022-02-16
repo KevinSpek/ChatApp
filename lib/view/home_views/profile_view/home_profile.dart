@@ -2,11 +2,11 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:groupidy/colors.dart';
-import 'package:groupidy/controller/user_controller.dart';
-import 'package:groupidy/typography.dart';
-import 'package:groupidy/view/components/circle_image.dart';
-import 'package:groupidy/view/components/custom_icon_button.dart';
+import 'package:chatapp/colors.dart';
+import 'package:chatapp/controller/user_controller.dart';
+import 'package:chatapp/typography.dart';
+import 'package:chatapp/view/components/circle_image.dart';
+import 'package:chatapp/view/components/custom_icon_button.dart';
 
 class HomeProfile extends StatefulWidget {
   const HomeProfile({Key? key}) : super(key: key);

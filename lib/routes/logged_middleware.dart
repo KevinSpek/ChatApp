@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:groupidy/routes/app_pages.dart';
+import 'package:chatapp/routes/app_pages.dart';
 
 class LoggedMiddleware extends GetMiddleware {
   @override

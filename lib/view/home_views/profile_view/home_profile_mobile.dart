@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:groupidy/colors.dart';
-import 'package:groupidy/model/user.dart';
-import 'package:groupidy/typography.dart';
-import 'package:groupidy/view/components/circle_image.dart';
-import 'package:groupidy/view/components/custom_icon_button.dart';
+import 'package:chatapp/colors.dart';
+import 'package:chatapp/model/user.dart';
+import 'package:chatapp/typography.dart';
+import 'package:chatapp/view/components/circle_image.dart';
+import 'package:chatapp/view/components/custom_icon_button.dart';
 
 import '../../../utils.dart';
 
@@ -14,8 +14,7 @@ class HomeProfileMobile extends StatelessWidget {
   final UserGp user;
 
   void handleCopyTag(BuildContext context) {
-    Clipboard.setData(
-        ClipboardData(text: user.getNicknameTagCombination()));
+    Clipboard.setData(ClipboardData(text: user.getNicknameTagCombination()));
     showToast(context, "User tag copied to clipboard.");
   }
 
@@ -36,7 +35,9 @@ class HomeProfileMobile extends StatelessWidget {
               size: 160,
               imagePath: user.imgPath,
             ),
-            SizedBox(height: 32,),
+            SizedBox(
+              height: 32,
+            ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

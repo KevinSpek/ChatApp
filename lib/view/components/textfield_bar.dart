@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:groupidy/colors.dart';
-import 'package:groupidy/constants.dart';
-import 'package:groupidy/typography.dart';
+import 'package:chatapp/colors.dart';
+import 'package:chatapp/constants.dart';
+import 'package:chatapp/typography.dart';
 
 class TextFieldBar extends StatefulWidget {
   TextFieldBar({Key? key, required this.onSend, this.outerPadding = 8.0, this.textStyle, this.hintStyle}) : super(key: key);

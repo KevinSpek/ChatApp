@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:groupidy/controller/home_controller.dart';
-import 'package:groupidy/controller/user_controller.dart';
-import 'package:groupidy/responsive/responsive_layout.dart';
-import 'package:groupidy/view/home_views/home_screen_desktop.dart';
-import 'package:groupidy/view/home_views/home_screen_mobile.dart';
+import 'package:chatapp/controller/home_controller.dart';
+import 'package:chatapp/controller/user_controller.dart';
+import 'package:chatapp/responsive/responsive_layout.dart';
+import 'package:chatapp/view/home_views/home_screen_desktop.dart';
+import 'package:chatapp/view/home_views/home_screen_mobile.dart';
 
 import 'home_menu.dart';
 

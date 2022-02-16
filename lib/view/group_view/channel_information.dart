@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:groupidy/colors.dart';
-import 'package:groupidy/controller/channel_controller.dart';
-import 'package:groupidy/controller/group_controller.dart';
-import 'package:groupidy/controller/user_controller.dart';
-import 'package:groupidy/enums/channel_types.dart';
-import 'package:groupidy/typography.dart';
-import 'package:groupidy/utils.dart';
-import 'package:groupidy/view/components/button.dart';
-import 'package:groupidy/view/components/circle_image.dart';
-import 'package:groupidy/view/components/custom_editable_text.dart';
-import 'package:groupidy/view/components/members.dart';
-import 'package:groupidy/view/group_view/channel_image_change.dart';
+import 'package:chatapp/colors.dart';
+import 'package:chatapp/controller/channel_controller.dart';
+import 'package:chatapp/controller/group_controller.dart';
+import 'package:chatapp/controller/user_controller.dart';
+import 'package:chatapp/enums/channel_types.dart';
+import 'package:chatapp/typography.dart';
+import 'package:chatapp/utils.dart';
+import 'package:chatapp/view/components/button.dart';
+import 'package:chatapp/view/components/circle_image.dart';
+import 'package:chatapp/view/components/custom_editable_text.dart';
+import 'package:chatapp/view/components/members.dart';
+import 'package:chatapp/view/group_view/channel_image_change.dart';
 
 class ChannelInformation extends StatefulWidget {
   const ChannelInformation({Key? key}) : super(key: key);
@@ -42,8 +42,7 @@ class _ChannelInformationState extends State<ChannelInformation> {
                       useText: !channelController.getIsImage(),
                       text: channelController.getIconText(),
                       padding: EdgeInsets.only(right: 32, bottom: 32),
-                      onClick: groupController.isGroupAdmin(userController.getUserUid()) ? () =>
-                          dialog(context: context, child: ChannelImageChange()) : null,
+                      onClick: groupController.isGroupAdmin(userController.getUserUid()) ? () => dialog(context: context, child: ChannelImageChange()) : null,
                     )),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -59,8 +58,7 @@ class _ChannelInformationState extends State<ChannelInformation> {
                       padding: const EdgeInsets.only(top: 4),
                       child: Obx(() => Text(
                             channelTypeString[channelController.getType()]!,
-                            style:
-                                kBodyRegular.copyWith(color: kWhiteSecondary),
+                            style: kBodyRegular.copyWith(color: kWhiteSecondary),
                           )),
                     )
                   ],
@@ -69,8 +67,7 @@ class _ChannelInformationState extends State<ChannelInformation> {
             ),
             Obx(() => CustomEditableText(
                   hint: "Insert channel description",
-                  onTextChange: (s) =>
-                      channelController.updateChannelDescription(s),
+                  onTextChange: (s) => channelController.updateChannelDescription(s),
                   initialText: channelController.getDescription(),
                   editable: groupController.isGroupAdmin(userController.getUserUid()),
                 )),

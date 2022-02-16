@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:groupidy/colors.dart';
-import 'package:groupidy/typography.dart';
-import 'package:groupidy/view/notification_views/notification_side.dart';
-import 'package:groupidy/model/notification_message.dart';
+import 'package:chatapp/colors.dart';
+import 'package:chatapp/typography.dart';
+import 'package:chatapp/view/notification_views/notification_side.dart';
+import 'package:chatapp/model/notification_message.dart';
 
 class NotificationItem extends StatelessWidget {
   const NotificationItem({

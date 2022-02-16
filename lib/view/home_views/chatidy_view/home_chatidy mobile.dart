@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:groupidy/colors.dart';
+import 'package:chatapp/colors.dart';
 
 import 'home_chatidy_menu.dart';
 
 class HomeChatidyMobile extends StatelessWidget {
-  const HomeChatidyMobile({ Key? key, required this.chats }) : super(key: key);
+  const HomeChatidyMobile({Key? key, required this.chats}) : super(key: key);
 
   final chats;
 

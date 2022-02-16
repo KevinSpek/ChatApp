@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:groupidy/colors.dart';
-import 'package:groupidy/constants.dart';
-import 'package:groupidy/model/post.dart';
-import 'package:groupidy/typography.dart';
-import 'package:groupidy/view/components/item_info.dart';
-import 'package:groupidy/view/components/textfield_bar.dart';
+import 'package:chatapp/colors.dart';
+import 'package:chatapp/constants.dart';
+import 'package:chatapp/model/post.dart';
+import 'package:chatapp/typography.dart';
+import 'package:chatapp/view/components/item_info.dart';
+import 'package:chatapp/view/components/textfield_bar.dart';
 
 class PostBubble extends StatefulWidget {
   const PostBubble({Key? key, required this.post, required this.uid}) : super(key: key);

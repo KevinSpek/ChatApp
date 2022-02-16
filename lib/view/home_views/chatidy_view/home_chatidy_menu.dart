@@ -1,23 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:groupidy/model/chat.dart';
-import 'package:groupidy/model/notification_message.dart';
-import 'package:groupidy/view/components/custom_icon_button.dart';
-import 'package:groupidy/view/components/item_info.dart';
-import 'package:groupidy/view/notification_views/notification_item.dart';
-import 'package:groupidy/view/notification_views/notification_side.dart';
+import 'package:chatapp/model/chat.dart';
+import 'package:chatapp/model/notification_message.dart';
+import 'package:chatapp/view/components/custom_icon_button.dart';
+import 'package:chatapp/view/components/item_info.dart';
+import 'package:chatapp/view/notification_views/notification_item.dart';
+import 'package:chatapp/view/notification_views/notification_side.dart';
 
 import '../../../colors.dart';
 import '../../../typography.dart';
 
 class ChatidyMenu extends StatelessWidget {
-  const ChatidyMenu(
-      {Key? key,
-      required this.onChatClick,
-      required this.chats,
-      required this.onShowAddChat,
-      required this.onAddChat,
-      required this.showAddChat})
-      : super(key: key);
+  const ChatidyMenu({Key? key, required this.onChatClick, required this.chats, required this.onShowAddChat, required this.onAddChat, required this.showAddChat}) : super(key: key);
 
   final Function(int) onChatClick;
   final VoidCallback onShowAddChat;
@@ -31,10 +24,7 @@ class ChatidyMenu extends StatelessWidget {
       children: [
         Container(
           height: 80,
-          decoration: BoxDecoration(
-              border: Border(
-                  bottom: BorderSide(color: kWhiteDisabled, width: 0.5),
-                  right: BorderSide(color: kWhiteDisabled, width: 0.5))),
+          decoration: BoxDecoration(border: Border(bottom: BorderSide(color: kWhiteDisabled, width: 0.5), right: BorderSide(color: kWhiteDisabled, width: 0.5))),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -49,10 +39,7 @@ class ChatidyMenu extends StatelessWidget {
                 CustomIconButton(
                   icon: Icons.search_rounded,
                 ),
-                CustomIconButton(
-                    onPressed: onShowAddChat,
-                    icon:
-                        showAddChat ? Icons.close_rounded : Icons.add_rounded),
+                CustomIconButton(onPressed: onShowAddChat, icon: showAddChat ? Icons.close_rounded : Icons.add_rounded),
               ])
             ],
           ),
@@ -88,7 +75,6 @@ class AddChat extends StatefulWidget {
 }
 
 class _AddChatState extends State<AddChat> {
-
   String _userTag = '';
 
   @override
@@ -98,9 +84,7 @@ class _AddChatState extends State<AddChat> {
         padding: EdgeInsets.all(16),
         height: 100,
         width: double.infinity,
-        decoration: BoxDecoration(
-            border: Border(
-                bottom: BorderSide(color: kWhiteDisabled, width: 0.5))),
+        decoration: BoxDecoration(border: Border(bottom: BorderSide(color: kWhiteDisabled, width: 0.5))),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -112,15 +96,13 @@ class _AddChatState extends State<AddChat> {
               children: [
                 Expanded(
                   child: TextField(
-                    onChanged: (s) {setState(() {
-                      _userTag = s;
-                    });},
+                    onChanged: (s) {
+                      setState(() {
+                        _userTag = s;
+                      });
+                    },
                     style: kBodyRegular.copyWith(color: kWhite),
-                    decoration: InputDecoration(
-                        hintText: 'Example: name#12Yc',
-                        isDense: true,
-                        hintStyle:
-                            kBodyRegular.copyWith(color: kWhiteSecondary)),
+                    decoration: InputDecoration(hintText: 'Example: name#12Yc', isDense: true, hintStyle: kBodyRegular.copyWith(color: kWhiteSecondary)),
                   ),
                 ),
                 CustomIconButton(
@@ -146,8 +128,7 @@ String getLastUpdatedFormatted(DateTime lastUpdated) {
 }
 
 class ChatItem extends StatelessWidget {
-  const ChatItem({Key? key, required this.chat, required this.onTap})
-      : super(key: key);
+  const ChatItem({Key? key, required this.chat, required this.onTap}) : super(key: key);
 
   final VoidCallback onTap;
   final Chat chat;
@@ -158,9 +139,7 @@ class ChatItem extends StatelessWidget {
       onTap: onTap,
       child: Container(
         height: 80,
-        decoration: BoxDecoration(
-            border:
-                Border(bottom: BorderSide(color: kWhiteDisabled, width: 0.5))),
+        decoration: BoxDecoration(border: Border(bottom: BorderSide(color: kWhiteDisabled, width: 0.5))),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -184,16 +163,11 @@ class ChatItem extends StatelessWidget {
                 children: [
                   Text(
                     getLastUpdatedFormatted(chat.lastUpdated),
-                    style:
-                        kCaption.copyWith(color: kWhiteSecondary, fontSize: 15),
+                    style: kCaption.copyWith(color: kWhiteSecondary, fontSize: 15),
                   ),
                   NotificationItem(
                     side: NotificationSide.all,
-                    notification: NotificationMessage(
-                        chatID: "dd",
-                        numNewMessages: 5,
-                        notificationType: NotificationType.chatidy,
-                        time: DateTime.now()),
+                    notification: NotificationMessage(chatID: "dd", numNewMessages: 5, notificationType: NotificationType.chatidy, time: DateTime.now()),
                   )
                 ],
               ),
